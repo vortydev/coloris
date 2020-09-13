@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ChiefJuice;
 using UnityEngine;
 
 public class Screenshake : MonoBehaviour
@@ -8,7 +9,7 @@ public class Screenshake : MonoBehaviour
     Vector3 initialPosition;
 
     public float shakeDuration = 0f; // Time shaking
-    public float shakeMagnitude = 0.7f; // The intensity of the screenshake
+    public FloatVal shakeMagnitude; // The intensity of the screenshake
     public float dampingSpeed = 1.0f; // How quickly is it slowing down
 
     private void Awake()

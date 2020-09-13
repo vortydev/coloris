@@ -12,15 +12,16 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         generateBag();
-        spawnNext();
     }
+    
     public void spawnNext()
     {
         // Random Index
         // int i = Random.Range(0, groups.Length);
 
         // Spawn Group at current Position
-        Instantiate(groups[index], transform.position, Quaternion.identity);
+       Instantiate(groups[index], transform.position, Quaternion.identity);
+        
         
         index++;
         if (index > groups.Length - 1)

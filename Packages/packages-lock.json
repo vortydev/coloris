@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.coffee.ui-particle": {
+      "version": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b0e2688c38a695c301be85ce9542d154a94627a2"
+    },
+    "com.coffee.unmask": {
+      "version": "https://github.com/mob-sakai/UnmaskForUGUI.git#1.1.3",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "cde43d8216f20460c4aa453e269fcb13efdff86d"
+    },
     "com.unity.2d.animation": {
       "version": "4.2.4",
       "depth": 0,
