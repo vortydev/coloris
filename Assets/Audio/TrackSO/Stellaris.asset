@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: Stellaris
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: ea99d2eecb7330541ba633d36af69f19, type: 3}
+  track: {fileID: 8300000, guid: bc6de8f6eb3799e4fb786d4be54e1a44, type: 3}
   trackName: Stellaris
   authorName: Christian Royle
+  bpm: 0
+  offset: 0

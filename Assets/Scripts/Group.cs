@@ -34,7 +34,7 @@ public class Group : MonoBehaviour
         if (isMoveable)
         {
             // Move Left
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown("a"))
             {
                 transform.position += new Vector3(-1, 0, 0);
 
@@ -44,7 +44,7 @@ public class Group : MonoBehaviour
                     transform.position += new Vector3(1, 0, 0);
             }
             // Move Right
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown("d"))
             {
                 transform.position += new Vector3(1, 0, 0);
 
@@ -54,7 +54,7 @@ public class Group : MonoBehaviour
                     transform.position += new Vector3(-1, 0, 0);
             }
             // Rotate
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (Input.GetKeyDown("w"))
             {
                 if (gameObject.tag == "SquarePiece") return;
 
@@ -66,7 +66,7 @@ public class Group : MonoBehaviour
                     transform.Rotate(0, 0, 90);
             }
             // Move Downwards and Fall
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= 1)
+            else if (Input.GetKeyDown("s") || Time.time - lastFall >= 1)
             {
                 // Modify position
                 transform.position += new Vector3(0, -1, 0);
@@ -86,7 +86,7 @@ public class Group : MonoBehaviour
                     Playfield.DeleteFullRows();
 
                     // Spawn next Group
-                    FindObjectOfType<Spawner>().spawnNext();
+                    FindObjectOfType<Spawner>().SpawnNext();
 
                     // Disable script
                     enabled = false;
@@ -94,6 +94,10 @@ public class Group : MonoBehaviour
 
                 lastFall = Time.time;
             }
+            //else if (Input.GetKeyDown("e"))
+            //{
+                
+            //}
         }   
 
         // Hard drop
@@ -115,15 +119,16 @@ public class Group : MonoBehaviour
                 }
             }
 
-            Playfield.DeleteFullRowsAndShake();
-            FindObjectOfType<Spawner>().spawnNext();
+            Playfield.DeleteFullRows();
+            FindObjectOfType<Screenshake>().TriggerScreenshake();
+            FindObjectOfType<Spawner>().SpawnNext();
 
             enabled = false;
         }
     }
 
     // Checks if the group is within border
-    bool IsValidGridPos()
+    public bool IsValidGridPos()
     {
         foreach (Transform child in transform)
         {
@@ -142,7 +147,7 @@ public class Group : MonoBehaviour
     }
 
     // Updates the grid with the group
-    void UpdateGrid()
+    public void UpdateGrid()
     {
         // Remove old children from grid
         for (int y = 0; y < Playfield.h; ++y)

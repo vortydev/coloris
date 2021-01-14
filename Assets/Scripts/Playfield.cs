@@ -77,20 +77,4 @@ public class Playfield : MonoBehaviour
             }
         }
     }
-
-    // Does the same as DeleteFullRows(), but with screenshake
-    public static void DeleteFullRowsAndShake()
-    {
-        for (int y = 0; y < h; y++)
-        {
-            if (IsRowFull(y))
-            {
-                DeleteRow(y);
-                DecreaseRowsAbove(y + 1);
-                y--;
-
-                FindObjectOfType<Screenshake>().TriggerScreenshake();
-            }
-        }
-    }
 }
