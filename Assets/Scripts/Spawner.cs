@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        generateBag();
+        GenerateBag();
         spawnNext();
     }
     public void spawnNext()
@@ -26,11 +26,11 @@ public class Spawner : MonoBehaviour
         if (index > groups.Length - 1)
         {
             index = 0;
-            generateBag();
+            GenerateBag();
         }
     }
 
-    private void generateBag()
+    private void GenerateBag()
     {
         for (int i = 0; i < groups.Length - 1; i++)
         {

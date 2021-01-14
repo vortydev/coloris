@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class Screenshake : MonoBehaviour
 {
-    Transform transform;
     Vector3 initialPosition;
 
     public float shakeDuration = 0f; // Time shaking
     public float shakeMagnitude = 0.7f; // The intensity of the screenshake
     public float dampingSpeed = 1.0f; // How quickly is it slowing down
-
-    private void Awake()
-    {
-        if (transform == null)
-        {
-            transform = GetComponent(typeof(Transform)) as Transform;
-        }
-    }
 
     private void OnEnable()
     {
