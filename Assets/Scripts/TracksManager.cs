@@ -7,18 +7,21 @@ public class TracksManager : MonoBehaviour
     [Header("Components")]
     private AudioSource audioSource;            // component that plays the track
     private AudioController audioController;    // script that sets the audio's volume
+    private BopManager bopManager;               // script that handles the cells bopping
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
 
     [Header("Tracks")]
     [SerializeField] TrackSO[] tracks;          // array of TrackSO holding track data
     private bool[] playlist;                    // array of bools matching the TrackSO array
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
+    private TrackSO curTrack;
 
     private void Awake()
     {
         // load components
         audioSource = GetComponent<AudioSource>();
         audioController = GetComponent<AudioController>();
+        bopManager = GetComponent<BopManager>();
         
         // resize the bool array and set all to false
         playlist = new bool[tracks.Length];
@@ -55,12 +58,12 @@ public class TracksManager : MonoBehaviour
         playlist[rng] = true;
         prevTrack = rng;
 
-        var curTrack = tracks[rng];
+        curTrack = tracks[rng];
         audioSource.clip = curTrack.track;
         audioSource.Play();
 
         radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
-        // send bopping cell info
+        bopManager.GetCurTrack(curTrack);
     }
 
     // checks if the playlist is done and resets it if it is

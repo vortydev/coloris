@@ -15,5 +15,10 @@ MonoBehaviour:
   track: {fileID: 8300000, guid: 38d1812c7e693334387b5c63b3675de0, type: 3}
   trackName: Encounter!
   authorName: Niyah / Scyriate
-  bpm: 0
+  bpm: 107
   offset: 0
+  startDelay: 40
+  startBridge1: 0
+  endBridge1: 0
+  startBridge2: 0
+  endBridge2: 0

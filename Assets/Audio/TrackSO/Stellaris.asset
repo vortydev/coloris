@@ -15,5 +15,10 @@ MonoBehaviour:
   track: {fileID: 8300000, guid: bc6de8f6eb3799e4fb786d4be54e1a44, type: 3}
   trackName: Stellaris
   authorName: Christian Royle
-  bpm: 0
+  bpm: 128
   offset: 0
+  startDelay: 15
+  startBridge1: 45
+  endBridge1: 90
+  startBridge2: 0
+  endBridge2: 0
