@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Group : MonoBehaviour
 {
+    private bool paused;
     // Time since last gravity tick
     private float lastFall = 0;
     private bool isMoveable = true;
@@ -31,7 +32,9 @@ public class Group : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMoveable)
+        paused = FindObjectOfType<PauseMenu>().gamePaused;
+
+        if (isMoveable && !paused)
         {
             // Move Left
             if (Input.GetKeyDown("a"))
@@ -94,7 +97,7 @@ public class Group : MonoBehaviour
 
                 lastFall = Time.time;
             }
-            //else if (Input.GetKeyDown("e"))
+            //else if (Input.GetKeyDown("e")) // hold piece
             //{
                 
             //}
@@ -162,5 +165,10 @@ public class Group : MonoBehaviour
             Vector2 v = Playfield.RoundVec2(child.position);
             Playfield.grid[(int)v.x, (int)v.y] = child;
         }
+    }
+
+    public void ResetFallCounter()
+    {
+        lastFall = Time.time;
     }
 }

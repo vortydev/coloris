@@ -16,9 +16,5 @@ MonoBehaviour:
   trackName: Encounter!
   authorName: Niyah / Scyriate
   bpm: 107
-  offset: 0
+  offset: 2
   startDelay: 40
-  startBridge1: 0
-  endBridge1: 0
-  startBridge2: 0
-  endBridge2: 0
