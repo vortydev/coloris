@@ -14,6 +14,8 @@ public class AudioController : MonoBehaviour
         {
             PlayerPrefs.SetFloat("music", 10f);
             PlayerPrefs.SetFloat("sfx", 10f);
+
+            PlayerPrefs.Save();
         }
 
         // loads controller's variable from PlayerPrefs
@@ -26,6 +28,7 @@ public class AudioController : MonoBehaviour
         if (music != m)
         {
             music = m;
+            SettingsManager.SaveFloatPlayerPrefs("music", m);
         }
     }
 
@@ -34,13 +37,7 @@ public class AudioController : MonoBehaviour
         if (sfx != s)
         {
             sfx = s;
+            SettingsManager.SaveFloatPlayerPrefs("sfx", s);
         }
-    }
-
-    public void SavePlayerPrefs()
-    {
-        PlayerPrefs.SetFloat("music", music);
-        PlayerPrefs.SetFloat("sfx", sfx);
-        PlayerPrefs.Save();
     }
 }

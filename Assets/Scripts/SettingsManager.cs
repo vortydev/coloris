@@ -17,6 +17,23 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] GameObject gamePanel;
     [SerializeField] Button gameButton;
 
+    private void Awake()
+    {
+        // if the playerprefs dont exist yet, set them
+        if (!PlayerPrefs.HasKey("visualiser"))
+        {
+            // visual settings
+            PlayerPrefs.SetInt("visualiser", 1);
+            PlayerPrefs.SetInt("screenshake", 1);
+
+            // game settings
+            PlayerPrefs.SetInt("game_grid", 1);
+            PlayerPrefs.SetInt("next_piece", 1);
+
+            PlayerPrefs.Save();
+        }
+    }
+
     private void Start()
     {
         visualPanel.SetActive(false);
@@ -56,5 +73,21 @@ public class SettingsManager : MonoBehaviour
         audioButton.interactable = true;
         visualButton.interactable = true;
         gameButton.interactable = false;
+    }
+
+    public static void ToggleBoolPlayerPrefs(string key)
+    {
+        if (PlayerPrefs.GetInt(key) == 0)
+            PlayerPrefs.SetInt(key, 1);
+        else
+            PlayerPrefs.SetInt(key, 0);
+
+        PlayerPrefs.Save();
+    }
+
+    public static void SaveFloatPlayerPrefs(string key, float val)
+    {
+        PlayerPrefs.SetFloat(key, val);
+        PlayerPrefs.Save();
     }
 }

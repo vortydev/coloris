@@ -16,6 +16,12 @@ public class SettingsAudio : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
 
+    private void Start()
+    {
+        musicSlider.value = audioController.music;
+        sfxSlider.value = audioController.sfx;
+    }
+
     private void Update()
     {
         audioController.UpdateMusic(musicSlider.value);
