@@ -8,8 +8,8 @@ public class AudioPeer : MonoBehaviour
     private AudioSource _audioSource;
         
     private float[] _samples = new float[512];
-    private float[] _freqBand = new float[8];
-    private float[] _bandBuffer = new float[8];
+    public static float[] _freqBand = new float[8];
+    public static float[] _bandBuffer = new float[8];
     private float[] _bufferDecrease = new float[8];
 
     private float[] _freqBandHighest = new float[8];

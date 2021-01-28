@@ -7,7 +7,6 @@ public class TracksManager : MonoBehaviour
     [Header("Components")]
     private AudioSource audioSource;            // component that plays the track
     private AudioController audioController;    // script that sets the audio's volume
-    private BopManager bopManager;               // script that handles the cells bopping
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
 
     [Header("Tracks")]
@@ -21,7 +20,6 @@ public class TracksManager : MonoBehaviour
         // load components
         audioSource = GetComponent<AudioSource>();
         audioController = GetComponent<AudioController>();
-        bopManager = GetComponent<BopManager>();
         
         // resize the bool array and set all to false
         playlist = new bool[tracks.Length];
@@ -63,7 +61,6 @@ public class TracksManager : MonoBehaviour
         audioSource.Play();
 
         radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
-        bopManager.GetCurTrack(curTrack);
     }
 
     // checks if the playlist is done and resets it if it is
