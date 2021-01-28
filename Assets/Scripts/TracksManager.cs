@@ -5,15 +5,17 @@ using UnityEngine;
 public class TracksManager : MonoBehaviour
 {
     [Header("Components")]
-    private AudioSource audioSource;            // component that plays the track
+    public AudioSource audioSource;            // component that plays the track
     private AudioController audioController;    // script that sets the audio's volume
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
+    [SerializeField] TrackUI trackUI;
 
     [Header("Tracks")]
     [SerializeField] TrackSO[] tracks;          // array of TrackSO holding track data
     private bool[] playlist;                    // array of bools matching the TrackSO array
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
     private TrackSO curTrack;
+    public bool isPaused = false;
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class TracksManager : MonoBehaviour
     private void Update()
     {
         // starts a new track when the previous is done
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && !isPaused)
             NextTrack();
 
         // adjusts the sound of the music
@@ -45,7 +47,7 @@ public class TracksManager : MonoBehaviour
     }
 
     // randomly chooses a track that hasn't been played yet
-    private void NextTrack()
+    public void NextTrack()
     {
         CheckPlaylist();
         int rng;
@@ -61,6 +63,9 @@ public class TracksManager : MonoBehaviour
         audioSource.Play();
 
         radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
+        trackUI.GetTotalTrackTime(audioSource.clip.length);
+
+        isPaused = false;
     }
 
     // checks if the playlist is done and resets it if it is
@@ -85,5 +90,27 @@ public class TracksManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void RestartTrack()
+    {
+        audioSource.Stop();
+        audioSource.Play();
+
+        isPaused = false;
+    }
+
+    public void TogglePause()
+    {
+        if (isPaused)
+        {
+            audioSource.UnPause();
+            isPaused = false;
+        }
+        else
+        {
+            audioSource.Pause();
+            isPaused = true;
+        }
     }
 }
