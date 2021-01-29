@@ -29,6 +29,9 @@ public class Playfield : MonoBehaviour
             Destroy(grid[x, y].gameObject);
             grid[x, y] = null;
         }
+
+        // increases the number or cleared lines
+        FindObjectOfType<Score>().IncrementScore();
     }
 
     // Move a row down

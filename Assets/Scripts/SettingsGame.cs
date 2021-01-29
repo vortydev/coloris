@@ -6,16 +6,18 @@ using TMPro;
 
 public class SettingsGame : MonoBehaviour
 {
-    [Header("Grid")]
-    [SerializeField] GameObject grid;
-    [SerializeField] Toggle gridToggle;
+    //[Header("Difficulty")]
+    //[SerializeField] Score score;
+    //[SerializeField] GameObject maxDifficulty;
+    //private Toggle maxDifficultyToggle;
+    //private InputField maxDifficultyInput;
 
-    //[Header("Score")]
-    //[SerializeField] Image scoreUI;
-    //[SerializeField] Toggle scoreToggle;
+    [Header("Score")]
+    [SerializeField] GameObject scoreUI;
+    [SerializeField] Toggle scoreToggle;
 
     [Header("Next Piece")]
-    [SerializeField] Image nextPieceUI;
+    [SerializeField] GameObject nextPieceUI;
     [SerializeField] Toggle nextPieceToggle;
 
     //[Header("Held Piece")]
@@ -27,28 +29,28 @@ public class SettingsGame : MonoBehaviour
     //[SerializeField] Toggle ghostPieceToggle;
     private void Awake()
     {
-        if (PlayerPrefs.GetInt("game_grid") == 0)
+        if (PlayerPrefs.GetInt("score") == 0)
         {
-            grid.SetActive(false);
-            gridToggle.SetIsOnWithoutNotify(false);
+            scoreUI.SetActive(false);
+            scoreToggle.SetIsOnWithoutNotify(false);
         }
 
         if (PlayerPrefs.GetInt("next_piece") == 0)
         {
-            nextPieceUI.gameObject.SetActive(false);
+            nextPieceUI.SetActive(false);
             nextPieceToggle.SetIsOnWithoutNotify(false);
         }
     }
 
-    public void ToggleGrid()
+    public void ToggleScore()
     {
-        grid.SetActive(!grid.activeSelf);
-        SettingsManager.ToggleBoolPlayerPrefs("game_grid");
+        scoreUI.SetActive(!scoreUI.activeSelf);
+        SettingsManager.ToggleBoolPlayerPrefs("score");
     }
 
     public void ToggleNextPiece()
     {
-        nextPieceUI.gameObject.SetActive(!nextPieceUI.gameObject.activeSelf);
+        nextPieceUI.SetActive(!nextPieceUI.activeSelf);
         SettingsManager.ToggleBoolPlayerPrefs("next_piece");
     }
 }

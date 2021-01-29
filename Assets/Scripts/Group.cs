@@ -9,11 +9,14 @@ public class Group : MonoBehaviour
     // Time since last gravity tick
     private float lastFall = 0;
     private bool isMoveable = true;
-    //private int localDifficulty = 0;
+    private float localDifficulty = 0;
+    private float maxGlobalDifficulty;
 
     void Start()
     {
-        //localDifficulty = FindObjectOfType<Score>().ReturnDifficulty();
+        localDifficulty = FindObjectOfType<Score>().globalDifficulty;
+        maxGlobalDifficulty = FindObjectOfType<Score>().maxDifficulty;
+
         // Default position not valid? Then it's game over
         if (!IsValidGridPos())
         {
@@ -69,7 +72,7 @@ public class Group : MonoBehaviour
                     transform.Rotate(0, 0, 90);
             }
             // Move Downwards and Fall
-            else if (Input.GetKeyDown("s") || Time.time - lastFall >= 1)
+            else if (Input.GetKeyDown("s") || Time.time - lastFall >= 1 - (localDifficulty / maxGlobalDifficulty))
             {
                 // Modify position
                 transform.position += new Vector3(0, -1, 0);

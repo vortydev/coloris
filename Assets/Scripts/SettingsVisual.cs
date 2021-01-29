@@ -6,6 +6,10 @@ using TMPro;
 
 public class SettingsVisual : MonoBehaviour
 {
+    [Header("Grid")]
+    [SerializeField] GameObject grid;
+    [SerializeField] Toggle gridToggle;
+
     [Header("Audio Visualiser")]
     [SerializeField] GameObject visualiser;
     [SerializeField] Toggle visualiserToggle;
@@ -22,6 +26,12 @@ public class SettingsVisual : MonoBehaviour
         // gets components
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (PlayerPrefs.GetInt("game_grid") == 0)
+        {
+            grid.SetActive(false);
+            gridToggle.SetIsOnWithoutNotify(false);
+        }
 
         if (PlayerPrefs.GetInt("visualiser") == 0)
         {
@@ -47,6 +57,12 @@ public class SettingsVisual : MonoBehaviour
         // screenshake
         screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
         shakeValue.text = shakeSlider.value.ToString();
+    }
+
+    public void ToggleGrid()
+    {
+        grid.SetActive(!grid.activeSelf);
+        SettingsManager.ToggleBoolPlayerPrefs("game_grid");
     }
 
     public void ToggleAudioVisualiser()

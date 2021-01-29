@@ -28,6 +28,7 @@ public class SettingsManager : MonoBehaviour
 
             // game settings
             PlayerPrefs.SetInt("game_grid", 1);
+            PlayerPrefs.SetInt("score", 1);
             PlayerPrefs.SetInt("next_piece", 1);
 
             PlayerPrefs.Save();
