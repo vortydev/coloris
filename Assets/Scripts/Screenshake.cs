@@ -6,18 +6,13 @@ public class Screenshake : MonoBehaviour
 {
     Vector3 initialPosition;
 
-    public float shakeDuration; // Time shaking
-    public float shakeMagnitude; // The intensity of the screenshake
-    public float dampingSpeed; // How quickly is it slowing down
+    public float shakeDuration;     // Time shaking
+    public float shakeMagnitude;    // The intensity of the screenshake
+    public float dampingSpeed;      // How quickly is it slowing down
 
     private void Awake()
     {
-        if (!PlayerPrefs.HasKey("shakeMagnitude"))
-        {
-            PlayerPrefs.SetFloat("shakeMagnitude", 0.5f);
-        }
-
-        shakeMagnitude = PlayerPrefs.GetFloat("shakeMagnitude");
+        shakeMagnitude = PlayerPrefsManager.GetFloatPlayerPrefs(PlayerPrefsManager.shakeMagnitudeKEY, 0.5f);
     }
     private void OnEnable()
     {
@@ -51,7 +46,7 @@ public class Screenshake : MonoBehaviour
         if (shakeMagnitude != m)
         {
             shakeMagnitude = m;
-            SettingsManager.SaveFloatPlayerPrefs("shakeMagnitude", m);
+            PlayerPrefsManager.SaveFloatPlayerPrefs(PlayerPrefsManager.shakeMagnitudeKEY, m);
         }
     }
 }

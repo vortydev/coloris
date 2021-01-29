@@ -14,12 +14,12 @@ public class BopManager : MonoBehaviour
     public int _offset;
     public float _startDelay;
 
-    public void GetCurTrack(TrackSO track)
-    {
-        _bpm = track.bpm;
-        _offset = track.offset;
-        _startDelay = track.startDelay;
-    }
+    //public void GetCurTrack(TrackSO track)
+    //{
+    //    _bpm = track.bpm;
+    //    _offset = track.offset;
+    //    _startDelay = track.startDelay;
+    //}
 
     private void Update()
     {

@@ -27,19 +27,19 @@ public class SettingsVisual : MonoBehaviour
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
 
-        if (PlayerPrefs.GetInt("game_grid") == 0)
+        if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.gridKEY, 1) == 0)
         {
             grid.SetActive(false);
             gridToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefs.GetInt("visualiser") == 0)
+        if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
             visualiser.SetActive(false);
             visualiserToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefs.GetInt("screenshake") == 0)
+        if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.screenshakeKEY, 1) == 0)
         {
             screenshake.enabled = false;
             shakeToggle.SetIsOnWithoutNotify(false);
@@ -62,19 +62,19 @@ public class SettingsVisual : MonoBehaviour
     public void ToggleGrid()
     {
         grid.SetActive(!grid.activeSelf);
-        SettingsManager.ToggleBoolPlayerPrefs("game_grid");
+        PlayerPrefsManager.ToggleBoolPlayerPrefs(PlayerPrefsManager.gridKEY);
     }
 
     public void ToggleAudioVisualiser()
     {
         visualiser.SetActive(!visualiser.activeSelf);
-        SettingsManager.ToggleBoolPlayerPrefs("visualiser");
+        PlayerPrefsManager.ToggleBoolPlayerPrefs(PlayerPrefsManager.visualiserKEY);
     }
 
     public void ToggleScreenshake()
     {
         screenshake.enabled = !screenshake.enabled;
         shakeIntensity.SetActive(!shakeIntensity.activeSelf);
-        SettingsManager.ToggleBoolPlayerPrefs("screenshake");
+        PlayerPrefsManager.ToggleBoolPlayerPrefs(PlayerPrefsManager.screenshakeKEY);
     }
 }

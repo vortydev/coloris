@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Start()
     {
+        settingsMenu.SetActive(false);
         popup.gameObject.SetActive(false);          // sets the menu to inactive
     }
 
@@ -60,11 +61,6 @@ public class PauseMenu : MonoBehaviour
             OnUnpauseMenu();
         else
             OnPauseMenu();
-    }
-
-    public void OnClickSettings()
-    {
-
     }
 
     // Loads scene #0, which is the main menu

@@ -27,15 +27,16 @@ public class SettingsGame : MonoBehaviour
     //[Header("Ghost Piece")]
     //[SerializeField] Image ghostPieceUI;
     //[SerializeField] Toggle ghostPieceToggle;
+
     private void Awake()
     {
-        if (PlayerPrefs.GetInt("score") == 0)
+        if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreUI.SetActive(false);
             scoreToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefs.GetInt("next_piece") == 0)
+        if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.nextPieceKEY, 1) == 0)
         {
             nextPieceUI.SetActive(false);
             nextPieceToggle.SetIsOnWithoutNotify(false);
@@ -45,12 +46,12 @@ public class SettingsGame : MonoBehaviour
     public void ToggleScore()
     {
         scoreUI.SetActive(!scoreUI.activeSelf);
-        SettingsManager.ToggleBoolPlayerPrefs("score");
+        PlayerPrefsManager.ToggleBoolPlayerPrefs(PlayerPrefsManager.scoreKEY);
     }
 
     public void ToggleNextPiece()
     {
         nextPieceUI.SetActive(!nextPieceUI.activeSelf);
-        SettingsManager.ToggleBoolPlayerPrefs("next_piece");
+        PlayerPrefsManager.ToggleBoolPlayerPrefs(PlayerPrefsManager.nextPieceKEY);
     }
 }

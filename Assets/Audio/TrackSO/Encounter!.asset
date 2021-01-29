@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Encounter!
   m_EditorClassIdentifier: 
   track: {fileID: 8300000, guid: 38d1812c7e693334387b5c63b3675de0, type: 3}
+  trackNb: 2
   trackName: Encounter!
   authorName: Niyah / Scyriate
-  bpm: 107
-  offset: 2
-  startDelay: 40

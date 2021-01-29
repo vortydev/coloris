@@ -5,22 +5,12 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     // audio settings
-    public float music;
-    public float sfx;
+    public float music, sfx;
 
-    void Awake()
+    private void Awake()
     {
-        if (!PlayerPrefs.HasKey("music"))
-        {
-            PlayerPrefs.SetFloat("music", 10f);
-            PlayerPrefs.SetFloat("sfx", 10f);
-
-            PlayerPrefs.Save();
-        }
-
-        // loads controller's variable from PlayerPrefs
-        music = PlayerPrefs.GetFloat("music");
-        sfx = PlayerPrefs.GetFloat("sfx");
+        music = PlayerPrefsManager.GetFloatPlayerPrefs(PlayerPrefsManager.musicKEY, 10f);
+        sfx = PlayerPrefsManager.GetFloatPlayerPrefs(PlayerPrefsManager.sfxKEY, 10f);
     }
 
     public void UpdateMusic(float m)
@@ -28,7 +18,7 @@ public class AudioController : MonoBehaviour
         if (music != m)
         {
             music = m;
-            SettingsManager.SaveFloatPlayerPrefs("music", m);
+            PlayerPrefsManager.SaveFloatPlayerPrefs(PlayerPrefsManager.musicKEY, m);
         }
     }
 
@@ -37,7 +27,7 @@ public class AudioController : MonoBehaviour
         if (sfx != s)
         {
             sfx = s;
-            SettingsManager.SaveFloatPlayerPrefs("sfx", s);
+            PlayerPrefsManager.SaveFloatPlayerPrefs(PlayerPrefsManager.sfxKEY, s);
         }
     }
 }
