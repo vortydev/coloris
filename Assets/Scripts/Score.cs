@@ -8,12 +8,23 @@ public class Score : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI difficultyLevelText;
 
-    [Header("Score Data")]
+    [Header("Score")]
     public int linesCleared = 0;            // the amount of lines the player has cleared
+    public int difficultyLevel;             // the difficulty level
+
+    [Header("Difficulty")]
     public int globalDifficulty = 0;        // the current difficulty of the game
-    public int maxDifficulty = 10;          // the maximum difficulty speed
-    public int difficultyTreshhold = 10;    // the number of lines to clear before incrementing the difficulty
+    public int maxDifficulty = 10;          
+    public int difficultyTreshhold;    // the number of lines to clear before incrementing the difficulty
+
+    private void Awake()
+    {
+        difficultyLevel = PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.difficultyLevelKEY, 1);
+        difficultyTreshhold = 12 - (difficultyLevel * 2);
+        UpdateDifficultyLevel(difficultyLevel);
+    }
 
     public void IncrementScore()
     {
@@ -29,6 +40,33 @@ public class Score : MonoBehaviour
         if (globalDifficulty < maxDifficulty - 1)
         {
             globalDifficulty++;
+        }
+    }
+
+    public void UpdateDifficultyLevel(int d)
+    {
+        if (difficultyLevel != d)
+        {
+            difficultyLevel = d;
+            PlayerPrefsManager.SaveIntPlayerPrefs(PlayerPrefsManager.difficultyLevelKEY, d);
+        }
+
+        difficultyTreshhold = 12 - (difficultyLevel * 2);
+
+        switch (difficultyLevel)
+        {
+            case 0:
+                difficultyLevelText.text = "Easy";
+                break;
+            case 1:
+                difficultyLevelText.text = "Normal";
+                break;
+            case 2:
+                difficultyLevelText.text = "Hard";
+                break;
+            case 3:
+                difficultyLevelText.text = "Insane";
+                break;
         }
     }
 }

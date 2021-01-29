@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class PlayerPrefsManager : MonoBehaviour
 {
-    [Header("Audio")]
-    public static string musicKEY = "music";
-    public static string sfxKEY = "sfx";
+    // audio
+    public static string musicKEY = "music";                    // float that controls the volume of the music
+    public static string sfxKEY = "sfx";                        // float that controls the volume of the sfx
 
-    [Header("Visual")]
-    public static string gridKEY = "gameGrid";
-    public static string visualiserKEY = "visualiser";
+    // visual
+    public static string gridKEY = "gameGrid";                  // "bool" int that toggles the game grid
+    public static string visualiserKEY = "visualiser";          // "bool" int that toggles the audio visualiser
 
-    [Header("Game")]
-    public static string scoreKEY = "score";
-    public static string nextPieceKEY = "nextPiece";
+    // game
+    public static string scoreKEY = "score";                    // "bool" int that toggles the score UI
+    public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the nextpiece UI
 
-    [Header("Screenshake")]
-    public static string screenshakeKEY = "screenshake";
-    public static string shakeMagnitudeKEY = "shakeMagnitude";
+    // screenshake
+    public static string screenshakeKEY = "screenshake";        // "bool" int that toggles the Screenshake.cs script
+    public static string shakeMagnitudeKEY = "shakeMagnitude";  // float that controls the intensity of the screenshake
 
-    [Header("Difficulty")]
-    public static string difficultyKEY = "cappedDifficulty";
-    public static string maxDifficultyKEY = "maxDifficulty";
+    // difficulty
+    public static string difficultyLevelKEY = "difficultyLevel";    // int of the difficulty level (1
 
-    [Header("Tutorial")]
-    public static string firstPlayKEY = "firstPlay";
+    // tutorial
+    public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
 
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPrefs(string KEY, float val)
@@ -65,7 +64,7 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Toggles "bool" PlayerPrefs between 0 and 1
+    // Toggles "bool" int PlayerPrefs between 0 and 1
     public static void ToggleBoolPlayerPrefs(string KEY)
     {
         if (PlayerPrefs.GetInt(KEY) == 0)

@@ -6,11 +6,9 @@ using TMPro;
 
 public class SettingsGame : MonoBehaviour
 {
-    //[Header("Difficulty")]
-    //[SerializeField] Score score;
-    //[SerializeField] GameObject maxDifficulty;
-    //private Toggle maxDifficultyToggle;
-    //private InputField maxDifficultyInput;
+    [Header("Difficulty")]
+    [SerializeField] Score score;
+    [SerializeField] Slider difficultyLevelSlider;
 
     [Header("Score")]
     [SerializeField] GameObject scoreUI;
@@ -21,15 +19,17 @@ public class SettingsGame : MonoBehaviour
     [SerializeField] Toggle nextPieceToggle;
 
     //[Header("Held Piece")]
-    //[SerializeField] Image heldPieceUI;
+    //[SerializeField] GameObject heldPieceUI;
     //[SerializeField] Toggle heldPieceToggle;
 
     //[Header("Ghost Piece")]
-    //[SerializeField] Image ghostPieceUI;
+    //[SerializeField] GameObject ghostPieceUI;
     //[SerializeField] Toggle ghostPieceToggle;
 
     private void Awake()
     {
+        difficultyLevelSlider.value = score.difficultyLevel;
+
         if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreUI.SetActive(false);
@@ -41,6 +41,11 @@ public class SettingsGame : MonoBehaviour
             nextPieceUI.SetActive(false);
             nextPieceToggle.SetIsOnWithoutNotify(false);
         }
+    }
+
+    private void Update()
+    {
+        score.UpdateDifficultyLevel((int)difficultyLevelSlider.value);
     }
 
     public void ToggleScore()
