@@ -10197,6 +10197,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96fbcdbf85223f143b2fafb88e8a2afc, type: 2}
   - {fileID: 11400000, guid: 62324578fb578d242b569d84004f1582, type: 2}
   - {fileID: 11400000, guid: c8900cbe4f5a6084689490a983793583, type: 2}
+  - {fileID: 11400000, guid: 51571a68b437132498a07d68e8b75230, type: 2}
   isPaused: 0
 --- !u!82 &2052457177
 AudioSource:

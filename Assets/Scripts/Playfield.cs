@@ -30,8 +30,6 @@ public class Playfield : MonoBehaviour
             grid[x, y] = null;
         }
 
-        // increases the number or cleared lines
-        FindObjectOfType<Score>().IncrementScore();
     }
 
     // Move a row down
@@ -75,6 +73,10 @@ public class Playfield : MonoBehaviour
             if (IsRowFull(y))
             {
                 DeleteRow(y);
+
+                // increases the number or cleared lines
+                FindObjectOfType<Score>().IncrementScore();
+
                 DecreaseRowsAbove(y + 1);
                 y--;
             }

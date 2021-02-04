@@ -10,13 +10,13 @@ public class Group : MonoBehaviour
     private float lastFall = 0;
     private bool isMoveable = true;
 
-    private float localDifficulty = 0;
+    private float localDifficulty;
     private float maxGlobalDifficulty;
 
     void Start()
     {
         localDifficulty = FindObjectOfType<Score>().globalDifficulty;
-        maxGlobalDifficulty = FindObjectOfType<Score>().difficultyLevel;
+        maxGlobalDifficulty = FindObjectOfType<Score>().maxDifficulty;
 
         // Default position not valid? Then it's game over
         if (!IsValidGridPos())
