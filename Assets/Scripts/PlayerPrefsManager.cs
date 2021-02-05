@@ -14,6 +14,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
     // game
     public static string scoreKEY = "score";                    // "bool" int that toggles the score UI
+    public static string highscoreKEY = "highscore";            // int of the player's highscore
     public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the nextpiece UI
 
     // screenshake
@@ -21,7 +22,7 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string shakeMagnitudeKEY = "shakeMagnitude";  // float that controls the intensity of the screenshake
 
     // difficulty
-    public static string difficultyLevelKEY = "difficultyLevel";    // int of the difficulty level (1
+    public static string difficultyLevelKEY = "difficultyLevel";// int of the difficulty level (0: easy, 1: normal, 2: hard, 3: insane)
 
     // tutorial
     public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough

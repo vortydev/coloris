@@ -24,9 +24,12 @@ public class GameOver : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI detailsText;
     [SerializeField] RadioUI radio;
+    private int highscore;
 
     private void Awake()
     {
+        highscore = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.highscoreKEY, 0);
+
         // game over popup
         gameOverPage.SetActive(false);
         detailsText.gameObject.SetActive(false);
@@ -34,8 +37,15 @@ public class GameOver : MonoBehaviour
 
     public void GameOverRoutine()
     {
+        if (score.linesCleared > highscore)
+        {
+            highscore = score.linesCleared;
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.highscoreKEY, highscore);
+        }
+
         // load texts
-        scoreText.text = "Score: " + score.linesCleared;
+        scoreText.text = "Score: " + score.linesCleared
+                        + "\nHighscore: " + highscore;
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.nextPieceKEY)
                         //+ "\Held Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.heldPieceKEY)
