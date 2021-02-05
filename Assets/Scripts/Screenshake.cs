@@ -12,7 +12,7 @@ public class Screenshake : MonoBehaviour
 
     private void Awake()
     {
-        shakeMagnitude = PlayerPrefsManager.GetFloatPlayerPrefs(PlayerPrefsManager.shakeMagnitudeKEY, 0.5f);
+        shakeMagnitude = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.shakeMagnitudeKEY, 0.5f);
     }
     private void OnEnable()
     {
@@ -46,7 +46,7 @@ public class Screenshake : MonoBehaviour
         if (shakeMagnitude != m)
         {
             shakeMagnitude = m;
-            PlayerPrefsManager.SaveFloatPlayerPrefs(PlayerPrefsManager.shakeMagnitudeKEY, m);
+            PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.shakeMagnitudeKEY, m);
         }
     }
 }

@@ -9,8 +9,8 @@ public class AudioController : MonoBehaviour
 
     private void Awake()
     {
-        music = PlayerPrefsManager.GetFloatPlayerPrefs(PlayerPrefsManager.musicKEY, 10f);
-        sfx = PlayerPrefsManager.GetFloatPlayerPrefs(PlayerPrefsManager.sfxKEY, 10f);
+        music = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.musicKEY, 10f);
+        sfx = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.sfxKEY, 10f);
     }
 
     public void UpdateMusic(float m)
@@ -18,7 +18,7 @@ public class AudioController : MonoBehaviour
         if (music != m)
         {
             music = m;
-            PlayerPrefsManager.SaveFloatPlayerPrefs(PlayerPrefsManager.musicKEY, m);
+            PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.musicKEY, m);
         }
     }
 
@@ -27,7 +27,7 @@ public class AudioController : MonoBehaviour
         if (sfx != s)
         {
             sfx = s;
-            PlayerPrefsManager.SaveFloatPlayerPrefs(PlayerPrefsManager.sfxKEY, s);
+            PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.sfxKEY, s);
         }
     }
 }

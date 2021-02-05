@@ -29,7 +29,6 @@ public class Playfield : MonoBehaviour
             Destroy(grid[x, y].gameObject);
             grid[x, y] = null;
         }
-
     }
 
     // Move a row down
@@ -73,12 +72,11 @@ public class Playfield : MonoBehaviour
             if (IsRowFull(y))
             {
                 DeleteRow(y);
+                DecreaseRowsAbove(y + 1);
+                y--;
 
                 // increases the number or cleared lines
                 FindObjectOfType<Score>().IncrementScore();
-
-                DecreaseRowsAbove(y + 1);
-                y--;
             }
         }
     }

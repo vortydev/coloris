@@ -1,19 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Group : MonoBehaviour
 {
     private bool paused;
-    // Time since last gravity tick
+
     private float lastFall = 0;
     private bool isMoveable = true;
 
     private float localDifficulty;
     private float maxGlobalDifficulty;
 
-    void Start()
+    private void Start()
     {
         localDifficulty = FindObjectOfType<Score>().globalDifficulty;
         maxGlobalDifficulty = FindObjectOfType<Score>().maxDifficulty;
@@ -22,19 +21,13 @@ public class Group : MonoBehaviour
         if (!IsValidGridPos())
         {
             Debug.Log("GAME OVER");
-            Destroy(gameObject);
-            ReloadScene();
+            Destroy(this);
+
+            FindObjectOfType<GameOver>().GameOverRoutine();
         }
     }
 
-    void ReloadScene()
-    {
-        new WaitForSeconds(5);
-        SceneManager.LoadScene(0);
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         paused = FindObjectOfType<PauseMenu>().gamePaused;
 

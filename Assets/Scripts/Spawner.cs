@@ -18,12 +18,6 @@ public class Spawner : MonoBehaviour
     {
         GenerateBag();
         GenerateBag2();
-
-        nextPiece.DisplayNextPiece();
-    }
-    private void Start()
-    {
-        SpawnNext();
     }
 
     public void SpawnNext()
@@ -36,8 +30,8 @@ public class Spawner : MonoBehaviour
 
         nextPiece.DisplayNextPiece();
 
-        bagInd++;                       // increments the bag index
-        if (bagInd > refPieces.Length - 1)    // and generates anew bag if we're at the end of the bag array
+        bagInd++;                           // increments the bag index
+        if (bagInd > refPieces.Length - 1)  // and generates anew bag if we're at the end of the bag array
         {
             if (selectedBag == 0)
             {

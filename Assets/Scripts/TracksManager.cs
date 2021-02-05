@@ -16,6 +16,7 @@ public class TracksManager : MonoBehaviour
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
     private TrackSO curTrack;
     public bool isPaused = false;
+    public int tracksPlayed = 0;
 
     private void Awake()
     {
@@ -29,11 +30,6 @@ public class TracksManager : MonoBehaviour
         {
             playlist[i] = false;
         }
-    }
-
-    private void Start()
-    {
-        NextTrack();
     }
 
     private void Update()
@@ -64,6 +60,7 @@ public class TracksManager : MonoBehaviour
 
         radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
         trackUI.GetTotalTrackTime(audioSource.clip.length);
+        tracksPlayed++;
 
         isPaused = false;
     }
@@ -98,6 +95,7 @@ public class TracksManager : MonoBehaviour
         audioSource.Play();
 
         isPaused = false;
+        tracksPlayed++;
     }
 
     public void TogglePause()
@@ -112,5 +110,11 @@ public class TracksManager : MonoBehaviour
             audioSource.Pause();
             isPaused = true;
         }
+    }
+
+    public void StopMusic()
+    {
+        isPaused = false;
+        audioSource.Stop();
     }
 }

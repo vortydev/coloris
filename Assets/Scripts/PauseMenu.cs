@@ -6,20 +6,21 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public bool gamePaused = false;
-    [SerializeField] GameObject popup;
 
-    [Header("Pause menu pages")]
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject settingsMenu;
-
-    [Header("Components")]
-    [SerializeField] GameObject nextPieces;
+    [Header("UI")]
+    [SerializeField] GameObject background;
+    [SerializeField] GameObject nextPiece;
     //[SerializeField] GameObject heldPiece;
 
-    public void Start()
+    [Header("Pause menu pages")]
+    [SerializeField] GameObject pausePage;
+    [SerializeField] GameObject optionsPage;
+
+    public void Awake()
     {
-        settingsMenu.SetActive(false);
-        popup.gameObject.SetActive(false);          // sets the menu to inactive
+        background.SetActive(false);
+        pausePage.SetActive(false);
+        optionsPage.SetActive(false);
     }
 
     public void Update()
@@ -35,22 +36,22 @@ public class PauseMenu : MonoBehaviour
     {
         gamePaused = true;
 
-        popup.gameObject.SetActive(true);
-        nextPieces.gameObject.SetActive(false);
+        background.SetActive(true);
+        nextPiece.SetActive(false);
 
-        if (!pauseMenu.activeSelf)
-        {
-            settingsMenu.SetActive(false);
-            pauseMenu.SetActive(true);
-        }
+        pausePage.SetActive(true);
+        optionsPage.SetActive(false);
     }
 
     private void OnUnpauseMenu()
     {
         gamePaused = false;
 
-        popup.gameObject.SetActive(false);
-        nextPieces.gameObject.SetActive(true);
+        background.SetActive(false);
+        nextPiece.SetActive(true);
+
+        pausePage.SetActive(false);
+        optionsPage.SetActive(false);
 
         FindObjectOfType<Group>().ResetFallCounter();
     }

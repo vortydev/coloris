@@ -27,7 +27,7 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
 
     // Returns a float PlayerPref and creates it if it doesn't exist
-    public static float GetFloatPlayerPrefs(string KEY, float val)
+    public static float GetFloatPlayerPref(string KEY, float val)
     {
         if (!PlayerPrefs.HasKey(KEY))
         {
@@ -39,14 +39,14 @@ public class PlayerPrefsManager : MonoBehaviour
     }
 
     // Saves a float PlayerPref
-    public static void SaveFloatPlayerPrefs(string KEY, float val)
+    public static void SaveFloatPlayerPref(string KEY, float val)
     {
         PlayerPrefs.SetFloat(KEY, val);
         PlayerPrefs.Save();
     }
 
     // Returns an int PlayerPref and creates it if it doesn't exist
-    public static int GetIntPlayerPrefs(string KEY, int val)
+    public static int GetIntPlayerPref(string KEY, int val)
     {
         if (!PlayerPrefs.HasKey(KEY))
         {
@@ -58,18 +58,30 @@ public class PlayerPrefsManager : MonoBehaviour
     }
 
     // Saves an int PlayerPref 
-    public static void SaveIntPlayerPrefs(string KEY, int val)
+    public static void SaveIntPlayerPref(string KEY, int val)
     {
         PlayerPrefs.SetInt(KEY, val);
         PlayerPrefs.Save();
     }
 
     // Toggles "bool" int PlayerPrefs between 0 and 1
-    public static void ToggleBoolPlayerPrefs(string KEY)
+    public static void ToggleBoolPlayerPref(string KEY)
     {
         if (PlayerPrefs.GetInt(KEY) == 0)
-            SaveIntPlayerPrefs(KEY, 1);
+            SaveIntPlayerPref(KEY, 1);
         else
-            SaveIntPlayerPrefs(KEY, 0);
+            SaveIntPlayerPref(KEY, 0);
+    }
+
+    public static string GetBoolPlayerPref(string KEY)
+    {
+        if (PlayerPrefs.GetInt(KEY) == 0)
+        {
+            return "Off";
+        }
+        else
+        {
+            return "On";
+        }
     }
 }

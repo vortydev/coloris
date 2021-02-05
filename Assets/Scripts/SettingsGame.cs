@@ -30,13 +30,13 @@ public class SettingsGame : MonoBehaviour
     {
         difficultyLevelSlider.value = score.difficultyLevel;
 
-        if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.scoreKEY, 1) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreUI.SetActive(false);
             scoreToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.nextPieceKEY, 1) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.nextPieceKEY, 1) == 0)
         {
             nextPieceUI.SetActive(false);
             nextPieceToggle.SetIsOnWithoutNotify(false);
@@ -51,12 +51,12 @@ public class SettingsGame : MonoBehaviour
     public void ToggleScore()
     {
         scoreUI.SetActive(!scoreUI.activeSelf);
-        PlayerPrefsManager.ToggleBoolPlayerPrefs(PlayerPrefsManager.scoreKEY);
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.scoreKEY);
     }
 
     public void ToggleNextPiece()
     {
         nextPieceUI.SetActive(!nextPieceUI.activeSelf);
-        PlayerPrefsManager.ToggleBoolPlayerPrefs(PlayerPrefsManager.nextPieceKEY);
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.nextPieceKEY);
     }
 }

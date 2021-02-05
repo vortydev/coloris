@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - SquarePiece
+  - Piece
   layers:
   - Default
   - TransparentFX

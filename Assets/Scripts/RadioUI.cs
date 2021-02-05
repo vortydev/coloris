@@ -7,8 +7,8 @@ using TMPro;
 public class RadioUI : MonoBehaviour
 {
     [Header("Text Elements")]
-    [SerializeField] TextMeshProUGUI trackName;
-    [SerializeField] TextMeshProUGUI trackAuthor;
+    public TextMeshProUGUI trackName;
+    public TextMeshProUGUI trackAuthor;
 
     public void DisplayTrackInfo(string name, string author)
     {

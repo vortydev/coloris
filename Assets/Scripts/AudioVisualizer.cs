@@ -12,7 +12,6 @@ public class AudioVisualizer : MonoBehaviour
         initialScale = transform.localScale.y;
     }
 
-    
     void Update()
     {
         transform.localScale = new Vector2(transform.localScale.x, (AudioPeer._bandBuffer[band] * scaleMultiplier) + initialScale);

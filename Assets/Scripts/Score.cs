@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
 
     private void Awake()
     {
-        difficultyLevel = PlayerPrefsManager.GetIntPlayerPrefs(PlayerPrefsManager.difficultyLevelKEY, 1);
+        difficultyLevel = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, 1);
         difficultyTreshhold = 12 - (difficultyLevel * 2);
         UpdateDifficultyLevel(difficultyLevel);
     }
@@ -35,12 +35,14 @@ public class Score : MonoBehaviour
         scoreText.text = "Lines Cleared\n" + linesCleared;
     }
 
-    public void IncrementDifficulty()
+    private void IncrementDifficulty()
     {
         if (globalDifficulty < maxDifficulty - 1)
         {
             globalDifficulty++;
         }
+
+        CleanupOldPieces();
     }
 
     public void UpdateDifficultyLevel(int d)
@@ -48,7 +50,7 @@ public class Score : MonoBehaviour
         if (difficultyLevel != d)
         {
             difficultyLevel = d;
-            PlayerPrefsManager.SaveIntPlayerPrefs(PlayerPrefsManager.difficultyLevelKEY, d);
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, d);
         }
 
         difficultyTreshhold = 12 - (difficultyLevel * 2);
@@ -67,6 +69,48 @@ public class Score : MonoBehaviour
             case 3:
                 difficultyLevelText.text = "Insane";
                 break;
+        }
+    }
+
+    public string GetDifficultyString()
+    {
+        switch (difficultyLevel)
+        {
+            case 0:
+                return "Easy";
+            case 1:
+                return "Normal";
+            case 2:
+                return "Hard";
+            case 3:
+                return "Insane";
+        }
+
+        return "???";
+    }
+
+    private void CleanupOldPieces()
+    {
+        GameObject[] oldPieces;
+        oldPieces = GameObject.FindGameObjectsWithTag("Piece");
+
+        foreach (GameObject oldPiece in oldPieces)
+        {
+            if (oldPiece.transform.childCount == 0)
+            {
+                Destroy(oldPiece);
+            }
+        }
+
+        GameObject[] oldSquarePieces;
+        oldSquarePieces = GameObject.FindGameObjectsWithTag("SquarePiece");
+
+        foreach (GameObject oldSquare in oldSquarePieces)
+        {
+            if (oldSquare.transform.childCount == 0)
+            {
+                Destroy(oldSquare);
+            }
         }
     }
 }
