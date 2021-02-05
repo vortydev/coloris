@@ -1,81 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Group : MonoBehaviour
 {
-    // Time since last gravity tick
+    private bool paused;
+
     private float lastFall = 0;
     private bool isMoveable = true;
-    private int localDifficulty = 0;
 
-    void Start()
+    private float localDifficulty;
+    private float maxGlobalDifficulty;
+
+    private void Start()
     {
-        localDifficulty = FindObjectOfType<Score>().ReturnDifficulty();
+        localDifficulty = FindObjectOfType<Score>().globalDifficulty;
+        maxGlobalDifficulty = FindObjectOfType<Score>().maxDifficulty;
+
         // Default position not valid? Then it's game over
-        if (!isValidGridPos())
+        if (!IsValidGridPos())
         {
             Debug.Log("GAME OVER");
-            Destroy(gameObject);
-            ReloadScene();
+            Destroy(this);
+
+            FindObjectOfType<GameOver>().GameOverRoutine();
         }
     }
 
-    void ReloadScene()
+    private void Update()
     {
-        new WaitForSeconds(5);
-        SceneManager.LoadScene(0);
-    }
+        paused = FindObjectOfType<PauseMenu>().gamePaused;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isMoveable)
+        if (isMoveable && !paused)
         {
             // Move Left
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown("a"))
             {
                 transform.position += new Vector3(-1, 0, 0);
 
-                if (isValidGridPos())
-                    updateGrid();
+                if (IsValidGridPos())
+                    UpdateGrid();
                 else
                     transform.position += new Vector3(1, 0, 0);
             }
             // Move Right
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown("d"))
             {
                 transform.position += new Vector3(1, 0, 0);
 
-                if (isValidGridPos())
-                    updateGrid();
+                if (IsValidGridPos())
+                    UpdateGrid();
                 else
                     transform.position += new Vector3(-1, 0, 0);
             }
             // Rotate
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (Input.GetKeyDown("w"))
             {
                 if (gameObject.tag == "SquarePiece") return;
 
                 transform.Rotate(0, 0, -90);
 
-                if (isValidGridPos())
-                    updateGrid();
+                if (IsValidGridPos())
+                    UpdateGrid();
                 else
                     transform.Rotate(0, 0, 90);
             }
             // Move Downwards and Fall
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= 1 - (localDifficulty * 0.1f))
+            else if (Input.GetKeyDown("s") || Time.time - lastFall >= 1 - (localDifficulty / maxGlobalDifficulty))
             {
                 // Modify position
                 transform.position += new Vector3(0, -1, 0);
 
                 // See if valid
-                if (isValidGridPos())
+                if (IsValidGridPos())
                 {
                     // It's valid. Update grid.
-                    updateGrid();
+                    UpdateGrid();
                 }
                 else
                 {
@@ -83,10 +83,10 @@ public class Group : MonoBehaviour
                     transform.position += new Vector3(0, 1, 0);
 
                     // Clear filled horizontal lines
-                    Playfield.deleteFullRows();
+                    Playfield.DeleteFullRows();
 
                     // Spawn next Group
-                    FindObjectOfType<Spawner>().spawnNext();
+                    FindObjectOfType<Spawner>().SpawnNext();
 
                     // Disable script
                     enabled = false;
@@ -94,6 +94,10 @@ public class Group : MonoBehaviour
 
                 lastFall = Time.time;
             }
+            //else if (Input.GetKeyDown("e")) // hold piece
+            //{
+                
+            //}
         }   
 
         // Hard drop
@@ -101,13 +105,13 @@ public class Group : MonoBehaviour
         {
             isMoveable = false;
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < Playfield.h; i++)
             {
                 transform.position += new Vector3(0, -1, 0);
 
-                if (isValidGridPos())
+                if (IsValidGridPos())
                 {
-                    updateGrid();
+                    UpdateGrid();
                 }
                 else
                 {
@@ -115,23 +119,23 @@ public class Group : MonoBehaviour
                 }
             }
 
-            
-            Playfield.deleteFullRowsAndShake();
-            FindObjectOfType<Spawner>().spawnNext();
+            Playfield.DeleteFullRows();
+            FindObjectOfType<Screenshake>().TriggerScreenshake();
+            FindObjectOfType<Spawner>().SpawnNext();
 
             enabled = false;
         }
     }
 
     // Checks if the group is within border
-    bool isValidGridPos()
+    public bool IsValidGridPos()
     {
         foreach (Transform child in transform)
         {
-            Vector2 v = Playfield.roundVec2(child.position);
+            Vector2 v = Playfield.RoundVec2(child.position);
 
             // Not inside Border?
-            if (!Playfield.insideBorder(v))
+            if (!Playfield.InsideBorder(v))
                 return false;
 
             // Block in grid cell (and not part of same group)?
@@ -143,7 +147,7 @@ public class Group : MonoBehaviour
     }
 
     // Updates the grid with the group
-    void updateGrid()
+    public void UpdateGrid()
     {
         // Remove old children from grid
         for (int y = 0; y < Playfield.h; ++y)
@@ -155,8 +159,13 @@ public class Group : MonoBehaviour
         // Add new children to grid
         foreach (Transform child in transform)
         {
-            Vector2 v = Playfield.roundVec2(child.position);
+            Vector2 v = Playfield.RoundVec2(child.position);
             Playfield.grid[(int)v.x, (int)v.y] = child;
         }
+    }
+
+    public void ResetFallCounter()
+    {
+        lastFall = Time.time;
     }
 }

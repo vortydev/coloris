@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class Screenshake : MonoBehaviour
 {
-    Transform transform;
     Vector3 initialPosition;
 
-    public float shakeDuration = 0f; // Time shaking
-    public float shakeMagnitude = 0.7f; // The intensity of the screenshake
-    public float dampingSpeed = 1.0f; // How quickly is it slowing down
+    public float shakeDuration;     // Time shaking
+    public float shakeMagnitude;    // The intensity of the screenshake
+    public float dampingSpeed;      // How quickly is it slowing down
 
     private void Awake()
     {
-        if (transform == null)
-        {
-            transform = GetComponent(typeof(Transform)) as Transform;
-        }
+        shakeMagnitude = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.shakeMagnitudeKEY, 0.5f);
     }
-
     private void OnEnable()
     {
         initialPosition = transform.localPosition;
@@ -45,4 +40,13 @@ public class Screenshake : MonoBehaviour
     }
 
     // https://medium.com/@mattThousand/basic-2d-screen-shake-in-unity-9c27b56b516
+
+    public void UpdateShakeMagnitude(float m)
+    {
+        if (shakeMagnitude != m)
+        {
+            shakeMagnitude = m;
+            PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.shakeMagnitudeKEY, m);
+        }
+    }
 }

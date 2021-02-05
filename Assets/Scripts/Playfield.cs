@@ -9,20 +9,20 @@ public class Playfield : MonoBehaviour
     public static Transform[,] grid = new Transform[w, h];
 
     // Round coordinates of groups to keep them clean
-    public static Vector2 roundVec2(Vector2 v)
+    public static Vector2 RoundVec2(Vector2 v)
     {
         return new Vector2(Mathf.Round(v.x),
                            Mathf.Round(v.y));
     }
 
     //Checks if the group is inside the border
-    public static bool insideBorder(Vector2 pos)
+    public static bool InsideBorder(Vector2 pos)
     {
         return ((int)pos.x >= 0 &&(int)pos.x < w && (int)pos.y >= 0);
     }
 
     // Deletes a row of blocks
-    public static void deleteRow(int y)
+    public static void DeleteRow(int y)
     {
         for (int x = 0; x < w; x++)
         {
@@ -32,7 +32,7 @@ public class Playfield : MonoBehaviour
     }
 
     // Move a row down
-    public static void decreaseRow(int y)
+    public static void DecreaseRow(int y)
     {
         for (int x = 0; x < w; x++)
         {
@@ -49,14 +49,14 @@ public class Playfield : MonoBehaviour
     }
 
     // Move all the rows down
-    public static void decreaseRowsAbove(int y)
+    public static void DecreaseRowsAbove(int y)
     {
         for (int i = y; i < h; i++)
-            decreaseRow(i);
+            DecreaseRow(i);
     }
 
     // Scan if a row is full
-    public static bool isRowFull(int y)
+    public static bool IsRowFull(int y)
     {
         for (int x = 0; x < w; ++x)
             if (grid[x, y] == null)
@@ -65,35 +65,18 @@ public class Playfield : MonoBehaviour
     }
 
     // Does the pesky row removal B)
-    public static void deleteFullRows()
+    public static void DeleteFullRows()
     {
         for (int y = 0; y < h; y++)
         {
-            if (isRowFull(y))
+            if (IsRowFull(y))
             {
-                deleteRow(y);
-                decreaseRowsAbove(y + 1);
+                DeleteRow(y);
+                DecreaseRowsAbove(y + 1);
                 y--;
 
-                // Us the score by 1
+                // increases the number or cleared lines
                 FindObjectOfType<Score>().IncrementScore();
-            }
-        }
-    }
-
-    public static void deleteFullRowsAndShake()
-    {
-        for (int y = 0; y < h; y++)
-        {
-            if (isRowFull(y))
-            {
-                deleteRow(y);
-                decreaseRowsAbove(y + 1);
-                y--;
-
-                // Us the score by 1
-                FindObjectOfType<Score>().IncrementScore();
-                FindObjectOfType<Screenshake>().TriggerScreenshake();
             }
         }
     }
