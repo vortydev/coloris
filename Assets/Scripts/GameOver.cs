@@ -37,6 +37,8 @@ public class GameOver : MonoBehaviour
 
     public void GameOverRoutine()
     {
+        DeletePieces();
+
         if (score.linesCleared > highscore)
         {
             highscore = score.linesCleared;
@@ -67,6 +69,25 @@ public class GameOver : MonoBehaviour
         // enable game over UI
         background.SetActive(true);
         gameOverPage.SetActive(true);
+    }
+
+    private void DeletePieces()
+    {
+        GameObject[] oldPieces;
+        oldPieces = GameObject.FindGameObjectsWithTag("Piece");
+
+        GameObject[] oldSquarePieces;
+        oldSquarePieces = GameObject.FindGameObjectsWithTag("SquarePiece");
+
+        foreach (GameObject oldPiece in oldPieces)
+        {
+            Destroy(oldPiece);
+        }
+
+        foreach (GameObject oldSquare in oldSquarePieces)
+        {
+            Destroy(oldSquare);
+        }
     }
 
     public void ToggleDetails()

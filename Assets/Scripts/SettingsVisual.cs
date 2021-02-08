@@ -27,6 +27,8 @@ public class SettingsVisual : MonoBehaviour
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
 
+        shakeSlider.value = screenshake.shakeMagnitude * 10;
+
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
             grid.SetActive(false);
@@ -45,11 +47,6 @@ public class SettingsVisual : MonoBehaviour
             shakeToggle.SetIsOnWithoutNotify(false);
             shakeIntensity.SetActive(false);
         }
-    }
-
-    private void Start()
-    {
-        shakeSlider.value = screenshake.shakeMagnitude * 10;
     }
 
     private void Update()

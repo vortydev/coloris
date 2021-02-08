@@ -28,8 +28,6 @@ public class SettingsGame : MonoBehaviour
 
     private void Awake()
     {
-        difficultyLevelSlider.value = score.difficultyLevel;
-
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreUI.SetActive(false);
@@ -41,6 +39,11 @@ public class SettingsGame : MonoBehaviour
             nextPieceUI.SetActive(false);
             nextPieceToggle.SetIsOnWithoutNotify(false);
         }
+    }
+
+    private void Start()
+    {
+        difficultyLevelSlider.value = score.difficultyLevel;
     }
 
     private void Update()
