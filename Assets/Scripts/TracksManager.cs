@@ -32,6 +32,11 @@ public class TracksManager : MonoBehaviour
         }
     }
 
+    private void OnApplicationFocus()
+    {
+        TogglePause();
+    }
+
     private void Update()
     {
         // starts a new track when the previous is done
