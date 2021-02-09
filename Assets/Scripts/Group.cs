@@ -8,7 +8,7 @@ public class Group : MonoBehaviour
     public bool beenSwapped;
 
     private bool paused;
-    public bool canHold;
+    private bool canHold;
 
     private float lastFall = 0;
     private bool isMoveable = true;
@@ -35,7 +35,7 @@ public class Group : MonoBehaviour
         if (isMoveable && !paused)
         {
             // Move Left
-            if (Input.GetKeyDown("a"))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 transform.position += new Vector3(-1, 0, 0);
 
@@ -45,7 +45,7 @@ public class Group : MonoBehaviour
                     transform.position += new Vector3(1, 0, 0);
             }
             // Move Right
-            else if (Input.GetKeyDown("d"))
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 transform.position += new Vector3(1, 0, 0);
 
@@ -54,8 +54,8 @@ public class Group : MonoBehaviour
                 else
                     transform.position += new Vector3(-1, 0, 0);
             }
-            // Rotate
-            else if (Input.GetKeyDown("w"))
+            // Rotate right
+            else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("x"))
             {
                 if (gameObject.tag == "SquarePiece") return;
 
@@ -66,8 +66,20 @@ public class Group : MonoBehaviour
                 else
                     transform.Rotate(0, 0, 90);
             }
+            // Rotate left
+            else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown("z"))
+            {
+                if (gameObject.tag == "SquarePiece") return;
+
+                transform.Rotate(0, 0, 90);
+
+                if (IsValidGridPos())
+                    UpdateGrid();
+                else
+                    transform.Rotate(0, 0, -90);
+            }
             // Move Downwards and Fall
-            else if (Input.GetKeyDown("s") || Time.time - lastFall >= 1 - (localDifficulty / 10))
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= 1 - (localDifficulty / 10))
             {
                 // Modify position
                 transform.position += new Vector3(0, -1, 0);
@@ -103,7 +115,7 @@ public class Group : MonoBehaviour
 
                 lastFall = Time.time;
             }
-            else if (Input.GetKeyDown("e") && !beenSwapped && canHold) // hold piece
+            else if ((Input.GetKeyDown("c") || Input.GetKeyDown(KeyCode.LeftShift)) && !beenSwapped && canHold) // hold piece
             {
                 FindObjectOfType<HoldPiece>().HoldCurrentPiece(gameObject);
             }
