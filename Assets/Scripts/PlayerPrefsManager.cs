@@ -15,7 +15,8 @@ public class PlayerPrefsManager : MonoBehaviour
     // game
     public static string scoreKEY = "score";                    // "bool" int that toggles the score UI
     public static string highscoreKEY = "highscore";            // int of the player's highscore
-    public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the nextpiece UI
+    public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the next piece UI
+    public static string holdPieceKEY = "holdPiece";            // "bool" int that toggles the piece holding mechanic
 
     // screenshake
     public static string screenshakeKEY = "screenshake";        // "bool" int that toggles the Screenshake.cs script

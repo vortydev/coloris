@@ -12,10 +12,10 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] TextMeshProUGUI musicVal;
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
+    [SerializeField] Toggle visualiserToggle;
 
     [Header("Visual Options")]
     [SerializeField] Toggle gridToggle;
-    [SerializeField] Toggle visualiserToggle;
     [SerializeField] Screenshake screenshake;
     [SerializeField] Toggle shakeToggle;
     [SerializeField] GameObject shakeIntensity;
@@ -28,7 +28,7 @@ public class MainMenuOptions : MonoBehaviour
     public int level;
     [SerializeField] Toggle scoreToggle;
     [SerializeField] Toggle nextPieceToggle;
-    //[SerializeField] Toggle heldPieceToggle;
+    [SerializeField] Toggle holdPieceToggle;
     //[SerializeField] Toggle ghostPieceToggle;
 
     private void Start()
@@ -36,6 +36,11 @@ public class MainMenuOptions : MonoBehaviour
         // load audio options
         musicSlider.value = audioController.music;
         sfxSlider.value = audioController.sfx;
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
+        {
+            visualiserToggle.SetIsOnWithoutNotify(false);
+        }
 
         // get visual components
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
@@ -47,11 +52,6 @@ public class MainMenuOptions : MonoBehaviour
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
             gridToggle.SetIsOnWithoutNotify(false);
-        }
-
-        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
-        {
-            visualiserToggle.SetIsOnWithoutNotify(false);
         }
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.screenshakeKEY, 1) == 0)
@@ -72,6 +72,11 @@ public class MainMenuOptions : MonoBehaviour
         if (PlayerPrefs.GetInt(PlayerPrefsManager.nextPieceKEY) == 0)
         {
             nextPieceToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (PlayerPrefs.GetInt(PlayerPrefsManager.holdPieceKEY) == 0)
+        {
+            holdPieceToggle.SetIsOnWithoutNotify(false);
         }
 
         gameObject.SetActive(false);
@@ -98,11 +103,6 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleGrid()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.gridKEY);
-    }
-
-    public void ToggleAudioVisualiser()
-    {
-        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.visualiserKEY);
     }
 
     public void ToggleScreenshake()
@@ -162,5 +162,10 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleNextPiece()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.nextPieceKEY);
+    }
+
+    public void ToggleHoldPiece()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
     }
 }

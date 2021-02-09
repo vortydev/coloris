@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject background;
     [SerializeField] GameObject nextPiece;
-    //[SerializeField] GameObject heldPiece;
+    [SerializeField] GameObject holdPiece;
 
     [Header("Pause menu pages")]
     [SerializeField] GameObject pausePage;

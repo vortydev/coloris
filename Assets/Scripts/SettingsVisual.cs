@@ -10,10 +10,6 @@ public class SettingsVisual : MonoBehaviour
     [SerializeField] GameObject grid;
     [SerializeField] Toggle gridToggle;
 
-    [Header("Audio Visualiser")]
-    [SerializeField] GameObject visualiser;
-    [SerializeField] Toggle visualiserToggle;
-
     [Header("Screenshake")]
     [SerializeField] Screenshake screenshake;
     [SerializeField] Toggle shakeToggle;
@@ -35,12 +31,6 @@ public class SettingsVisual : MonoBehaviour
             gridToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
-        {
-            visualiser.SetActive(false);
-            visualiserToggle.SetIsOnWithoutNotify(false);
-        }
-
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.screenshakeKEY, 1) == 0)
         {
             screenshake.enabled = false;
@@ -60,12 +50,6 @@ public class SettingsVisual : MonoBehaviour
     {
         grid.SetActive(!grid.activeSelf);
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.gridKEY);
-    }
-
-    public void ToggleAudioVisualiser()
-    {
-        visualiser.SetActive(!visualiser.activeSelf);
-        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.visualiserKEY);
     }
 
     public void ToggleScreenshake()

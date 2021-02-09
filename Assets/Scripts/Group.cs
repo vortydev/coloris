@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Group : MonoBehaviour
 {
+    public int pieceId;
+    public bool beenSwapped;
+
     private bool paused;
+    public bool canHold;
 
     private float lastFall = 0;
     private bool isMoveable = true;
@@ -26,6 +30,7 @@ public class Group : MonoBehaviour
     private void Update()
     {
         paused = FindObjectOfType<PauseMenu>().gamePaused;
+        canHold = FindObjectOfType<CanHold>().canHold;
 
         if (isMoveable && !paused)
         {
@@ -98,10 +103,10 @@ public class Group : MonoBehaviour
 
                 lastFall = Time.time;
             }
-            //else if (Input.GetKeyDown("e")) // hold piece
-            //{
-                
-            //}
+            else if (Input.GetKeyDown("e") && !beenSwapped && canHold) // hold piece
+            {
+                FindObjectOfType<HoldPiece>().HoldCurrentPiece(gameObject);
+            }
         }   
 
         // Hard drop

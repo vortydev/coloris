@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] GameObject gameOverPage;
     [SerializeField] GameObject scoreUI;
     [SerializeField] GameObject nextPieceUI;
+    [SerializeField] GameObject holdPieceUI;
     [SerializeField] GameObject pauseButton;
 
     [Header("Scripts")]
@@ -50,8 +51,7 @@ public class GameOver : MonoBehaviour
                         + "\nHighscore: " + highscore;
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.nextPieceKEY)
-                        //+ "\Held Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.heldPieceKEY)
-                        + "\nHeld Piece: Coming Soon"; // temp
+                        + "\nHeld Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
         radio.trackName.text = "Tracks played:";
         radio.trackAuthor.text = tracksManager.tracksPlayed.ToString();
 
