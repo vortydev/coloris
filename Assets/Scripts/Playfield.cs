@@ -5,7 +5,7 @@ using UnityEngine;
 public class Playfield : MonoBehaviour
 {
     public static int w = 10;
-    public static int h = 20;
+    public static int h = 17;
     public static Transform[,] grid = new Transform[w, h];
 
     // Round coordinates of groups to keep them clean
@@ -18,7 +18,7 @@ public class Playfield : MonoBehaviour
     //Checks if the group is inside the border
     public static bool InsideBorder(Vector2 pos)
     {
-        return ((int)pos.x >= 0 &&(int)pos.x < w && (int)pos.y >= 0);
+        return (int)pos.x >= 0 &&(int)pos.x < w && (int)pos.y >= 0;
     }
 
     // Deletes a row of blocks

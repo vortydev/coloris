@@ -16,6 +16,7 @@ public class NextPiece : MonoBehaviour
             nextPiece[i].gameObject.SetActive(false);
         }
     }
+
     public void DisplayNextPiece()
     {
         nextPiece[ind].gameObject.SetActive(false);

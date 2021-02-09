@@ -16,6 +16,19 @@ public class SettingsAudio : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
 
+    [Header("Visualiser")]
+    [SerializeField] GameObject visualiser;
+    [SerializeField] Toggle visualiserToggle;
+
+    private void Awake()
+    {
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
+        {
+            visualiser.SetActive(false);
+            visualiserToggle.SetIsOnWithoutNotify(false);
+        }
+    }
+
     private void Start()
     {
         musicSlider.value = audioController.music;
@@ -30,5 +43,11 @@ public class SettingsAudio : MonoBehaviour
         // update sliders' values
         musicVal.text = musicSlider.value.ToString();
         sfxVal.text = sfxSlider.value.ToString();
+    }
+
+    public void ToggleAudioVisualiser()
+    {
+        visualiser.SetActive(!visualiser.activeSelf);
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.visualiserKEY);
     }
 }

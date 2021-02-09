@@ -4,32 +4,33 @@ using UnityEngine;
 
 public class Group : MonoBehaviour
 {
+    public int pieceId;
+    public bool beenSwapped;
+
     private bool paused;
+    public bool canHold;
 
     private float lastFall = 0;
     private bool isMoveable = true;
+    private bool hasMoved = false;
 
     private float localDifficulty;
-    private float maxGlobalDifficulty;
 
     private void Start()
     {
         localDifficulty = FindObjectOfType<Score>().globalDifficulty;
-        maxGlobalDifficulty = FindObjectOfType<Score>().maxDifficulty;
 
         // Default position not valid? Then it's game over
         if (!IsValidGridPos())
         {
-            Debug.Log("GAME OVER");
-            Destroy(this);
-
-            FindObjectOfType<GameOver>().GameOverRoutine();
+            TriggerGameOver();
         }
     }
 
     private void Update()
     {
         paused = FindObjectOfType<PauseMenu>().gamePaused;
+        canHold = FindObjectOfType<CanHold>().canHold;
 
         if (isMoveable && !paused)
         {
@@ -66,7 +67,7 @@ public class Group : MonoBehaviour
                     transform.Rotate(0, 0, 90);
             }
             // Move Downwards and Fall
-            else if (Input.GetKeyDown("s") || Time.time - lastFall >= 1 - (localDifficulty / maxGlobalDifficulty))
+            else if (Input.GetKeyDown("s") || Time.time - lastFall >= 1 - (localDifficulty / 10))
             {
                 // Modify position
                 transform.position += new Vector3(0, -1, 0);
@@ -76,28 +77,36 @@ public class Group : MonoBehaviour
                 {
                     // It's valid. Update grid.
                     UpdateGrid();
+                    HasMoved();
                 }
                 else
                 {
-                    // It's not valid. revert.
-                    transform.position += new Vector3(0, 1, 0);
+                    if (hasMoved)
+                    {
+                        // It's not valid. revert.
+                        transform.position += new Vector3(0, 1, 0);
 
-                    // Clear filled horizontal lines
-                    Playfield.DeleteFullRows();
+                        // Clear filled horizontal lines
+                        Playfield.DeleteFullRows();
 
-                    // Spawn next Group
-                    FindObjectOfType<Spawner>().SpawnNext();
+                        // Spawn next Group
+                        FindObjectOfType<Spawner>().SpawnNext();
 
-                    // Disable script
-                    enabled = false;
+                        // Disable script
+                        enabled = false;
+                    }
+                    else
+                    {
+                        TriggerGameOver();
+                    }
                 }
 
                 lastFall = Time.time;
             }
-            //else if (Input.GetKeyDown("e")) // hold piece
-            //{
-                
-            //}
+            else if (Input.GetKeyDown("e") && !beenSwapped && canHold) // hold piece
+            {
+                FindObjectOfType<HoldPiece>().HoldCurrentPiece(gameObject);
+            }
         }   
 
         // Hard drop
@@ -167,5 +176,21 @@ public class Group : MonoBehaviour
     public void ResetFallCounter()
     {
         lastFall = Time.time;
+    }
+
+    private void HasMoved()
+    {
+        if (!hasMoved)
+        {
+            hasMoved = true;
+        }
+    }
+
+    private void TriggerGameOver()
+    {
+        Debug.Log("GAME OVER");
+        Destroy(gameObject);
+
+        FindObjectOfType<GameOver>().GameOverRoutine();
     }
 }

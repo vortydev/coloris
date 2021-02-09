@@ -18,9 +18,10 @@ public class SettingsGame : MonoBehaviour
     [SerializeField] GameObject nextPieceUI;
     [SerializeField] Toggle nextPieceToggle;
 
-    //[Header("Held Piece")]
-    //[SerializeField] GameObject heldPieceUI;
-    //[SerializeField] Toggle heldPieceToggle;
+    [Header("Hold Piece")]
+    [SerializeField] GameObject holdPieceUI;
+    [SerializeField] Toggle holdPieceToggle;
+    [SerializeField] CanHold canHold;
 
     //[Header("Ghost Piece")]
     //[SerializeField] GameObject ghostPieceUI;
@@ -28,8 +29,6 @@ public class SettingsGame : MonoBehaviour
 
     private void Awake()
     {
-        difficultyLevelSlider.value = score.difficultyLevel;
-
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreUI.SetActive(false);
@@ -41,6 +40,18 @@ public class SettingsGame : MonoBehaviour
             nextPieceUI.SetActive(false);
             nextPieceToggle.SetIsOnWithoutNotify(false);
         }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceKEY, 1) == 0)
+        {
+            canHold.canHold = false;
+            holdPieceUI.SetActive(false);
+            holdPieceToggle.SetIsOnWithoutNotify(false);
+        }
+    }
+
+    private void Start()
+    {
+        difficultyLevelSlider.value = score.difficultyLevel;
     }
 
     private void Update()
@@ -58,5 +69,12 @@ public class SettingsGame : MonoBehaviour
     {
         nextPieceUI.SetActive(!nextPieceUI.activeSelf);
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.nextPieceKEY);
+    }
+
+    public void ToggleHoldPiece()
+    {
+        canHold.canHold = !canHold.canHold;
+        holdPieceUI.SetActive(!holdPieceUI.activeSelf);
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
     }
 }

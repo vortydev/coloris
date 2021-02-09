@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class Score : MonoBehaviour
@@ -12,11 +11,10 @@ public class Score : MonoBehaviour
 
     [Header("Score")]
     public int linesCleared = 0;            // the amount of lines the player has cleared
-    public int difficultyLevel;             // the difficulty level
+    public int difficultyLevel;
 
     [Header("Difficulty")]
-    public int globalDifficulty = 0;        // the current difficulty of the game
-    public int maxDifficulty = 10;          
+    public int globalDifficulty = 0;        // the current difficulty of the game        
     public int difficultyTreshhold;    // the number of lines to clear before incrementing the difficulty
 
     private void Awake()
@@ -37,7 +35,7 @@ public class Score : MonoBehaviour
 
     private void IncrementDifficulty()
     {
-        if (globalDifficulty < maxDifficulty - 1)
+        if (globalDifficulty < 9)
         {
             globalDifficulty++;
         }

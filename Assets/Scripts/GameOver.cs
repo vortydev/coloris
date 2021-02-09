@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] GameObject gameOverPage;
     [SerializeField] GameObject scoreUI;
     [SerializeField] GameObject nextPieceUI;
+    [SerializeField] GameObject holdPieceUI;
     [SerializeField] GameObject pauseButton;
 
     [Header("Scripts")]
@@ -37,6 +38,8 @@ public class GameOver : MonoBehaviour
 
     public void GameOverRoutine()
     {
+        DeletePieces();
+
         if (score.linesCleared > highscore)
         {
             highscore = score.linesCleared;
@@ -48,8 +51,7 @@ public class GameOver : MonoBehaviour
                         + "\nHighscore: " + highscore;
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.nextPieceKEY)
-                        //+ "\Held Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.heldPieceKEY)
-                        + "\nHeld Piece: Coming Soon"; // temp
+                        + "\nHeld Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
         radio.trackName.text = "Tracks played:";
         radio.trackAuthor.text = tracksManager.tracksPlayed.ToString();
 
@@ -67,6 +69,25 @@ public class GameOver : MonoBehaviour
         // enable game over UI
         background.SetActive(true);
         gameOverPage.SetActive(true);
+    }
+
+    private void DeletePieces()
+    {
+        GameObject[] oldPieces;
+        oldPieces = GameObject.FindGameObjectsWithTag("Piece");
+
+        GameObject[] oldSquarePieces;
+        oldSquarePieces = GameObject.FindGameObjectsWithTag("SquarePiece");
+
+        foreach (GameObject oldPiece in oldPieces)
+        {
+            Destroy(oldPiece);
+        }
+
+        foreach (GameObject oldSquare in oldSquarePieces)
+        {
+            Destroy(oldSquare);
+        }
     }
 
     public void ToggleDetails()
