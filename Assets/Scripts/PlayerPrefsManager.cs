@@ -28,6 +28,8 @@ public class PlayerPrefsManager : MonoBehaviour
     // tutorial
     public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
 
+    public static string textSpeedKEY = "textSpeed";            // int holding the typing speed (1: slow, 2: normal, 3: fast)
+
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float val)
     {
