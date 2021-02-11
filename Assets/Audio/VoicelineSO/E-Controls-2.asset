@@ -15,4 +15,4 @@ MonoBehaviour:
   voiceline: {fileID: 0}
   voice: 
   clipName: Rotate piece
-  transcript: "Use \u2191 or X to rotate clockwise. Use Ctrl or Z to rotate counter-clockwise."
+  transcript: 'Up arrow or X: clockwise rotation. Ctrl or Z: counter-clockwise rotation.'

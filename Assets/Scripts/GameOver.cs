@@ -50,8 +50,8 @@ public class GameOver : MonoBehaviour
         scoreText.text = "Score: " + score.linesCleared
                         + "\nHighscore: " + highscore;
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
-                        + "\nNext Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.nextPieceKEY)
-                        + "\nHeld Piece: " + PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
+                        + "\nNext Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.nextPieceKEY)
+                        + "\nHeld Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY);
         radio.trackName.text = "Tracks played:";
         radio.trackAuthor.text = tracksManager.tracksPlayed.ToString();
 

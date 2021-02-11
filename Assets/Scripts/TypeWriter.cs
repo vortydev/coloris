@@ -9,17 +9,25 @@ public class TypeWriter : MonoBehaviour
     public float typingDelay = 0.05f;            // speed at which the text is typed
     public float eraseDelay = 0.025f;           // speed at which the text is being erased
 
+    private bool dynamicText;
     private string fullText = "";
     private string currentText = "";
 
     private void Awake()
     {
-        typingDelay = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.textSpeedKEY, 0.05f);
-    }
-
-    private void Start()
-    {
-        SetTranscript(FindObjectOfType<TutorialsManager>().mainMessage);
+        dynamicText = PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
+        switch (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2))
+        {
+            case 1:
+                typingDelay = 0.075f;
+                break;
+            case 2:
+                typingDelay = 0.05f;
+                break;
+            case 3:
+                typingDelay = 0.025f;
+                break;
+        }
     }
 
     public void SetTranscript(string s)
@@ -31,7 +39,15 @@ public class TypeWriter : MonoBehaviour
     public void TypeTranscript(string s)
     {
         fullText = s;
-        StartCoroutine(ShowText());
+
+        if (dynamicText)
+        {
+            StartCoroutine(ShowText());
+        }
+        else
+        {
+            SetTranscript(s);
+        }
     }
 
     private IEnumerator ShowText()
@@ -48,7 +64,15 @@ public class TypeWriter : MonoBehaviour
     public void TypeControlsText(string s)
     {
         fullText = s;
-        StartCoroutine(ShowControlsText());
+
+        if (dynamicText)
+        {
+            StartCoroutine(ShowControlsText());
+        }
+        else
+        {
+            SetTranscript(s);
+        }
     }
 
     private IEnumerator ShowControlsText()

@@ -15,4 +15,4 @@ MonoBehaviour:
   voiceline: {fileID: 0}
   voice: 
   clipName: Move down
-  transcript: "Use \u2193 to soft drop. Use Space to hard drop."
+  transcript: Use down arrow to soft drop. Use Space to hard drop.

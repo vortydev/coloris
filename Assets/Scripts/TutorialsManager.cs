@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TutorialsManager : MonoBehaviour
@@ -20,6 +20,8 @@ public class TutorialsManager : MonoBehaviour
     private void Start()
     {
         controlsPage.SetActive(false);
+
+        FindObjectOfType<TypeWriter>().TypeTranscript(mainMessage);
     }
 
     public void BackToMain()
@@ -44,5 +46,11 @@ public class TutorialsManager : MonoBehaviour
         controlsPage.SetActive(true);
 
         FindObjectOfType<TutorialControls>().UpdateControlsPage();
+    }
+
+    public void MainMenu()
+    {
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.firstPlayKEY, 0);
+        SceneManager.LoadScene(0);
     }
 }

@@ -21,6 +21,11 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] GameObject shakeIntensity;
     private Slider shakeSlider;
     private TextMeshProUGUI shakeValue;
+    [SerializeField] Toggle dynamicTextToggle;
+    [SerializeField] GameObject textSpeed;
+    private Slider textSpeedSlider;
+    private TextMeshProUGUI textSpeedValue;
+    public float typeSpeed;
 
     [Header("Game Options")]
     [SerializeField] Slider difficultyLevelSlider;
@@ -42,12 +47,14 @@ public class MainMenuOptions : MonoBehaviour
             visualiserToggle.SetIsOnWithoutNotify(false);
         }
 
-        // get visual components
+        // get visual options
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
-
-        // load visual options
         shakeSlider.value = screenshake.shakeMagnitude * 10;
+
+        textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
+        textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
+        textSpeedSlider.value = typeSpeed = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2);
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
@@ -59,6 +66,12 @@ public class MainMenuOptions : MonoBehaviour
             screenshake.enabled = false;
             shakeToggle.SetIsOnWithoutNotify(false);
             shakeIntensity.SetActive(false);
+        }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.dynamicTextKEY, 1) == 0)
+        {
+            dynamicTextToggle.SetIsOnWithoutNotify(false);
+            textSpeed.SetActive(false);
         }
 
         // load game options
@@ -98,6 +111,9 @@ public class MainMenuOptions : MonoBehaviour
 
         // difficulty
         UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+
+        // text speed
+        UpdateTextSpeed((int)textSpeedSlider.value);
     }
 
     public void ToggleGrid()
@@ -112,7 +128,35 @@ public class MainMenuOptions : MonoBehaviour
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.screenshakeKEY);
     }
 
-    public void UpdateDifficultyLevel(int d)
+    public void ToggleDynamicText()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
+        textSpeed.SetActive(!textSpeed.activeSelf);
+    }
+
+    private void UpdateTextSpeed(int s) 
+    {
+        if (typeSpeed != s)
+        {
+            typeSpeed = s;
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.textSpeedKEY, s);
+        }
+
+        switch (typeSpeed)
+        {
+            case 1:
+                textSpeedValue.text = "Slow";
+                break;
+            case 2:
+                textSpeedValue.text = "Default";
+                break;
+            case 3:
+                textSpeedValue.text = "Fast";
+                break;
+        }
+    }
+
+    private void UpdateDifficultyLevel(int d)
     {
         if (level != d)
         {
@@ -135,23 +179,6 @@ public class MainMenuOptions : MonoBehaviour
                 difficultyLevelText.text = "Insane";
                 break;
         }
-    }
-
-    public string GetDifficultyString()
-    {
-        switch (level)
-        {
-            case 0:
-                return "Easy";
-            case 1:
-                return "Normal";
-            case 2:
-                return "Hard";
-            case 3:
-                return "Insane";
-        }
-
-        return "???";
     }
 
     public void ToggleScore()

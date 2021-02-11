@@ -28,7 +28,9 @@ public class PlayerPrefsManager : MonoBehaviour
     // tutorial
     public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
 
-    public static string textSpeedKEY = "textSpeed";            // int holding the typing speed (1: slow, 2: normal, 3: fast)
+    // type writer
+    public static string dynamicTextKEY = "dynamicText";        // "bool" int that tells the type writer if the text is dynamic or not
+    public static string textSpeedKEY = "textSpeed";            // int holding the typing speed (1: slow, 2: default, 3: fast)
 
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float val)
@@ -77,7 +79,12 @@ public class PlayerPrefsManager : MonoBehaviour
             SaveIntPlayerPref(KEY, 0);
     }
 
-    public static string GetBoolPlayerPref(string KEY)
+    public static bool GetBoolPlayerPref(string KEY)
+    {
+        return PlayerPrefs.GetInt(KEY) == 1;
+    }
+
+    public static string GetBoolStringPlayerPref(string KEY)
     {
         if (PlayerPrefs.GetInt(KEY) == 0)
         {

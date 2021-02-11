@@ -15,4 +15,4 @@ MonoBehaviour:
   voiceline: {fileID: 0}
   voice: 
   clipName: Move piece
-  transcript: "Use \u2190 and \u2192 to move the piece laterally."
+  transcript: Use the left and right arrows to move the piece laterally.
