@@ -8,6 +8,7 @@ public class TracksManager : MonoBehaviour
     public AudioSource audioSource;            // component that plays the track
     private AudioController audioController;    // script that sets the audio's volume
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
+    [SerializeField] TypeWriter typeWriter;
     [SerializeField] TrackUI trackUI;
 
     [Header("Tracks")]
@@ -63,7 +64,8 @@ public class TracksManager : MonoBehaviour
         audioSource.clip = curTrack.track;
         audioSource.Play();
 
-        radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
+        //radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
+        typeWriter.TypeTrack(curTrack.trackName, curTrack.authorName);
         trackUI.GetTotalTrackTime(audioSource.clip.length);
         tracksPlayed++;
 
