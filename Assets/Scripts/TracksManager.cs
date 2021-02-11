@@ -5,7 +5,7 @@ using UnityEngine;
 public class TracksManager : MonoBehaviour
 {
     [Header("Components")]
-    public AudioSource audioSource;            // component that plays the track
+    public AudioSource audioSource;             // component that plays the track
     private AudioController audioController;    // script that sets the audio's volume
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
     [SerializeField] TypeWriter typeWriter;

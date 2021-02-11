@@ -1315,11 +1315,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radio: {fileID: 7671239649893713980}
+  introductionVoicelines: []
   controlsVoicelines:
   - {fileID: 11400000, guid: 9ac939d399eb5484c876d5fbe94b44cf, type: 2}
   - {fileID: 11400000, guid: eedcd1cf6569f184f950aaa02c128efa, type: 2}
   - {fileID: 11400000, guid: d02eddfec5bbde64f8c65ad50ca054e0, type: 2}
   - {fileID: 11400000, guid: 873a16f2932860747bdd94816a83d778, type: 2}
+  customizabilityVoicelines: []
+  muted: 0
+  selectedVoice: 1
 --- !u!1 &885243563
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,6 +3749,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df8993b35ae30d4db92e338efadaf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trackName: {fileID: 0}
+  trackAuthor: {fileID: 0}
   radioText: {fileID: 7671239649771859710}
+  textSpeed: 0
   typingDelay: 0.05
   eraseDelay: 0.025
+  dynamicText: 0

@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Voiceline", fileName = "New Voiceline")]
 public class VoicelineSO : ScriptableObject
 {
-    public AudioClip voiceline;
-    public string voice;
+    public AudioClip ethelVoiceline;
+    public AudioClip varianVoiceline;
     public string clipName;
     public string transcript;
 }
