@@ -24,13 +24,15 @@ public class Score : MonoBehaviour
         UpdateDifficultyLevel(difficultyLevel);
     }
 
-    public void IncrementScore()
+    public void IncrementScore(int clearedLines = 1)
     {
         linesCleared++;
         if (linesCleared % difficultyTreshhold == 0)
             IncrementDifficulty();
 
         scoreText.text = "Lines Cleared\n" + linesCleared;
+
+        CleanupOldPieces();
     }
 
     private void IncrementDifficulty()
@@ -39,8 +41,6 @@ public class Score : MonoBehaviour
         {
             globalDifficulty++;
         }
-
-        CleanupOldPieces();
     }
 
     public void UpdateDifficultyLevel(int d)

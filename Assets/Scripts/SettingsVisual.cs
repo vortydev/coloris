@@ -29,7 +29,6 @@ public class SettingsVisual : MonoBehaviour
         // gets components
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
-        shakeSlider.value = screenshake.shakeMagnitude * 10;
 
         textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
         textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
@@ -52,6 +51,11 @@ public class SettingsVisual : MonoBehaviour
             dynamicText.SetIsOnWithoutNotify(false);
             textSpeed.SetActive(false);
         }
+    }
+
+    private void Start()
+    {
+        shakeSlider.value = screenshake.shakeMagnitude * 10;
     }
 
     private void Update()

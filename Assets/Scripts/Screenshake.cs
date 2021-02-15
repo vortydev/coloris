@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//https://medium.com/@mattThousand/basic-2d-screen-shake-in-unity-9c27b56b516
 public class Screenshake : MonoBehaviour
 {
-    Vector3 initialPosition;
+    private Vector3 initialPosition;
 
     public float shakeDuration;     // Time shaking
     public float shakeMagnitude;    // The intensity of the screenshake
+    private float shakeMultiplier = 4;
     public float dampingSpeed;      // How quickly is it slowing down
 
     private void Awake()
     {
         shakeMagnitude = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.shakeMagnitudeKEY, 0.5f);
     }
+
     private void OnEnable()
     {
         initialPosition = transform.localPosition;
@@ -21,10 +24,9 @@ public class Screenshake : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (shakeDuration > 0)
         {
-            transform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
+            transform.localPosition = initialPosition + Random.insideUnitSphere * (shakeMagnitude * (shakeMultiplier / 4));
             shakeDuration -= Time.deltaTime * dampingSpeed;
         }
         else
@@ -34,12 +36,11 @@ public class Screenshake : MonoBehaviour
         }
     }
 
-    public void TriggerScreenshake()
+    public void TriggerScreenshake(float clearedLines = 4)
     {
         shakeDuration = 0.3f;
+        shakeMultiplier = clearedLines;
     }
-
-    // https://medium.com/@mattThousand/basic-2d-screen-shake-in-unity-9c27b56b516
 
     public void UpdateShakeMagnitude(float m)
     {

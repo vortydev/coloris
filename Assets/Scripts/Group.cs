@@ -141,7 +141,7 @@ public class Group : MonoBehaviour
             }
 
             Playfield.DeleteFullRows();
-            FindObjectOfType<Screenshake>().TriggerScreenshake();
+            //FindObjectOfType<Screenshake>().TriggerScreenshake();
             FindObjectOfType<Spawner>().SpawnNext();
 
             enabled = false;
