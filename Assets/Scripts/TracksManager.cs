@@ -65,7 +65,9 @@ public class TracksManager : MonoBehaviour
         audioSource.Play();
 
         //radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
-        typeWriter.TypeTrack(curTrack.trackName, curTrack.authorName);
+        typeWriter.TypeText(radio.trackName, curTrack.trackName);
+        typeWriter.TypeText(radio.trackAuthor, curTrack.authorName);
+
         trackUI.GetTotalTrackTime(audioSource.clip.length);
         tracksPlayed++;
 

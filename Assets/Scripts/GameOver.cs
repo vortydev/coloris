@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -65,6 +64,7 @@ public class GameOver : MonoBehaviour
         pauseButton.SetActive(false);
         scoreUI.SetActive(false);
         nextPieceUI.SetActive(false);
+        holdPieceUI.SetActive(false);
 
         // enable game over UI
         background.SetActive(true);

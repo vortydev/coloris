@@ -2508,9 +2508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df8993b35ae30d4db92e338efadaf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackName: {fileID: 271329737}
-  trackAuthor: {fileID: 932731017}
-  radioText: {fileID: 0}
   textSpeed: 2
   typingDelay: 0.05
   eraseDelay: 0.025

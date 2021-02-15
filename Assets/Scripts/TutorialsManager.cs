@@ -6,35 +6,46 @@ using TMPro;
 
 public class TutorialsManager : MonoBehaviour
 {
-    public string mainMessage;
-
     [Header("Components")]
     [SerializeField] VoicelinesManager voicelinesManager;
     [SerializeField] GameObject mainButtons;
     [SerializeField] TextMeshProUGUI pageTitle;
     [SerializeField] GameObject holdPieceUI;
 
-    [Header("Controls")]
+    [Header("Page")]
+    [SerializeField] GameObject introPage;
     [SerializeField] GameObject controlsPage;
 
     private void Start()
     {
+        introPage.SetActive(false);
         controlsPage.SetActive(false);
 
-        FindObjectOfType<TypeWriter>().TypeTranscript(mainMessage);
+        voicelinesManager.TypeMainMessage();
     }
 
     public void BackToMain()
     {
-        mainButtons.SetActive(true);
-        controlsPage.SetActive(false);
-        holdPieceUI.SetActive(false);
-        holdPieceUI.GetComponentInChildren<Transform>().gameObject.SetActive(false);
-
         pageTitle.text = "Tutorials";
         pageTitle.fontStyle = FontStyles.Underline;
 
-        FindObjectOfType<TypeWriter>().TypeTranscript(mainMessage);
+        mainButtons.SetActive(true);
+        introPage.SetActive(false);
+        controlsPage.SetActive(false);
+
+        holdPieceUI.SetActive(false);
+        holdPieceUI.GetComponentInChildren<Transform>().gameObject.SetActive(false);
+
+        voicelinesManager.TypeMainMessage();
+    }
+
+    public void OpenIntroduction()
+    {
+        pageTitle.text = "Introduction";
+        pageTitle.fontStyle = FontStyles.Normal;
+
+        introPage.SetActive(true);
+        mainButtons.SetActive(false);
     }
 
     public void OpenControls()

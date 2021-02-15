@@ -5,16 +5,11 @@ using TMPro;
 
 public class TypeWriter : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI trackName;
-    [SerializeField] TextMeshProUGUI trackAuthor;
-    [SerializeField] TextMeshProUGUI radioText;
-    public int textSpeed;
-    public float typingDelay = 0.05f;            // speed at which the text is typed
+    [Header("Text Settings")]
+    public int textSpeed;                       // speed level from PlayerPrefs
+    public float typingDelay = 0.05f;           // speed at which the text is typed
     public float eraseDelay = 0.025f;           // speed at which the text is being erased
-
-    public bool dynamicText;
-    private string fullText = "";
-    private string currentText = "";
+    public bool dynamicText;                    // if the text is dynamic or not
 
     private void Awake()
     {
@@ -39,89 +34,119 @@ public class TypeWriter : MonoBehaviour
         }
     }
 
-    public void SetTranscript(string s)
+    private void SetText(TextMeshProUGUI t, string s)
     {
-        fullText = s;
-        radioText.text = fullText;
+        t.text = s;
     }
 
-    public void TypeTranscript(string s)
+    public void TypeText(TextMeshProUGUI t, string s)
     {
-        fullText = s;
-
         if (dynamicText)
         {
-            StartCoroutine(ShowText());
+            StartCoroutine(ShowText(t, s));
         }
         else
         {
-            SetTranscript(s);
+            SetText(t, s);
         }
     }
 
-    private IEnumerator ShowText()
+    private IEnumerator ShowText(TextMeshProUGUI t, string s)
     {
-        for (int i = 0; i < fullText.Length + 1; i++)
+        string curtext;
+
+        for (int i = 0; i < s.Length + 1; i++)
         {
-            currentText = fullText.Substring(0, i);
-            radioText.text = currentText;
+            curtext = s.Substring(0, i);
+            t.text = curtext;
 
             yield return new WaitForSeconds(typingDelay);
         }
     }
 
-    public void SetTrack(string n, string a)
-    {
-        trackName.text = n;
-        trackAuthor.text = a;
-    }
-
-    public void TypeTrack(string n, string a)
+    public void TypeIntroText(TextMeshProUGUI t, string s)
     {
         if (dynamicText)
         {
-            StartCoroutine(ShowTrack(trackName, n));
-            StartCoroutine(ShowTrack(trackAuthor, a));
+            StartCoroutine(ShowIntroText(t, s));
         }
         else
         {
-            SetTrack(n, a);
+            SetText(t, s);
+            FindObjectOfType<TutorialIntroduction>().ToggleBackButton();
         }
     }
 
-    private IEnumerator ShowTrack(TextMeshProUGUI t, string s)
+    private IEnumerator ShowIntroText(TextMeshProUGUI t, string s)
     {
-        string curText = "";
+        string curtext;
 
         for (int i = 0; i < s.Length + 1; i++)
+        {
+            curtext = s.Substring(0, i);
+            t.text = curtext;
+
+            yield return new WaitForSeconds(typingDelay);
+
+            if (i > 0 && (s[i - 1] == '.' || s[i - 1] == '!'))
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        yield return new WaitForSeconds(1);
+        FindObjectOfType<TutorialIntroduction>().ToggleBackButton();
+    }
+
+    public void EraseIntro(TextMeshProUGUI t)
+    {
+        if (dynamicText)
+        {
+            StartCoroutine(EraseIntroText(t));
+        }
+        else
+        {
+            SetText(t, "");
+            FindObjectOfType<TutorialsManager>().BackToMain();
+        }
+    }
+
+    private IEnumerator EraseIntroText(TextMeshProUGUI t)
+    {
+        string s = t.text, curText;
+
+        for (int i = s.Length; i > -1; i--)
         {
             curText = s.Substring(0, i);
             t.text = curText;
 
-            yield return new WaitForSeconds(typingDelay);
+            yield return new WaitForSeconds(eraseDelay / 2);
         }
+
+        FindObjectOfType<TutorialsManager>().BackToMain();
     }
 
-    public void TypeControlsText(string s)
+    public void TypeControlsText(TextMeshProUGUI t, string s)
     {
-        fullText = s;
-
         if (dynamicText)
         {
-            StartCoroutine(ShowControlsText());
+            StartCoroutine(ShowControlsText(t, s));
         }
         else
         {
-            SetTranscript(s);
+            SetText(t, s);
+            FindObjectOfType<TutorialControls>().UpdateNavButtons();
         }
     }
 
-    private IEnumerator ShowControlsText()
+    private IEnumerator ShowControlsText(TextMeshProUGUI t, string s)
     {
-        for (int i = 0; i < fullText.Length + 1; i++)
+        string curtext;
+
+        for (int i = 0; i < s.Length + 1; i++)
         {
-            currentText = fullText.Substring(0, i);
-            radioText.text = currentText;
+            curtext = s.Substring(0, i);
+            t.text = curtext;
 
             yield return new WaitForSeconds(typingDelay);
         }
