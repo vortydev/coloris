@@ -41,6 +41,7 @@ public class HoldPiece : MonoBehaviour
         DeleteFromGrid(currentPiece);               // deletes from the grid the block of the piece
         Destroy(currentPiece);                      // deletes the GameObject
         FindObjectOfType<Spawner>().SpawnNext();    // spawns the next piece
+        FindObjectOfType<Group>().beenSwapped = true;
 
         TogglePieceImage(heldPiece.GetComponent<Group>().pieceId - 1);  // updates UI with the held piece
     }
