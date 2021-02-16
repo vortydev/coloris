@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class CanHold : MonoBehaviour
+public class CanDo : MonoBehaviour
 {
     public bool canHold;
+    public bool canHardDrop;
 }

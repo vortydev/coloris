@@ -9,12 +9,15 @@ public class Group : MonoBehaviour
 
     private bool paused;
     private bool canHold;
+    private bool canHardDrop;
 
     private float lastFall = 0;
     private bool isMoveable = true;
     private bool hasMoved = false;
 
     private float localDifficulty;
+
+    public GameObject ghost;
 
     private void Start()
     {
@@ -30,7 +33,8 @@ public class Group : MonoBehaviour
     private void Update()
     {
         paused = FindObjectOfType<PauseMenu>().gamePaused;
-        canHold = FindObjectOfType<CanHold>().canHold;
+        canHold = FindObjectOfType<CanDo>().canHold;
+        canHardDrop = FindObjectOfType<CanDo>().canHardDrop;
 
         if (isMoveable && !paused)
         {
@@ -122,7 +126,7 @@ public class Group : MonoBehaviour
         }   
 
         // Hard drop
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canHardDrop)
         {
             isMoveable = false;
 

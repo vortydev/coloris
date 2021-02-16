@@ -7,12 +7,15 @@ public class PlayerPrefsManager : MonoBehaviour
     // audio
     public static string musicKEY = "music";                    // float that controls the volume of the music
     public static string sfxKEY = "sfx";                        // float that controls the volume of the sfx
+    //public static string speechKEY = "speech";                  // float that controls the volume of the voicelines
+    //public static string selectedVoiceKEY = "selectedVoice";    // int of the selected voice for voicelines (1: Ethel, 2. V.A.R.I.A.N.)
 
     // visual
     public static string gridKEY = "gameGrid";                  // "bool" int that toggles the game grid
     public static string visualiserKEY = "visualiser";          // "bool" int that toggles the audio visualiser
 
     // game
+    public static string hardDropKEY = "hardDrop";              // "bool" int that allows hard dropping
     public static string scoreKEY = "score";                    // "bool" int that toggles the score UI
     public static string highscoreKEY = "highscore";            // int of the player's highscore
     public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the next piece UI
@@ -27,8 +30,6 @@ public class PlayerPrefsManager : MonoBehaviour
 
     // tutorial
     public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
-    //public static string voiceKEY = "voice";                    // float that controls the volume of the voicelines
-    //public static string selectedVoiceKEY = "selectedVoice";       // int of the selected voice for voicelines (1: Ethel, 2. V.A.R.I.A.N.)
 
     // type writer
     public static string dynamicTextKEY = "dynamicText";        // "bool" int that tells the type writer if the text is dynamic or not

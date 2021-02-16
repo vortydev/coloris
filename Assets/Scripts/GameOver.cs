@@ -23,6 +23,7 @@ public class GameOver : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI detailsText;
+    [SerializeField] GameObject detailsScrollview;
     [SerializeField] RadioUI radio;
     private int highscore;
 
@@ -32,7 +33,7 @@ public class GameOver : MonoBehaviour
 
         // game over popup
         gameOverPage.SetActive(false);
-        detailsText.gameObject.SetActive(false);
+        detailsScrollview.SetActive(false);
     }
 
     public void GameOverRoutine()
@@ -48,9 +49,12 @@ public class GameOver : MonoBehaviour
         // load texts
         scoreText.text = "Score: " + score.linesCleared
                         + "\nHighscore: " + highscore;
+
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
+                        + "\nHard Dropping: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.hardDropKEY)
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.nextPieceKEY)
                         + "\nHeld Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY);
+
         radio.trackName.text = "Tracks played:";
         radio.trackAuthor.text = tracksManager.tracksPlayed.ToString();
 
@@ -60,7 +64,7 @@ public class GameOver : MonoBehaviour
         spawner.enabled = false;
         pauseMenu.enabled = false;
 
-        // disable UI
+        // disable game UI
         pauseButton.SetActive(false);
         scoreUI.SetActive(false);
         nextPieceUI.SetActive(false);
@@ -92,7 +96,7 @@ public class GameOver : MonoBehaviour
 
     public void ToggleDetails()
     {
-        detailsText.gameObject.SetActive(!detailsText.gameObject.activeSelf);
+        detailsScrollview.SetActive(!detailsScrollview.activeSelf);
     }
 
     public void Replay()

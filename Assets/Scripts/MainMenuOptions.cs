@@ -31,6 +31,7 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Slider difficultyLevelSlider;
     [SerializeField] TextMeshProUGUI difficultyLevelText;
     public int level;
+    [SerializeField] Toggle hardDropToggle;
     [SerializeField] Toggle scoreToggle;
     [SerializeField] Toggle nextPieceToggle;
     [SerializeField] Toggle holdPieceToggle;
@@ -77,17 +78,22 @@ public class MainMenuOptions : MonoBehaviour
         // load game options
         difficultyLevelSlider.value = level = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, 1);
 
-        if (PlayerPrefs.GetInt(PlayerPrefsManager.scoreKEY) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.hardDropKEY, 1) == 0)
+        {
+            hardDropToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefs.GetInt(PlayerPrefsManager.nextPieceKEY) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.nextPieceKEY, 1) == 0)
         {
             nextPieceToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefs.GetInt(PlayerPrefsManager.holdPieceKEY) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceKEY, 1) == 0)
         {
             holdPieceToggle.SetIsOnWithoutNotify(false);
         }
@@ -179,6 +185,11 @@ public class MainMenuOptions : MonoBehaviour
                 difficultyLevelText.text = "Insane";
                 break;
         }
+    }
+
+    public void ToggleHardDrop()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
     }
 
     public void ToggleScore()
