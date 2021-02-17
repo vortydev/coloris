@@ -6,7 +6,7 @@ using TMPro;
 public class VoicelinesManager : MonoBehaviour
 {
     [Header("Components")]
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     [SerializeField] TypeWriter radio;
     public TextMeshProUGUI radioText;
     public TextMeshProUGUI bodyText;
@@ -15,15 +15,34 @@ public class VoicelinesManager : MonoBehaviour
     [SerializeField] VoicelineSO[] mainVoicelines;
     [SerializeField] VoicelineSO[] introductionVoicelines;
     [SerializeField] VoicelineSO[] controlsVoicelines;
-    [SerializeField] VoicelineSO[] customizabilityVoicelines;
+    public int selectedVoice;
 
     [Header("Settings")]
-    [SerializeField] bool muted;
-    [Range(1,2)] [SerializeField] int selectedVoice;
+    public bool paused;
+    //[Range(1,2)] [SerializeField] int selectedVoice;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();   
+        selectedVoice = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.selectedVoiceKEY, 0);
+    }
+
+    private void OnApplicationFocus()
+    {
+        TogglePause();
+    }
+
+    private void TogglePause()
+    {
+        if (paused)
+        {
+            audioSource.UnPause();
+            paused = false;
+        }
+        else
+        {
+            audioSource.Pause();
+            paused = true;
+        }
     }
 
     public void TypeMainMessage()
@@ -36,12 +55,33 @@ public class VoicelinesManager : MonoBehaviour
     {
         radio.TypeText(radioText, introductionVoicelines[0].transcript);
         radio.TypeIntroText(bodyText, introductionVoicelines[1].transcript);
-        // play audio
+        PlayVoicelineClip(introductionVoicelines[1]);
     }
 
     public void PlayControlsVoiceline(int ind)
     {
         radio.TypeControlsText(radioText, controlsVoicelines[ind - 1 ].transcript);
-        // play audio
+        PlayVoicelineClip(controlsVoicelines[ind - 1]);
+    }
+
+    private AudioClip GetSelectedVoiceAudioClip(VoicelineSO voiceline)
+    {
+        switch (selectedVoice)
+        {
+            case 0:
+                return voiceline.ethelVoiceline;
+            case 1:
+                return voiceline.varianVoiceline;
+        }
+        return null;
+    }
+
+    private void PlayVoicelineClip(VoicelineSO voiceline)
+    {
+        if (audioSource.isPlaying)  // interrupts the previous audio clip
+            audioSource.Stop();
+
+        audioSource.clip = GetSelectedVoiceAudioClip(voiceline);
+        audioSource.Play();
     }
 }

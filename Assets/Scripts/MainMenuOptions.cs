@@ -12,6 +12,9 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] TextMeshProUGUI musicVal;
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
+    [SerializeField] Slider speechSlider;
+    [SerializeField] TextMeshProUGUI speechVal;
+    [SerializeField] TMP_Dropdown voiceDropdown;
     [SerializeField] Toggle visualiserToggle;
 
     [Header("Visual Options")]
@@ -42,6 +45,9 @@ public class MainMenuOptions : MonoBehaviour
         // load audio options
         musicSlider.value = audioController.music;
         sfxSlider.value = audioController.sfx;
+        speechSlider.value = audioController.speech;
+
+        voiceDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.selectedVoiceKEY, 0));
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
@@ -106,10 +112,12 @@ public class MainMenuOptions : MonoBehaviour
         // update audio controller
         audioController.UpdateMusic(musicSlider.value);
         audioController.UpdateSfx(sfxSlider.value);
+        audioController.UpdateSpeech(speechSlider.value);
 
         // update audio sliders' values
         musicVal.text = musicSlider.value.ToString();
         sfxVal.text = sfxSlider.value.ToString();
+        speechVal.text = speechSlider.value.ToString();
 
         // screenshake
         screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
@@ -120,6 +128,11 @@ public class MainMenuOptions : MonoBehaviour
 
         // text speed
         UpdateTextSpeed((int)textSpeedSlider.value);
+    }
+
+    public void UpdateSelectedVoice()
+    {
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.selectedVoiceKEY, voiceDropdown.value);
     }
 
     public void ToggleGrid()

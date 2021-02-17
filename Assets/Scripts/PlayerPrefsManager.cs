@@ -7,8 +7,9 @@ public class PlayerPrefsManager : MonoBehaviour
     // audio
     public static string musicKEY = "music";                    // float that controls the volume of the music
     public static string sfxKEY = "sfx";                        // float that controls the volume of the sfx
-    //public static string speechKEY = "speech";                  // float that controls the volume of the voicelines
-    //public static string selectedVoiceKEY = "selectedVoice";    // int of the selected voice for voicelines (1: Ethel, 2. V.A.R.I.A.N.)
+    public static string speechKEY = "speech";                  // float that controls the volume of the voicelines
+    public static string mutedSpeechKEY = "mutedSpeech";        // "bool" int that mutes or unmutes speech in the tutorial
+    public static string selectedVoiceKEY = "selectedVoice";    // int of the selected voice for voicelines (0: V.A.R.I.A.N., 1: Ethel)
 
     // visual
     public static string gridKEY = "gameGrid";                  // "bool" int that toggles the game grid
@@ -28,7 +29,7 @@ public class PlayerPrefsManager : MonoBehaviour
     // difficulty
     public static string difficultyLevelKEY = "difficultyLevel";// int of the difficulty level (0: easy, 1: normal, 2: hard, 3: insane)
 
-    // tutorial
+    // first play
     public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
 
     // type writer
