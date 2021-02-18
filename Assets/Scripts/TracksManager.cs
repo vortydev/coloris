@@ -8,8 +8,8 @@ public class TracksManager : MonoBehaviour
     public AudioSource audioSource;             // component that plays the track
     private AudioController audioController;    // script that sets the audio's volume
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
-    [SerializeField] TypeWriter typeWriter;
-    [SerializeField] TrackUI trackUI;
+    [SerializeField] TypeWriter typeWriter;     // script for the type writing effect on the radio
+    [SerializeField] TrackUI trackUI;           // script that handles tracks in pause menu
 
     [Header("Tracks")]
     [SerializeField] TrackSO[] tracks;          // array of TrackSO holding track data
@@ -67,6 +67,9 @@ public class TracksManager : MonoBehaviour
         //radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
         typeWriter.TypeText(radio.trackName, curTrack.trackName);
         typeWriter.TypeText(radio.trackAuthor, curTrack.authorName);
+
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Current track: " + curTrack.trackName, "By: " + curTrack.authorName);
 
         trackUI.GetTotalTrackTime(audioSource.clip.length);
         tracksPlayed++;

@@ -22,6 +22,9 @@ public class TutorialsManager : MonoBehaviour
         controlsPage.SetActive(false);
 
         voicelinesManager.TypeMainMessage();
+
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "In Tutorials");
     }
 
     public void BackToMain()

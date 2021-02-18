@@ -19,6 +19,12 @@ public class MainMenu : MonoBehaviour
         firstPlay.SetActive(false);
     }
 
+    private void Start()
+    {
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Staring at the stars", "In Main Menu");
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !mainButtons.activeSelf)

@@ -56,6 +56,7 @@ public class SettingsVisual : MonoBehaviour
     private void Start()
     {
         shakeSlider.value = screenshake.shakeMagnitude * 10;
+        textSpeedSlider.value = typeWriter.textSpeed;
     }
 
     private void Update()
