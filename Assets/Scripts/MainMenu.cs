@@ -74,4 +74,9 @@ public class MainMenu : MonoBehaviour
     {
         ClosePopup();
     }
+
+    public void Donate()
+    {
+        Application.OpenURL("https://paypal.me/etiennemenard");
+    }
 }

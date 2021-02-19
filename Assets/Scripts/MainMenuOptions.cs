@@ -104,7 +104,7 @@ public class MainMenuOptions : MonoBehaviour
             holdPieceToggle.SetIsOnWithoutNotify(false);
         }
 
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // closes the page
     }
 
     private void Update()
