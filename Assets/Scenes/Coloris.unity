@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1306579186}
   m_HandleRect: {fileID: 1306579185}
   m_Direction: 2
-  m_Value: 0.9999939
+  m_Value: 0.99999356
   m_Size: 0.75
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15820,6 +15820,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51571a68b437132498a07d68e8b75230, type: 2}
   - {fileID: 11400000, guid: 75455992161a03b4390a0ea3d9d24c9d, type: 2}
   - {fileID: 11400000, guid: 6c30af2bd166f334d8b14cfce43df99c, type: 2}
+  - {fileID: 11400000, guid: d923a1b9815607d4c993c68c0030f037, type: 2}
   isPaused: 0
   tracksPlayed: 0
 --- !u!82 &2052457177

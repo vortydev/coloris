@@ -57,10 +57,10 @@ public class TutorialControls : MonoBehaviour
             piecePosY++;
             SoftDrop();
         }
-        else if (controlsNav == 3 && Input.GetKeyDown(KeyCode.Space))
-        {
-            HardDrop();
-        }
+        //else if (controlsNav == 3 && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    HardDrop();
+        //}
         else if (controlsNav == 4 && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown("c")))
         {
             TogglePieceHeld();

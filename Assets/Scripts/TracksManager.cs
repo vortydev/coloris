@@ -69,7 +69,7 @@ public class TracksManager : MonoBehaviour
         typeWriter.TypeText(radio.trackAuthor, curTrack.authorName);
 
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Current track: " + curTrack.trackName, "By: " + curTrack.authorName);
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Track: " + curTrack.trackName, "By: " + curTrack.authorName);
 
         trackUI.GetTotalTrackTime(audioSource.clip.length);
         tracksPlayed++;
