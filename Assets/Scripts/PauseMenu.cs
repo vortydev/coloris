@@ -38,6 +38,7 @@ public class PauseMenu : MonoBehaviour
 
         background.SetActive(true);
         nextPiece.SetActive(false);
+        holdPiece.SetActive(false);
 
         pausePage.SetActive(true);
         optionsPage.SetActive(false);
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
 
         background.SetActive(false);
         nextPiece.SetActive(true);
+        holdPiece.SetActive(true);
 
         pausePage.SetActive(false);
         optionsPage.SetActive(false);

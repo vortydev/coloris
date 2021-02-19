@@ -9,12 +9,20 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject popupBox;
     [SerializeField] GameObject options;
     [SerializeField] GameObject credits;
+    [SerializeField] GameObject firstPlay;
 
     private void Awake()
     {
         popupBox.SetActive(false);
         //options.SetActive(false);
         credits.SetActive(false);
+        firstPlay.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Staring at the stars", "In Main Menu");
     }
 
     private void Update()
@@ -25,9 +33,28 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void OpenTutorial()
+    {
+        SceneManager.LoadScene(1);  // loads tutorial
+    }
+
     public void PlayColoris()
     {
-        SceneManager.LoadScene(1); // Loads scene 1 with the actual game
+        SceneManager.LoadScene(2); // Loads Coloris
+    }
+
+    public void CheckFirstPlay()
+    {
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.firstPlayKEY, 1) == 0)
+        {
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.firstPlayKEY, 0);
+            PlayColoris();
+        }
+        else
+        {
+            mainButtons.SetActive(false);
+            firstPlay.SetActive(true);
+        }
     }
 
     public void QuitGame()
@@ -46,5 +73,10 @@ public class MainMenu : MonoBehaviour
     public void BackButton()
     {
         ClosePopup();
+    }
+
+    public void Donate()
+    {
+        Application.OpenURL("https://paypal.me/etiennemenard");
     }
 }

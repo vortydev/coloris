@@ -17,13 +17,21 @@ public class SettingsVisual : MonoBehaviour
     private Slider shakeSlider;
     private TextMeshProUGUI shakeValue;
 
+    [Header("Type Writer")]
+    [SerializeField] TypeWriter typeWriter;
+    [SerializeField] Toggle dynamicText;
+    [SerializeField] GameObject textSpeed;
+    private Slider textSpeedSlider;
+    private TextMeshProUGUI textSpeedValue;
+
     private void Awake()
     {
         // gets components
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
 
-        shakeSlider.value = screenshake.shakeMagnitude * 10;
+        textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
+        textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
@@ -37,6 +45,18 @@ public class SettingsVisual : MonoBehaviour
             shakeToggle.SetIsOnWithoutNotify(false);
             shakeIntensity.SetActive(false);
         }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 1) == 0)
+        {
+            dynamicText.SetIsOnWithoutNotify(false);
+            textSpeed.SetActive(false);
+        }
+    }
+
+    private void Start()
+    {
+        shakeSlider.value = screenshake.shakeMagnitude * 10;
+        textSpeedSlider.value = typeWriter.textSpeed;
     }
 
     private void Update()
@@ -44,6 +64,9 @@ public class SettingsVisual : MonoBehaviour
         // screenshake
         screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
         shakeValue.text = shakeSlider.value.ToString();
+
+        // text speed
+        UpdateTextSpeed((int)textSpeedSlider.value);
     }
 
     public void ToggleGrid()
@@ -58,4 +81,35 @@ public class SettingsVisual : MonoBehaviour
         shakeIntensity.SetActive(!shakeIntensity.activeSelf);
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.screenshakeKEY);
     }
+
+    public void ToggleDynamicText()
+    {
+        textSpeed.SetActive(!textSpeed.activeSelf);
+        typeWriter.dynamicText = !typeWriter.dynamicText;
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.textSpeedKEY);
+    }
+
+    private void UpdateTextSpeed(int s)
+    {
+        if (typeWriter.textSpeed != s)
+        {
+            typeWriter.textSpeed = s;
+            typeWriter.UpdateTypingDelay(s);
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.textSpeedKEY, s);
+        }
+
+        switch (typeWriter.textSpeed)
+        {
+            case 1:
+                textSpeedValue.text = "Slow";
+                break;
+            case 2:
+                textSpeedValue.text = "Default";
+                break;
+            case 3:
+                textSpeedValue.text = "Fast";
+                break;
+        }
+    }
+
 }

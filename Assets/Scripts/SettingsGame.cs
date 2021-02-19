@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SettingsGame : MonoBehaviour
 {
     [Header("Difficulty")]
     [SerializeField] Score score;
     [SerializeField] Slider difficultyLevelSlider;
+
+    [Header("Hard Dropping")]
+    [SerializeField] CanDo canDo;
+    [SerializeField] Toggle hardDropToggle;
 
     [Header("Score")]
     [SerializeField] GameObject scoreUI;
@@ -21,7 +24,6 @@ public class SettingsGame : MonoBehaviour
     [Header("Hold Piece")]
     [SerializeField] GameObject holdPieceUI;
     [SerializeField] Toggle holdPieceToggle;
-    [SerializeField] CanHold canHold;
 
     //[Header("Ghost Piece")]
     //[SerializeField] GameObject ghostPieceUI;
@@ -43,9 +45,15 @@ public class SettingsGame : MonoBehaviour
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceKEY, 1) == 0)
         {
-            canHold.canHold = false;
+            canDo.canHold = false;
             holdPieceUI.SetActive(false);
             holdPieceToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.hardDropKEY, 1) == 0)
+        {
+            canDo.canHardDrop = false;
+            hardDropToggle.SetIsOnWithoutNotify(false);
         }
     }
 
@@ -73,8 +81,14 @@ public class SettingsGame : MonoBehaviour
 
     public void ToggleHoldPiece()
     {
-        canHold.canHold = !canHold.canHold;
+        canDo.canHold = !canDo.canHold;
         holdPieceUI.SetActive(!holdPieceUI.activeSelf);
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
+    }
+
+    public void ToggleHardDropping()
+    {
+        canDo.canHardDrop = !canDo.canHardDrop;
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
     }
 }

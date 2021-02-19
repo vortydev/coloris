@@ -5,10 +5,11 @@ using UnityEngine;
 public class TracksManager : MonoBehaviour
 {
     [Header("Components")]
-    public AudioSource audioSource;            // component that plays the track
+    public AudioSource audioSource;             // component that plays the track
     private AudioController audioController;    // script that sets the audio's volume
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
-    [SerializeField] TrackUI trackUI;
+    [SerializeField] TypeWriter typeWriter;     // script for the type writing effect on the radio
+    [SerializeField] TrackUI trackUI;           // script that handles tracks in pause menu
 
     [Header("Tracks")]
     [SerializeField] TrackSO[] tracks;          // array of TrackSO holding track data
@@ -30,6 +31,11 @@ public class TracksManager : MonoBehaviour
         {
             playlist[i] = false;
         }
+    }
+
+    private void OnApplicationFocus()
+    {
+        TogglePause();
     }
 
     private void Update()
@@ -58,7 +64,13 @@ public class TracksManager : MonoBehaviour
         audioSource.clip = curTrack.track;
         audioSource.Play();
 
-        radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
+        //radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
+        typeWriter.TypeText(radio.trackName, curTrack.trackName);
+        typeWriter.TypeText(radio.trackAuthor, curTrack.authorName);
+
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Track: " + curTrack.trackName, "By: " + curTrack.authorName);
+
         trackUI.GetTotalTrackTime(audioSource.clip.length);
         tracksPlayed++;
 

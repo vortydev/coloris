@@ -67,6 +67,8 @@ public class Playfield : MonoBehaviour
     // Does the pesky row removal B)
     public static void DeleteFullRows()
     {
+        int lines = 0;
+
         for (int y = 0; y < h; y++)
         {
             if (IsRowFull(y))
@@ -75,9 +77,11 @@ public class Playfield : MonoBehaviour
                 DecreaseRowsAbove(y + 1);
                 y--;
 
-                // increases the number or cleared lines
-                FindObjectOfType<Score>().IncrementScore();
+                lines++;
+                FindObjectOfType<Score>().IncrementScore();    // increases the number of cleared lines
             }
         }
+
+        FindObjectOfType<Screenshake>().TriggerScreenshake(lines);
     }
 }

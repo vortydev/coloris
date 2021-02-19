@@ -17,15 +17,15 @@ public class MainMenuOptionsPanel : MonoBehaviour
     [SerializeField] GameObject gamePanel;
     [SerializeField] Button gameButton;
 
-    [Header("Tutorial")]
-    [SerializeField] GameObject tutorialPanel;
-    [SerializeField] Button tutorialButton;
+    [Header("Extras")]
+    [SerializeField] GameObject extrasPanel;
+    [SerializeField] Button extrasButton;
 
     private void Awake()
     {
         visualPanel.SetActive(false);
         gamePanel.SetActive(false);
-        tutorialPanel.SetActive(false);
+        extrasPanel.SetActive(false);
 
         audioButton.interactable = false;
     }
@@ -35,12 +35,12 @@ public class MainMenuOptionsPanel : MonoBehaviour
         audioPanel.SetActive(true);
         visualPanel.SetActive(false);
         gamePanel.SetActive(false);
-        tutorialPanel.SetActive(false);
+        extrasPanel.SetActive(false);
 
         audioButton.interactable = false;
         visualButton.interactable = true;
         gameButton.interactable = true;
-        tutorialButton.interactable = true;
+        extrasButton.interactable = true;
     }
 
     public void OnVisualClick()
@@ -48,12 +48,12 @@ public class MainMenuOptionsPanel : MonoBehaviour
         audioPanel.SetActive(false);
         visualPanel.SetActive(true);
         gamePanel.SetActive(false);
-        tutorialPanel.SetActive(false);
+        extrasPanel.SetActive(false);
 
         audioButton.interactable = true;
         visualButton.interactable = false;
         gameButton.interactable = true;
-        tutorialButton.interactable = true;
+        extrasButton.interactable = true;
     }
 
     public void OnGameClick()
@@ -61,12 +61,12 @@ public class MainMenuOptionsPanel : MonoBehaviour
         audioPanel.SetActive(false);
         visualPanel.SetActive(false);
         gamePanel.SetActive(true);
-        tutorialPanel.SetActive(false);
+        extrasPanel.SetActive(false);
 
         audioButton.interactable = true;
         visualButton.interactable = true;
         gameButton.interactable = false;
-        tutorialButton.interactable = true;
+        extrasButton.interactable = true;
     }
 
     public void OnTutorialClick()
@@ -74,11 +74,11 @@ public class MainMenuOptionsPanel : MonoBehaviour
         audioPanel.SetActive(false);
         visualPanel.SetActive(false);
         gamePanel.SetActive(false);
-        tutorialPanel.SetActive(true);
+        extrasPanel.SetActive(true);
 
         audioButton.interactable = true;
         visualButton.interactable = true;
         gameButton.interactable = true;
-        tutorialButton.interactable = false;
+        extrasButton.interactable = false;
     }
 }

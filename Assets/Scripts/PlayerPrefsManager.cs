@@ -7,12 +7,16 @@ public class PlayerPrefsManager : MonoBehaviour
     // audio
     public static string musicKEY = "music";                    // float that controls the volume of the music
     public static string sfxKEY = "sfx";                        // float that controls the volume of the sfx
+    public static string speechKEY = "speech";                  // float that controls the volume of the voicelines
+    public static string mutedSpeechKEY = "mutedSpeech";        // "bool" int that mutes or unmutes speech in the tutorial
+    public static string selectedVoiceKEY = "selectedVoice";    // int of the selected voice for voicelines (0: V.A.R.I.A.N., 1: Ethel)
 
     // visual
     public static string gridKEY = "gameGrid";                  // "bool" int that toggles the game grid
     public static string visualiserKEY = "visualiser";          // "bool" int that toggles the audio visualiser
 
     // game
+    public static string hardDropKEY = "hardDrop";              // "bool" int that allows hard dropping
     public static string scoreKEY = "score";                    // "bool" int that toggles the score UI
     public static string highscoreKEY = "highscore";            // int of the player's highscore
     public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the next piece UI
@@ -25,8 +29,12 @@ public class PlayerPrefsManager : MonoBehaviour
     // difficulty
     public static string difficultyLevelKEY = "difficultyLevel";// int of the difficulty level (0: easy, 1: normal, 2: hard, 3: insane)
 
-    // tutorial
+    // first play
     public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
+
+    // type writer
+    public static string dynamicTextKEY = "dynamicText";        // "bool" int that tells the type writer if the text is dynamic or not
+    public static string textSpeedKEY = "textSpeed";            // int holding the typing speed (1: slow, 2: default, 3: fast)
 
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float val)
@@ -75,7 +83,12 @@ public class PlayerPrefsManager : MonoBehaviour
             SaveIntPlayerPref(KEY, 0);
     }
 
-    public static string GetBoolPlayerPref(string KEY)
+    public static bool GetBoolPlayerPref(string KEY)
+    {
+        return PlayerPrefs.GetInt(KEY) == 1;
+    }
+
+    public static string GetBoolStringPlayerPref(string KEY)
     {
         if (PlayerPrefs.GetInt(KEY) == 0)
         {

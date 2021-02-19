@@ -12,6 +12,9 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] TextMeshProUGUI musicVal;
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
+    [SerializeField] Slider speechSlider;
+    [SerializeField] TextMeshProUGUI speechVal;
+    [SerializeField] TMP_Dropdown voiceDropdown;
     [SerializeField] Toggle visualiserToggle;
 
     [Header("Visual Options")]
@@ -21,11 +24,17 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] GameObject shakeIntensity;
     private Slider shakeSlider;
     private TextMeshProUGUI shakeValue;
+    [SerializeField] Toggle dynamicTextToggle;
+    [SerializeField] GameObject textSpeed;
+    private Slider textSpeedSlider;
+    private TextMeshProUGUI textSpeedValue;
+    public float typeSpeed;
 
     [Header("Game Options")]
     [SerializeField] Slider difficultyLevelSlider;
     [SerializeField] TextMeshProUGUI difficultyLevelText;
     public int level;
+    [SerializeField] Toggle hardDropToggle;
     [SerializeField] Toggle scoreToggle;
     [SerializeField] Toggle nextPieceToggle;
     [SerializeField] Toggle holdPieceToggle;
@@ -36,18 +45,23 @@ public class MainMenuOptions : MonoBehaviour
         // load audio options
         musicSlider.value = audioController.music;
         sfxSlider.value = audioController.sfx;
+        speechSlider.value = audioController.speech;
+
+        voiceDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.selectedVoiceKEY, 0));
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
             visualiserToggle.SetIsOnWithoutNotify(false);
         }
 
-        // get visual components
+        // get visual options
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
-
-        // load visual options
         shakeSlider.value = screenshake.shakeMagnitude * 10;
+
+        textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
+        textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
+        textSpeedSlider.value = typeSpeed = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2);
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
@@ -61,25 +75,36 @@ public class MainMenuOptions : MonoBehaviour
             shakeIntensity.SetActive(false);
         }
 
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.dynamicTextKEY, 1) == 0)
+        {
+            dynamicTextToggle.SetIsOnWithoutNotify(false);
+            textSpeed.SetActive(false);
+        }
+
         // load game options
         difficultyLevelSlider.value = level = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, 1);
 
-        if (PlayerPrefs.GetInt(PlayerPrefsManager.scoreKEY) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.hardDropKEY, 1) == 0)
+        {
+            hardDropToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefs.GetInt(PlayerPrefsManager.nextPieceKEY) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.nextPieceKEY, 1) == 0)
         {
             nextPieceToggle.SetIsOnWithoutNotify(false);
         }
 
-        if (PlayerPrefs.GetInt(PlayerPrefsManager.holdPieceKEY) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceKEY, 1) == 0)
         {
             holdPieceToggle.SetIsOnWithoutNotify(false);
         }
 
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // closes the page
     }
 
     private void Update()
@@ -87,10 +112,12 @@ public class MainMenuOptions : MonoBehaviour
         // update audio controller
         audioController.UpdateMusic(musicSlider.value);
         audioController.UpdateSfx(sfxSlider.value);
+        audioController.UpdateSpeech(speechSlider.value);
 
         // update audio sliders' values
         musicVal.text = musicSlider.value.ToString();
         sfxVal.text = sfxSlider.value.ToString();
+        speechVal.text = speechSlider.value.ToString();
 
         // screenshake
         screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
@@ -98,6 +125,14 @@ public class MainMenuOptions : MonoBehaviour
 
         // difficulty
         UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+
+        // text speed
+        UpdateTextSpeed((int)textSpeedSlider.value);
+    }
+
+    public void UpdateSelectedVoice()
+    {
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.selectedVoiceKEY, voiceDropdown.value);
     }
 
     public void ToggleGrid()
@@ -112,7 +147,35 @@ public class MainMenuOptions : MonoBehaviour
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.screenshakeKEY);
     }
 
-    public void UpdateDifficultyLevel(int d)
+    public void ToggleDynamicText()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
+        textSpeed.SetActive(!textSpeed.activeSelf);
+    }
+
+    private void UpdateTextSpeed(int s) 
+    {
+        if (typeSpeed != s)
+        {
+            typeSpeed = s;
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.textSpeedKEY, s);
+        }
+
+        switch (typeSpeed)
+        {
+            case 1:
+                textSpeedValue.text = "Slow";
+                break;
+            case 2:
+                textSpeedValue.text = "Default";
+                break;
+            case 3:
+                textSpeedValue.text = "Fast";
+                break;
+        }
+    }
+
+    private void UpdateDifficultyLevel(int d)
     {
         if (level != d)
         {
@@ -137,21 +200,9 @@ public class MainMenuOptions : MonoBehaviour
         }
     }
 
-    public string GetDifficultyString()
+    public void ToggleHardDrop()
     {
-        switch (level)
-        {
-            case 0:
-                return "Easy";
-            case 1:
-                return "Normal";
-            case 2:
-                return "Hard";
-            case 3:
-                return "Insane";
-        }
-
-        return "???";
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
     }
 
     public void ToggleScore()
