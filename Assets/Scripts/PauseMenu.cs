@@ -35,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     private void OnPauseMenu()
     {
         gamePaused = true;
+        FindObjectOfType<SFXManager>().PauseSFX();
 
         background.SetActive(true);
         nextPiece.SetActive(false);
@@ -47,6 +48,7 @@ public class PauseMenu : MonoBehaviour
     private void OnUnpauseMenu()
     {
         gamePaused = false;
+        FindObjectOfType<SFXManager>().UnpauseSFX();
 
         background.SetActive(false);
         nextPiece.SetActive(true);

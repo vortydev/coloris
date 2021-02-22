@@ -44,7 +44,10 @@ public class Group : MonoBehaviour
                 transform.position += new Vector3(-1, 0, 0);
 
                 if (IsValidGridPos())
+                {
+                    FindObjectOfType<SFXManager>().MoveSideSFX();
                     UpdateGrid();
+                }
                 else
                     transform.position += new Vector3(1, 0, 0);
             }
@@ -54,7 +57,10 @@ public class Group : MonoBehaviour
                 transform.position += new Vector3(1, 0, 0);
 
                 if (IsValidGridPos())
+                {
+                    FindObjectOfType<SFXManager>().MoveSideSFX();
                     UpdateGrid();
+                }
                 else
                     transform.position += new Vector3(-1, 0, 0);
             }
@@ -66,7 +72,10 @@ public class Group : MonoBehaviour
                 transform.Rotate(0, 0, -90);
 
                 if (IsValidGridPos())
+                {
+                    FindObjectOfType<SFXManager>().RotateSFX();
                     UpdateGrid();
+                }
                 else
                     transform.Rotate(0, 0, 90);
             }
@@ -78,7 +87,10 @@ public class Group : MonoBehaviour
                 transform.Rotate(0, 0, 90);
 
                 if (IsValidGridPos())
+                {
+                    FindObjectOfType<SFXManager>().RotateSFX();
                     UpdateGrid();
+                }
                 else
                     transform.Rotate(0, 0, -90);
             }
@@ -129,6 +141,8 @@ public class Group : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canHardDrop)
         {
             isMoveable = false;
+
+            FindObjectOfType<SFXManager>().HardDropSFX();
 
             for (int i = 0; i < Playfield.h; i++)
             {

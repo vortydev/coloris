@@ -10,6 +10,7 @@ public class TracksManager : MonoBehaviour
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
     [SerializeField] TypeWriter typeWriter;     // script for the type writing effect on the radio
     [SerializeField] TrackUI trackUI;           // script that handles tracks in pause menu
+    private bool onFocus = true;
 
     [Header("Tracks")]
     [SerializeField] TrackSO[] tracks;          // array of TrackSO holding track data
@@ -17,12 +18,12 @@ public class TracksManager : MonoBehaviour
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
     private TrackSO curTrack;
     public bool isPaused = false;
+    public bool gameStarted = false;
     public int tracksPlayed = 0;
 
     private void Awake()
     {
         // load components
-        audioSource = GetComponent<AudioSource>();
         audioController = GetComponent<AudioController>();
         
         // resize the bool array and set all to false
@@ -35,13 +36,17 @@ public class TracksManager : MonoBehaviour
 
     private void OnApplicationFocus()
     {
-        TogglePause();
+        if (gameStarted)
+        {
+            TogglePause();
+            onFocus = !onFocus;
+        }
     }
 
     private void Update()
     {
         // starts a new track when the previous is done
-        if (!audioSource.isPlaying && !isPaused)
+        if (!audioSource.isPlaying && !isPaused && gameStarted && onFocus)
             NextTrack();
 
         // adjusts the sound of the music

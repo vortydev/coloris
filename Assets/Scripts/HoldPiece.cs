@@ -22,6 +22,8 @@ public class HoldPiece : MonoBehaviour
         if (heldPiece != null && CheckSamePiece(currentPiece.GetComponent<Group>().pieceId))
             return;
 
+        FindObjectOfType<SFXManager>().HoldPieceSFX();
+
         if (PieceHeld())
         {
             SwapPieces(currentPiece);

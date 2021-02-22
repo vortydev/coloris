@@ -36,6 +36,12 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string dynamicTextKEY = "dynamicText";        // "bool" int that tells the type writer if the text is dynamic or not
     public static string textSpeedKEY = "textSpeed";            // int holding the typing speed (1: slow, 2: default, 3: fast)
 
+    // sfx
+    public static string moveSfxKEY = "moveSFX";
+    public static string rotateSfxKEY = "rotateSFX";
+    public static string hardDropSfxKEY = "hardDropSFX";
+    public static string holdPieceSfxKEY = "holdPieceSFX";
+
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float val)
     {

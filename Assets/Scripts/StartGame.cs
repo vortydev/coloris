@@ -15,7 +15,7 @@ public class StartGame : MonoBehaviour
     public GameObject pauseButton;
 
     [Header("Countdown")]
-    public int time;
+    [SerializeField] private int time;
     private TextMeshProUGUI countdown;
 
     [Header("Audio")]
@@ -56,6 +56,7 @@ public class StartGame : MonoBehaviour
 
     private void DisableGameComponents()
     {
+        tracksManager.gameStarted = false;
         tracksManager.NextTrack();
         tracksManager.TogglePause();
 
@@ -66,6 +67,7 @@ public class StartGame : MonoBehaviour
     // enables components to play the game
     private void StartGameRoutine()
     {
+        tracksManager.gameStarted = true;
         tracksManager.TogglePause();
 
         nextPiece.DisplayNextPiece();   // shows next piece;

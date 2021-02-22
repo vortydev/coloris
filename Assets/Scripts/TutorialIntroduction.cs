@@ -20,6 +20,6 @@ public class TutorialIntroduction : MonoBehaviour
 
     public void ClickBack()
     {
-        FindObjectOfType<TypeWriter>().EraseIntro(voicelinesManager.bodyText);
+        FindObjectOfType<TutorialsManager>().BackToMain();
     }
 }

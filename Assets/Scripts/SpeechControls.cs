@@ -33,6 +33,10 @@ public class SpeechControls : MonoBehaviour
 
             voicelinesManager.audioSource.volume = audioController.speech / 10;
         }
+        else
+        {
+            voicelinesManager.audioSource.volume = 0;
+        }
     }
 
     public void ToggleMute()

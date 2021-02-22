@@ -40,6 +40,12 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Toggle holdPieceToggle;
     //[SerializeField] Toggle ghostPieceToggle;
 
+    [Header("SFX Options")]
+    [SerializeField] Toggle moveSfxToggle;
+    [SerializeField] Toggle rotateSfxToggle;
+    [SerializeField] Toggle hardDropSfxToggle;
+    [SerializeField] Toggle holdPieceSfxToggle;
+
     private void Start()
     {
         // load audio options
@@ -102,6 +108,24 @@ public class MainMenuOptions : MonoBehaviour
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceKEY, 1) == 0)
         {
             holdPieceToggle.SetIsOnWithoutNotify(false);
+        }
+
+        // load sfx options
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.moveSfxKEY, 1) == 0)
+        {
+            moveSfxToggle.SetIsOnWithoutNotify(false);
+        }
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.rotateSfxKEY, 1) == 0)
+        {
+            rotateSfxToggle.SetIsOnWithoutNotify(false);
+        }
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.hardDropSfxKEY, 1) == 0)
+        {
+            hardDropSfxToggle.SetIsOnWithoutNotify(false);
+        }
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceSfxKEY, 1) == 0)
+        {
+            holdPieceSfxToggle.SetIsOnWithoutNotify(false);
         }
 
         gameObject.SetActive(false); // closes the page
@@ -218,5 +242,25 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleHoldPiece()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
+    }
+
+    public void ToggleMoveSFX()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.moveSfxKEY);
+    }
+
+    public void ToggleRotateSFX()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.rotateSfxKEY);
+    }
+
+    public void ToggleHardDropSFX()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropSfxKEY);
+    }
+
+    public void ToggleHoldPieceSFX()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceSfxKEY);
     }
 }
