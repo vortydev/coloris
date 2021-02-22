@@ -16,6 +16,11 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
+        RegenBags();
+    }
+
+    public void RegenBags()
+    {
         GenerateBag();
         GenerateBag2();
     }

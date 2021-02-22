@@ -16,7 +16,7 @@ public class StartGame : MonoBehaviour
 
     [Header("Countdown")]
     [SerializeField] private int time;
-    private TextMeshProUGUI countdown;
+    public TextMeshProUGUI countdown;
 
     [Header("Audio")]
     public AudioController audioController;
@@ -72,6 +72,39 @@ public class StartGame : MonoBehaviour
 
         nextPiece.DisplayNextPiece();   // shows next piece;
         spawner.SpawnNext();            // spawns first piece
+
+        pauseMenu.enabled = true;       // can pause game
+        pauseButton.SetActive(true);    // enables pause button
+    }
+
+    public void GameOverRestart()
+    {
+        StartCoroutine(RestartCountdown(time));
+    }
+
+    private IEnumerator RestartCountdown(int seconds)
+    {
+        int count = seconds;
+
+        do
+        {
+            countdown.text = count.ToString();
+            audioSource.Play();
+
+            yield return new WaitForSecondsRealtime(1);
+            count--;
+        } while (count > 0);
+
+        RestartGameRoutine();
+        countdown.enabled = false;
+    }
+
+    public void RestartGameRoutine()
+    {
+        tracksManager.gameStarted = true;
+
+        nextPiece.DisplayNextPiece();   // shows next piece;
+        spawner.SpawnNext();
 
         pauseMenu.enabled = true;       // can pause game
         pauseButton.SetActive(true);    // enables pause button

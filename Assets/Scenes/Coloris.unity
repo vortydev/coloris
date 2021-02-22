@@ -3072,6 +3072,7 @@ MonoBehaviour:
   spawner: {fileID: 1581833972}
   score: {fileID: 1289073651}
   pauseMenu: {fileID: 2013547629}
+  startGame: {fileID: 797280544}
   scoreText: {fileID: 427987523}
   detailsText: {fileID: 778020370}
   detailsScrollview: {fileID: 652922328}
@@ -7677,6 +7678,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 2013547629}
   pauseButton: {fileID: 520680688}
   time: 3
+  countdown: {fileID: 0}
   audioController: {fileID: 2052457175}
 --- !u!114 &797280545
 MonoBehaviour:
@@ -8602,18 +8604,6 @@ MonoBehaviour:
       - m_Target: {fileID: 387217916}
         m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
         m_MethodName: Replay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14208,6 +14198,7 @@ MonoBehaviour:
   - {fileID: 796856594}
   - {fileID: 786007036}
   - {fileID: 1507604960}
+  heldPiece: {fileID: 0}
 --- !u!114 &1607467124
 MonoBehaviour:
   m_ObjectHideFlags: 0
