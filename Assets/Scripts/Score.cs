@@ -111,4 +111,12 @@ public class Score : MonoBehaviour
             }
         }
     }
+
+    public void ResetScore()
+    {
+        linesCleared = 0;
+        scoreText.text = "Lines Cleared\n" + linesCleared;
+
+        globalDifficulty = 0;
+    }
 }

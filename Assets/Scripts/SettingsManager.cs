@@ -17,10 +17,15 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] GameObject gamePanel;
     [SerializeField] Button gameButton;
 
+    [Header("SFX")]
+    [SerializeField] GameObject sfxPanel;
+    [SerializeField] Button sfxButton;
+
     private void Start()
     {
         visualPanel.SetActive(false);
         gamePanel.SetActive(false);
+        sfxPanel.SetActive(false);
 
         audioButton.interactable = false;
     }
@@ -28,33 +33,60 @@ public class SettingsManager : MonoBehaviour
     public void OnAudioClick()
     {
         audioPanel.SetActive(true);
-        visualPanel.SetActive(false);
-        gamePanel.SetActive(false);
-
         audioButton.interactable = false;
+
+        visualPanel.SetActive(false);
         visualButton.interactable = true;
+
+        gamePanel.SetActive(false);
         gameButton.interactable = true;
+
+        sfxPanel.SetActive(false);
+        sfxButton.interactable = true;
     }
 
     public void OnVisualClick()
     {
         audioPanel.SetActive(false);
-        visualPanel.SetActive(true);
-        gamePanel.SetActive(false);
-
         audioButton.interactable = true;
+
+        visualPanel.SetActive(true);
         visualButton.interactable = false;
+
+        gamePanel.SetActive(false);
         gameButton.interactable = true;
+
+        sfxPanel.SetActive(false);
+        sfxButton.interactable = true;
     }
 
     public void OnGameClick()
     {
         audioPanel.SetActive(false);
-        visualPanel.SetActive(false);
-        gamePanel.SetActive(true);
-
         audioButton.interactable = true;
+
+        visualPanel.SetActive(false);
         visualButton.interactable = true;
+
+        gamePanel.SetActive(true);
         gameButton.interactable = false;
+
+        sfxPanel.SetActive(false);
+        sfxButton.interactable = true;
+    }
+
+    public void OnSfxClick()
+    {
+        audioPanel.SetActive(false);
+        audioButton.interactable = true;
+
+        visualPanel.SetActive(false);
+        visualButton.interactable = true;
+
+        gamePanel.SetActive(false);
+        gameButton.interactable = true;
+
+        sfxPanel.SetActive(true);
+        sfxButton.interactable = false;
     }
 }

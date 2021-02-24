@@ -11,10 +11,7 @@ public class NextPiece : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 7; i++)
-        {
-            nextPiece[i].gameObject.SetActive(false);
-        }
+        ResetNextPiece();
     }
 
     public void DisplayNextPiece()
@@ -24,5 +21,13 @@ public class NextPiece : MonoBehaviour
         ind = spawner.ReturnPieceInd();
 
         nextPiece[ind].gameObject.SetActive(true);
+    }
+
+    public void ResetNextPiece()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            nextPiece[i].gameObject.SetActive(false);
+        }
     }
 }

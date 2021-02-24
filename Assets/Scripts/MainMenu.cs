@@ -43,6 +43,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(2); // Loads Coloris
     }
 
+    public void OpenChillZone()
+    {
+        SceneManager.LoadScene(3);  // loads the Chill Zone
+    }
+
     public void CheckFirstPlay()
     {
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.firstPlayKEY, 1) == 0)

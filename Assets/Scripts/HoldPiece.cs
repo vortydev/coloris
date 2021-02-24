@@ -6,21 +6,20 @@ using UnityEngine.UI;
 public class HoldPiece : MonoBehaviour
 {
     public Image[] heldPieceImage;
-    private GameObject heldPiece;
+    public GameObject heldPiece;
     private Vector3 spawnPos = new Vector3(5, 15, 0);
 
     private void Start()
     {
-        for (int i = 0; i < 7; i++)
-        {
-            heldPieceImage[i].gameObject.SetActive(false);
-        }
+        ResetHeldPiece();
     }
 
     public void HoldCurrentPiece(GameObject currentPiece)
     {
         if (heldPiece != null && CheckSamePiece(currentPiece.GetComponent<Group>().pieceId))
             return;
+
+        FindObjectOfType<SFXManager>().HoldPieceSFX();
 
         if (PieceHeld())
         {
@@ -97,6 +96,19 @@ public class HoldPiece : MonoBehaviour
         {
             Vector2 v = Playfield.RoundVec2(child.position);
             Playfield.grid[(int)v.x, (int)v.y] = child;
+        }
+    }
+
+    public void ResetHeldPiece()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            heldPieceImage[i].gameObject.SetActive(false);
+        }
+
+        if (heldPiece != null)
+        {
+            heldPiece = null;
         }
     }
 }

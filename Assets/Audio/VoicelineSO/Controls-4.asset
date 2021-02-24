@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e123367d367b746b5c642c8eb7b2a3, type: 3}
   m_Name: Controls-4
   m_EditorClassIdentifier: 
-  ethelVoiceline: {fileID: 0}
-  varianVoiceline: {fileID: 0}
+  varianVoiceline: {fileID: 8300000, guid: e33af98dcd7c66a4c89a202fd8580e0d, type: 3}
+  ethelVoiceline: {fileID: 8300000, guid: 72c5f6cf19919d74894037357e3b9755, type: 3}
   clipName: Hold piece
   transcript: Use Shift or C to hold the current piece.

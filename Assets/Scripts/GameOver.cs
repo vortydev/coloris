@@ -19,6 +19,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] Spawner spawner;
     [SerializeField] Score score;
     [SerializeField] PauseMenu pauseMenu;
+    [SerializeField] StartGame startGame;
 
     [Header("Game Over")]
     [SerializeField] TextMeshProUGUI scoreText;
@@ -55,12 +56,10 @@ public class GameOver : MonoBehaviour
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.nextPieceKEY)
                         + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY);
 
-        radio.trackName.text = "Tracks played:";
-        radio.trackAuthor.text = tracksManager.tracksPlayed.ToString();
+        tracksManager.gameStarted = false;
+        tracksManager.audioSource.volume = tracksManager.audioSource.volume / 10;
 
         // disable game elements
-        tracksManager.StopMusic();
-        tracksManager.enabled = false;
         spawner.enabled = false;
         pauseMenu.enabled = false;
 
@@ -101,7 +100,23 @@ public class GameOver : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        startGame.countdown.enabled = true;
+        startGame.GameOverRestart();
+
+        spawner.enabled = true;
+        spawner.RegenBags();
+
+        scoreUI.SetActive(true);
+        score.ResetScore();
+
+        nextPieceUI.SetActive(true);
+        nextPieceUI.GetComponent<NextPiece>().ResetNextPiece();
+
+        holdPieceUI.SetActive(true);
+        holdPieceUI.GetComponent<HoldPiece>().ResetHeldPiece();
+
+        background.SetActive(false);
+        gameOverPage.SetActive(false);
     }
 
     public void QuitToMainMenu()

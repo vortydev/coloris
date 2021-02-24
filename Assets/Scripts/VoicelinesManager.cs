@@ -15,11 +15,10 @@ public class VoicelinesManager : MonoBehaviour
     [SerializeField] VoicelineSO[] mainVoicelines;
     [SerializeField] VoicelineSO[] introductionVoicelines;
     [SerializeField] VoicelineSO[] controlsVoicelines;
-    public int selectedVoice;
 
     [Header("Settings")]
     public bool paused;
-    //[Range(1,2)] [SerializeField] int selectedVoice;
+    public int selectedVoice;
 
     private void Awake()
     {
@@ -69,9 +68,9 @@ public class VoicelinesManager : MonoBehaviour
         switch (selectedVoice)
         {
             case 0:
-                return voiceline.ethelVoiceline;
-            case 1:
                 return voiceline.varianVoiceline;
+            case 1:
+                return voiceline.ethelVoiceline;
         }
         return null;
     }

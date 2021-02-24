@@ -82,6 +82,15 @@ public class Playfield : MonoBehaviour
             }
         }
 
+        if (lines >= 1 && lines < 4)
+        {
+            FindObjectOfType<SFXManager>().ClearSFX();
+        }
+        else if (lines >= 4)
+        {
+            FindObjectOfType<SFXManager>().TetrisSFX();
+        }
+
         FindObjectOfType<Screenshake>().TriggerScreenshake(lines);
     }
 }

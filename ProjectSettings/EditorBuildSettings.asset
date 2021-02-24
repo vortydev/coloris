@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Coloris.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Chill Zone.unity
+    guid: 924a866e927d6084f9c15d50e7bd2c8e
   m_configObjects: {}

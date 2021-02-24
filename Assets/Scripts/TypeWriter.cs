@@ -98,19 +98,6 @@ public class TypeWriter : MonoBehaviour
         FindObjectOfType<TutorialIntroduction>().ToggleBackButton();
     }
 
-    public void EraseIntro(TextMeshProUGUI t)
-    {
-        if (dynamicText)
-        {
-            StartCoroutine(EraseIntroText(t));
-        }
-        else
-        {
-            SetText(t, "");
-            FindObjectOfType<TutorialsManager>().BackToMain();
-        }
-    }
-
     private IEnumerator EraseIntroText(TextMeshProUGUI t)
     {
         string s = t.text, curText;
