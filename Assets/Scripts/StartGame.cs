@@ -15,6 +15,7 @@ public class StartGame : MonoBehaviour
     public GameObject pauseButton;
 
     [Header("Countdown")]
+    private bool started = false;
     [SerializeField] private int time;
     public TextMeshProUGUI countdown;
 
@@ -30,11 +31,25 @@ public class StartGame : MonoBehaviour
 
     private void Start()
     {
+        InitialStart();
+    }
+
+    private void Update()
+    {
+        if (Input.anyKeyDown && !started)   // should take care of the issue where the game doesn't start
+        {
+            InitialStart();
+        }
+    }
+
+    private void InitialStart()
+    {
         DisableGameComponents();
 
         audioSource.volume = audioController.sfx / 10;
 
         StartCoroutine(Countdown(time));
+        started = true;
     }
 
     private IEnumerator Countdown(int seconds)
