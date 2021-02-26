@@ -42,6 +42,9 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string hardDropSfxKEY = "hardDropSFX";
     public static string holdPieceSfxKEY = "holdPieceSFX";
 
+    // flushed https://discord.com/channels/279771993681952769/740271971694018682/814241565739843626
+    public static string flushedKEY = "flushed";        // "bool" int that toggles this ridiculous gimmick
+
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float val)
     {
