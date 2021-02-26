@@ -46,6 +46,9 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Toggle hardDropSfxToggle;
     [SerializeField] Toggle holdPieceSfxToggle;
 
+    [Header("Extras Options")]
+    [SerializeField] Toggle flushedToggle;
+
     private void Start()
     {
         // load audio options
@@ -126,6 +129,12 @@ public class MainMenuOptions : MonoBehaviour
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceSfxKEY, 1) == 0)
         {
             holdPieceSfxToggle.SetIsOnWithoutNotify(false);
+        }
+
+        // load extras options
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.flushedKEY, 0) == 0)
+        {
+            flushedToggle.SetIsOnWithoutNotify(false);
         }
 
         gameObject.SetActive(false); // closes the page
@@ -262,5 +271,10 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleHoldPieceSFX()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceSfxKEY);
+    }
+
+    public void ToggleFlushed()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.flushedKEY);
     }
 }
