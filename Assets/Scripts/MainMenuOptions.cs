@@ -12,9 +12,6 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] TextMeshProUGUI musicVal;
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
-    [SerializeField] Slider speechSlider;
-    [SerializeField] TextMeshProUGUI speechVal;
-    [SerializeField] TMP_Dropdown voiceDropdown;
     [SerializeField] Toggle visualiserToggle;
 
     [Header("Visual Options")]
@@ -54,9 +51,6 @@ public class MainMenuOptions : MonoBehaviour
         // load audio options
         musicSlider.value = audioController.music;
         sfxSlider.value = audioController.sfx;
-        speechSlider.value = audioController.speech;
-
-        voiceDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.selectedVoiceKEY, 0));
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
@@ -140,32 +134,37 @@ public class MainMenuOptions : MonoBehaviour
         gameObject.SetActive(false); // closes the page
     }
 
-    private void Update()
+    public void UpdateSliderMusic()
     {
-        // update audio controller
         audioController.UpdateMusic(musicSlider.value);
-        audioController.UpdateSfx(sfxSlider.value);
-        audioController.UpdateSpeech(speechSlider.value);
-
-        // update audio sliders' values
         musicVal.text = musicSlider.value.ToString();
-        sfxVal.text = sfxSlider.value.ToString();
-        speechVal.text = speechSlider.value.ToString();
+    }
 
-        // screenshake
+    public void UpdateSliderSfx()
+    {
+        audioController.UpdateSfx(sfxSlider.value);
+        sfxVal.text = sfxSlider.value.ToString();
+    }
+
+    public void UpdateSliderScreenshakeMagnitude()
+    {
         screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
         shakeValue.text = shakeSlider.value.ToString();
+    }
 
-        // difficulty
-        UpdateDifficultyLevel((int)difficultyLevelSlider.value);
-
-        // text speed
+    public void UpdateSliderTextSpeed()
+    {
         UpdateTextSpeed((int)textSpeedSlider.value);
     }
 
-    public void UpdateSelectedVoice()
+    public void UpdateSliderDifficulty()
     {
-        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.selectedVoiceKEY, voiceDropdown.value);
+        UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+    }
+
+    public void ToggleVisualizer()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.visualiserKEY);
     }
 
     public void ToggleGrid()

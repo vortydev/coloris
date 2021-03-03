@@ -54,8 +54,6 @@ public class ChillZoneManager : MonoBehaviour
 
     private void Update()
     {
-        audioSource.volume = audioController.music / 10;
-
         if (!audioSource.isPlaying && currentTrack != null && !paused)
         {
             if (onFocus)

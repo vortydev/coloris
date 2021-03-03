@@ -86,6 +86,8 @@ public class TypeWriter : MonoBehaviour
             curtext = s.Substring(0, i);
             t.text = curtext;
 
+            
+
             yield return new WaitForSeconds(typingDelay);
 
             if (i > 0 && (s[i - 1] == '.' || s[i - 1] == '!'))

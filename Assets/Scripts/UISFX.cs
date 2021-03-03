@@ -22,10 +22,6 @@ public class UISFX : MonoBehaviour
     private void Awake()
     {
         audioController = GetComponent<AudioController>();
-    }
-
-    private void Update()
-    {
         audioSource.volume = audioController.sfx / 10;
     }
 

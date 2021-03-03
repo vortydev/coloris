@@ -11,7 +11,6 @@ public class AudioController : MonoBehaviour
     {
         music = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.musicKEY, 10f);
         sfx = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.sfxKEY, 10f);
-        speech = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.speechKEY, 10f);
     }
 
     public void UpdateMusic(float m)
@@ -29,15 +28,6 @@ public class AudioController : MonoBehaviour
         {
             sfx = s;
             PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.sfxKEY, s);
-        }
-    }
-
-    public void UpdateSpeech(float s)
-    {
-        if (speech != s)
-        {
-            speech = s;
-            PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.speechKEY, s);
         }
     }
 }

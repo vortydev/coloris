@@ -7,21 +7,28 @@ using TMPro;
 public class TutorialsManager : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] VoicelinesManager voicelinesManager;
     [SerializeField] GameObject mainButtons;
     [SerializeField] TextMeshProUGUI pageTitle;
     [SerializeField] GameObject holdPieceUI;
+    [SerializeField] TypeWriter radio;
+    public TextMeshProUGUI radioText;
+    public TextMeshProUGUI bodyText;
 
     [Header("Page")]
     [SerializeField] GameObject introPage;
     [SerializeField] GameObject controlsPage;
+
+    [Header("Transcripts")]
+    [SerializeField] string[] mainPageTrans;
+    [SerializeField] string[] introTrans;
+    [SerializeField] string[] contTrans;
 
     private void Start()
     {
         introPage.SetActive(false);
         controlsPage.SetActive(false);
 
-        voicelinesManager.TypeMainMessage();
+        radio.TypeText(radioText, mainPageTrans[Random.Range(0, mainPageTrans.Length)]);
 
         if (FindObjectOfType<DiscordController>() != null)
             FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "In Tutorials");
@@ -39,7 +46,7 @@ public class TutorialsManager : MonoBehaviour
         holdPieceUI.SetActive(false);
         holdPieceUI.GetComponentInChildren<Transform>().gameObject.SetActive(false);
 
-        voicelinesManager.TypeMainMessage();
+        radio.TypeText(radioText, mainPageTrans[Random.Range(0, mainPageTrans.Length)]);
     }
 
     public void OpenIntroduction()
@@ -49,6 +56,8 @@ public class TutorialsManager : MonoBehaviour
 
         introPage.SetActive(true);
         mainButtons.SetActive(false);
+
+        PlayIntroduction();
     }
 
     public void OpenControls()
@@ -60,6 +69,17 @@ public class TutorialsManager : MonoBehaviour
         controlsPage.SetActive(true);
 
         FindObjectOfType<TutorialControls>().UpdateControlsPage();
+    }
+
+    private void PlayIntroduction()
+    {
+        radio.TypeText(radioText, introTrans[0]);
+        radio.TypeIntroText(bodyText, introTrans[1]);
+    }
+
+    public void PlayControls(int ind)
+    {
+        radio.TypeControlsText(radioText, contTrans[ind - 1]);
     }
 
     public void MainMenu()

@@ -62,7 +62,7 @@ public class SettingsGame : MonoBehaviour
         difficultyLevelSlider.value = score.difficultyLevel;
     }
 
-    private void Update()
+    public void UpdateSliderDifficulty()
     {
         score.UpdateDifficultyLevel((int)difficultyLevelSlider.value);
     }

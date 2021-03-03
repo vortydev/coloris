@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TutorialIntroduction : MonoBehaviour
 {
-    [SerializeField] VoicelinesManager voicelinesManager;
     [SerializeField] Button backButton;
 
     private void Awake()

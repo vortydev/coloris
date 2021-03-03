@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class TutorialControls : MonoBehaviour
 {
-    [Header("Components")]
-    [SerializeField] VoicelinesManager voicelinesManager;
-
     [Header("Buttons")]
     [SerializeField] Button backButton;
     [SerializeField] Button nextButton;
@@ -25,6 +22,12 @@ public class TutorialControls : MonoBehaviour
     [Header("Holding Piece")]
     [SerializeField] GameObject holdPieceUI;
     [SerializeField] GameObject heldPiece;
+
+    [Header("Piece SFX")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip move;
+    [SerializeField] AudioClip rotate;
+    [SerializeField] AudioClip hold;
 
     private void Awake()
     {
@@ -67,11 +70,19 @@ public class TutorialControls : MonoBehaviour
         }
     }
 
+    private void PlayPieceSfx(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
     private void MovePieceRight()
     {
         Vector2 newPos = piece.transform.position;
         newPos.x += movementOffset;
         piece.transform.position = newPos;
+
+        PlayPieceSfx(move);
     }
 
     private void MovePieceLeft()
@@ -79,6 +90,8 @@ public class TutorialControls : MonoBehaviour
         Vector2 newPos = piece.transform.position;
         newPos.x -= movementOffset;
         piece.transform.position = newPos;
+
+        PlayPieceSfx(move);
     }
 
     private IEnumerator ResetPieceToMiddle()
@@ -103,11 +116,15 @@ public class TutorialControls : MonoBehaviour
     private void RotatePieceRight()
     {
         piece.transform.Rotate(0, 0, -90);
+
+        PlayPieceSfx(rotate);
     }
 
     private void RotatePieceLeft()
     {
         piece.transform.Rotate(0, 0, 90);
+
+        PlayPieceSfx(rotate);
     }
 
     private IEnumerator ResetPieceUp()
@@ -164,6 +181,8 @@ public class TutorialControls : MonoBehaviour
     {
         piece.SetActive(!piece.activeSelf);
         heldPiece.SetActive(!heldPiece.activeSelf);
+
+        PlayPieceSfx(hold);
     }
 
     public void OnNextClick()
@@ -199,18 +218,18 @@ public class TutorialControls : MonoBehaviour
         switch (controlsNav)
         {
             case 1:
-                voicelinesManager.PlayControlsVoiceline(controlsNav);
+                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
                 break;
             case 2:
+                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
                 StartCoroutine(ResetPieceToMiddle());
-                voicelinesManager.PlayControlsVoiceline(controlsNav);
                 break;
             case 3:
+                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
                 StartCoroutine(ResetPieceUp());
-                voicelinesManager.PlayControlsVoiceline(controlsNav);
                 break;
             case 4:
-                voicelinesManager.PlayControlsVoiceline(controlsNav);
+                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
                 break;
         }
 
