@@ -7,9 +7,6 @@ public class PlayerPrefsManager : MonoBehaviour
     // audio
     public static string musicKEY = "music";                    // float that controls the volume of the music
     public static string sfxKEY = "sfx";                        // float that controls the volume of the sfx
-    public static string speechKEY = "speech";                  // float that controls the volume of the voicelines
-    public static string mutedSpeechKEY = "mutedSpeech";        // "bool" int that mutes or unmutes speech in the tutorial
-    public static string selectedVoiceKEY = "selectedVoice";    // int of the selected voice for voicelines (0: V.A.R.I.A.N., 1: Ethel)
 
     // visual
     public static string gridKEY = "gameGrid";                  // "bool" int that toggles the game grid

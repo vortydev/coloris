@@ -41,15 +41,22 @@ public class CZ_MediaControls : MonoBehaviour
 
     private void Update()
     {
-        audioController.UpdateMusic(musicSlider.value);
-        audioController.UpdateSfx(sfxSlider.value);
-        musicVal.text = musicSlider.value.ToString();
-        sfxVal.text = sfxSlider.value.ToString();
-
         if (manager.audioSource.isPlaying)
         {
             UpdateTrackTime();
         }
+    }
+
+    public void UpdateSliderMusic()
+    {
+        audioController.UpdateMusic(musicSlider.value);
+        musicVal.text = musicSlider.value.ToString();
+    }
+
+    public void UpdateSliderSfx()
+    {
+        audioController.UpdateSfx(sfxSlider.value);
+        sfxVal.text = sfxSlider.value.ToString();
     }
 
     public void ToggleMediaControls(bool state)

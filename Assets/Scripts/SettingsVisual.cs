@@ -59,13 +59,14 @@ public class SettingsVisual : MonoBehaviour
         textSpeedSlider.value = typeWriter.textSpeed;
     }
 
-    private void Update()
+    public void UpdateSliderShakeMagnitude()
     {
-        // screenshake
         screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
         shakeValue.text = shakeSlider.value.ToString();
+    }
 
-        // text speed
+    public void UpdateSliderTextSpeed()
+    {
         UpdateTextSpeed((int)textSpeedSlider.value);
     }
 
