@@ -3934,9 +3934,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
+      - m_Target: {fileID: 1009234651}
+        m_TargetAssemblyTypeName: OptionsSFX, Assembly-CSharp
+        m_MethodName: PlaySfxRotate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4249,9 +4249,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
+      - m_Target: {fileID: 1009234651}
+        m_TargetAssemblyTypeName: OptionsSFX, Assembly-CSharp
+        m_MethodName: PlaySfxMove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7068,9 +7068,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
+      - m_Target: {fileID: 1009234651}
+        m_TargetAssemblyTypeName: OptionsSFX, Assembly-CSharp
+        m_MethodName: PlaySfxHardDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8824,6 +8824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1009234649}
   - component: {fileID: 1009234650}
+  - component: {fileID: 1009234651}
   m_Layer: 5
   m_Name: SfxOptions
   m_TagString: Untagged
@@ -8871,6 +8872,23 @@ MonoBehaviour:
   rotateToggle: {fileID: 545352230}
   hardDropToggle: {fileID: 2005639834}
   holdPieceToggle: {fileID: 859979026}
+--- !u!114 &1009234651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009234648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48c2783fdac38d4c91b09f73ec0ac6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSource: {fileID: 2052457180}
+  move: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
+  rotate: {fileID: 8300000, guid: 119348e3ccb340547887f06bb01f412e, type: 3}
+  hardDrop: {fileID: 8300000, guid: 2711a2055d85f854c89fa60d891dd1ef, type: 3}
+  hold: {fileID: 8300000, guid: c2c6089daf925b04381799a89608399f, type: 3}
 --- !u!1 &1012749826
 GameObject:
   m_ObjectHideFlags: 0
@@ -15734,9 +15752,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
+      - m_Target: {fileID: 1009234651}
+        m_TargetAssemblyTypeName: OptionsSFX, Assembly-CSharp
+        m_MethodName: PlaySfxHardDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
