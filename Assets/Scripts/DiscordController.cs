@@ -29,7 +29,7 @@ public class DiscordController : MonoBehaviour
 		{
 			if (res == Discord.Result.Ok)
 			{
-				Debug.Log("Initial Discord Rich Presence update successful.");
+				//Debug.Log("Initial Discord Rich Presence update successful.");
 			}   
         });
 	}
@@ -63,7 +63,7 @@ public class DiscordController : MonoBehaviour
         {
             if (res == Discord.Result.Ok)
             {
-                Debug.Log("Discord Rich Presence successfully updated.");
+                //Debug.Log("Discord Rich Presence successfully updated.");
             }
             else Debug.LogError("Discord Rich Presence update failed.");
         });
