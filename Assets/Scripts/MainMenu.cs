@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private MyControls _actions;
+
     [SerializeField] GameObject mainButtons;
     [SerializeField] GameObject popupBox;
     [SerializeField] GameObject options;
@@ -13,10 +16,30 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
+        _actions = new MyControls();
+
         popupBox.SetActive(false);
         //options.SetActive(false);
         credits.SetActive(false);
         firstPlay.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        // enable the input
+        _actions.Enable();
+
+        // pause
+        _actions.Coloris.Pause.performed += Pause;
+    }
+
+    private void OnDisable()
+    {
+        // enable the input
+        _actions.Disable();
+
+        // pause
+        _actions.Coloris.Pause.performed -= Pause;
     }
 
     private void Start()
@@ -25,9 +48,9 @@ public class MainMenu : MonoBehaviour
             FindObjectOfType<DiscordController>().UpdateRichPresence("Staring at the stars", "In Main Menu");
     }
 
-    private void Update()
+    private void Pause(InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !mainButtons.activeSelf)
+        if (!mainButtons.activeSelf)
         {
             ClosePopup();
         }
@@ -73,6 +96,8 @@ public class MainMenu : MonoBehaviour
         popupBox.SetActive(false);
         options.SetActive(false);
         credits.SetActive(false);
+
+        FindObjectOfType<UISFX>().ClickButton();
     }
 
     public void BackButton()

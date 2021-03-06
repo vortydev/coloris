@@ -23,15 +23,6 @@ public class PauseMenu : MonoBehaviour
         optionsPage.SetActive(false);
     }
 
-    public void Update()
-    {
-        // manages opening and closing the pause menu (press Esc)
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnClickPause();
-        }
-    }
-
     private void OnPauseMenu()
     {
         gamePaused = true;

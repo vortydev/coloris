@@ -17,8 +17,6 @@ public class Group : MonoBehaviour
 
     private float localDifficulty;
 
-    public GameObject ghost;
-
     private void Start()
     {
         localDifficulty = FindObjectOfType<Score>().globalDifficulty;
@@ -38,64 +36,7 @@ public class Group : MonoBehaviour
 
         if (isMoveable && !paused)
         {
-            // Move Left
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                transform.position += new Vector3(-1, 0, 0);
-
-                if (IsValidGridPos())
-                {
-                    FindObjectOfType<SFXManager>().MoveSideSFX();
-                    UpdateGrid();
-                }
-                else
-                    transform.position += new Vector3(1, 0, 0);
-            }
-            // Move Right
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                transform.position += new Vector3(1, 0, 0);
-
-                if (IsValidGridPos())
-                {
-                    FindObjectOfType<SFXManager>().MoveSideSFX();
-                    UpdateGrid();
-                }
-                else
-                    transform.position += new Vector3(-1, 0, 0);
-            }
-            // Rotate right
-            else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("x"))
-            {
-                if (gameObject.tag == "SquarePiece") return;
-
-                transform.Rotate(0, 0, -90);
-
-                if (IsValidGridPos())
-                {
-                    FindObjectOfType<SFXManager>().RotateSFX();
-                    UpdateGrid();
-                }
-                else
-                    transform.Rotate(0, 0, 90);
-            }
-            // Rotate left
-            else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown("z"))
-            {
-                if (gameObject.tag == "SquarePiece") return;
-
-                transform.Rotate(0, 0, 90);
-
-                if (IsValidGridPos())
-                {
-                    FindObjectOfType<SFXManager>().RotateSFX();
-                    UpdateGrid();
-                }
-                else
-                    transform.Rotate(0, 0, -90);
-            }
-            // Move Downwards and Fall
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= 1 - (localDifficulty / 10))
+            if (Time.time - lastFall >= 1 - (localDifficulty / 10))
             {
                 // Modify position
                 transform.position += new Vector3(0, -1, 0);
@@ -131,14 +72,97 @@ public class Group : MonoBehaviour
 
                 lastFall = Time.time;
             }
-            else if ((Input.GetKeyDown("c") || Input.GetKeyDown(KeyCode.LeftShift)) && !beenSwapped && canHold) // hold piece
-            {
-                FindObjectOfType<HoldPiece>().HoldCurrentPiece(gameObject);
-            }
         }   
+    }
 
-        // Hard drop
-        if (Input.GetKeyDown(KeyCode.Space) && canHardDrop)
+    public void OnMove(int direction)
+    {
+        if (isMoveable && !paused)  // if the piece can move and the game isn't paused
+        {   
+            transform.position += new Vector3(direction, 0, 0);    // move the piece left
+
+            if (IsValidGridPos())   // checks if the new position is valid
+            {
+                UpdateGrid();                                   // updates the grid with the moved piece
+                FindObjectOfType<SFXManager>().MoveSideSFX();   // plays an SFX
+            }
+            else
+            {
+                transform.position += new Vector3(-direction, 0, 0);     // reverts to its initial position
+            }
+        }
+    }
+
+    public void OnRotateRight()
+    {
+        if (gameObject.tag == "SquarePiece") return;
+
+        transform.Rotate(0, 0, -90);
+
+        if (IsValidGridPos())
+        {
+            FindObjectOfType<SFXManager>().RotateSFX();
+            UpdateGrid();
+        }
+        else
+            transform.Rotate(0, 0, 90);
+    }
+
+    public void OnRotateLeft()
+    {
+        if (gameObject.tag == "SquarePiece") return;
+
+        transform.Rotate(0, 0, 90);
+
+        if (IsValidGridPos())
+        {
+            FindObjectOfType<SFXManager>().RotateSFX();
+            UpdateGrid();
+        }
+        else
+            transform.Rotate(0, 0, -90);
+    }
+
+    public void OnSoftDrop()
+    {
+        // Modify position
+        transform.position += new Vector3(0, -1, 0);
+
+        // See if valid
+        if (IsValidGridPos())
+        {
+            // It's valid. Update grid.
+            UpdateGrid();
+            HasMoved();
+        }
+        else
+        {
+            if (hasMoved)
+            {
+                // It's not valid. revert.
+                transform.position += new Vector3(0, 1, 0);
+
+                // Clear filled horizontal lines
+                Playfield.DeleteFullRows();
+
+                // Spawn next Group
+                FindObjectOfType<Spawner>().SpawnNext();
+
+                // Disable script
+                enabled = false;
+            }
+            else
+            {
+                TriggerGameOver();
+            }
+        }
+
+        lastFall = Time.time;
+    }
+
+    public void OnHardDrop()
+    {
+        if (canHardDrop)
         {
             isMoveable = false;
 
@@ -159,10 +183,17 @@ public class Group : MonoBehaviour
             }
 
             Playfield.DeleteFullRows();
-            //FindObjectOfType<Screenshake>().TriggerScreenshake();
             FindObjectOfType<Spawner>().SpawnNext();
 
             enabled = false;
+        }
+    }
+
+    public void OnHold()
+    {
+        if (!beenSwapped && canHold) // hold piece
+        {
+            FindObjectOfType<HoldPiece>().HoldCurrentPiece(gameObject);
         }
     }
 

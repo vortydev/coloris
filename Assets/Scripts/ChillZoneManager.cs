@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class ChillZoneManager : MonoBehaviour
 {
     [Header("Components")]
+    private MyControls _actions;
     public AudioSource audioSource;
     [SerializeField] AudioController audioController;
     [SerializeField] RadioUI radio;
@@ -26,6 +28,29 @@ public class ChillZoneManager : MonoBehaviour
     [SerializeField] CZ_Catalog catalog;
     [SerializeField] CZ_Queue queue;
     [SerializeField] GameObject quitPopup;
+
+    private void Awake()
+    {
+        _actions = new MyControls();
+    }
+
+    private void OnEnable()
+    {
+        // enable the input
+        _actions.Enable();
+
+        // pause
+        _actions.Coloris.Pause.performed += Pause;
+    }
+
+    private void OnDisable()
+    {
+        // enable the input
+        _actions.Disable();
+
+        // pause
+        _actions.Coloris.Pause.performed -= Pause;
+    }
 
     private void Start()
     {
@@ -61,11 +86,11 @@ public class ChillZoneManager : MonoBehaviour
                 NextTrackInPlaylist();
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleQuitPopup();
-        }
+    private void Pause(InputAction.CallbackContext obj)
+    {
+        ToggleQuitPopup();
     }
 
     public void GetSelectedCatalogTrack(int trackNb)

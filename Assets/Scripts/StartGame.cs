@@ -36,7 +36,7 @@ public class StartGame : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKeyDown && !started)   // should take care of the issue where the game doesn't start
+        if (!started)   // should take care of the issue where the game doesn't start
         {
             InitialStart();
         }
