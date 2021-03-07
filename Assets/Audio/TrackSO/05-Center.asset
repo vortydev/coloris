@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   track: {fileID: 8300000, guid: 5efb058cc04bed94c9075ccd02f97ca3, type: 3}
   trackNb: 5
+  volNb: 1
   trackName: Center
   authorName: Scyriate

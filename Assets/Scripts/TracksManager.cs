@@ -13,7 +13,7 @@ public class TracksManager : MonoBehaviour
     private bool onFocus = true;
 
     [Header("Tracks")]
-    [SerializeField] TrackSO[] tracks;          // array of TrackSO holding track data
+    private ReferenceTracks tracks;          // array of TrackSO holding track data
     private bool[] playlist;                    // array of bools matching the TrackSO array
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
     private TrackSO curTrack;
@@ -25,10 +25,11 @@ public class TracksManager : MonoBehaviour
     {
         // load components
         audioController = GetComponent<AudioController>();
+        tracks = FindObjectOfType<ReferenceTracks>();
         
         // resize the bool array and set all to false
-        playlist = new bool[tracks.Length];
-        for (int i = 0; i < tracks.Length; i++)
+        playlist = new bool[tracks.GetArraySize()];
+        for (int i = 0; i < tracks.GetArraySize(); i++)
         {
             playlist[i] = false;
         }
@@ -60,13 +61,13 @@ public class TracksManager : MonoBehaviour
         CheckPlaylist();
         int rng;
         do
-            rng = Random.Range(0, tracks.Length);
+            rng = Random.Range(0, tracks.GetArraySize());
         while (playlist[rng] || prevTrack == rng);
 
         playlist[rng] = true;
         prevTrack = rng;
 
-        curTrack = tracks[rng];
+        curTrack = tracks.GetTrackSO(rng);
         audioSource.clip = curTrack.track;
         audioSource.Play();
 

@@ -50,14 +50,14 @@ public class CZ_Catalog : MonoBehaviour
 
     private void CreateCatalogDefault()
     {
-        for (int i = 0; i < manager.tracks.Length; i++)
+        for (int i = 0; i < manager.tracks.GetArraySize(); i++)
         {
             GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
-            newTrack.GetComponentInChildren<TextMeshProUGUI>().text = manager.tracks[i].trackNb.ToString() + ". " + manager.tracks[i].trackName + " - " + manager.tracks[i].authorName;
-            newTrack.gameObject.name = manager.tracks[i].trackName;
+            newTrack.GetComponentInChildren<TextMeshProUGUI>().text = manager.tracks.GetTrackNb(i).ToString() + ". " + manager.tracks.GetTrackName(i) + " - " + manager.tracks.GetArtistName(i);
+            newTrack.gameObject.name = manager.tracks.GetTrackName(i);
             newTrack.transform.position = catalogScroll.transform.position;
 
-            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = manager.tracks[i].trackNb;
+            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = manager.tracks.GetTrackNb(i);
 
             catalog.Add(newTrack);
         }
@@ -65,7 +65,7 @@ public class CZ_Catalog : MonoBehaviour
 
     private void CreateCatalogByName()
     {
-        TrackSO[] tracksByName = manager.tracks.OrderBy(go => go.trackName).ToArray();
+        TrackSO[] tracksByName = manager.tracks.GetArray().OrderBy(go => go.trackName).ToArray();
 
         for (int i = 0; i < tracksByName.Length; i++)
         {
@@ -82,7 +82,7 @@ public class CZ_Catalog : MonoBehaviour
 
     private void CreateCatalogByArtist(int filter = 0)
     {
-        TrackSO[] tracksByArtist = manager.tracks.OrderBy(go => go.authorName).ToArray();
+        TrackSO[] tracksByArtist = manager.tracks.GetArray().OrderBy(go => go.authorName).ToArray();
 
         if (filter == 0)
         {
@@ -156,7 +156,7 @@ public class CZ_Catalog : MonoBehaviour
 
     private void GenerateArtistFilter()
     {
-        TrackSO[] tracksByArtist = manager.tracks.OrderBy(go => go.authorName).ToArray();
+        TrackSO[] tracksByArtist = manager.tracks.GetArray().OrderBy(go => go.authorName).ToArray();
         List<string> artists = new List<string>();
 
         for (int i = 0; i < tracksByArtist.Length; i++)

@@ -6,6 +6,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -21,7 +22,7 @@ public class ChillZoneManager : MonoBehaviour
     [SerializeField] bool onFocus;
 
     [Header("References")]
-    public TrackSO[] tracks;
+    public ReferenceTracks tracks;
 
     [Header("Tracks")]
     public bool paused = false;
@@ -38,6 +39,7 @@ public class ChillZoneManager : MonoBehaviour
     private void Awake()
     {
         _actions = new MyControls();
+        tracks = FindObjectOfType<ReferenceTracks>();
     }
 
     private void OnEnable()
@@ -101,7 +103,7 @@ public class ChillZoneManager : MonoBehaviour
 
     public void GetSelectedCatalogTrack(int trackNb)
     {
-        selectedTrack = tracks[trackNb - 1];    // sets the selected track from the reference array
+        selectedTrack = tracks.GetTrackSO(trackNb - 1);    // sets the selected track from the reference array
 
         queue.ToggleCatalogTrackControls(true); // disables and enables relevant control buttons
         queue.EnableQueueTrackControls(false);  // disables and enables relevant control buttons
@@ -110,7 +112,7 @@ public class ChillZoneManager : MonoBehaviour
     // sets the selected track from the reference array
     public void GetSelectedQueueTrack(int trackNb)
     {
-        selectedTrack = tracks[trackNb - 1];
+        selectedTrack = tracks.GetTrackSO(trackNb - 1);
 
         queue.ToggleQueueTrackControls(true);
         queue.EnableQueueTrackControls(true);

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   track: {fileID: 8300000, guid: 76460116856c50941ba17e48d0c0dca9, type: 3}
   trackNb: 10
+  volNb: 1
   trackName: NIGHTS
   authorName: Alex Renard

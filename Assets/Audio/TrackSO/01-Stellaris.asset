@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   track: {fileID: 8300000, guid: bc6de8f6eb3799e4fb786d4be54e1a44, type: 3}
   trackNb: 1
+  volNb: 1
   trackName: Stellaris
   authorName: Christian Royle

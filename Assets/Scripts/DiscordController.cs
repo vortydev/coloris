@@ -12,11 +12,20 @@ using Discord;
 
 public class DiscordController : MonoBehaviour
 {
-	public Discord.Discord discord;
+    private static DiscordController instance;
+    public Discord.Discord discord;
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject); // makes the DiscordController persistent through scenes because otherwise it's a massive pain in the ass
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // makes the array persistent across scenes
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
