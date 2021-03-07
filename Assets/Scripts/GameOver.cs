@@ -1,3 +1,9 @@
+/*
+ * File:        GameOver.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the Game Over state of the game.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,9 +45,9 @@ public class GameOver : MonoBehaviour
 
     public void GameOverRoutine()
     {
-        DeletePieces();
+        DeletePieces(); // clears the remaining pieces
 
-        if (score.linesCleared > highscore)
+        if (score.linesCleared > highscore) // if the current score is higher than the highscore, updates and saves it
         {
             highscore = score.linesCleared;
             PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.highscoreKEY, highscore);
@@ -74,6 +80,7 @@ public class GameOver : MonoBehaviour
         gameOverPage.SetActive(true);
     }
 
+    // goes through all the remaining pieces and deletes them
     private void DeletePieces()
     {
         GameObject[] oldPieces;
@@ -98,6 +105,7 @@ public class GameOver : MonoBehaviour
         detailsScrollview.SetActive(!detailsScrollview.activeSelf);
     }
 
+    // re-enables all the stuff to start a new game
     public void Replay()
     {
         startGame.countdown.enabled = true;

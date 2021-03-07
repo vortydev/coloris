@@ -1,3 +1,9 @@
+/*
+ * File:        NextPiece.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the display of the the next piece to be dropped.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

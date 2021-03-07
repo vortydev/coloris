@@ -1,3 +1,9 @@
+/*
+ * File:        InputsGame.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the Input Actions in-game.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * File:        Group.cs
+ * Author:      Étienne Ménard
+ * Description: Takes care of everything related to the game pieces.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +25,7 @@ public class Group : MonoBehaviour
 
     private void Start()
     {
-        localDifficulty = FindObjectOfType<Score>().globalDifficulty;
+        localDifficulty = FindObjectOfType<Score>().globalDifficulty;   // loads the current difficulty
 
         // Default position not valid? Then it's game over
         if (!IsValidGridPos())
@@ -75,6 +81,7 @@ public class Group : MonoBehaviour
         }   
     }
 
+    // move the piece
     public void OnMove(int direction)
     {
         if (isMoveable && !paused)  // if the piece can move and the game isn't paused
@@ -97,7 +104,7 @@ public class Group : MonoBehaviour
     {
         if (isMoveable && !paused)
         {
-            if (gameObject.tag == "SquarePiece") return;
+            if (gameObject.tag == "SquarePiece") return;    // pointless to rotate the O piece
 
             transform.Rotate(0, 0, -90);
 
@@ -173,7 +180,7 @@ public class Group : MonoBehaviour
     {
         if (canHardDrop && isMoveable && !paused)
         {
-            isMoveable = false;
+            isMoveable = false; // locks the piece
 
             FindObjectOfType<SFXManager>().HardDropSFX();
 
@@ -258,7 +265,6 @@ public class Group : MonoBehaviour
 
     private void TriggerGameOver()
     {
-        Debug.Log("GAME OVER");
         Destroy(gameObject);
 
         FindObjectOfType<GameOver>().GameOverRoutine();

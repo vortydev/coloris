@@ -1,3 +1,9 @@
+/*
+ * File:        HoldPiece.cs
+ * Author:      Étienne Ménard
+ * Description: Script for the piece holding mechanic.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,15 +25,15 @@ public class HoldPiece : MonoBehaviour
         if (heldPiece != null && CheckSamePiece(currentPiece.GetComponent<Group>().pieceId))
             return;
 
-        FindObjectOfType<SFXManager>().HoldPieceSFX();
+        FindObjectOfType<SFXManager>().HoldPieceSFX();  // plays the hold piece sound
 
         if (PieceHeld())
         {
-            SwapPieces(currentPiece);
+            SwapPieces(currentPiece);   // swaps the current piece with the held one if there's one
         }
         else
         {
-            HoldFirstPiece(currentPiece);
+            HoldFirstPiece(currentPiece);   // yoinks the piece off the grid
         }
     }
 
@@ -65,22 +71,26 @@ public class HoldPiece : MonoBehaviour
         TogglePieceImage(heldPiece.GetComponent<Group>().pieceId - 1);
     }
 
+    // returns if a piece is held
     private bool PieceHeld()
     {
-        return heldPiece != null;
+        return heldPiece != null;   
     }
 
+    // returns if the held piece is the same as the current one
     private bool CheckSamePiece(int id)
     {
-        return heldPiece.GetComponent<Group>().pieceId == id;
+        return heldPiece.GetComponent<Group>().pieceId == id;   
     }
 
+    // toggles the image of the held piece
     private void TogglePieceImage(int id)
     {
         if (heldPiece != null)
             heldPieceImage[id].gameObject.SetActive(!heldPieceImage[id].gameObject.activeSelf);
     }
 
+    // removes the current piece from the grid
     private void DeleteFromGrid(GameObject go)
     {
         foreach (Transform child in go.transform)
@@ -90,6 +100,7 @@ public class HoldPiece : MonoBehaviour
         }
     }
 
+    // adds the held piece to the grid
     private void AddToGrid(GameObject go)
     {
         foreach (Transform child in go.transform)
