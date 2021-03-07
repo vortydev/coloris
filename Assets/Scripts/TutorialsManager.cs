@@ -31,7 +31,7 @@ public class TutorialsManager : MonoBehaviour
         radio.TypeText(radioText, mainPageTrans[Random.Range(0, mainPageTrans.Length)]);
 
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "In Tutorials");
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "In Tutorials", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
     }
 
     public void BackToMain()

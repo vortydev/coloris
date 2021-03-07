@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] NextPiece nextPiece;
-    public GameObject[] refPieces;
+    [SerializeField] NextPiece nextPiece;   // script that handles displaying the next piece
+    public GameObject[] refPieces;          // array of reference pieces that are cloned into bags
 
-    public GameObject[] bag;
-    public GameObject[] bag2;
-    private GameObject lastPiece;
+    public GameObject[] bag1, bag2;         // 2 seperate arrays of the 7 pieces in a random order
+    private GameObject _lastPiece;          
 
     public int bagInd;
     public int selectedBag = 0;
@@ -29,7 +28,7 @@ public class Spawner : MonoBehaviour
     {
         // spawns a piece at the spawner's position
         if (selectedBag == 0)
-            Instantiate(bag[bagInd], transform.position, Quaternion.identity);
+            Instantiate(bag1[bagInd], transform.position, Quaternion.identity);
         else
             Instantiate(bag2[bagInd], transform.position, Quaternion.identity);
 
@@ -53,7 +52,7 @@ public class Spawner : MonoBehaviour
 
     private void GenerateBag()
     {
-        bag = new GameObject[refPieces.Length];   // generates a fresh new array
+        bag1 = new GameObject[refPieces.Length];   // generates a fresh new array
         bagInd = 0;                             // resets the bag index to the beginning
 
         int rng;
@@ -64,13 +63,13 @@ public class Spawner : MonoBehaviour
             do
             {
                 rng = Random.Range(0, refPieces.Length);
-                bag[i] = refPieces[rng];
-            } while (pieceTaken[rng] || bag[0] == lastPiece);
+                bag1[i] = refPieces[rng];
+            } while (pieceTaken[rng] || bag1[0] == _lastPiece);
 
             pieceTaken[rng] = true;
         }
 
-        lastPiece = bag[refPieces.Length - 1];
+        _lastPiece = bag1[refPieces.Length - 1];
     }
 
     private void GenerateBag2()
@@ -87,12 +86,12 @@ public class Spawner : MonoBehaviour
             {
                 rng = Random.Range(0, refPieces.Length);
                 bag2[i] = refPieces[rng];
-            } while (pieceTaken[rng] || bag2[0] == lastPiece);
+            } while (pieceTaken[rng] || bag2[0] == _lastPiece);
 
             pieceTaken[rng] = true;
         }
 
-        lastPiece = bag2[refPieces.Length - 1];
+        _lastPiece = bag2[refPieces.Length - 1];
     }
 
     public int ReturnPieceInd()
@@ -103,7 +102,7 @@ public class Spawner : MonoBehaviour
             {
                 if (bagInd < 6)
                 {
-                    if (refPieces[i] == bag[bagInd + 1])
+                    if (refPieces[i] == bag1[bagInd + 1])
                         return i;
                 }
                 else
@@ -122,7 +121,7 @@ public class Spawner : MonoBehaviour
                 }
                 else
                 {
-                    if (refPieces[i] == bag[0])
+                    if (refPieces[i] == bag1[0])
                         return i;
                 }
             }

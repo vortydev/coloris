@@ -1,3 +1,9 @@
+/*
+ * File:        CZ_Catalog.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the Chill Zone catalog of tracks.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +20,11 @@ public class CZ_Catalog : MonoBehaviour
     public List<GameObject> catalog;
 
     [Header("Sort & Filter")]
-    private int sort = 0;    // 0: default (#), 1: name, 2: artist
-    private int filter = 0;  // 0: none, 1: by artist
+    private int _sort = 0;    // 0: default (#), 1: name, 2: artist
+    private int _filter = 0;  // 0: none, 1: by artist
     [SerializeField] TMP_Dropdown sortDropdown;
     [SerializeField] TMP_Dropdown filterDropdown;
-    private string[] artistsFilter;
+    private string[] _artistsFilter;
 
     private void Start()
     {
@@ -37,7 +43,7 @@ public class CZ_Catalog : MonoBehaviour
                 CreateCatalogByName();
                 break;
             case 2:
-                CreateCatalogByArtist(filter);
+                CreateCatalogByArtist(_filter);
                 break;
         }
     }
@@ -96,7 +102,7 @@ public class CZ_Catalog : MonoBehaviour
         {
             for (int i = 0; i < tracksByArtist.Length; i++)
             {
-                if (artistsFilter[filter - 1] == tracksByArtist[i].authorName)
+                if (_artistsFilter[filter - 1] == tracksByArtist[i].authorName)
                 {
                     GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
                     newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByArtist[i].trackNb.ToString() + ". " + tracksByArtist[i].trackName + " - " + tracksByArtist[i].authorName;
@@ -113,9 +119,9 @@ public class CZ_Catalog : MonoBehaviour
 
     public void UpdateCatalogSorting()
     {
-        sort = sortDropdown.value;
+        _sort = sortDropdown.value;
 
-        if (sort == 2)
+        if (_sort == 2)
         {
             filterDropdown.interactable = true;
         }
@@ -132,12 +138,12 @@ public class CZ_Catalog : MonoBehaviour
         }
 
         catalog.Clear();
-        LoadCatalog(sort);
+        LoadCatalog(_sort);
     }
 
     public void UpdateCatalogFilter()
     {
-        filter = filterDropdown.value;
+        _filter = filterDropdown.value;
 
         foreach (GameObject go in catalog)
         {
@@ -145,7 +151,7 @@ public class CZ_Catalog : MonoBehaviour
         }
 
         catalog.Clear();
-        CreateCatalogByArtist(filter);
+        CreateCatalogByArtist(_filter);
     }
 
     private void GenerateArtistFilter()
@@ -163,7 +169,7 @@ public class CZ_Catalog : MonoBehaviour
 
         filterDropdown.AddOptions(artists);
 
-        artistsFilter = new string[artists.Count];
-        artistsFilter = artists.ToArray();
+        _artistsFilter = new string[artists.Count];
+        _artistsFilter = artists.ToArray();
     }
 }

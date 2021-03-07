@@ -1,3 +1,9 @@
+/*
+ * File:        AudioPeer.cs
+ * Author:      Étienne Ménard
+ * Description: Takes samples from the playing audio and generates sexy dynamic bars.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

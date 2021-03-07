@@ -1,3 +1,9 @@
+/*
+ * File:        DiscordController.cs
+ * Author:      Étienne Ménard
+ * Description: Takes care of displaying Discord Rich Presence on the player's Discord profile.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +13,17 @@ using Discord;
 public class DiscordController : MonoBehaviour
 {
 	public Discord.Discord discord;
+
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject); // makes the DiscordController persistent through scenes because otherwise it's a massive pain in the ass
     }
 
     private void Start()
 	{
-		discord = new Discord.Discord(811777552208887810, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
+        // param: 811777552208887810 is the application ID for Coloris
+        // param: CreateFlags.NoRequireDiscord means tgehe game won't crash without Discord open lol
+        discord = new Discord.Discord(811777552208887810, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
 		var activityManager = discord.GetActivityManager();
 		var activity = new Discord.Activity
 		{
@@ -29,7 +38,7 @@ public class DiscordController : MonoBehaviour
 		{
 			if (res == Discord.Result.Ok)
 			{
-				//Debug.Log("Initial Discord Rich Presence update successful.");
+				//Debug.Log("Initial Discord Rich Presence update successful.");    // commented because it was annoying
 			}   
         });
 	}
@@ -39,24 +48,25 @@ public class DiscordController : MonoBehaviour
 		discord.RunCallbacks();
 	}
 
-    public void UpdateRichPresence(string detailsString, string stateString)
+    // Updates the rich presence's details and state (might expand on it later)
+    public void UpdateRichPresence(string detailsString, string stateString, bool flushed = false)
     {
+        string largeImage = "game_thumbnail";
+        if (flushed)
+        {
+            largeImage = "thumbnail_flushed";
+        }
+
         var activityManager = discord.GetActivityManager();
         var activity = new Discord.Activity
         {
             State = stateString,
             Details = detailsString,
-            //Timestamps =
-            //{
-            //    Start = 5,
-            //    End = 6,
-            //},
             Assets =
             {
-                LargeImage = "game_thumbnail",
+                LargeImage = largeImage,
                 LargeText = "Coloris",
             },
-            //Instance = true,
         };
 
         activityManager.UpdateActivity(activity, (res) =>

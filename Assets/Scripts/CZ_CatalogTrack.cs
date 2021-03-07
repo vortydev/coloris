@@ -1,7 +1,12 @@
+/*
+ * File:        CZ_CatalogTrack.cs
+ * Author:      Étienne Ménard
+ * Description: Small script attached to the track prefab to communicate with the manager.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CZ_CatalogTrack : MonoBehaviour
 {

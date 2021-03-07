@@ -95,74 +95,83 @@ public class Group : MonoBehaviour
 
     public void OnRotateRight()
     {
-        if (gameObject.tag == "SquarePiece") return;
-
-        transform.Rotate(0, 0, -90);
-
-        if (IsValidGridPos())
+        if (isMoveable && !paused)
         {
-            FindObjectOfType<SFXManager>().RotateSFX();
-            UpdateGrid();
+            if (gameObject.tag == "SquarePiece") return;
+
+            transform.Rotate(0, 0, -90);
+
+            if (IsValidGridPos())
+            {
+                FindObjectOfType<SFXManager>().RotateSFX();
+                UpdateGrid();
+            }
+            else
+                transform.Rotate(0, 0, 90);
         }
-        else
-            transform.Rotate(0, 0, 90);
     }
 
     public void OnRotateLeft()
     {
-        if (gameObject.tag == "SquarePiece") return;
-
-        transform.Rotate(0, 0, 90);
-
-        if (IsValidGridPos())
+        if (isMoveable && !paused)
         {
-            FindObjectOfType<SFXManager>().RotateSFX();
-            UpdateGrid();
+            if (gameObject.tag == "SquarePiece") return;
+
+            transform.Rotate(0, 0, 90);
+
+            if (IsValidGridPos())
+            {
+                FindObjectOfType<SFXManager>().RotateSFX();
+                UpdateGrid();
+            }
+            else
+                transform.Rotate(0, 0, -90);
         }
-        else
-            transform.Rotate(0, 0, -90);
     }
 
     public void OnSoftDrop()
     {
-        // Modify position
-        transform.position += new Vector3(0, -1, 0);
+        if (isMoveable && !paused)
+        {
+            // Modify position
+            transform.position += new Vector3(0, -1, 0);
 
-        // See if valid
-        if (IsValidGridPos())
-        {
-            // It's valid. Update grid.
-            UpdateGrid();
-            HasMoved();
-        }
-        else
-        {
-            if (hasMoved)
+            // See if valid
+            if (IsValidGridPos())
             {
-                // It's not valid. revert.
-                transform.position += new Vector3(0, 1, 0);
-
-                // Clear filled horizontal lines
-                Playfield.DeleteFullRows();
-
-                // Spawn next Group
-                FindObjectOfType<Spawner>().SpawnNext();
-
-                // Disable script
-                enabled = false;
+                // It's valid. Update grid.
+                UpdateGrid();
+                HasMoved();
             }
             else
             {
-                TriggerGameOver();
-            }
-        }
+                if (hasMoved)
+                {
+                    // It's not valid. revert.
+                    transform.position += new Vector3(0, 1, 0);
 
-        lastFall = Time.time;
+                    // Clear filled horizontal lines
+                    Playfield.DeleteFullRows();
+
+                    // Spawn next Group
+                    FindObjectOfType<Spawner>().SpawnNext();
+
+                    // Disable script
+                    enabled = false;
+                }
+                else
+                {
+                    TriggerGameOver();
+                }
+            }
+
+            lastFall = Time.time;
+        }
     }
 
     public void OnHardDrop()
     {
-        if (canHardDrop)
+        if (canHardDrop && isMoveable && !paused)
         {
             isMoveable = false;
 
@@ -191,7 +200,7 @@ public class Group : MonoBehaviour
 
     public void OnHold()
     {
-        if (!beenSwapped && canHold) // hold piece
+        if (!beenSwapped && canHold && isMoveable && !paused) // hold piece
         {
             FindObjectOfType<HoldPiece>().HoldCurrentPiece(gameObject);
         }

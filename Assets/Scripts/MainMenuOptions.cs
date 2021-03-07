@@ -275,5 +275,6 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleFlushed()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.flushedKEY);
+        FindObjectOfType<MainMenu>().MainMenuRichPresence();
     }
 }

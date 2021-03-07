@@ -1,3 +1,9 @@
+/*
+ * File:        CZ_MediaControls.cs
+ * Author:      Étienne Ménard
+ * Description: Handles media controls of the Chill Zone.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

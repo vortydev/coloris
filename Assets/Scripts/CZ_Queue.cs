@@ -1,9 +1,14 @@
+/*
+ * File:        CZ_Queue.cs
+ * Author:      Étienne Ménard
+ * Description: Takes care of the queue with selectable tracks
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class CZ_Queue : MonoBehaviour
 {
@@ -38,6 +43,7 @@ public class CZ_Queue : MonoBehaviour
         removeButton.gameObject.SetActive(false);
     }
 
+    // toggles catalog track controls
     public void ToggleCatalogTrackControls(bool state)
     {
         playCatalogButton.interactable = state;
@@ -45,6 +51,7 @@ public class CZ_Queue : MonoBehaviour
         queueButton.interactable = state;
     }
 
+    // toggles queue track controls
     public void ToggleQueueTrackControls(bool state)
     {
         playQueueButton.interactable = state;
@@ -52,6 +59,7 @@ public class CZ_Queue : MonoBehaviour
         removeButton.interactable = state;
     }
 
+    // toggles playlist controls
     public void TogglePlaylistControls(bool state)
     {
         shuffleButton.interactable = state;
@@ -65,6 +73,7 @@ public class CZ_Queue : MonoBehaviour
         emptyButton.interactable = state;
     }
 
+    // switch between the 2 different control buttons for tracks
     public void EnableQueueTrackControls(bool state)
     {
         playQueueButton.gameObject.SetActive(state);
@@ -76,6 +85,7 @@ public class CZ_Queue : MonoBehaviour
         queueButton.gameObject.SetActive(!state);
     }
 
+    // generates a new queue with the tracks from the playlist
     public void CreateQueue(List<TrackSO> playlist)
     {
         EmptyQueue();
@@ -115,6 +125,7 @@ public class CZ_Queue : MonoBehaviour
         }
     }
 
+    // empties the queue
     public void EmptyQueue()
     {
         foreach (GameObject go in queue)

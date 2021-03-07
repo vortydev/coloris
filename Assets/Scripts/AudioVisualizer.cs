@@ -1,3 +1,9 @@
+/*
+ * File:        AudioVisualizer.cs
+ * Author:      Étienne Ménard
+ * Description: Little script attached to a simple sprite that gets scaled using the samples from AudioPeer.cs.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

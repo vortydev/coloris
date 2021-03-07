@@ -1,3 +1,9 @@
+/*
+ * File:        ChillZoneManager.cs
+ * Author:      Étienne Ménard
+ * Description: Handles most of the stuff for the Chill Zone.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,12 +64,12 @@ public class ChillZoneManager : MonoBehaviour
         quitPopup.SetActive(false);
 
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Listening to music", "Vibing in the Chill Zone");
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Listening to music", "Vibing in the Chill Zone", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
     }
 
+    // pauses the music when the game goes out of focus
     private void OnApplicationFocus()
     {
-
         onFocus = !onFocus;
 
         if (!onFocus && !paused)
@@ -83,7 +89,7 @@ public class ChillZoneManager : MonoBehaviour
         {
             if (onFocus)
             {
-                NextTrackInPlaylist();
+                NextTrackInPlaylist();  // plays the next track if the game is in focus and the track isn't paused
             }
         }
     }
@@ -95,12 +101,13 @@ public class ChillZoneManager : MonoBehaviour
 
     public void GetSelectedCatalogTrack(int trackNb)
     {
-        selectedTrack = tracks[trackNb - 1];
+        selectedTrack = tracks[trackNb - 1];    // sets the selected track from the reference array
 
-        queue.ToggleCatalogTrackControls(true);
-        queue.EnableQueueTrackControls(false);
+        queue.ToggleCatalogTrackControls(true); // disables and enables relevant control buttons
+        queue.EnableQueueTrackControls(false);  // disables and enables relevant control buttons
     }
 
+    // sets the selected track from the reference array
     public void GetSelectedQueueTrack(int trackNb)
     {
         selectedTrack = tracks[trackNb - 1];
@@ -113,10 +120,11 @@ public class ChillZoneManager : MonoBehaviour
     {
         selectedTrack = null;   // deselects the track
 
-        queue.ToggleCatalogTrackControls(false);
+        queue.ToggleCatalogTrackControls(false);    // disables control buttons
         queue.ToggleQueueTrackControls(false);
     }
 
+    // pauses and unpauses the music
     public void TogglePause()
     {
         if (paused)
@@ -131,6 +139,7 @@ public class ChillZoneManager : MonoBehaviour
         }
     }
 
+    // restarts the track fromt the start
     public void RestartTrack()
     {
         audioSource.Stop();
@@ -141,14 +150,14 @@ public class ChillZoneManager : MonoBehaviour
 
     private void NextTrackInPlaylist()
     {
-        switch (queue.loopDropdown.value)
+        switch (queue.loopDropdown.value)   // checks what kind of looping is on (no its not a bool because I might have different loop modes coming up)
         {
-            case 0:
-                ClickSkip();
+            case 0:             // no looping
+                ClickSkip();    // goes to the next track if there is one
                 break;
 
-            case 1:
-                audioSource.Play();
+            case 1:                 // looping enabled
+                audioSource.Play(); // replays the loaded track
                 break;
         }
     }
@@ -161,15 +170,15 @@ public class ChillZoneManager : MonoBehaviour
         audioSource.clip = currentTrack.track;  // loads audio source
         audioSource.Play();                     // plays the track
 
-        UpdateMediaControlsAndRadio();
-        mediaControls.UpdateSkipButtonText(playlist.Count);
+        UpdateMediaControlsAndRadio();                      // update media controls
+        mediaControls.UpdateSkipButtonText(playlist.Count); // updates the skip button's text
 
-        queue.loopDropdown.interactable = true;
+        queue.loopDropdown.interactable = true; // enables the loop dropdown
     }
 
     public void ClickSkip()
     {
-        if (playlist.Count > 0)
+        if (playlist.Count > 0) // if there's other tracks in the playlist
         {
             currentTrack = playlist[0]; // loads track in the AudioSource
             playlist.RemoveAt(0);       // removes the track from the playlist
@@ -177,15 +186,15 @@ public class ChillZoneManager : MonoBehaviour
             audioSource.clip = currentTrack.track;
             audioSource.Play();
 
-            queue.CreateQueue(playlist);
+            queue.CreateQueue(playlist);    // regenerates the queue
 
             UpdateMediaControlsAndRadio();
             mediaControls.UpdateSkipButtonText(playlist.Count);
         }
         else
         {
-            audioSource.Stop();
-            currentTrack = null;
+            audioSource.Stop();     // stops the music
+            currentTrack = null;    // empties the current track
 
             mediaControls.ToggleMediaControls(false);
             mediaControls.time.text = "00:00 / 00:00";
