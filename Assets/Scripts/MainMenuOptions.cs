@@ -1,3 +1,9 @@
+/*
+ * File:        MainMenuOptions.cs
+ * Author:      Étienne Ménard
+ * Description: Handles all the options in the main menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +25,12 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Screenshake screenshake;
     [SerializeField] Toggle shakeToggle;
     [SerializeField] GameObject shakeIntensity;
-    private Slider shakeSlider;
-    private TextMeshProUGUI shakeValue;
+    private Slider _shakeSlider;
+    private TextMeshProUGUI _shakeValue;
     [SerializeField] Toggle dynamicTextToggle;
     [SerializeField] GameObject textSpeed;
-    private Slider textSpeedSlider;
-    private TextMeshProUGUI textSpeedValue;
+    private Slider _textSpeedSlider;
+    private TextMeshProUGUI _textSpeedValue;
     public float typeSpeed;
 
     [Header("Game Options")]
@@ -58,13 +64,13 @@ public class MainMenuOptions : MonoBehaviour
         }
 
         // get visual options
-        shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
-        shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
-        shakeSlider.value = screenshake.shakeMagnitude * 10;
+        _shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
+        _shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
+        _shakeSlider.value = screenshake.shakeMagnitude * 10;
 
-        textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
-        textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
-        textSpeedSlider.value = typeSpeed = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2);
+        _textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
+        _textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
+        _textSpeedSlider.value = typeSpeed = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2);
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
@@ -148,13 +154,13 @@ public class MainMenuOptions : MonoBehaviour
 
     public void UpdateSliderScreenshakeMagnitude()
     {
-        screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
-        shakeValue.text = shakeSlider.value.ToString();
+        screenshake.UpdateShakeMagnitude(_shakeSlider.value / 10);
+        _shakeValue.text = _shakeSlider.value.ToString();
     }
 
     public void UpdateSliderTextSpeed()
     {
-        UpdateTextSpeed((int)textSpeedSlider.value);
+        UpdateTextSpeed((int)_textSpeedSlider.value);
     }
 
     public void UpdateSliderDifficulty()
@@ -196,13 +202,13 @@ public class MainMenuOptions : MonoBehaviour
         switch (typeSpeed)
         {
             case 1:
-                textSpeedValue.text = "Slow";
+                _textSpeedValue.text = "Slow";
                 break;
             case 2:
-                textSpeedValue.text = "Default";
+                _textSpeedValue.text = "Default";
                 break;
             case 3:
-                textSpeedValue.text = "Fast";
+                _textSpeedValue.text = "Fast";
                 break;
         }
     }

@@ -1,3 +1,9 @@
+/*
+ * File:        PlayerPrefsManager.cs
+ * Author:      Étienne Ménard
+ * Description: Cheeky script that that defines PlayerPrefs keys and useful methods to interat with it.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,10 +40,11 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string textSpeedKEY = "textSpeed";            // int holding the typing speed (1: slow, 2: default, 3: fast)
 
     // sfx
-    public static string moveSfxKEY = "moveSFX";
-    public static string rotateSfxKEY = "rotateSFX";
-    public static string hardDropSfxKEY = "hardDropSFX";
-    public static string holdPieceSfxKEY = "holdPieceSFX";
+    public static string moveSfxKEY = "moveSFX";                // "bool" int that enables the SFX triggered by moving
+    public static string rotateSfxKEY = "rotateSFX";            // "bool" int that enables the SFX triggered by rotating
+    public static string hardDropSfxKEY = "hardDropSFX";        // "bool" int that enables the SFX triggered by hard dropping
+    public static string holdPieceSfxKEY = "holdPieceSFX";      // "bool" int that enables the SFX triggered by holding a piece
+    public static string lockSfxKEY = "lockSFX";                // "bool" int that enables the SFX triggered by locking 
 
     // flushed https://discord.com/channels/279771993681952769/740271971694018682/814241565739843626
     public static string flushedKEY = "flushed";        // "bool" int that toggles this ridiculous gimmick

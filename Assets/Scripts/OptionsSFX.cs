@@ -1,3 +1,9 @@
+/*
+ * File:        OptionsSFX.cs
+ * Author:      Étienne Ménard
+ * Description: Sound effects for the SFX options.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

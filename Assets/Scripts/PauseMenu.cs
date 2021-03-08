@@ -1,3 +1,9 @@
+/*
+ * File:        PauseMenu.cs
+ * Author:      Étienne Ménard
+ * Description: Script for when the game is paused.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

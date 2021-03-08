@@ -1,3 +1,9 @@
+/*
+ * File:        MainMenuOptionsPanel.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the options panels of the main menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

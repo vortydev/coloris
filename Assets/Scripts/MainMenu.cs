@@ -1,3 +1,9 @@
+/*
+ * File:        MainMenu.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the base of the main menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +23,6 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         _actions = new MyControls();
-
-        popupBox.SetActive(false);
-        //options.SetActive(false);
-        credits.SetActive(false);
-        firstPlay.SetActive(false);
     }
 
     private void OnEnable()
@@ -44,7 +45,12 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        MainMenuRichPresence();
+        popupBox.SetActive(false);
+        //options.SetActive(false);
+        credits.SetActive(false);
+        firstPlay.SetActive(false);
+
+        MainMenuRichPresence();     // updates Discord Rich Presence
     }
 
     public void MainMenuRichPresence()
