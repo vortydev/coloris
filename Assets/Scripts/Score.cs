@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * File:        Score.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the score counted in lines cleared, the difficulty threshhold, and old piece deletion.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -10,12 +16,12 @@ public class Score : MonoBehaviour
     [SerializeField] TextMeshProUGUI difficultyLevelText;
 
     [Header("Score")]
-    public int linesCleared = 0;            // the amount of lines the player has cleared
-    public int difficultyLevel;
+    public int linesCleared = 0;        // the amount of lines the player has cleared
+    public int difficultyLevel;         // the difficulty level for the game
 
     [Header("Difficulty")]
-    public int globalDifficulty = 0;        // the current difficulty of the game        
-    public int difficultyTreshhold;    // the number of lines to clear before incrementing the difficulty
+    public int globalDifficulty = 0;    // the current difficulty of the game        
+    public int difficultyTreshhold;     // the number of lines to clear before incrementing the difficulty
 
     private void Awake()
     {
@@ -24,15 +30,16 @@ public class Score : MonoBehaviour
         UpdateDifficultyLevel(difficultyLevel);
     }
 
-    public void IncrementScore(int clearedLines = 1)
+    public void IncrementScore()
     {
-        linesCleared++;
-        if (linesCleared % difficultyTreshhold == 0)
+        linesCleared++; // increment the amount of lines cleared
+
+        if (linesCleared % difficultyTreshhold == 0)    // cheeky math to check when the amount of lines cleared equals the threshold
             IncrementDifficulty();
 
-        scoreText.text = "Lines Cleared\n" + linesCleared;
+        scoreText.text = "Lines Cleared\n" + linesCleared;  // update score text
 
-        CleanupOldPieces();
+        CleanupOldPieces(); // remove old piece clones
     }
 
     private void IncrementDifficulty()
@@ -90,13 +97,13 @@ public class Score : MonoBehaviour
     private void CleanupOldPieces()
     {
         GameObject[] oldPieces;
-        oldPieces = GameObject.FindGameObjectsWithTag("Piece");
+        oldPieces = GameObject.FindGameObjectsWithTag("Piece"); // find objects with the "Piece" tag
 
         foreach (GameObject oldPiece in oldPieces)
         {
-            if (oldPiece.transform.childCount == 0)
+            if (oldPiece.transform.childCount == 0) // if the piece has no more cells as children
             {
-                Destroy(oldPiece);
+                Destroy(oldPiece);                  // destroy the object
             }
         }
 

@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * File:        Spawner.cs
+ * Author:      Étienne Ménard
+ * Description: Generates bags of 7 pieces and spawns the next piece in the game.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +13,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] NextPiece nextPiece;   // script that handles displaying the next piece
     public GameObject[] refPieces;          // array of reference pieces that are cloned into bags
 
-    public GameObject[] bag1, bag2;         // 2 seperate arrays of the 7 pieces in a random order
-    private GameObject _lastPiece;          
+    [SerializeField] GameObject[] bag1, bag2;   // 2 seperate arrays of the 7 pieces in a random order
+    private GameObject _lastPiece;              // last piece of the bag kept in memory
 
-    public int bagInd;
-    public int selectedBag = 0;
+    private int _bagInd;            // "pointer" in the bag                
+    public int selectedBag = 0;     // the selected bag
 
     private void Awake()
     {
@@ -20,40 +26,40 @@ public class Spawner : MonoBehaviour
 
     public void RegenBags()
     {
-        GenerateBag();
-        GenerateBag2();
+        bag1 = GenerateBag();
+        bag2 = GenerateBag();
     }
 
     public void SpawnNext()
     {
         // spawns a piece at the spawner's position
         if (selectedBag == 0)
-            Instantiate(bag1[bagInd], transform.position, Quaternion.identity);
+            Instantiate(bag1[_bagInd], transform.position, Quaternion.identity);
         else
-            Instantiate(bag2[bagInd], transform.position, Quaternion.identity);
+            Instantiate(bag2[_bagInd], transform.position, Quaternion.identity);
 
         nextPiece.DisplayNextPiece();
 
-        bagInd++;                           // increments the bag index
-        if (bagInd > refPieces.Length - 1)  // and generates anew bag if we're at the end of the bag array
+        _bagInd++;                           // increments the bag index
+        if (_bagInd > refPieces.Length - 1)  // and generates anew bag if we're at the end of the bag array
         {
             if (selectedBag == 0)
             {
                 selectedBag = 1;
-                GenerateBag();
+                bag1 = GenerateBag();
             }
             else
             {
                 selectedBag = 0;
-                GenerateBag2();
+                bag2 = GenerateBag();
             }
         }
     }
 
-    private void GenerateBag()
+    private GameObject[] GenerateBag()
     {
-        bag1 = new GameObject[refPieces.Length];   // generates a fresh new array
-        bagInd = 0;                             // resets the bag index to the beginning
+        GameObject[] bag = new GameObject[refPieces.Length]; // generates a fresh new array
+        _bagInd = 0;                            // resets the bag index to the beginning
 
         int rng;
         bool[] pieceTaken = new bool[refPieces.Length];
@@ -63,35 +69,15 @@ public class Spawner : MonoBehaviour
             do
             {
                 rng = Random.Range(0, refPieces.Length);
-                bag1[i] = refPieces[rng];
-            } while (pieceTaken[rng] || bag1[0] == _lastPiece);
+                bag[i] = refPieces[rng];
+            } while (pieceTaken[rng] || bag[0] == _lastPiece);
 
             pieceTaken[rng] = true;
         }
 
-        _lastPiece = bag1[refPieces.Length - 1];
-    }
+        _lastPiece = bag[refPieces.Length - 1]; // sets the last of the bag for the next bag generation
 
-    private void GenerateBag2()
-    {
-        bag2 = new GameObject[refPieces.Length];   // generates a fresh new array
-        bagInd = 0;                             // resets the bag index to the beginning
-
-        int rng;
-        bool[] pieceTaken = new bool[refPieces.Length];
-
-        for (int i = 0; i < refPieces.Length; i++)
-        {
-            do
-            {
-                rng = Random.Range(0, refPieces.Length);
-                bag2[i] = refPieces[rng];
-            } while (pieceTaken[rng] || bag2[0] == _lastPiece);
-
-            pieceTaken[rng] = true;
-        }
-
-        _lastPiece = bag2[refPieces.Length - 1];
+        return bag;
     }
 
     public int ReturnPieceInd()
@@ -100,9 +86,9 @@ public class Spawner : MonoBehaviour
         {
             if (selectedBag == 0)
             {
-                if (bagInd < 6)
+                if (_bagInd < 6)
                 {
-                    if (refPieces[i] == bag1[bagInd + 1])
+                    if (refPieces[i] == bag1[_bagInd + 1])
                         return i;
                 }
                 else
@@ -114,9 +100,9 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                if (bagInd < 6)
+                if (_bagInd < 6)
                 {
-                    if (refPieces[i] == bag2[bagInd + 1])
+                    if (refPieces[i] == bag2[_bagInd + 1])
                         return i;
                 }
                 else

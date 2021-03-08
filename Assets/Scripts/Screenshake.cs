@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * File:        Screenshake.cs
+ * Author:      Étienne Ménard
+ * Description: haha camera goes brrr
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +25,7 @@ public class Screenshake : MonoBehaviour
 
     private void OnEnable()
     {
-        initialPosition = transform.localPosition;
+        initialPosition = transform.localPosition;  // get the cam's position
     }
 
     private void FixedUpdate()

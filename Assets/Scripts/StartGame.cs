@@ -1,3 +1,9 @@
+/*
+ * File:        StartGame.cs
+ * Author:      Étienne Ménard
+ * Description: Countdown before the start of the game.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

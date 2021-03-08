@@ -1,3 +1,9 @@
+/*
+ * File:        SettingsAudio.cs
+ * Author:      Étienne Ménard
+ * Description: In-game audio options.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

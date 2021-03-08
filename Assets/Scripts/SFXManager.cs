@@ -1,3 +1,9 @@
+/*
+ * File:        SFXManager.cs
+ * Author:      Étienne Ménard
+ * Description: Handles game SFX.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +11,13 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     [Header("Components")]
-    public AudioSource audioSource;             // component that plays the track
+    [SerializeField] AudioSource sfxSource;     // component that plays the sfx
     private AudioController audioController;    // script that sets the audio's volume
 
     [Header("Movement")]
     [SerializeField] AudioClip hardDrop;
     [SerializeField] AudioClip rotate;
-    [SerializeField] AudioClip moveSide;
+    [SerializeField] AudioClip move;
 
     [Header("Effects")]
     [SerializeField] AudioClip clear;
@@ -36,98 +42,75 @@ public class SFXManager : MonoBehaviour
 
     private void UpdateVolume()
     {
-        audioSource.volume = audioController.sfx / 10;
+        sfxSource.volume = audioController.sfx / 10;
     }
 
     private void UpdateVolumePause()
     {
-        audioSource.volume = (audioController.sfx / 2) / 10;
+        sfxSource.volume = (audioController.sfx / 2) / 10;
+    }
+
+    private void PlayClip(AudioClip clip, bool enabled = true)
+    {
+        if (enabled)
+        {
+            UpdateVolume();
+            sfxSource.clip = clip;
+            sfxSource.Play();
+        }
     }
 
     // MOVEMENT SFX
     public void RotateSFX()
     {
-        UpdateVolume();
-
-        if (canRotate)
-        {
-            audioSource.clip = rotate;
-            audioSource.Play();
-        }
+        PlayClip(rotate, canRotate);
     }
 
     public void MoveSideSFX()
     {
-        UpdateVolume();
-
-        if (canMove)
-        {
-            audioSource.clip = moveSide;
-            audioSource.Play();
-        }
+        PlayClip(move, canMove);
     }
 
     public void HardDropSFX()
     {
-        UpdateVolume();
-
-        if (canHardDrop)
-        {
-            audioSource.clip = hardDrop;
-            audioSource.Play();
-        }
+        PlayClip(hardDrop, canHardDrop);
     }
 
     // EFFECTS SFX
     public void ClearSFX()
     {
-        UpdateVolume();
-
-        audioSource.clip = clear;
-        audioSource.Play();
+        PlayClip(clear);
     }
 
     public void TetrisSFX()
     {
-        UpdateVolume();
-
-        audioSource.clip = tetris;
-        audioSource.Play();
+        PlayClip(tetris);
     }
 
     public void LockSFX()
     {
-        UpdateVolume();
-
-        audioSource.clip = locking;
-        audioSource.Play();
+        PlayClip(locking);
     }
 
     // UI SFX
     public void HoldPieceSFX()
     {
-        UpdateVolume();
-
-        if (canHoldPiece)
-        {
-            audioSource.clip = holdPiece;
-            audioSource.Play();
-        }
+        PlayClip(holdPiece, canHoldPiece);
     }
 
     public void PauseSFX()
     {
         UpdateVolumePause();
 
-        audioSource.clip = pause;
-        audioSource.Play();
+        sfxSource.clip = pause;
+        sfxSource.Play();
     }
 
     public void UnpauseSFX()
     {
         UpdateVolumePause();
 
-        audioSource.clip = unpause;
-        audioSource.Play();
+        sfxSource.clip = unpause;
+        sfxSource.Play();
     }
 }

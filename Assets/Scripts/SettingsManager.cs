@@ -1,3 +1,9 @@
+/*
+ * File:        SettingsManager.cs
+ * Author:      Étienne Ménard
+ * Description: Manages the in-game options panels.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

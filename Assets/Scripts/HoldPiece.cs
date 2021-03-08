@@ -13,10 +13,11 @@ public class HoldPiece : MonoBehaviour
 {
     public Image[] heldPieceImage;
     public GameObject heldPiece;
-    private Vector3 spawnPos = new Vector3(5, 15, 0);
+    private Vector3 spawnPos;
 
     private void Start()
     {
+        spawnPos = FindObjectOfType<Spawner>().gameObject.transform.position;
         ResetHeldPiece();
     }
 

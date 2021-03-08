@@ -1,3 +1,9 @@
+/*
+ * File:        SettingsGame.cs
+ * Author:      Étienne Ménard
+ * Description: In-game game options.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
