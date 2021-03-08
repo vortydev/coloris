@@ -1,3 +1,9 @@
+/*
+ * File:        TrackUI.cs
+ * Author:      Étienne Ménard
+ * Description: Controls and displays track duration in-game on the pause menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

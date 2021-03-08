@@ -1,3 +1,9 @@
+/*
+ * File:        TutorialControls.cs
+ * Author:      Étienne Ménard
+ * Description: Takes care of all the junk for the controls tutorial.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

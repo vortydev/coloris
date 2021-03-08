@@ -1,3 +1,9 @@
+/*
+ * File:        UISFX.cs
+ * Author:      Étienne Ménard
+ * Description: Little script to give sfx to UI elements.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

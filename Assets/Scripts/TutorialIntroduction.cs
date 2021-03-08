@@ -1,3 +1,9 @@
+/*
+ * File:        TutorialIntroduction.cs
+ * Author:      Étienne Ménard
+ * Description: Small script for some useful methods for the Introduction panel in the tutorials.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

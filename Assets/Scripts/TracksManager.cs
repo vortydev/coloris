@@ -1,3 +1,9 @@
+/*
+ * File:        TracksManager.cs
+ * Author:      Étienne Ménard
+ * Description: Generates a shuffled playlist of all the tracks and plays the tracks.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,13 +19,12 @@ public class TracksManager : MonoBehaviour
     private bool onFocus = true;
 
     [Header("Tracks")]
-    private ReferenceTracks tracks;          // array of TrackSO holding track data
+    private ReferenceTracks tracks;             // array of TrackSO holding track data
     private bool[] playlist;                    // array of bools matching the TrackSO array
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
-    private TrackSO curTrack;
+    private TrackSO _curTrack;                   
     public bool isPaused = false;
     public bool gameStarted = false;
-    public int tracksPlayed = 0;
 
     private void Awake()
     {
@@ -67,19 +72,18 @@ public class TracksManager : MonoBehaviour
         playlist[rng] = true;
         prevTrack = rng;
 
-        curTrack = tracks.GetTrackSO(rng);
-        audioSource.clip = curTrack.track;
+        _curTrack = tracks.GetTrackSO(rng);
+        audioSource.clip = _curTrack.track;
         audioSource.Play();
 
         //radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
-        typeWriter.TypeText(radio.trackName, curTrack.trackName);
-        typeWriter.TypeText(radio.trackAuthor, curTrack.authorName);
+        typeWriter.TypeText(radio.trackName, _curTrack.trackName);
+        typeWriter.TypeText(radio.trackAuthor, _curTrack.authorName);
 
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Track: " + curTrack.trackName, "By: " + curTrack.authorName, FindObjectOfType<CanDo>().flushed);
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Track: " + _curTrack.trackName, "By: " + _curTrack.authorName, FindObjectOfType<CanDo>().flushed);
 
         trackUI.GetTotalTrackTime(audioSource.clip.length);
-        tracksPlayed++;
 
         isPaused = false;
     }
@@ -114,7 +118,6 @@ public class TracksManager : MonoBehaviour
         audioSource.Play();
 
         isPaused = false;
-        tracksPlayed++;
     }
 
     public void TogglePause()

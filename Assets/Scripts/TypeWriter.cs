@@ -1,3 +1,9 @@
+/*
+ * File:        TypeWriter.cs
+ * Author:      Étienne Ménard
+ * Description: Script for a type writer effect with text.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

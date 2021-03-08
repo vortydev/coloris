@@ -1,3 +1,9 @@
+/*
+ * File:        TutorialsManager.cs
+ * Author:      Étienne Ménard
+ * Description: Manages the tutorials and the more general stuff of the scene.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
