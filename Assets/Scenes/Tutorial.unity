@@ -218,7 +218,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -659,7 +659,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &468399510
 GameObject:
@@ -756,7 +756,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -886,7 +886,7 @@ Transform:
   m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &585083739
 PrefabInstance:
@@ -1219,7 +1219,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -1364,7 +1364,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -1414,170 +1414,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747993940}
   m_CullTransparentMesh: 1
---- !u!1 &833979770
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 833979772}
-  - component: {fileID: 833979774}
-  - component: {fileID: 833979776}
-  - component: {fileID: 833979775}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &833979772
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833979770}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &833979774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833979770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d6df7f310188a4a9f3ef36c9e8677c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  music: 0
-  sfx: 0
-  speech: 0
---- !u!114 &833979775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833979770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c03c8a8fecd6d3346a4bba14bbd3e1ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 833979776}
-  clickButton: {fileID: 8300000, guid: acbf165af52194749a91804e6a2eccb2, type: 3}
-  changePanel: {fileID: 8300000, guid: 1d80c7dbee5226e4cbcf01bff21937be, type: 3}
-  clickToggle: {fileID: 8300000, guid: 7ffae2fa26d59914ba8242f175a42f64, type: 3}
-  clickDropdown: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
-  clickMenuButton: {fileID: 8300000, guid: c2c6089daf925b04381799a89608399f, type: 3}
-  clickCredits: {fileID: 0}
-  clickQuit: {fileID: 0}
---- !u!82 &833979776
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833979770}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &885243563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,7 +1911,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -2354,7 +2190,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -2466,7 +2302,6 @@ MonoBehaviour:
   piecePosY: 0
   holdPieceUI: {fileID: 3367703932147205266}
   heldPiece: {fileID: 3367703932969912089}
-  audioSource: {fileID: 833979776}
   move: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
   rotate: {fileID: 8300000, guid: 119348e3ccb340547887f06bb01f412e, type: 3}
   hold: {fileID: 8300000, guid: c2c6089daf925b04381799a89608399f, type: 3}
@@ -2565,7 +2400,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -2837,7 +2672,7 @@ RectTransform:
   - {fileID: 3367703932147205265}
   - {fileID: 1845985480}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2939,7 +2774,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833979775}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -3235,7 +3070,7 @@ MonoBehaviour:
   - First time playing? Check out the controls!
   - If you like this game, consider donating!
   introTrans:
-  - What is Coloris?
+  - An on-going collaborative project!
   - Coloris is more than just a game. It's a collaborative project for which anyone
     and everyone is welcomed to contribute to! It was created and designed to showcase
     the passion, the time, and the effort that goes too often unnoticed in a game's
@@ -3428,7 +3263,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2037657639}
   - component: {fileID: 2037657638}
-  - component: {fileID: 2037657637}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3436,14 +3270,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2037657637
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037657636}
-  m_Enabled: 1
 --- !u!20 &2037657638
 Camera:
   m_ObjectHideFlags: 0

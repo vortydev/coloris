@@ -29,6 +29,11 @@ public class TutorialsManager : MonoBehaviour
     [SerializeField] string[] introTrans;
     [SerializeField] string[] contTrans;
 
+    private void Awake()
+    {
+        FindObjectOfType<UISFX>().LoadUIElements();
+    }
+
     private void Start()
     {
         introPage.SetActive(false);

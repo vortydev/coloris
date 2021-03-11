@@ -15,8 +15,8 @@ public class ChillZoneManager : MonoBehaviour
 {
     [Header("Components")]
     private MyControls _actions;
-    public AudioSource audioSource;
-    [SerializeField] AudioController audioController;
+    public AudioController audioController;
+    public AudioSource musicSource;
     [SerializeField] RadioUI radio;
     [SerializeField] TypeWriter typeWriter;
     [SerializeField] bool onFocus;
@@ -39,6 +39,8 @@ public class ChillZoneManager : MonoBehaviour
     private void Awake()
     {
         _actions = new MyControls();
+        audioController = FindObjectOfType<AudioController>();
+        musicSource = audioController.musicSource;
         tracks = FindObjectOfType<ReferenceTracks>();
     }
 
@@ -76,18 +78,18 @@ public class ChillZoneManager : MonoBehaviour
 
         if (!onFocus && !paused)
         {
-            audioSource.Pause();
+            musicSource.Pause();
         }
         else if (onFocus && !paused)
         {
-            audioSource.UnPause();
+            musicSource.UnPause();
         }
         
     }
 
     private void Update()
     {
-        if (!audioSource.isPlaying && currentTrack != null && !paused)
+        if (!musicSource.isPlaying && currentTrack != null && !paused)
         {
             if (onFocus)
             {
@@ -131,12 +133,12 @@ public class ChillZoneManager : MonoBehaviour
     {
         if (paused)
         {
-            audioSource.UnPause();
+            musicSource.UnPause();
             paused = false;
         }
         else
         {
-            audioSource.Pause();
+            musicSource.Pause();
             paused = true;
         }
     }
@@ -144,8 +146,8 @@ public class ChillZoneManager : MonoBehaviour
     // restarts the track fromt the start
     public void RestartTrack()
     {
-        audioSource.Stop();
-        audioSource.Play();
+        musicSource.Stop();
+        musicSource.Play();
 
         paused = false;
     }
@@ -159,7 +161,7 @@ public class ChillZoneManager : MonoBehaviour
                 break;
 
             case 1:                 // looping enabled
-                audioSource.Play(); // replays the loaded track
+                musicSource.Play(); // replays the loaded track
                 break;
         }
     }
@@ -169,8 +171,8 @@ public class ChillZoneManager : MonoBehaviour
         currentTrack = selectedTrack;   // sets the selected track as the current track
         DeselectSelectedTrack();        // deselects the track
 
-        audioSource.clip = currentTrack.track;  // loads audio source
-        audioSource.Play();                     // plays the track
+        musicSource.clip = currentTrack.track;  // loads audio source
+        musicSource.Play();                     // plays the track
 
         UpdateMediaControlsAndRadio();                      // update media controls
         mediaControls.UpdateSkipButtonText(playlist.Count); // updates the skip button's text
@@ -185,8 +187,8 @@ public class ChillZoneManager : MonoBehaviour
             currentTrack = playlist[0]; // loads track in the AudioSource
             playlist.RemoveAt(0);       // removes the track from the playlist
 
-            audioSource.clip = currentTrack.track;
-            audioSource.Play();
+            musicSource.clip = currentTrack.track;
+            musicSource.Play();
 
             queue.CreateQueue(playlist);    // regenerates the queue
 
@@ -195,7 +197,7 @@ public class ChillZoneManager : MonoBehaviour
         }
         else
         {
-            audioSource.Stop();     // stops the music
+            musicSource.Stop();     // stops the music
             currentTrack = null;    // empties the current track
 
             mediaControls.ToggleMediaControls(false);
@@ -222,8 +224,8 @@ public class ChillZoneManager : MonoBehaviour
         
         DeselectSelectedTrack();        // deselects the track
 
-        audioSource.clip = currentTrack.track;  // loads audio source
-        audioSource.Play();                     // plays the track
+        musicSource.clip = currentTrack.track;  // loads audio source
+        musicSource.Play();                     // plays the track
 
         UpdateMediaControlsAndRadio();
         mediaControls.UpdateSkipButtonText(playlist.Count);
@@ -263,8 +265,8 @@ public class ChillZoneManager : MonoBehaviour
     public void ClickSkipTo()
     {
         currentTrack = selectedTrack;
-        audioSource.clip = currentTrack.track;  // loads audio source
-        audioSource.Play();                     // plays the track
+        musicSource.clip = currentTrack.track;  // loads audio source
+        musicSource.Play();                     // plays the track
 
         int pos = playlist.IndexOf(selectedTrack);
         for (int i = 0; i < pos + 1; i++)
@@ -307,11 +309,13 @@ public class ChillZoneManager : MonoBehaviour
 
         queue.TogglePlaylistButtons(false);
         mediaControls.UpdateSkipButtonText(playlist.Count);
+
+        FindObjectOfType<UISFX>().TetrisSFX();
     }
 
     public void ToggleQuitPopup()
     {
-        FindObjectOfType<UISFX>().ClickButton();
+        FindObjectOfType<UISFX>().OnButtonClick();
         quitPopup.SetActive(!quitPopup.activeSelf);
     }
 

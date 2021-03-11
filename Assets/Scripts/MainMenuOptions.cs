@@ -13,7 +13,7 @@ using TMPro;
 public class MainMenuOptions : MonoBehaviour
 {
     [Header("Audio Options")]
-    [SerializeField] AudioController audioController;
+    private AudioController _audioController;
     [SerializeField] Slider musicSlider;
     [SerializeField] TextMeshProUGUI musicVal;
     [SerializeField] Slider sfxSlider;
@@ -52,11 +52,16 @@ public class MainMenuOptions : MonoBehaviour
     [Header("Extras Options")]
     [SerializeField] Toggle flushedToggle;
 
+    private void Awake()
+    {
+        _audioController = FindObjectOfType<AudioController>();
+    }
+
     private void Start()
     {
         // load audio options
-        musicSlider.value = audioController.music;
-        sfxSlider.value = audioController.sfx;
+        musicSlider.value = _audioController.music;
+        sfxSlider.value = _audioController.sfx;
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
@@ -142,13 +147,13 @@ public class MainMenuOptions : MonoBehaviour
 
     public void UpdateSliderMusic()
     {
-        audioController.UpdateMusic(musicSlider.value);
+        _audioController.UpdateMusic(musicSlider.value);
         musicVal.text = musicSlider.value.ToString();
     }
 
     public void UpdateSliderSfx()
     {
-        audioController.UpdateSfx(sfxSlider.value);
+        _audioController.UpdateSfx(sfxSlider.value);
         sfxVal.text = sfxSlider.value.ToString();
     }
 

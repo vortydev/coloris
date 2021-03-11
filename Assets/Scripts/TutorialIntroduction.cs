@@ -13,7 +13,7 @@ public class TutorialIntroduction : MonoBehaviour
 {
     [SerializeField] Button backButton;
 
-    private void Awake()
+    private void Start()
     {
         backButton.gameObject.SetActive(false);
     }

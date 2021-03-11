@@ -229,18 +229,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &96140644
 GameObject:
@@ -422,7 +410,7 @@ GameObject:
   - component: {fileID: 232203716}
   m_Layer: 5
   m_Name: ExtrasButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -494,18 +482,6 @@ MonoBehaviour:
       - m_Target: {fileID: 788127735343330549}
         m_TargetAssemblyTypeName: MainMenuOptionsPanel, Assembly-CSharp
         m_MethodName: OnExtrasClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -701,7 +677,7 @@ GameObject:
   - component: {fileID: 289573368}
   m_Layer: 5
   m_Name: DonateButton
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -773,18 +749,6 @@ MonoBehaviour:
       - m_Target: {fileID: 2086100114}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: Donate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -934,18 +898,6 @@ MonoBehaviour:
       - m_Target: {fileID: 788127735343330550}
         m_TargetAssemblyTypeName: MainMenuOptions, Assembly-CSharp
         m_MethodName: ToggleHoldPiece
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1617,7 +1569,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &797963916
 MonoBehaviour:
@@ -1652,7 +1604,6 @@ GameObject:
   m_Component:
   - component: {fileID: 806869314}
   - component: {fileID: 806869313}
-  - component: {fileID: 806869312}
   - component: {fileID: 806869315}
   m_Layer: 0
   m_Name: Main Camera
@@ -1661,14 +1612,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &806869312
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806869311}
-  m_Enabled: 1
 --- !u!20 &806869313
 Camera:
   m_ObjectHideFlags: 0
@@ -1838,18 +1781,6 @@ MonoBehaviour:
       - m_Target: {fileID: 788127735343330550}
         m_TargetAssemblyTypeName: MainMenuOptions, Assembly-CSharp
         m_MethodName: ToggleFlushed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2033,7 +1964,7 @@ RectTransform:
   - {fileID: 1916552449}
   - {fileID: 1049270441}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2323,18 +2254,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1049270440
 GameObject:
@@ -2562,7 +2481,7 @@ GameObject:
   - component: {fileID: 1085568952}
   m_Layer: 5
   m_Name: SfxButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2634,18 +2553,6 @@ MonoBehaviour:
       - m_Target: {fileID: 788127735343330549}
         m_TargetAssemblyTypeName: MainMenuOptionsPanel, Assembly-CSharp
         m_MethodName: OnSfxClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3008,7 +2915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4227,7 +4134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4259,7 +4166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ClickQuit
+      value: HardDropSFX
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4280,6 +4187,10 @@ PrefabInstance:
     - target: {fileID: 7747680520075845751, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_Name
       value: QuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747680520075845751, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
+      propertyPath: m_TagString
+      value: UniqueUI
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520292107149, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_text
@@ -5002,11 +4913,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1548436578}
+  - component: {fileID: 1548436583}
   - component: {fileID: 1548436581}
+  - component: {fileID: 1548436582}
+  - component: {fileID: 1548436584}
   - component: {fileID: 1548436579}
   - component: {fileID: 1548436580}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: AudioController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5040,6 +4954,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: 0
   sfx: 0
+  musicSource: {fileID: 1548436581}
+  sfxSource: {fileID: 1548436582}
 --- !u!114 &1548436580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5052,14 +4968,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03c8a8fecd6d3346a4bba14bbd3e1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1548436581}
-  clickButton: {fileID: 8300000, guid: acbf165af52194749a91804e6a2eccb2, type: 3}
-  changePanel: {fileID: 8300000, guid: 1d80c7dbee5226e4cbcf01bff21937be, type: 3}
-  clickToggle: {fileID: 8300000, guid: 7ffae2fa26d59914ba8242f175a42f64, type: 3}
-  clickDropdown: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
-  clickMenuButton: {fileID: 8300000, guid: c2c6089daf925b04381799a89608399f, type: 3}
-  clickCredits: {fileID: 8300000, guid: 2b820ef7d7f3c1c42ba7a53a0b3d7d82, type: 3}
-  clickQuit: {fileID: 8300000, guid: 2711a2055d85f854c89fa60d891dd1ef, type: 3}
+  uiClick: {fileID: 8300000, guid: acbf165af52194749a91804e6a2eccb2, type: 3}
+  woosh: {fileID: 8300000, guid: 1d80c7dbee5226e4cbcf01bff21937be, type: 3}
+  locking: {fileID: 8300000, guid: 7ffae2fa26d59914ba8242f175a42f64, type: 3}
+  move: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
+  hold: {fileID: 8300000, guid: c2c6089daf925b04381799a89608399f, type: 3}
+  tetris: {fileID: 8300000, guid: 2b820ef7d7f3c1c42ba7a53a0b3d7d82, type: 3}
+  hardDrop: {fileID: 8300000, guid: 2711a2055d85f854c89fa60d891dd1ef, type: 3}
+  _toggles: []
+  _dropdowns: []
+  _buttons: []
+  _panelButtons: []
+  _menuButtons: []
 --- !u!82 &1548436581
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5156,6 +5076,122 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &1548436582
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548436577}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!81 &1548436583
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548436577}
+  m_Enabled: 1
+--- !u!114 &1548436584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548436577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115bd7b7cca8a774cb0b071b62b6d7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1577417365
 GameObject:
   m_ObjectHideFlags: 0
@@ -5242,18 +5278,6 @@ MonoBehaviour:
       - m_Target: {fileID: 2086100114}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OpenTutorial
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5392,18 +5416,6 @@ MonoBehaviour:
       - m_Target: {fileID: 2086100114}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ClosePopup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6034,7 +6046,7 @@ GameObject:
   - component: {fileID: 1852753569}
   m_Layer: 5
   m_Name: LauchTutorialButton
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6106,18 +6118,6 @@ MonoBehaviour:
       - m_Target: {fileID: 2086100114}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OpenTutorial
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6237,7 +6237,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1910539844
 GameObject:
@@ -6325,18 +6325,6 @@ MonoBehaviour:
       - m_Target: {fileID: 2086100114}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: PlayColoris
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6707,7 +6695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -7191,7 +7179,7 @@ PrefabInstance:
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1548436580}
+      objectReference: {fileID: 2086100114}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -7222,7 +7210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: ClickCredits
+      value: OnClickCredits
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -7238,7 +7226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: UISFX, Assembly-CSharp
+      value: MainMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -7271,6 +7259,10 @@ PrefabInstance:
     - target: {fileID: 7747680520075845751, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_Name
       value: CreditsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747680520075845751, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
+      propertyPath: m_TagString
+      value: UniqueUI
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520292107149, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_text
@@ -8355,18 +8347,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!224 &788127734389208898
 RectTransform:
@@ -8750,18 +8730,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!222 &788127734457052533
 CanvasRenderer:
@@ -9128,19 +9096,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!224 &788127734677144121
 RectTransform:
@@ -9497,18 +9453,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &788127734821325792
 GameObject:
@@ -9682,18 +9626,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!224 &788127734901514689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9766,7 +9698,7 @@ GameObject:
   - component: {fileID: 788127734901514688}
   m_Layer: 5
   m_Name: GameButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9821,18 +9753,6 @@ MonoBehaviour:
       - m_Target: {fileID: 788127735343330550}
         m_TargetAssemblyTypeName: MainMenuOptions, Assembly-CSharp
         m_MethodName: ToggleScreenshake
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10133,7 +10053,7 @@ GameObject:
   - component: {fileID: 788127735005568237}
   m_Layer: 5
   m_Name: VisualButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10215,18 +10135,6 @@ MonoBehaviour:
       - m_Target: {fileID: 788127735343330549}
         m_TargetAssemblyTypeName: MainMenuOptionsPanel, Assembly-CSharp
         m_MethodName: OnVisualClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10929,7 +10837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066afa01994b624498f393e791d5dc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioController: {fileID: 1548436579}
   musicSlider: {fileID: 6204767388465163788}
   musicVal: {fileID: 8533929804239403920}
   sfxSlider: {fileID: 8717096889842306242}
@@ -11128,7 +11035,7 @@ GameObject:
   - component: {fileID: 788127735457756564}
   m_Layer: 5
   m_Name: AudioButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11180,18 +11087,6 @@ MonoBehaviour:
       - m_Target: {fileID: 788127735343330549}
         m_TargetAssemblyTypeName: MainMenuOptionsPanel, Assembly-CSharp
         m_MethodName: OnAudioClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11972,18 +11867,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1548436580}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &788127735660766699
 GameObject:
@@ -12698,7 +12581,7 @@ GameObject:
   - component: {fileID: 5174591050822794526}
   m_Layer: 5
   m_Name: MoveSfxToggle
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12817,7 +12700,7 @@ GameObject:
   - component: {fileID: 5174591050848492671}
   m_Layer: 5
   m_Name: RotateSfxToggle
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13037,7 +12920,7 @@ GameObject:
   - component: {fileID: 5174591051062446923}
   m_Layer: 5
   m_Name: HoldPieceSfxToggle
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14068,7 +13951,7 @@ GameObject:
   - component: {fileID: 5174591052207068355}
   m_Layer: 5
   m_Name: HardDropSfxToggle
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14979,7 +14862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7747680520075845749, guid: 9b0711bdbe01daa4bbee89108db30aa1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

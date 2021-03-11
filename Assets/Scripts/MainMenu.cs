@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         _actions = new MyControls();
+        FindObjectOfType<UISFX>().LoadUIElements();
     }
 
     private void OnEnable()
@@ -96,8 +97,14 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void OnClickCredits()
+    {
+        FindObjectOfType<UISFX>().TetrisSFX();
+    }
+
     public void QuitGame()
     {
+        FindObjectOfType<UISFX>().HardDropSFX();
         Application.Quit();
     }
 
@@ -108,7 +115,7 @@ public class MainMenu : MonoBehaviour
         options.SetActive(false);
         credits.SetActive(false);
 
-        FindObjectOfType<UISFX>().ClickButton();
+        FindObjectOfType<UISFX>().OnButtonClick();
     }
 
     public void BackButton()

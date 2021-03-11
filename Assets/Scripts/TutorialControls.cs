@@ -34,7 +34,7 @@ public class TutorialControls : MonoBehaviour
     [SerializeField] GameObject heldPiece;
 
     [Header("Piece SFX")]
-    [SerializeField] AudioSource audioSource;
+    private AudioSource _sfxSource;
     [SerializeField] AudioClip move;
     [SerializeField] AudioClip rotate;
     [SerializeField] AudioClip hold;
@@ -42,7 +42,11 @@ public class TutorialControls : MonoBehaviour
     private void Awake()
     {
         _actions = new MyControls();
+        _sfxSource = FindObjectOfType<AudioController>().sfxSource;
+    }
 
+    private void Start()
+    {
         DisableNavButtons();
 
         heldPiece.SetActive(false);
@@ -135,8 +139,8 @@ public class TutorialControls : MonoBehaviour
 
     private void PlayPieceSfx(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        _sfxSource.clip = clip;
+        _sfxSource.Play();
     }
 
     private void MovePieceRight()
@@ -223,6 +227,8 @@ public class TutorialControls : MonoBehaviour
         {
             OnSoftDrop();
         }
+
+        FindObjectOfType<UISFX>().HardDropSFX();
 
         StartCoroutine(ResetPieceBackUp());
     }

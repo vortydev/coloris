@@ -4,39 +4,53 @@
  * Description: Handles the volume levels of music and sfx.
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    // audio settings
-    public float music, sfx;
+    [Header("Controller")]
+    private static AudioController _instance;   // instance of the object
+    public float music, sfx;                    // audio settings
+    public AudioSource musicSource, sfxSource;  // audio sources
 
     private void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);  // makes the array persistent across scenes
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);            // otherwise yeet it out of existence
+        }
+
         music = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.musicKEY, 10f);    // gets the initial values from the PlayerPrefs
         sfx = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.sfxKEY, 10f);
     }
 
-    // Updates the music setting
+    // Updates the music volume
     public float UpdateMusic(float m)
     {
         if (music != m) // if the new value is different from the currently stored one
         {
-            music = m;  // update the music value
+            music = m;                      // update the music value
+            musicSource.volume = m / 10;    // update the music source's volume
+
             PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.musicKEY, m); // saves the updated value to the PlayerPrefs
         }
 
         return m;
     }
 
-    // Updates the sfx setting
+    // Updates the sfx volume
     public float UpdateSfx(float s)
     {
         if (sfx != s)
         {
-            sfx = s;
+            sfx = s;                    // update the sfx value
+            sfxSource.volume = s / 10;  // update the sfx source's volume
+
             PlayerPrefsManager.SaveFloatPlayerPref(PlayerPrefsManager.sfxKEY, s);
         }
 

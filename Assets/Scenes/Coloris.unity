@@ -12558,7 +12558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1581833972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16380,7 +16380,6 @@ MonoBehaviour:
   trackUI: {fileID: 1510260314}
   isPaused: 0
   gameStarted: 0
-  tracksPlayed: 0
 --- !u!82 &2052457177
 AudioSource:
   m_ObjectHideFlags: 0
