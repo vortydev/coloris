@@ -53,36 +53,57 @@ public class InputsGame : MonoBehaviour
 
     private void Move(InputAction.CallbackContext obj)
     {
-        FindObjectOfType<Group>().OnMove((int)obj.ReadValue<float>());
+        var g = FindObjectOfType<Group>();
+
+        if (g)
+            g.OnMove((int)obj.ReadValue<float>());
     }
 
     private void RotateRight(InputAction.CallbackContext obj)
     {
-        FindObjectOfType<Group>().OnRotateRight();
+        var g = FindObjectOfType<Group>();
+
+        if (g)
+            g.OnRotateRight();
     }
 
     private void RotateLeft(InputAction.CallbackContext obj)
     {
-        FindObjectOfType<Group>().OnRotateLeft();
+        var g = FindObjectOfType<Group>();
+
+        if (g)
+            g.OnRotateLeft();
     }
 
     private void SoftDrop(InputAction.CallbackContext obj)
     {
-        FindObjectOfType<Group>().OnSoftDrop();
+        var g = FindObjectOfType<Group>();
+
+        if (g)
+            g.OnSoftDrop();
     }
 
     private void HardDrop(InputAction.CallbackContext obj)
     {
-        FindObjectOfType<Group>().OnHardDrop();
+        var g = FindObjectOfType<Group>();
+
+        if (g)
+            g.OnHardDrop();
     }
 
     private void Hold(InputAction.CallbackContext obj)
     {
-        FindObjectOfType<Group>().OnHold();
+        var g = FindObjectOfType<Group>();
+
+        if (g)
+            g.OnHold();
     }
 
     private void Pause(InputAction.CallbackContext obj)
     {
-        FindObjectOfType<PauseMenu>().OnClickPause();
+        var p = FindObjectOfType<PauseMenu>();
+
+        if (p)
+            p.OnClickPause();
     }
 }

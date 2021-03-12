@@ -321,6 +321,7 @@ public class ChillZoneManager : MonoBehaviour
 
     public void MainMenu()
     {
+        audioController.KillAudio();
         SceneManager.LoadScene(0);
     }
 }

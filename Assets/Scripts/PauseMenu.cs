@@ -64,16 +64,19 @@ public class PauseMenu : MonoBehaviour
 
     public void OnClickPause()
     {
-        if (gamePaused)
-            OnUnpauseMenu();
-        else
-            OnPauseMenu();
+        if (FindObjectOfType<TracksManager>().gameStarted)
+        {
+            if (gamePaused)
+                OnUnpauseMenu();
+            else
+                OnPauseMenu();
+        }
     }
 
     // Loads scene #0, which is the main menu
     public void QuitToMainMenu()
     {
+        FindObjectOfType<AudioController>().KillAudio();
         SceneManager.LoadScene(0);
-        Debug.Log("Quit to main menu");
     }
 }

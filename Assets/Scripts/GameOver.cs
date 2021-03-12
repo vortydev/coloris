@@ -114,14 +114,17 @@ public class GameOver : MonoBehaviour
         spawner.enabled = true;
         spawner.RegenBags();
 
-        scoreUI.SetActive(true);
         score.ResetScore();
+        if (PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.scoreKEY))
+            scoreUI.SetActive(true);
 
-        nextPieceUI.SetActive(true);
         nextPieceUI.GetComponent<NextPiece>().ResetNextPiece();
+        if (PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.nextPieceKEY))
+            nextPieceUI.SetActive(true);
 
-        holdPieceUI.SetActive(true);
         holdPieceUI.GetComponent<HoldPiece>().ResetHeldPiece();
+        if (PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.holdPieceKEY))
+            holdPieceUI.SetActive(true);
 
         background.SetActive(false);
         gameOverPage.SetActive(false);
