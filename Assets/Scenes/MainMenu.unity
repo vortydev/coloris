@@ -965,7 +965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lauch Tutorial
+  m_text: Tutorials
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
   m_sharedMaterial: {fileID: 5995651761183633212, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
@@ -13053,7 +13053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48c2783fdac38d4c91b09f73ec0ac6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxSource: {fileID: 1548436581}
   move: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
   rotate: {fileID: 8300000, guid: 119348e3ccb340547887f06bb01f412e, type: 3}
   hardDrop: {fileID: 8300000, guid: 2711a2055d85f854c89fa60d891dd1ef, type: 3}
