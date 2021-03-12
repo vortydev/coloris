@@ -51,6 +51,11 @@ public class MainMenu : MonoBehaviour
         credits.SetActive(false);
         firstPlay.SetActive(false);
 
+        if (FindObjectOfType<MenuSoundtrack>().toggled)
+        {
+            FindObjectOfType<MenuSoundtrack>().StartSoundtrack();
+        }
+
         MainMenuRichPresence();     // updates Discord Rich Presence
     }
 
@@ -75,11 +80,13 @@ public class MainMenu : MonoBehaviour
 
     public void PlayColoris()
     {
+        FindObjectOfType<MenuSoundtrack>().StopSoundtrack();
         SceneManager.LoadScene(2); // Loads Coloris
     }
 
     public void OpenChillZone()
     {
+        FindObjectOfType<MenuSoundtrack>().StopSoundtrack();
         SceneManager.LoadScene(3);  // loads the Chill Zone
     }
 

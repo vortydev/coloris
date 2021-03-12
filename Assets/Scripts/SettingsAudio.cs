@@ -22,6 +22,9 @@ public class SettingsAudio : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
 
+    [Header("Menu Soundtrack")]
+    [SerializeField] Toggle menuSoundtrackToggle;
+
     [Header("Visualiser")]
     [SerializeField] GameObject visualiser;
     [SerializeField] Toggle visualiserToggle;
@@ -29,6 +32,11 @@ public class SettingsAudio : MonoBehaviour
     private void Awake()
     {
         _audioController = FindObjectOfType<AudioController>();
+
+        if (!FindObjectOfType<MenuSoundtrack>().toggled)
+        {
+            menuSoundtrackToggle.SetIsOnWithoutNotify(false);
+        }
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
@@ -53,6 +61,12 @@ public class SettingsAudio : MonoBehaviour
     {
         _audioController.UpdateSfx(sfxSlider.value);
         sfxVal.text = sfxSlider.value.ToString();
+    }
+
+    public void ToggleMenuSoundtrack()
+    {
+        FindObjectOfType<MenuSoundtrack>().toggled = !FindObjectOfType<MenuSoundtrack>().toggled;
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.menuSoundtrackKEY);
     }
 
     public void ToggleAudioVisualiser()

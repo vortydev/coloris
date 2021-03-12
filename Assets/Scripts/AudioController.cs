@@ -27,6 +27,9 @@ public class AudioController : MonoBehaviour
 
         music = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.musicKEY, 10f);    // gets the initial values from the PlayerPrefs
         sfx = PlayerPrefsManager.GetFloatPlayerPref(PlayerPrefsManager.sfxKEY, 10f);
+
+        musicSource.volume = music / 10;
+        sfxSource.volume = sfx / 10;
     }
 
     // Updates the music volume

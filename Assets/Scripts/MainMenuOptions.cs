@@ -18,6 +18,7 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] TextMeshProUGUI musicVal;
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
+    [SerializeField] Toggle menuSoundtrackToggle;
     [SerializeField] Toggle visualiserToggle;
 
     [Header("Visual Options")]
@@ -62,6 +63,11 @@ public class MainMenuOptions : MonoBehaviour
         // load audio options
         musicSlider.value = _audioController.music;
         sfxSlider.value = _audioController.sfx;
+
+        if (!FindObjectOfType<MenuSoundtrack>().toggled)
+        {
+            menuSoundtrackToggle.SetIsOnWithoutNotify(false);
+        }
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
@@ -171,6 +177,12 @@ public class MainMenuOptions : MonoBehaviour
     public void UpdateSliderDifficulty()
     {
         UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+    }
+
+    public void ToggleMenuSoundtrack()
+    {
+        FindObjectOfType<MenuSoundtrack>().ToggleSoundtrack();
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.menuSoundtrackKEY);
     }
 
     public void ToggleVisualizer()

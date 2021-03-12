@@ -47,14 +47,17 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string lockSfxKEY = "lockSFX";                // "bool" int that enables the SFX triggered by locking 
 
     // flushed https://discord.com/channels/279771993681952769/740271971694018682/814241565739843626
-    public static string flushedKEY = "flushed";        // "bool" int that toggles this ridiculous gimmick
+    public static string flushedKEY = "flushed";                // "bool" int that toggles this ridiculous gimmick
+
+    // menu soundtrack
+    public static string menuSoundtrackKEY = "menuSoundtrack";  // "bool" int that enables music in the menus
 
     // Returns a float PlayerPref and creates it if it doesn't exist
-    public static float GetFloatPlayerPref(string KEY, float val)
+    public static float GetFloatPlayerPref(string KEY, float defaultVal)
     {
         if (!PlayerPrefs.HasKey(KEY))
         {
-            PlayerPrefs.SetFloat(KEY, val);
+            PlayerPrefs.SetFloat(KEY, defaultVal);
             PlayerPrefs.Save();
         }
 
@@ -62,18 +65,18 @@ public class PlayerPrefsManager : MonoBehaviour
     }
 
     // Saves a float PlayerPref
-    public static void SaveFloatPlayerPref(string KEY, float val)
+    public static void SaveFloatPlayerPref(string KEY, float defaultVal)
     {
-        PlayerPrefs.SetFloat(KEY, val);
+        PlayerPrefs.SetFloat(KEY, defaultVal);
         PlayerPrefs.Save();
     }
 
     // Returns an int PlayerPref and creates it if it doesn't exist
-    public static int GetIntPlayerPref(string KEY, int val)
+    public static int GetIntPlayerPref(string KEY, int defaultVal)
     {
         if (!PlayerPrefs.HasKey(KEY))
         {
-            PlayerPrefs.SetInt(KEY, val);
+            PlayerPrefs.SetInt(KEY, defaultVal);
             PlayerPrefs.Save();
         }
 
@@ -81,9 +84,9 @@ public class PlayerPrefsManager : MonoBehaviour
     }
 
     // Saves an int PlayerPref 
-    public static void SaveIntPlayerPref(string KEY, int val)
+    public static void SaveIntPlayerPref(string KEY, int defaultVal)
     {
-        PlayerPrefs.SetInt(KEY, val);
+        PlayerPrefs.SetInt(KEY, defaultVal);
         PlayerPrefs.Save();
     }
 
@@ -99,6 +102,21 @@ public class PlayerPrefsManager : MonoBehaviour
     public static bool GetBoolPlayerPref(string KEY)
     {
         return PlayerPrefs.GetInt(KEY) == 1;
+    }
+
+    public static bool GetBoolPlayerPref(string KEY, bool defaultVal)
+    {
+        int val;
+        if (defaultVal)
+        {
+            val = 1;
+        }
+        else
+        {
+            val = 0;
+        }
+
+        return GetIntPlayerPref(KEY, val) == 1;
     }
 
     public static string GetBoolStringPlayerPref(string KEY)
