@@ -91,7 +91,7 @@ public class Group : MonoBehaviour
             if (IsValidGridPos())   // checks if the new position is valid
             {
                 UpdateGrid();                                   // updates the grid with the moved piece
-                FindObjectOfType<SFXManager>().MoveSideSFX();   // plays an SFX
+                FindObjectOfType<GameSFX>().MoveSideSFX();   // plays an SFX
             }
             else
             {
@@ -110,7 +110,7 @@ public class Group : MonoBehaviour
 
             if (IsValidGridPos())
             {
-                FindObjectOfType<SFXManager>().RotateSFX();
+                FindObjectOfType<GameSFX>().RotateSFX();
                 UpdateGrid();
             }
             else
@@ -128,7 +128,7 @@ public class Group : MonoBehaviour
 
             if (IsValidGridPos())
             {
-                FindObjectOfType<SFXManager>().RotateSFX();
+                FindObjectOfType<GameSFX>().RotateSFX();
                 UpdateGrid();
             }
             else
@@ -182,7 +182,7 @@ public class Group : MonoBehaviour
         {
             isMoveable = false; // locks the piece
 
-            FindObjectOfType<SFXManager>().HardDropSFX();
+            FindObjectOfType<GameSFX>().HardDropSFX();
 
             for (int i = 0; i < Playfield.h; i++)
             {

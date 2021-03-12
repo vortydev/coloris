@@ -11,8 +11,8 @@ using UnityEngine;
 public class TracksManager : MonoBehaviour
 {
     [Header("Components")]
-    public AudioSource audioSource;             // component that plays the track
-    private AudioController audioController;    // script that sets the audio's volume
+    public AudioController audioController;    // script that sets the audio's volume
+    public AudioSource musicSource;             // component that plays the track
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
     [SerializeField] TypeWriter typeWriter;     // script for the type writing effect on the radio
     [SerializeField] TrackUI trackUI;           // script that handles tracks in pause menu
@@ -29,7 +29,7 @@ public class TracksManager : MonoBehaviour
     private void Awake()
     {
         // load components
-        audioController = GetComponent<AudioController>();
+        audioController = FindObjectOfType<AudioController>();
         tracks = FindObjectOfType<ReferenceTracks>();
         
         // resize the bool array and set all to false
@@ -38,6 +38,11 @@ public class TracksManager : MonoBehaviour
         {
             playlist[i] = false;
         }
+    }
+
+    private void Start()
+    {
+        musicSource = audioController.musicSource;
     }
 
     private void OnApplicationFocus()
@@ -52,12 +57,12 @@ public class TracksManager : MonoBehaviour
     private void Update()
     {
         // starts a new track when the previous is done
-        if (!audioSource.isPlaying && !isPaused && gameStarted && onFocus)
+        if (!musicSource.isPlaying && !isPaused && gameStarted && onFocus)
             NextTrack();
 
         // adjusts the sound of the music
         if (gameStarted)
-            audioSource.volume = audioController.music / 10;
+            musicSource.volume = audioController.music / 10;
     }
 
     // randomly chooses a track that hasn't been played yet
@@ -73,8 +78,8 @@ public class TracksManager : MonoBehaviour
         prevTrack = rng;
 
         _curTrack = tracks.GetTrackSO(rng);
-        audioSource.clip = _curTrack.track;
-        audioSource.Play();
+        musicSource.clip = _curTrack.track;
+        musicSource.Play();
 
         //radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
         typeWriter.TypeText(radio.trackName, _curTrack.trackName);
@@ -83,7 +88,7 @@ public class TracksManager : MonoBehaviour
         if (FindObjectOfType<DiscordController>() != null)
             FindObjectOfType<DiscordController>().UpdateRichPresence("Track: " + _curTrack.trackName, "By: " + _curTrack.authorName, FindObjectOfType<CanDo>().flushed);
 
-        trackUI.GetTotalTrackTime(audioSource.clip.length);
+        trackUI.GetTotalTrackTime(musicSource.clip.length);
 
         isPaused = false;
     }
@@ -114,8 +119,8 @@ public class TracksManager : MonoBehaviour
 
     public void RestartTrack()
     {
-        audioSource.Stop();
-        audioSource.Play();
+        musicSource.Stop();
+        musicSource.Play();
 
         isPaused = false;
     }
@@ -124,12 +129,12 @@ public class TracksManager : MonoBehaviour
     {
         if (isPaused)
         {
-            audioSource.UnPause();
+            musicSource.UnPause();
             isPaused = false;
         }
         else
         {
-            audioSource.Pause();
+            musicSource.Pause();
             isPaused = true;
         }
     }
@@ -137,6 +142,6 @@ public class TracksManager : MonoBehaviour
     public void StopMusic()
     {
         isPaused = false;
-        audioSource.Stop();
+        musicSource.Stop();
     }
 }

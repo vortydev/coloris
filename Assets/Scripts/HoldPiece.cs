@@ -26,7 +26,7 @@ public class HoldPiece : MonoBehaviour
         if (heldPiece != null && CheckSamePiece(currentPiece.GetComponent<Group>().pieceId))
             return;
 
-        FindObjectOfType<SFXManager>().HoldPieceSFX();  // plays the hold piece sound
+        FindObjectOfType<GameSFX>().HoldPieceSFX();  // plays the hold piece sound
 
         if (PieceHeld())
         {

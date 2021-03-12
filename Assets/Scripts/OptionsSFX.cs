@@ -10,16 +10,21 @@ using UnityEngine;
 
 public class OptionsSFX : MonoBehaviour
 {
-    [SerializeField] AudioSource sfxSource;
+    private AudioSource _sfxSource;
     [SerializeField] AudioClip move;
     [SerializeField] AudioClip rotate;
     [SerializeField] AudioClip hardDrop;
     [SerializeField] AudioClip hold;
 
+    private void Awake()
+    {
+        _sfxSource = FindObjectOfType<AudioController>().sfxSource;
+    }
+
     private void PlaySFX(AudioClip clip)
     {
-        sfxSource.clip = clip;
-        sfxSource.Play();
+        _sfxSource.clip = clip;
+        _sfxSource.Play();
     }
 
     public void PlaySfxMove()

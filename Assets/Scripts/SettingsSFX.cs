@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class SettingsSFX : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] SFXManager sfxManager;
+    [SerializeField] GameSFX sfxManager;
 
     [Header("Movement")]
     [SerializeField] Toggle moveToggle;

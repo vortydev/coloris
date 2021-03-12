@@ -589,18 +589,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &58408499
 GameObject:
@@ -779,7 +767,7 @@ GameObject:
   - component: {fileID: 168900053}
   m_Layer: 5
   m_Name: GameButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -851,18 +839,6 @@ MonoBehaviour:
       - m_Target: {fileID: 547660003}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: OnGameClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1150,18 +1126,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &181015529
 GameObject:
@@ -1303,7 +1267,7 @@ GameObject:
   - component: {fileID: 200891896}
   m_Layer: 5
   m_Name: TestButton
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1381,18 +1345,6 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 4
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickMenuButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1509,7 +1461,7 @@ GameObject:
   - component: {fileID: 252421851}
   m_Layer: 5
   m_Name: Resume
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2375,7 +2327,7 @@ GameObject:
   - component: {fileID: 348309752}
   m_Layer: 5
   m_Name: VisualButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2447,18 +2399,6 @@ MonoBehaviour:
       - m_Target: {fileID: 547660003}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: OnVisualClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2603,18 +2543,6 @@ MonoBehaviour:
       - m_Target: {fileID: 249157913}
         m_TargetAssemblyTypeName: SettingsVisual, Assembly-CSharp
         m_MethodName: ToggleDynamicText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3249,7 +3177,7 @@ GameObject:
   - component: {fileID: 505920298}
   m_Layer: 5
   m_Name: NextTrackButton
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3559,7 +3487,7 @@ GameObject:
   - component: {fileID: 520680690}
   m_Layer: 5
   m_Name: PauseButton
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3841,7 +3769,7 @@ GameObject:
   - component: {fileID: 545352229}
   m_Layer: 5
   m_Name: RotateSfxToggle (1)
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4156,7 +4084,7 @@ GameObject:
   - component: {fileID: 554240836}
   m_Layer: 5
   m_Name: MoveSfxToggle
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5740,7 +5668,7 @@ GameObject:
   - component: {fileID: 737583489}
   m_Layer: 5
   m_Name: AudioButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5812,18 +5740,6 @@ MonoBehaviour:
       - m_Target: {fileID: 547660003}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: OnAudioClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5966,7 +5882,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -6333,7 +6249,7 @@ GameObject:
   - component: {fileID: 786565908}
   m_Layer: 5
   m_Name: Details
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6414,7 +6330,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickMenuButton
         m_Mode: 1
@@ -6551,7 +6467,6 @@ GameObject:
   - component: {fileID: 797280546}
   - component: {fileID: 797280545}
   - component: {fileID: 797280544}
-  - component: {fileID: 797280547}
   m_Layer: 5
   m_Name: StartGame
   m_TagString: Untagged
@@ -6590,14 +6505,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1687549960a50524382e01cdba9d1fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracksManager: {fileID: 2052457176}
-  spawner: {fileID: 1581833972}
-  nextPiece: {fileID: 1571671574}
   pauseMenu: {fileID: 2013547629}
   pauseButton: {fileID: 520680688}
   time: 3
   countdown: {fileID: 0}
-  audioController: {fileID: 2052457175}
+  countdownClip: {fileID: 8300000, guid: 54e1e06518db5a84bb10b889b82f66ba, type: 3}
 --- !u!114 &797280545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6695,102 +6607,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797280542}
   m_CullTransparentMesh: 1
---- !u!82 &797280547
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797280542}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 54e1e06518db5a84bb10b889b82f66ba, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &858295645
 GameObject:
   m_ObjectHideFlags: 0
@@ -6975,7 +6791,7 @@ GameObject:
   - component: {fileID: 859979025}
   m_Layer: 5
   m_Name: HoldPieceSfxToggle
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7070,7 +6886,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1009234651}
         m_TargetAssemblyTypeName: OptionsSFX, Assembly-CSharp
-        m_MethodName: PlaySfxHardDrop
+        m_MethodName: PlaySfxHold
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7176,7 +6992,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -7798,7 +7614,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
@@ -7964,7 +7780,7 @@ GameObject:
   - component: {fileID: 925082247}
   m_Layer: 5
   m_Name: SfxButton
-  m_TagString: Untagged
+  m_TagString: PanelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8036,18 +7852,6 @@ MonoBehaviour:
       - m_Target: {fileID: 547660003}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: OnSfxClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ChangePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8243,7 +8047,7 @@ GameObject:
   - component: {fileID: 933911663}
   m_Layer: 5
   m_Name: RestartTrackButton
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8546,18 +8350,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1015781561}
         m_TargetAssemblyTypeName: SettingsGame, Assembly-CSharp
         m_MethodName: ToggleHardDropping
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8884,7 +8676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48c2783fdac38d4c91b09f73ec0ac6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxSource: {fileID: 2052457180}
   move: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
   rotate: {fileID: 8300000, guid: 119348e3ccb340547887f06bb01f412e, type: 3}
   hardDrop: {fileID: 8300000, guid: 2711a2055d85f854c89fa60d891dd1ef, type: 3}
@@ -9535,18 +9326,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1015781561}
         m_TargetAssemblyTypeName: SettingsGame, Assembly-CSharp
         m_MethodName: ToggleScore
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11053,18 +10832,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1376817954
 GameObject:
@@ -12313,7 +12080,7 @@ GameObject:
   - component: {fileID: 1578993914}
   m_Layer: 5
   m_Name: PauseTrackButton
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14312,18 +14079,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1804067670
 GameObject:
@@ -14801,7 +14556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478c3c56ced638f4ab70813008e51bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioController: {fileID: 2052457175}
   musicSlider: {fileID: 6698047742042044953}
   musicVal: {fileID: 8971564147069153157}
   sfxSlider: {fileID: 8220939109835184343}
@@ -15776,7 +15530,7 @@ GameObject:
   - component: {fileID: 2005639833}
   m_Layer: 5
   m_Name: HardDropSfxToggle
-  m_TagString: Untagged
+  m_TagString: UniqueUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15950,18 +15704,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1883856832}
         m_TargetAssemblyTypeName: SettingsAudio, Assembly-CSharp
         m_MethodName: ToggleAudioVisualiser
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16311,16 +16053,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2052457173}
-  - component: {fileID: 2052457174}
-  - component: {fileID: 2052457177}
-  - component: {fileID: 2052457175}
-  - component: {fileID: 2052457178}
   - component: {fileID: 2052457176}
-  - component: {fileID: 2052457180}
   - component: {fileID: 2052457179}
-  - component: {fileID: 2052457181}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: GameAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16340,28 +16076,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &2052457174
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052457172}
-  m_Enabled: 1
---- !u!114 &2052457175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052457172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d6df7f310188a4a9f3ef36c9e8677c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  music: 0
-  sfx: 0
 --- !u!114 &2052457176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16374,120 +16088,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75152744a8311b640b81e048ef6d307c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 2052457177}
+  audioController: {fileID: 0}
+  musicSource: {fileID: 0}
   radio: {fileID: 426348304}
   typeWriter: {fileID: 426348305}
   trackUI: {fileID: 1510260314}
   isPaused: 0
   gameStarted: 0
---- !u!82 &2052457177
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052457172}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &2052457178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052457172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115bd7b7cca8a774cb0b071b62b6d7d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2052457179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16497,10 +16104,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2052457172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db6cd231d9a8e247bdee9cfc5c467f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cde3362a4a0e984081a4ccb28bd8822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxSource: {fileID: 2052457180}
   hardDrop: {fileID: 8300000, guid: 2711a2055d85f854c89fa60d891dd1ef, type: 3}
   rotate: {fileID: 8300000, guid: 119348e3ccb340547887f06bb01f412e, type: 3}
   move: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
@@ -16514,122 +16120,6 @@ MonoBehaviour:
   canRotate: 1
   canHardDrop: 1
   canHoldPiece: 1
---- !u!82 &2052457180
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052457172}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &2052457181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052457172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c03c8a8fecd6d3346a4bba14bbd3e1ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 2052457180}
-  clickButton: {fileID: 8300000, guid: acbf165af52194749a91804e6a2eccb2, type: 3}
-  changePanel: {fileID: 8300000, guid: 1d80c7dbee5226e4cbcf01bff21937be, type: 3}
-  clickToggle: {fileID: 8300000, guid: 7ffae2fa26d59914ba8242f175a42f64, type: 3}
-  clickDropdown: {fileID: 8300000, guid: de904291feb6d2b4bb0575d842b7bcbe, type: 3}
-  clickMenuButton: {fileID: 8300000, guid: c2c6089daf925b04381799a89608399f, type: 3}
-  clickCredits: {fileID: 0}
-  clickQuit: {fileID: 0}
 --- !u!1 &2087599160
 GameObject:
   m_ObjectHideFlags: 0
@@ -16729,18 +16219,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2052457181}
-        m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
-        m_MethodName: ClickButton
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

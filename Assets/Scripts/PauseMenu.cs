@@ -22,7 +22,12 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pausePage;
     [SerializeField] GameObject optionsPage;
 
-    public void Awake()
+    private void Awake()
+    {
+        FindObjectOfType<UISFX>().LoadUIElements();
+    }
+
+    public void Start()
     {
         background.SetActive(false);
         pausePage.SetActive(false);
@@ -32,7 +37,7 @@ public class PauseMenu : MonoBehaviour
     private void OnPauseMenu()
     {
         gamePaused = true;
-        FindObjectOfType<SFXManager>().PauseSFX();
+        FindObjectOfType<GameSFX>().PauseSFX();
 
         background.SetActive(true);
         nextPiece.SetActive(false);
@@ -45,7 +50,7 @@ public class PauseMenu : MonoBehaviour
     private void OnUnpauseMenu()
     {
         gamePaused = false;
-        FindObjectOfType<SFXManager>().UnpauseSFX();
+        FindObjectOfType<GameSFX>().UnpauseSFX();
 
         background.SetActive(false);
         nextPiece.SetActive(true);

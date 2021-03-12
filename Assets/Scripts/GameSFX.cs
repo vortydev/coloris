@@ -8,11 +8,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+public class GameSFX : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] AudioSource sfxSource;     // component that plays the sfx
     private AudioController audioController;    // script that sets the audio's volume
+    private AudioSource _sfxSource;             // component that plays the sfx
 
     [Header("Movement")]
     [SerializeField] AudioClip hardDrop;
@@ -37,17 +37,22 @@ public class SFXManager : MonoBehaviour
 
     private void Awake()
     {
-        audioController = GetComponent<AudioController>();
+        audioController = FindObjectOfType<AudioController>();
+    }
+
+    private void Start()
+    {
+        _sfxSource = audioController.sfxSource;
     }
 
     private void UpdateVolume()
     {
-        sfxSource.volume = audioController.sfx / 10;
+        _sfxSource.volume = audioController.sfx / 10;
     }
 
     private void UpdateVolumePause()
     {
-        sfxSource.volume = (audioController.sfx / 2) / 10;
+        _sfxSource.volume = (audioController.sfx / 2) / 10;
     }
 
     private void PlayClip(AudioClip clip, bool enabled = true)
@@ -55,8 +60,8 @@ public class SFXManager : MonoBehaviour
         if (enabled)
         {
             UpdateVolume();
-            sfxSource.clip = clip;
-            sfxSource.Play();
+            _sfxSource.clip = clip;
+            _sfxSource.Play();
         }
     }
 
@@ -102,15 +107,19 @@ public class SFXManager : MonoBehaviour
     {
         UpdateVolumePause();
 
-        sfxSource.clip = pause;
-        sfxSource.Play();
+        _sfxSource.clip = pause;
+        _sfxSource.Play();
+
+        UpdateVolume();
     }
 
     public void UnpauseSFX()
     {
         UpdateVolumePause();
 
-        sfxSource.clip = unpause;
-        sfxSource.Play();
+        _sfxSource.clip = unpause;
+        _sfxSource.Play();
+
+        UpdateVolume();
     }
 }

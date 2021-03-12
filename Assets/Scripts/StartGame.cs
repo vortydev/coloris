@@ -11,33 +11,36 @@ using TMPro;
 
 public class StartGame : MonoBehaviour
 {
-    [Header("Game")]
-    public TracksManager tracksManager;
-    public Spawner spawner;
+    [Header("Components")]
+    private AudioSource _sfxSource;
+    private AudioSource _musicSource;
+    private TracksManager _tracksManager;
+    private Spawner _spawner;
+    private NextPiece _nextPiece;
 
     [Header("UI")]
-    public NextPiece nextPiece;
-    public PauseMenu pauseMenu;
-    public GameObject pauseButton;
+    [SerializeField] PauseMenu pauseMenu;
+    [SerializeField] GameObject pauseButton;
 
     [Header("Countdown")]
     private bool started = false;
     [SerializeField] private int time;
     public TextMeshProUGUI countdown;
-
-    [Header("Audio")]
-    public AudioController audioController;
-    private AudioSource audioSource;
+    [SerializeField] AudioClip countdownClip;
 
     private void Awake()
-    {
+    {   
+        _tracksManager = FindObjectOfType<TracksManager>();
+        _spawner = FindObjectOfType<Spawner>();
+        _nextPiece = FindObjectOfType<NextPiece>();
+
         countdown = GetComponent<TextMeshProUGUI>();    // gets tmp component
-        audioSource = GetComponent<AudioSource>();      // gets audiosource
     }
 
     private void Start()
     {
-        InitialStart();
+        _sfxSource = _tracksManager.audioController.sfxSource;
+        _musicSource = _tracksManager.audioController.musicSource;
     }
 
     private void Update()
@@ -52,7 +55,7 @@ public class StartGame : MonoBehaviour
     {
         DisableGameComponents();
 
-        audioSource.volume = audioController.sfx / 10;
+        _musicSource.volume = _tracksManager.audioController.sfx / 10;
 
         StartCoroutine(Countdown(time));
         started = true;
@@ -61,11 +64,12 @@ public class StartGame : MonoBehaviour
     private IEnumerator Countdown(int seconds)
     {
         int count = seconds;
+        _sfxSource.clip = countdownClip;
 
         do
         {
             countdown.text = count.ToString();
-            audioSource.Play();
+            _sfxSource.Play();
 
             yield return new WaitForSecondsRealtime(1);
             count--;
@@ -77,9 +81,9 @@ public class StartGame : MonoBehaviour
 
     private void DisableGameComponents()
     {
-        tracksManager.gameStarted = false;
-        tracksManager.NextTrack();
-        tracksManager.TogglePause();
+        _tracksManager.gameStarted = false;
+        _tracksManager.NextTrack();
+        _tracksManager.TogglePause();
 
         pauseMenu.enabled = false;                      // cant pause game before the start of the game
         pauseButton.SetActive(false);                   // disables pause button
@@ -88,11 +92,11 @@ public class StartGame : MonoBehaviour
     // enables components to play the game
     private void StartGameRoutine()
     {
-        tracksManager.gameStarted = true;
-        tracksManager.TogglePause();
+        _tracksManager.gameStarted = true;
+        _tracksManager.TogglePause();
 
-        nextPiece.DisplayNextPiece();   // shows next piece;
-        spawner.SpawnNext();            // spawns first piece
+        _nextPiece.DisplayNextPiece();   // shows next piece;
+        _spawner.SpawnNext();            // spawns first piece
 
         pauseMenu.enabled = true;       // can pause game
         pauseButton.SetActive(true);    // enables pause button
@@ -110,7 +114,7 @@ public class StartGame : MonoBehaviour
         do
         {
             countdown.text = count.ToString();
-            audioSource.Play();
+            _sfxSource.Play();
 
             yield return new WaitForSecondsRealtime(1);
             count--;
@@ -122,10 +126,10 @@ public class StartGame : MonoBehaviour
 
     public void RestartGameRoutine()
     {
-        tracksManager.gameStarted = true;
+        _tracksManager.gameStarted = true;
 
-        nextPiece.DisplayNextPiece();   // shows next piece;
-        spawner.SpawnNext();
+        _nextPiece.DisplayNextPiece();   // shows next piece;
+        _spawner.SpawnNext();
 
         pauseMenu.enabled = true;       // can pause game
         pauseButton.SetActive(true);    // enables pause button

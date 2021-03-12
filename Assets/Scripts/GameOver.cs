@@ -63,7 +63,7 @@ public class GameOver : MonoBehaviour
                         + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY);
 
         tracksManager.gameStarted = false;
-        tracksManager.audioSource.volume = tracksManager.audioSource.volume / 10;
+        tracksManager.musicSource.volume /= 10;
 
         // disable game elements
         spawner.enabled = false;
