@@ -16,9 +16,8 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] GameObject mainButtons;
     [SerializeField] GameObject popupBox;
-    [SerializeField] GameObject options;
-    [SerializeField] GameObject credits;
     [SerializeField] GameObject firstPlay;
+    [SerializeField] GameObject[] menuPages;
 
     private void Awake()
     {
@@ -47,9 +46,12 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         popupBox.SetActive(false);
-        //options.SetActive(false);
-        credits.SetActive(false);
         firstPlay.SetActive(false);
+
+        for (int i = 1; i < menuPages.Length; i++)
+        {
+            menuPages[i].SetActive(false);
+        }
 
         if (FindObjectOfType<MenuSoundtrack>().toggled)
         {
@@ -119,8 +121,14 @@ public class MainMenu : MonoBehaviour
     {
         mainButtons.SetActive(true);
         popupBox.SetActive(false);
-        options.SetActive(false);
-        credits.SetActive(false);
+        
+        for (int i = 0; i < menuPages.Length - 1; i++)
+        {
+            if (menuPages[i].activeSelf)
+            {
+                menuPages[i].SetActive(false);
+            }
+        }
 
         FindObjectOfType<UISFX>().OnButtonClick();
     }

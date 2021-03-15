@@ -31,7 +31,7 @@ public class DiscordController : MonoBehaviour
     private void Start()
 	{
         // param: 811777552208887810 is the application ID for Coloris
-        // param: CreateFlags.NoRequireDiscord means tgehe game won't crash without Discord open lol
+        // param: CreateFlags.NoRequireDiscord means the game won't crash without Discord open lol
         discord = new Discord.Discord(811777552208887810, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
 		var activityManager = discord.GetActivityManager();
 		var activity = new Discord.Activity
