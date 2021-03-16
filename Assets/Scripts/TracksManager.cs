@@ -85,9 +85,6 @@ public class TracksManager : MonoBehaviour
         typeWriter.TypeText(radio.trackName, _curTrack.trackName);
         typeWriter.TypeText(radio.trackAuthor, _curTrack.authorName);
 
-        if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Track: " + _curTrack.trackName, "By: " + _curTrack.authorName, FindObjectOfType<CanDo>().flushed);
-
         trackUI.GetTotalTrackTime(musicSource.clip.length);
 
         isPaused = false;

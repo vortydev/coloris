@@ -30,6 +30,12 @@ public class Score : MonoBehaviour
         UpdateDifficultyLevel(difficultyLevel);
     }
 
+    private void Start()
+    {
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Lines cleared: 0", "Difficulty: " + GetDifficultyString(), "Coloris - Classic", FindObjectOfType<CanDo>().flushed);
+    }
+
     public void IncrementScore()
     {
         linesCleared++; // increment the amount of lines cleared
@@ -38,6 +44,9 @@ public class Score : MonoBehaviour
             IncrementDifficulty();
 
         scoreText.text = "Lines Cleared\n" + linesCleared;  // update score text
+
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Lines cleared: " + linesCleared.ToString(), "Difficulty: " + GetDifficultyString(), "Coloris - Classic", FindObjectOfType<CanDo>().flushed);
 
         CleanupOldPieces(); // remove old piece clones
     }

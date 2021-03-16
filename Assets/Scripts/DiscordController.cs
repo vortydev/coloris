@@ -29,13 +29,13 @@ public class DiscordController : MonoBehaviour
     }
 
     private void Start()
-	{
+    {
         // param: 811777552208887810 is the application ID for Coloris
         // param: CreateFlags.NoRequireDiscord means the game won't crash without Discord open lol
         discord = new Discord.Discord(811777552208887810, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
-		var activityManager = discord.GetActivityManager();
-		var activity = new Discord.Activity
-		{
+        var activityManager = discord.GetActivityManager();
+        var activity = new Discord.Activity
+        {
             Assets =
             {
                 LargeImage = "game_thumbnail",
@@ -43,27 +43,28 @@ public class DiscordController : MonoBehaviour
             }
         };
 
-		activityManager.UpdateActivity(activity, (res) =>
-		{
-			if (res == Discord.Result.Ok)
-			{
-				//Debug.Log("Initial Discord Rich Presence update successful.");    // commented because it was annoying
-			}   
+        activityManager.UpdateActivity(activity, (res) =>
+        {
+            if (res == Discord.Result.Ok)
+            {
+                //Debug.Log("Initial Discord Rich Presence update successful.");    // commented because it was annoying
+            }
+            else Debug.LogError("Discord Rich Presence failed to load.");
         });
-	}
+    }
 
-	private void Update()
-	{
-		discord.RunCallbacks();
-	}
+    private void Update()
+    {
+        discord.RunCallbacks();
+    }
 
     // Updates the rich presence's details and state (might expand on it later)
-    public void UpdateRichPresence(string detailsString, string stateString, bool flushed = false)
+    public void UpdateRichPresence(string detailsString, string stateString, string largeText, bool flushed = false)
     {
-        string largeImage = "game_thumbnail";
+        string smallImage = null;
         if (flushed)
         {
-            largeImage = "thumbnail_flushed";
+            smallImage = "flushed_block";
         }
 
         var activityManager = discord.GetActivityManager();
@@ -73,8 +74,10 @@ public class DiscordController : MonoBehaviour
             Details = detailsString,
             Assets =
             {
-                LargeImage = largeImage,
-                LargeText = "Coloris",
+                LargeImage = "game_thumbnail",
+                LargeText = largeText,
+                SmallImage = smallImage,
+                SmallText = "Flushed",
             },
         };
 

@@ -293,7 +293,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 752411851}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.7860693
+  m_Size: 0.742241
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1336,7 +1336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &431986936
 Transform:
   m_ObjectHideFlags: 0
@@ -4549,7 +4549,9 @@ MonoBehaviour:
     Cai Jones
 
     Alex "Nuketown"
-    Renard'
+    Renard
+
+    Pinto'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
   m_sharedMaterial: {fileID: 5995651761183633212, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
@@ -5200,6 +5202,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb3fe4176bfeba24c9c68543766659d0, type: 2}
   - {fileID: 11400000, guid: fb553f6fa19ac0c459be1d88a18d187c, type: 2}
   - {fileID: 11400000, guid: 2336b588a8d0ea741899bb714e413d62, type: 2}
+  - {fileID: 11400000, guid: 5fca8194fa15a4945a67cd590aa9aadb, type: 2}
   releaseButtonPrefab: {fileID: 8829709290597795080, guid: 66cd0f9c30b561a448149197eaaefb4e, type: 3}
   changeLogPage: {fileID: 1098897958}
   changeLogScrollView: {fileID: 346606783}
@@ -7313,7 +7316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundtrack: {fileID: 0}
-  toggled: 0
+  toggled: 1
   fadeDuration: 3
 --- !u!1 &1577417365
 GameObject:

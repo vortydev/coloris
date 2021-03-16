@@ -15,5 +15,6 @@ public class ReleaseButton : MonoBehaviour
     public void OnReleaseButtonClick()
     {
         FindObjectOfType<ChangeLogManager>().LoadReleasePage(index);
+        FindObjectOfType<UISFX>().OnMenuButtonClick();
     }
 }

@@ -54,7 +54,7 @@ public class TutorialsManager : MonoBehaviour
         sfxSlider.value = _audioController.sfx;
 
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "In Tutorials", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "", "Tutorials", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
     }
 
     public void BackToMain()

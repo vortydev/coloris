@@ -67,8 +67,7 @@ public class ChillZoneManager : MonoBehaviour
         onFocus = true;
         quitPopup.SetActive(false);
 
-        if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Listening to music", "Vibing in the Chill Zone", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
+        UpdateRichPresence();
     }
 
     // pauses the music when the game goes out of focus
@@ -94,6 +93,21 @@ public class ChillZoneManager : MonoBehaviour
             if (onFocus)
             {
                 NextTrackInPlaylist();  // plays the next track if the game is in focus and the track isn't paused
+            }
+        }
+    }
+
+    private void UpdateRichPresence()
+    {
+        if (FindObjectOfType<DiscordController>() != null)
+        {
+            if (currentTrack != null)
+            {
+                FindObjectOfType<DiscordController>().UpdateRichPresence(("Playing: " + currentTrack.trackName), ("By: "+ currentTrack.authorName), "Chill Zone", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
+            }
+            else
+            {
+                FindObjectOfType<DiscordController>().UpdateRichPresence("Vibing in the Chill Zone", "", "Chill Zone", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
             }
         }
     }
@@ -209,6 +223,8 @@ public class ChillZoneManager : MonoBehaviour
             queue.loopDropdown.interactable = false;
             queue.loopDropdown.SetValueWithoutNotify(0);
             queue.loopDropdown.RefreshShownValue();
+
+            UpdateRichPresence();
         }
     }
 
@@ -240,6 +256,8 @@ public class ChillZoneManager : MonoBehaviour
 
         typeWriter.TypeText(radio.trackName, currentTrack.trackName);       // types on the radio the current track's name
         typeWriter.TypeText(radio.trackAuthor, currentTrack.authorName);    // types on the radio the current track's artist
+
+        UpdateRichPresence();
     }
 
     public void ClickNext()
