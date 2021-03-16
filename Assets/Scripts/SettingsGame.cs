@@ -8,12 +8,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsGame : MonoBehaviour
 {
     [Header("Difficulty")]
     [SerializeField] Score score;
     [SerializeField] Slider difficultyLevelSlider;
+
+    [Header("Lock Delay")]
+    [SerializeField] Slider lockDelaySlider;
+    [SerializeField] TextMeshProUGUI lockDelayValue;
 
     [Header("Hard Dropping")]
     [SerializeField] CanDo canDo;
@@ -66,11 +71,38 @@ public class SettingsGame : MonoBehaviour
     private void Start()
     {
         difficultyLevelSlider.value = score.difficultyLevel;
+        lockDelaySlider.value = canDo.lockDelay;
+        UpdateSliderLockDelay();
     }
 
     public void UpdateSliderDifficulty()
     {
         score.UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+    }
+
+    private void UpdateSliderLockDelay()
+    {
+        switch (canDo.lockDelay)
+        {
+            case 0:
+                lockDelayValue.text = "0s";
+                break;
+            case 1:
+                lockDelayValue.text = "0.1s";
+                break;
+            case 2:
+                lockDelayValue.text = "0.2s";
+                break;
+            case 3:
+                lockDelayValue.text = "0.3s";
+                break;
+            case 4:
+                lockDelayValue.text = "0.4s";
+                break;
+            case 5:
+                lockDelayValue.text = "0.5s";
+                break;
+        }
     }
 
     public void ToggleScore()

@@ -15,6 +15,7 @@ public class OptionsSFX : MonoBehaviour
     [SerializeField] AudioClip rotate;
     [SerializeField] AudioClip hardDrop;
     [SerializeField] AudioClip hold;
+    [SerializeField] AudioClip locking;
 
     private void Awake()
     {
@@ -45,5 +46,10 @@ public class OptionsSFX : MonoBehaviour
     public void PlaySfxHold()
     {
         PlaySFX(hold);
+    }
+
+    public void PlaySfxLocking()
+    {
+        PlaySFX(locking);
     }
 }

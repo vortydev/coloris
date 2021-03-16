@@ -26,6 +26,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] Score score;
     [SerializeField] PauseMenu pauseMenu;
     [SerializeField] StartGame startGame;
+    [SerializeField] CanDo canDo;
 
     [Header("Game Over")]
     [SerializeField] TextMeshProUGUI scoreText;
@@ -37,7 +38,10 @@ public class GameOver : MonoBehaviour
     private void Awake()
     {
         highscore = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.highscoreKEY, 0);
+    }
 
+    private void Start()
+    {
         // game over popup
         gameOverPage.SetActive(false);
         detailsScrollview.SetActive(false);
@@ -58,9 +62,11 @@ public class GameOver : MonoBehaviour
                         + "\nHighscore: " + highscore;
 
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
+                        + "\nLock Delay: " + canDo.GetLockDelayString()
                         + "\nHard Dropping: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.hardDropKEY)
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.nextPieceKEY)
                         + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY);
+                        //+ "\nGhost Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.ghostPieceKEY);
 
         tracksManager.gameStarted = false;
         tracksManager.musicSource.volume /= 10;

@@ -22,10 +22,12 @@ public class Group : MonoBehaviour
     private bool hasMoved = false;
 
     private float localDifficulty;
+    private float lockDelay;
 
     private void Start()
     {
         localDifficulty = FindObjectOfType<Score>().globalDifficulty;   // loads the current difficulty
+        lockDelay = FindObjectOfType<CanDo>().lockDelay / 10;
 
         // Default position not valid? Then it's game over
         if (!IsValidGridPos())
@@ -56,24 +58,10 @@ public class Group : MonoBehaviour
                 }
                 else
                 {
-                    if (hasMoved)
-                    {
-                        // It's not valid. revert.
-                        transform.position += new Vector3(0, 1, 0);
+                    // It's not valid. revert.
+                    transform.position += new Vector3(0, 1, 0);
 
-                        // Clear filled horizontal lines
-                        Playfield.DeleteFullRows();
-
-                        // Spawn next Group
-                        FindObjectOfType<Spawner>().SpawnNext();
-
-                        // Disable script
-                        enabled = false;
-                    }
-                    else
-                    {
-                        TriggerGameOver();
-                    }
+                    StartCoroutine(LockingTimer());
                 }
 
                 lastFall = Time.time;
@@ -90,8 +78,8 @@ public class Group : MonoBehaviour
 
             if (IsValidGridPos())   // checks if the new position is valid
             {
-                UpdateGrid();                                   // updates the grid with the moved piece
-                FindObjectOfType<GameSFX>().MoveSideSFX();   // plays an SFX
+                UpdateGrid();                               // updates the grid with the moved piece
+                FindObjectOfType<GameSFX>().MoveSideSFX();  // plays an SFX
             }
             else
             {
@@ -152,24 +140,10 @@ public class Group : MonoBehaviour
             }
             else
             {
-                if (hasMoved)
-                {
-                    // It's not valid. revert.
-                    transform.position += new Vector3(0, 1, 0);
+                // It's not valid. revert.
+                transform.position += new Vector3(0, 1, 0);
 
-                    // Clear filled horizontal lines
-                    Playfield.DeleteFullRows();
-
-                    // Spawn next Group
-                    FindObjectOfType<Spawner>().SpawnNext();
-
-                    // Disable script
-                    enabled = false;
-                }
-                else
-                {
-                    TriggerGameOver();
-                }
+                StartCoroutine(LockingTimer());
             }
 
             lastFall = Time.time;
@@ -268,5 +242,28 @@ public class Group : MonoBehaviour
         Destroy(gameObject);
 
         FindObjectOfType<GameOver>().GameOverRoutine();
+    }
+
+    private IEnumerator LockingTimer()
+    {
+        yield return new WaitForSeconds(lockDelay);
+
+        if (hasMoved)
+        {
+            FindObjectOfType<GameSFX>().LockSFX();
+
+            // Clear filled horizontal lines
+            Playfield.DeleteFullRows();
+
+            // Spawn next Group
+            FindObjectOfType<Spawner>().SpawnNext();
+
+            // Disable script
+            enabled = false;
+        }
+        else
+        {
+            TriggerGameOver();
+        }
     }
 }

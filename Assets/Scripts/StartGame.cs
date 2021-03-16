@@ -55,7 +55,7 @@ public class StartGame : MonoBehaviour
     {
         DisableGameComponents();
 
-        _musicSource.volume = _tracksManager.audioController.sfx / 10;
+        _musicSource.volume = _tracksManager.audioController.music / 10;
 
         StartCoroutine(Countdown(time));
         started = true;
@@ -104,12 +104,14 @@ public class StartGame : MonoBehaviour
 
     public void GameOverRestart()
     {
+        _sfxSource.clip = null;
         StartCoroutine(RestartCountdown(time));
     }
 
     private IEnumerator RestartCountdown(int seconds)
     {
         int count = seconds;
+        _sfxSource.clip = countdownClip;
 
         do
         {

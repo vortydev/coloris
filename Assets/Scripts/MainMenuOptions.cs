@@ -37,7 +37,10 @@ public class MainMenuOptions : MonoBehaviour
     [Header("Game Options")]
     [SerializeField] Slider difficultyLevelSlider;
     [SerializeField] TextMeshProUGUI difficultyLevelText;
-    public int level;
+    [Range(0,3)] public int level;
+    [SerializeField] Slider lockDelaySlider;
+    [SerializeField] TextMeshProUGUI lockDelayValue;
+    [Range(0,5)] public int lockDelay; 
     [SerializeField] Toggle hardDropToggle;
     [SerializeField] Toggle scoreToggle;
     [SerializeField] Toggle nextPieceToggle;
@@ -49,6 +52,7 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Toggle rotateSfxToggle;
     [SerializeField] Toggle hardDropSfxToggle;
     [SerializeField] Toggle holdPieceSfxToggle;
+    [SerializeField] Toggle pieceLockingSfxToggle;
 
     [Header("Extras Options")]
     [SerializeField] Toggle flushedToggle;
@@ -103,6 +107,10 @@ public class MainMenuOptions : MonoBehaviour
 
         // load game options
         difficultyLevelSlider.value = level = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, 1);
+        UpdateDifficultyLevel(level);
+
+        lockDelaySlider.value = lockDelay = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.lockDelayKEY, 5);
+        UpdateLockDelay((int)lockDelaySlider.value);
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.hardDropKEY, 1) == 0)
         {
@@ -141,6 +149,10 @@ public class MainMenuOptions : MonoBehaviour
         {
             holdPieceSfxToggle.SetIsOnWithoutNotify(false);
         }
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.lockSfxKEY, 1) == 0)
+        {
+            pieceLockingSfxToggle.SetIsOnWithoutNotify(false);
+        }
 
         // load extras options
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.flushedKEY, 0) == 0)
@@ -177,6 +189,11 @@ public class MainMenuOptions : MonoBehaviour
     public void UpdateSliderDifficulty()
     {
         UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+    }
+
+    public void UpdateSliderLockDelay()
+    {
+        UpdateLockDelay((int)lockDelaySlider.value);
     }
 
     public void ToggleMenuSoundtrack()
@@ -255,6 +272,37 @@ public class MainMenuOptions : MonoBehaviour
         }
     }
 
+    private void UpdateLockDelay(int d)
+    {
+        if (lockDelay != d)
+        {
+            lockDelay = d;
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.lockDelayKEY, d);
+        }
+
+        switch (lockDelay)
+        {
+            case 0:
+                lockDelayValue.text = "0s";
+                break;
+            case 1:
+                lockDelayValue.text = "0.1s";
+                break;
+            case 2:
+                lockDelayValue.text = "0.2s";
+                break;
+            case 3:
+                lockDelayValue.text = "0.3s";
+                break;
+            case 4:
+                lockDelayValue.text = "0.4s";
+                break;
+            case 5:
+                lockDelayValue.text = "0.5s";
+                break;
+        }
+    }
+
     public void ToggleHardDrop()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
@@ -293,6 +341,11 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleHoldPieceSFX()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceSfxKEY);
+    }
+
+    public void TogglePieceLockingSFX()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.lockSfxKEY);
     }
 
     public void ToggleFlushed()

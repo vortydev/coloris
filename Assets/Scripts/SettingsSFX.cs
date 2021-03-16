@@ -18,6 +18,7 @@ public class SettingsSFX : MonoBehaviour
     [SerializeField] Toggle moveToggle;
     [SerializeField] Toggle rotateToggle;
     [SerializeField] Toggle hardDropToggle;
+    [SerializeField] Toggle pieceLockingToggle;
 
     [Header("UI")]
     [SerializeField] Toggle holdPieceToggle;
@@ -41,6 +42,12 @@ public class SettingsSFX : MonoBehaviour
         {
             hardDropToggle.SetIsOnWithoutNotify(false);
             sfxManager.canHardDrop = false;
+        }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.lockSfxKEY, 1) == 0)
+        {
+            pieceLockingToggle.SetIsOnWithoutNotify(false);
+            sfxManager.canLockPiece = false;
         }
 
         // UI SFX
@@ -73,5 +80,11 @@ public class SettingsSFX : MonoBehaviour
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceSfxKEY);
         sfxManager.canHoldPiece = !sfxManager.canHoldPiece;
+    }
+
+    public void TogglePieceLockingSFX()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.lockSfxKEY);
+        sfxManager.canLockPiece = !sfxManager.canLockPiece;
     }
 }

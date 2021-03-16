@@ -13,6 +13,7 @@ public class PlayerPrefsManager : MonoBehaviour
     // audio
     public static string musicKEY = "music";                    // float that controls the volume of the music
     public static string sfxKEY = "sfx";                        // float that controls the volume of the sfx
+    public static string menuSoundtrackKEY = "menuSoundtrack";  // "bool" int that enables music in the menus
 
     // visual
     public static string gridKEY = "gameGrid";                  // "bool" int that toggles the game grid
@@ -24,6 +25,8 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string highscoreKEY = "highscore";            // int of the player's highscore
     public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the next piece UI
     public static string holdPieceKEY = "holdPiece";            // "bool" int that toggles the piece holding mechanic
+    public static string lockDelayKEY = "lockDelay";            // int that controls the lock delay for pieces
+    public static string ghostPieceKEY = "ghostPiece";          // "bool" int that toggles the ghost piece mechanic
 
     // screenshake
     public static string screenshakeKEY = "screenshake";        // "bool" int that toggles the Screenshake.cs script
@@ -49,9 +52,6 @@ public class PlayerPrefsManager : MonoBehaviour
     // flushed https://discord.com/channels/279771993681952769/740271971694018682/814241565739843626
     public static string flushedKEY = "flushed";                // "bool" int that toggles this ridiculous gimmick
 
-    // menu soundtrack
-    public static string menuSoundtrackKEY = "menuSoundtrack";  // "bool" int that enables music in the menus
-
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float defaultVal)
     {
@@ -65,9 +65,9 @@ public class PlayerPrefsManager : MonoBehaviour
     }
 
     // Saves a float PlayerPref
-    public static void SaveFloatPlayerPref(string KEY, float defaultVal)
+    public static void SaveFloatPlayerPref(string KEY, float savedVal)
     {
-        PlayerPrefs.SetFloat(KEY, defaultVal);
+        PlayerPrefs.SetFloat(KEY, savedVal);
         PlayerPrefs.Save();
     }
 
@@ -84,9 +84,9 @@ public class PlayerPrefsManager : MonoBehaviour
     }
 
     // Saves an int PlayerPref 
-    public static void SaveIntPlayerPref(string KEY, int defaultVal)
+    public static void SaveIntPlayerPref(string KEY, int savedVal)
     {
-        PlayerPrefs.SetInt(KEY, defaultVal);
+        PlayerPrefs.SetInt(KEY, savedVal);
         PlayerPrefs.Save();
     }
 

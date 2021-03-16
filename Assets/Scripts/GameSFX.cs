@@ -34,6 +34,7 @@ public class GameSFX : MonoBehaviour
     public bool canRotate = true;
     public bool canHardDrop = true;
     public bool canHoldPiece = true;
+    public bool canLockPiece = true;
 
     private void Awake()
     {
@@ -94,7 +95,7 @@ public class GameSFX : MonoBehaviour
 
     public void LockSFX()
     {
-        PlayClip(locking);
+        PlayClip(locking, canLockPiece);
     }
 
     // UI SFX
