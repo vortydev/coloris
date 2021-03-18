@@ -33,7 +33,7 @@ public class Score : MonoBehaviour
     private void Start()
     {
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Lines cleared: 0", "Difficulty: " + GetDifficultyString(), "Coloris - Classic", FindObjectOfType<CanDo>().flushed);
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Lines cleared: 0", "Difficulty: " + GetDifficultyString(), "Coloris - Classic", FindObjectOfType<CanDo>().cellFace);
     }
 
     public void IncrementScore()
@@ -46,7 +46,7 @@ public class Score : MonoBehaviour
         scoreText.text = "Lines Cleared\n" + linesCleared;  // update score text
 
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Lines cleared: " + linesCleared.ToString(), "Difficulty: " + GetDifficultyString(), "Coloris - Classic", FindObjectOfType<CanDo>().flushed);
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Lines cleared: " + linesCleared.ToString(), "Difficulty: " + GetDifficultyString(), "Coloris - Classic", FindObjectOfType<CanDo>().cellFace);
 
         CleanupOldPieces(); // remove old piece clones
     }

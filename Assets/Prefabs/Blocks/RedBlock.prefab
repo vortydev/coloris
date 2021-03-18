@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1046385850307084693}
   - component: {fileID: 3630377355734216566}
   m_Layer: 0
-  m_Name: Flushed
+  m_Name: CellFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,15 +72,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aacbca43fb74d47499b1c8877bea225c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.24, y: 10.24}
+  m_Size: {x: 6.92, y: 8.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3630377355734216566
@@ -95,7 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6f243c09d45e142bdcc370e20f3913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flushed: {fileID: 0}
+  faces:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: aacbca43fb74d47499b1c8877bea225c, type: 3}
+  - {fileID: 21300000, guid: b1caa085201856c4e85417dd9c227996, type: 3}
+  - {fileID: 21300000, guid: 356e40c9503a09a46a9ecbbf707cd720, type: 3}
 --- !u!1 &7928193337562245156
 GameObject:
   m_ObjectHideFlags: 0

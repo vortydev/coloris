@@ -14,12 +14,12 @@ public class CanDo : MonoBehaviour
     public bool canHardDrop;    // indicates if Hard Dropping is enables
     public int lockDelay;
 
-    public bool flushed;        // indicates if the Flushed gimmick is enabled
+    public int cellFace;        // sets the blocks' face sprite
 
     private void Awake()
     {
         lockDelay = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.lockDelayKEY, 5);
-        flushed = PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY);
+        cellFace = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0);
     }
 
     public string GetLockDelayString()

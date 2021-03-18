@@ -55,7 +55,7 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Toggle pieceLockingSfxToggle;
 
     [Header("Extras Options")]
-    [SerializeField] Toggle flushedToggle;
+    [SerializeField] TMP_Dropdown cellFaceDropdown;
 
     private void Awake()
     {
@@ -155,10 +155,7 @@ public class MainMenuOptions : MonoBehaviour
         }
 
         // load extras options
-        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.flushedKEY, 0) == 0)
-        {
-            flushedToggle.SetIsOnWithoutNotify(false);
-        }
+        cellFaceDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
 
         gameObject.SetActive(false); // closes the page
     }
@@ -348,9 +345,9 @@ public class MainMenuOptions : MonoBehaviour
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.lockSfxKEY);
     }
 
-    public void ToggleFlushed()
+    public void UpdateCellFace()
     {
-        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.flushedKEY);
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.cellFaceKEY, cellFaceDropdown.value);
         FindObjectOfType<MainMenu>().MainMenuRichPresence();
     }
 }

@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour
     public void MainMenuRichPresence()
     {
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Staring at the stars", "", "Main Menu", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Staring at the stars", "", "Main Menu", PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
     }
 
     private void Pause(InputAction.CallbackContext obj)

@@ -103,11 +103,11 @@ public class ChillZoneManager : MonoBehaviour
         {
             if (currentTrack != null)
             {
-                FindObjectOfType<DiscordController>().UpdateRichPresence(("Playing: " + currentTrack.trackName), ("By: "+ currentTrack.authorName), "Chill Zone", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
+                FindObjectOfType<DiscordController>().UpdateRichPresence(("Playing: " + currentTrack.trackName), ("By: "+ currentTrack.authorName), "Chill Zone", PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
             }
             else
             {
-                FindObjectOfType<DiscordController>().UpdateRichPresence("Vibing in the Chill Zone", "", "Chill Zone", PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.flushedKEY));
+                FindObjectOfType<DiscordController>().UpdateRichPresence("Vibing in the Chill Zone", "", "Chill Zone", PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
             }
         }
     }

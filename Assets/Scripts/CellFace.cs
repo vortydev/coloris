@@ -8,10 +8,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flushed : MonoBehaviour
+public class CellFace : MonoBehaviour
 {
+    [SerializeField] Sprite[] faces;
+
     private void Start()
     {
-        gameObject.SetActive(FindObjectOfType<CanDo>().flushed);
+        GetComponent<SpriteRenderer>().sprite = faces[FindObjectOfType<CanDo>().cellFace];
     }
 }

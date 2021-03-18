@@ -59,12 +59,26 @@ public class DiscordController : MonoBehaviour
     }
 
     // Updates the rich presence's details and state (might expand on it later)
-    public void UpdateRichPresence(string detailsString, string stateString, string largeText, bool flushed = false)
+    public void UpdateRichPresence(string detailsString, string stateString, string largeText, int cellFace = 0)
     {
         string smallImage = null;
-        if (flushed)
+        string smallText = null;
+        switch (cellFace)
         {
-            smallImage = "flushed_block";
+            case 1: // flushed
+                smallImage = "flushed_block";
+                smallText = "Flushed";
+                break;
+
+            case 2: // weary
+                smallImage = "weary_block";
+                smallText = "Weary";
+                break;
+
+            case 3: // pensive
+                smallImage = "pensive_block";
+                smallText = "Pensive";
+                break;
         }
 
         var activityManager = discord.GetActivityManager();
@@ -77,7 +91,7 @@ public class DiscordController : MonoBehaviour
                 LargeImage = "game_thumbnail",
                 LargeText = largeText,
                 SmallImage = smallImage,
-                SmallText = "Flushed",
+                SmallText = smallText,
             },
         };
 
