@@ -7038,7 +7038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1687549960a50524382e01cdba9d1fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxSource: {fileID: 0}
   pauseMenu: {fileID: 2013547629}
   pauseButton: {fileID: 520680688}
   time: 3
@@ -13034,7 +13033,7 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1dbe4e43-d0ff-4ec3-8f0c-70e67381d4a1
     m_ActionName: Coloris/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Default
   m_DefaultActionMap: Coloris
   m_SplitScreenIndex: -1

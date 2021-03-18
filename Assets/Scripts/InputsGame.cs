@@ -17,6 +17,38 @@ public class InputsGame : MonoBehaviour
     {
         // create a new instance of the input actions before everything else
         _actions = new MyControls();
+        LoadLoadouts(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.keyboardLoadoutKEY, 0));
+    }
+
+    private void LoadLoadouts(int loadout)
+    {
+        string keybControls = "Default";
+        //string gamepadControls = "Gamepad";
+
+        switch (loadout)
+        {
+            case 0:
+                keybControls = "Default";
+                break;
+            case 1:
+                keybControls = "Vim";
+                break;
+            case 2:
+                keybControls = "Gamer";
+                break;
+            case 3:
+                keybControls = "Numpad";
+                break;
+        }
+
+        if (Gamepad.all.Count > 0 && PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gamepadLoadoutKEY, 1) > 1)
+        {
+            _actions.bindingMask = InputBinding.MaskByGroups(keybControls, "Gamepad");
+        }
+        else
+        {
+            _actions.bindingMask = InputBinding.MaskByGroup(keybControls);
+        }
     }
 
     private void OnEnable()

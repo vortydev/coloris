@@ -65,44 +65,22 @@
             "bindings": [
                 {
                     "name": "",
+                    "id": "fab095b4-954e-491d-8024-be0bddf24d8b",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default;Vim",
+                    "action": "Rotate Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8e2b61b4-0ae9-4d6d-bb28-5c0070e54356",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",
-                    "action": "Rotate Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fab095b4-954e-491d-8024-be0bddf24d8b",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Default",
-                    "action": "Rotate Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b168aa77-3053-43a4-bb53-49c634feae6d",
-                    "path": "<Keyboard>/numpad3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
-                    "action": "Rotate Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f53ac094-7301-416a-abd1-a7b35da85b8b",
-                    "path": "<Keyboard>/numpad7",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
                     "action": "Rotate Left",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -135,7 +113,7 @@
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Default",
+                    "groups": "Default;Vim",
                     "action": "Rotate Right",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -158,39 +136,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamer",
-                    "action": "Rotate Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6d6e0c7a-64a3-4ad8-8797-423b08012b69",
-                    "path": "<Keyboard>/numpad1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
-                    "action": "Rotate Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "99810f2c-a93a-45a0-8de8-56c075baa159",
-                    "path": "<Keyboard>/numpad5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
-                    "action": "Rotate Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5c4c5382-32c5-447f-b23c-2c8415c74c1b",
-                    "path": "<Keyboard>/numpad9",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
                     "action": "Rotate Right",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -241,17 +186,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2415d01e-0f4b-4984-8cab-77181bb5716f",
-                    "path": "<Keyboard>/numpad2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
-                    "action": "Soft Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4a9c0a5f-3882-4d62-ba04-fbff21de60cd",
                     "path": "<Gamepad>/dpad/down",
                     "interactions": "",
@@ -274,23 +208,23 @@
                 },
                 {
                     "name": "",
-                    "id": "4ebe455a-7975-460e-9ff9-438a755b692b",
-                    "path": "<Keyboard>/numpad8",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
-                    "action": "Hard Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "90ce1a1b-ab36-4582-b009-c901d9b09280",
                     "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Hard Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a96a5d64-38ba-4125-9c6c-e7097facef6c",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default;Vim",
+                    "action": "Hold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -318,44 +252,11 @@
                 },
                 {
                     "name": "",
-                    "id": "8be18a27-3679-466e-b48d-ea9d80b8c57b",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a96a5d64-38ba-4125-9c6c-e7097facef6c",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Default;Vim",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "07bda50d-db33-4065-be5d-41a84ab24887",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamer",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "299fb535-9f41-4e19-b830-08c849c44fed",
-                    "path": "<Keyboard>/numpad0",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
                     "action": "Hold",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -377,18 +278,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Default;Vim;Gamer;Numpad",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "77f705f0-1e52-4183-9a2a-110861a9be61",
-                    "path": "<Keyboard>/f1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Default;Vim;Gamer;Numpad",
+                    "groups": "Default;Vim;Gamer",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -515,28 +405,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "4ad1f836-90e1-497b-94b2-019327ff2d07",
-                    "path": "<Keyboard>/numpad4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "e962533c-6f11-4874-9f4a-fc7471185f92",
-                    "path": "<Keyboard>/numpad6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Numpad",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "D-Pad",
                     "id": "eb21d887-dd10-4cff-bc17-2739dc305a94",
                     "path": "1DAxis",
@@ -598,17 +466,6 @@
         {
             "name": "Gamer",
             "bindingGroup": "Gamer",
-            "devices": [
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Numpad",
-            "bindingGroup": "Numpad",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
