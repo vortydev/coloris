@@ -561,7 +561,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 752411851}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.742241
+  m_Size: 0.7030421
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5150,6 +5150,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c30af2bd166f334d8b14cfce43df99c, type: 2}
   - {fileID: 11400000, guid: d923a1b9815607d4c993c68c0030f037, type: 2}
   - {fileID: 11400000, guid: 1c834de4fb0e2e848aa6b0126badf4e9, type: 2}
+  - {fileID: 11400000, guid: 664d74de9eb206341bbe5364da9e2a75, type: 2}
 --- !u!1 &806869311
 GameObject:
   m_ObjectHideFlags: 0
@@ -8025,6 +8026,8 @@ MonoBehaviour:
 
     Alex "Nuketown"
     Renard
+
+    Eric Midford
 
     Pinto'
   m_isRightToLeft: 0
@@ -12465,7 +12468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f943ebf8464f14b90ed931d3bfca92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundtrack: {fileID: 0}
+  soundtrack: {fileID: 8300000, guid: 0019a1131e1d1a0439be52337b1b9e73, type: 3}
   toggled: 1
   fadeDuration: 3
 --- !u!1 &1577417365

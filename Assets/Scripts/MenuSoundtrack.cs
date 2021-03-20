@@ -9,6 +9,7 @@ public class MenuSoundtrack : MonoBehaviour
     [SerializeField] AudioClip soundtrack;
     public bool toggled;
     [SerializeField] float fadeDuration = 1f;
+    private bool _playing;
 
     private void Awake()
     {
@@ -19,8 +20,10 @@ public class MenuSoundtrack : MonoBehaviour
 
     public void StartSoundtrack()
     {
-        if (toggled)
+        if (toggled && !_playing)
         {
+            _playing = true;
+
             _musicSource.clip = soundtrack;
             _musicSource.loop = true;
             _musicSource.Play();
@@ -45,6 +48,8 @@ public class MenuSoundtrack : MonoBehaviour
 
     public void StopSoundtrack()
     {
+        _playing = false;
+
         _musicSource.loop = false;
         _musicSource.clip = null;
         _musicSource.Stop();
