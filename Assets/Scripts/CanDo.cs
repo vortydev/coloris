@@ -1,7 +1,7 @@
 /*
  * File:        CanDo.cs
  * Author:      Étienne Ménard
- * Description: Simple little container for some global bools I don't want to bother reading from disk all the time.
+ * Description: Simple little container for some global bools, I don't want to bother reading from disk all the time.
  */
 
 using System.Collections;
@@ -10,10 +10,11 @@ using UnityEngine;
 
 public class CanDo : MonoBehaviour
 {
-    public bool canHold;        // indicates if Piece Holding is enabled
-    public bool canHardDrop;    // indicates if Hard Dropping is enables
-    public bool canGhost;       
-    public int lockDelay;
+    public bool canHold;        // pieces can be held
+    public bool canHardDrop;    // pieces can be hard dropped
+    public bool canGhost;       // pieces can spawn a ghost
+
+    public int lockDelay;       // delay before the piece locks in place
 
     public int cellFace;        // sets the blocks' face sprite
 

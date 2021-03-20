@@ -10,32 +10,31 @@ using UnityEngine;
 
 public class Group : MonoBehaviour
 {
-    public int pieceId;             // id of the piece
-    public bool beenSwapped;        // has the piece been already swapped
+    public int pieceId;         // id of the piece
+    public bool beenSwapped;    // has the piece been already swapped
+    private bool _paused;       // is the game paused
 
-    private bool paused;            // is the game paused
+    private float _localDifficulty;  // value that affects the time it takes for the piece to fall
+    private float _lockDelay;        // value that affects the time it takes for a piece to lock
 
-    private float lastFall = 0;     // time since the last drop
-    private bool isMoveable = true; // can the piece be moved
-    private bool hasMoved = false;  // has the piece moved  
+    private float _lastFall = 0;            // time since the last drop
+    private bool _isMoveable = true;        // can the piece be moved
+    private bool _hasMoved = false;         // has the piece moved  
+    private bool _allowedHardDrop = false;  // little buffer thing to prevent spam hard drop
 
-    private float localDifficulty;  // value that affects the time it takes for the piece to fall
-    private float lockDelay;        // value that affects the time it takes for a piece to lock
-
-    [Header("Can Do")]
-    private CanDo perms;
-    private bool canHold;           // can the piece be held
-    private bool canHardDrop;       // can the piece be hard dropped
-    private bool canGhost;          // is the ghost pece mechanic enabled
+    private CanDo _perms;           // file the piece reads its permissions from
+    private bool _canHold;          // can the piece be held
+    private bool _canHardDrop;      // can the piece be hard dropped
+    private bool _canGhost;         // is the ghost piece mechanic enabled
 
     [SerializeField] GameObject ghost;
 
     private void Start()
     {
-        perms = FindObjectOfType<CanDo>();
+        _perms = FindObjectOfType<CanDo>();
 
-        localDifficulty = FindObjectOfType<Score>().globalDifficulty;   // loads the current difficulty
-        lockDelay = perms.lockDelay / 10;                               // loads locking delay
+        _localDifficulty = FindObjectOfType<Score>().globalDifficulty;   // loads the current difficulty
+        _lockDelay = _perms.lockDelay / 10;                               // loads locking delay
 
         // Default position not valid? Then it's game over
         if (!IsValidGridPos())
@@ -48,14 +47,14 @@ public class Group : MonoBehaviour
 
     private void Update()
     {
-        paused = FindObjectOfType<PauseMenu>().gamePaused;
-        canHold = perms.canHold;
-        canHardDrop = perms.canHardDrop;
+        _paused = FindObjectOfType<PauseMenu>().gamePaused;
+        _canHold = _perms.canHold;
+        
         //canGhost = perms.canGhost;
 
-        if (isMoveable && !paused)
+        if (_isMoveable && !_paused)
         {
-            if (Time.time - lastFall >= 1 - (localDifficulty / 10))
+            if (Time.time - _lastFall >= 1 - (_localDifficulty / 10))
             {
                 // Modify position
                 transform.position += new Vector3(0, -1, 0);
@@ -75,7 +74,7 @@ public class Group : MonoBehaviour
                     StartCoroutine(LockingTimer());
                 }
 
-                lastFall = Time.time;
+                _lastFall = Time.time;
             }
         }   
     }
@@ -83,7 +82,7 @@ public class Group : MonoBehaviour
     // move the piece
     public void OnMove(int direction)
     {
-        if (isMoveable && !paused)  // if the piece can move and the game isn't paused
+        if (_isMoveable && !_paused)  // if the piece can move and the game isn't paused
         {   
             transform.position += new Vector3(direction, 0, 0);    // move the piece left
 
@@ -103,7 +102,7 @@ public class Group : MonoBehaviour
 
     public void OnRotateRight()
     {
-        if (isMoveable && !paused)
+        if (_isMoveable && !_paused)
         {
             if (gameObject.tag == "SquarePiece") return;    // pointless to rotate the O piece
 
@@ -123,7 +122,7 @@ public class Group : MonoBehaviour
 
     public void OnRotateLeft()
     {
-        if (isMoveable && !paused)
+        if (_isMoveable && !_paused)
         {
             if (gameObject.tag == "SquarePiece") return;
 
@@ -143,7 +142,7 @@ public class Group : MonoBehaviour
 
     public void OnSoftDrop()
     {
-        if (isMoveable && !paused)
+        if (_isMoveable && !_paused)
         {
             // Modify position
             transform.position += new Vector3(0, -1, 0);
@@ -163,15 +162,17 @@ public class Group : MonoBehaviour
                 StartCoroutine(LockingTimer());
             }
 
-            lastFall = Time.time;
+            _lastFall = Time.time;
         }
     }
 
     public void OnHardDrop()
     {
-        if (canHardDrop && isMoveable && !paused)
+        _canHardDrop = _perms.canHardDrop;
+
+        if (_canHardDrop && _allowedHardDrop && _isMoveable && !_paused)
         {
-            isMoveable = false; // locks the piece
+            _isMoveable = false; // locks the piece's movement
 
             FindObjectOfType<GameSFX>().HardDropSFX();
 
@@ -200,7 +201,7 @@ public class Group : MonoBehaviour
 
     public void OnHold()
     {
-        if (!beenSwapped && canHold && isMoveable && !paused) // hold piece
+        if (!beenSwapped && _canHold && _isMoveable && !_paused) // hold piece
         {
             FindObjectOfType<HoldPiece>().HoldCurrentPiece(gameObject);
         }
@@ -245,14 +246,15 @@ public class Group : MonoBehaviour
 
     public void ResetFallCounter()
     {
-        lastFall = Time.time;
+        _lastFall = Time.time;
     }
 
     private void HasMoved()
     {
-        if (!hasMoved)
+        if (!_hasMoved)
         {
-            hasMoved = true;
+            _hasMoved = true;
+            _allowedHardDrop = true;
         }
     }
 
@@ -265,11 +267,11 @@ public class Group : MonoBehaviour
 
     private IEnumerator LockingTimer()
     {
-        yield return new WaitForSeconds(lockDelay);
+        yield return new WaitForSeconds(_lockDelay);
 
         DestroyGhost();
 
-        if (hasMoved)
+        if (_hasMoved)
         {
             FindObjectOfType<GameSFX>().LockSFX();
 
@@ -290,9 +292,9 @@ public class Group : MonoBehaviour
 
     public void SpawnGhost()
     {
-        canGhost = perms.canGhost;
+        _canGhost = _perms.canGhost;
 
-        if (canGhost)
+        if (_canGhost)
         {
             ghost = Instantiate(FindObjectOfType<Spawner>().ghostPieces[pieceId - 1], transform.position, Quaternion.identity);
             ghost.name = "Ghost";
