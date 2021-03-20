@@ -36,9 +36,8 @@ public class SettingsGame : MonoBehaviour
     [SerializeField] GameObject holdPieceUI;
     [SerializeField] Toggle holdPieceToggle;
 
-    //[Header("Ghost Piece")]
-    //[SerializeField] GameObject ghostPieceUI;
-    //[SerializeField] Toggle ghostPieceToggle;
+    [Header("Ghost Piece")]
+    [SerializeField] Toggle ghostPieceToggle;
 
     private void Awake()
     {
@@ -65,6 +64,12 @@ public class SettingsGame : MonoBehaviour
         {
             canDo.canHardDrop = false;
             hardDropToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.ghostPieceKEY, 1) == 0)
+        {
+            canDo.canGhost = false;
+            ghostPieceToggle.SetIsOnWithoutNotify(false);
         }
     }
 
@@ -128,5 +133,11 @@ public class SettingsGame : MonoBehaviour
     {
         canDo.canHardDrop = !canDo.canHardDrop;
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
+    }
+
+    public void ToggleGhostPiece()
+    {
+        canDo.ToggleCanGhost();
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.ghostPieceKEY);
     }
 }

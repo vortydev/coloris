@@ -7661,7 +7661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textSpeed: 0
   typingDelay: 0.05
-  eraseDelay: 0.025
   dynamicText: 0
 --- !u!114 &3137315491391381233
 MonoBehaviour:

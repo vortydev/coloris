@@ -11,44 +11,43 @@ using UnityEngine;
 public class PlayerPrefsManager : MonoBehaviour
 {
     // audio
-    public static string musicKEY = "music";                    // float that controls the volume of the music
-    public static string sfxKEY = "sfx";                        // float that controls the volume of the sfx
-    public static string menuSoundtrackKEY = "menuSoundtrack";  // "bool" int that enables music in the menus
+    public static string musicKEY = "music";                        // float that controls the volume of the music
+    public static string sfxKEY = "sfx";                            // float that controls the volume of the sfx
+    public static string menuSoundtrackKEY = "menuSoundtrack";      // "bool" int that enables music in the menus
 
     // sfx
-    public static string moveSfxKEY = "moveSFX";                // "bool" int that enables the SFX triggered by moving
-    public static string rotateSfxKEY = "rotateSFX";            // "bool" int that enables the SFX triggered by rotating
-    public static string hardDropSfxKEY = "hardDropSFX";        // "bool" int that enables the SFX triggered by hard dropping
-    public static string holdPieceSfxKEY = "holdPieceSFX";      // "bool" int that enables the SFX triggered by holding a piece
-    public static string lockSfxKEY = "lockSFX";                // "bool" int that enables the SFX triggered by locking 
+    public static string moveSfxKEY = "moveSFX";                    // "bool" int that enables the SFX triggered by moving
+    public static string rotateSfxKEY = "rotateSFX";                // "bool" int that enables the SFX triggered by rotating
+    public static string hardDropSfxKEY = "hardDropSFX";            // "bool" int that enables the SFX triggered by hard dropping
+    public static string holdPieceSfxKEY = "holdPieceSFX";          // "bool" int that enables the SFX triggered by holding a piece
+    public static string lockSfxKEY = "lockSFX";                    // "bool" int that enables the SFX triggered by locking 
 
     // visual
-    public static string gridKEY = "gameGrid";                  // "bool" int that toggles the game grid
-    public static string visualiserKEY = "visualiser";          // "bool" int that toggles the audio visualiser
-    public static string dynamicTextKEY = "dynamicText";        // "bool" int that tells the type writer if the text is dynamic or not
-    public static string textSpeedKEY = "textSpeed";            // int holding the typing speed (1: slow, 2: default, 3: fast)
+    public static string gridKEY = "gameGrid";                      // "bool" int that toggles the game grid
+    public static string visualiserKEY = "visualiser";              // "bool" int that toggles the audio visualiser
+    public static string dynamicTextKEY = "dynamicText";            // "bool" int that tells the type writer if the text is dynamic or not
+    public static string textSpeedKEY = "textSpeed";                // int holding the typing speed (1: slow, 2: default, 3: fast)
 
     // screenshake
-    public static string screenshakeKEY = "screenshake";        // "bool" int that toggles the Screenshake.cs script
-    public static string shakeMagnitudeKEY = "shakeMagnitude";  // float that controls the intensity of the screenshake
+    public static string screenshakeKEY = "screenshake";            // "bool" int that toggles the Screenshake.cs script
+    public static string shakeMagnitudeKEY = "shakeMagnitude";      // float that controls the intensity of the screenshake
 
     // game
-    public static string scoreKEY = "score";                    // "bool" int that toggles the score UI
-    public static string highscoreKEY = "highscore";            // int of the player's highscore
-    public static string difficultyLevelKEY = "difficultyLevel";// int of the difficulty level (0: easy, 1: normal, 2: hard, 3: insane)
-    public static string lockDelayKEY = "lockDelay";            // int that controls the lock delay for pieces
-    public static string hardDropKEY = "hardDrop";              // "bool" int that allows hard dropping
-    public static string nextPieceKEY = "nextPiece";            // "bool" int that toggles the next piece UI
-    public static string holdPieceKEY = "holdPiece";            // "bool" int that toggles the piece holding mechanic
-    public static string ghostPieceKEY = "ghostPiece";          // "bool" int that toggles the ghost piece mechanic
+    public static string firstPlayKEY = "firstPlay";                // "bool" int that tells if it's the player's first playthrough
+    public static string scoreKEY = "score";                        // "bool" int that toggles the score UI
+    public static string highscoreKEY = "highscore";                // int of the player's highscore
 
-    public static string keyboardLoadoutKEY = "keyboardLoadout";                // int for the selected keybind loadout (0: default, 1: vim, 2: gamer)
-    public static string gamepadLoadoutKEY = "gamepadLoadout";                // int for the selected gamepad loadout (0: off, 1: default)
+    public static string difficultyLevelKEY = "difficultyLevel";    // int of the difficulty level (0: easy, 1: normal, 2: hard, 3: insane)
+    public static string lockDelayKEY = "lockDelay";                // int that controls the lock delay for pieces
+    public static string hardDropKEY = "hardDrop";                  // "bool" int that allows hard dropping
+    public static string nextPieceKEY = "nextPiece";                // "bool" int that toggles the next piece UI
+    public static string holdPieceKEY = "holdPiece";                // "bool" int that toggles the piece holding mechanic
+    public static string ghostPieceKEY = "ghostPiece";              // "bool" int that toggles the ghost piece mechanic
 
-    // first play
-    public static string firstPlayKEY = "firstPlay";            // "bool" int that tells if it's the player's first playthrough
+    public static string keyboardLoadoutKEY = "keyboardLoadout";    // int for the selected keybind loadout (0: default, 1: vim, 2: gamer)
+    public static string gamepadLoadoutKEY = "gamepadLoadout";      // int for the selected gamepad loadout (0: off, 1: default)
 
-    // flushed https://discord.com/channels/279771993681952769/740271971694018682/814241565739843626
+    // extras
     public static string cellFaceKEY = "cellFace";                // int that toggles emoji faces on cells (0: disabled, 1: flushed, 2: weary, 3: pensive)
 
     // Returns a float PlayerPref and creates it if it doesn't exist

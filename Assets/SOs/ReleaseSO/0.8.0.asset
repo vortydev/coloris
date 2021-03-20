@@ -18,6 +18,7 @@ MonoBehaviour:
     and optimisation, as well as useful game mechanics. Not to mention new sick beats!
   newTracks:
   - NIGHTS by Alex "Nuketown" Renard
+  - Astral by Eric Midford
   changes:
   - SFX toggles in Options now play their associated sound.
   - Migrated to Unity's new input system.
@@ -30,5 +31,6 @@ MonoBehaviour:
   - Added keybind options to select keyboard loadouts and enable/disable using a
     gamepad.
   - Expanded the cell face feature. Introducing weary and pensive faces. Heck yeah.
+  - Implemented the ghost piece mechnic. A little preview of what's to come.
   bugfixes:
   - 007 - Typed text would overlap and glitch.

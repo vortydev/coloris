@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] NextPiece nextPiece;   // script that handles displaying the next piece
     public GameObject[] refPieces;          // array of reference pieces that are cloned into bags
+    public GameObject[] ghostPieces;        // array of ghost pieces
 
     [SerializeField] GameObject[] bag1, bag2;   // 2 seperate arrays of the 7 pieces in a random order
     private GameObject _lastPiece;              // last piece of the bag kept in memory
@@ -34,9 +35,14 @@ public class Spawner : MonoBehaviour
     {
         // spawns a piece at the spawner's position
         if (selectedBag == 0)
-            Instantiate(bag1[_bagInd], transform.position, Quaternion.identity);
+        {
+            GameObject newPiece = Instantiate(bag1[_bagInd], transform.position, Quaternion.identity);  // instantiates the new piece
+            newPiece.name = bag1[_bagInd].name;                                                         // names the new GameObject for inner job
+        }
         else
+        {
             Instantiate(bag2[_bagInd], transform.position, Quaternion.identity);
+        }
 
         nextPiece.DisplayNextPiece();
 

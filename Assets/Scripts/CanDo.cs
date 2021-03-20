@@ -12,6 +12,7 @@ public class CanDo : MonoBehaviour
 {
     public bool canHold;        // indicates if Piece Holding is enabled
     public bool canHardDrop;    // indicates if Hard Dropping is enables
+    public bool canGhost;       
     public int lockDelay;
 
     public int cellFace;        // sets the blocks' face sprite
@@ -41,5 +42,19 @@ public class CanDo : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void ToggleCanGhost()
+    {
+        canGhost = !canGhost;
+
+        if (canGhost)
+        {
+            FindObjectOfType<Group>().SpawnGhost();
+        }
+        else
+        {
+            FindObjectOfType<Group>().DestroyGhost();
+        }
     }
 }

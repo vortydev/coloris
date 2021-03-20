@@ -45,7 +45,7 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Toggle scoreToggle;
     [SerializeField] Toggle nextPieceToggle;
     [SerializeField] Toggle holdPieceToggle;
-    //[SerializeField] Toggle ghostPieceToggle;
+    [SerializeField] Toggle ghostPieceToggle;
 
     [Header("SFX Options")]
     [SerializeField] Toggle moveSfxToggle;
@@ -130,6 +130,11 @@ public class MainMenuOptions : MonoBehaviour
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceKEY, 1) == 0)
         {
             holdPieceToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.ghostPieceKEY, 1) == 0)
+        {
+            ghostPieceToggle.SetIsOnWithoutNotify(false);
         }
 
         // load sfx options
@@ -318,6 +323,11 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleHoldPiece()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
+    }
+
+    public void ToggleGhostPiece()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.ghostPieceKEY);
     }
 
     public void ToggleMoveSFX()
