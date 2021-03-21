@@ -14,7 +14,7 @@ public class SettingsGame : MonoBehaviour
 {
     [Header("Difficulty")]
     [SerializeField] Score score;
-    [SerializeField] Slider difficultyLevelSlider;
+    [SerializeField] TMP_Dropdown difficultyDropdown;
 
     [Header("Lock Delay")]
     [SerializeField] Slider lockDelaySlider;
@@ -75,14 +75,9 @@ public class SettingsGame : MonoBehaviour
 
     private void Start()
     {
-        difficultyLevelSlider.value = score.difficultyLevel;
+        difficultyDropdown.value = score.difficultyLevel;
         lockDelaySlider.value = canDo.lockDelay;
         UpdateSliderLockDelay();
-    }
-
-    public void UpdateSliderDifficulty()
-    {
-        score.UpdateDifficultyLevel((int)difficultyLevelSlider.value);
     }
 
     private void UpdateSliderLockDelay()

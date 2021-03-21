@@ -19,7 +19,7 @@ MonoBehaviour:
   newTracks:
   - NIGHTS by Alex "Nuketown" Renard
   - Astral by Eric Midford
-  - Coloris.20 by Pinto (menu track)
+  - Tokyo Dreams by Pinto (menu track)
   changes:
   - SFX toggles in Options now play their associated sound.
   - Migrated to Unity's new input system.

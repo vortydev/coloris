@@ -37,13 +37,13 @@ public class TypeWriter : MonoBehaviour
     {
         switch (speed)
         {
-            case 1:
+            case 0:
                 typingDelay = 0.075f;
                 break;
-            case 2:
+            case 1:
                 typingDelay = 0.05f;
                 break;
-            case 3:
+            case 2:
                 typingDelay = 0.025f;
                 break;
         }
