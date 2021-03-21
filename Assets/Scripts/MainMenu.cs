@@ -1,33 +1,75 @@
+/*
+ * File:        MainMenu.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the base of the main menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private MyControls _actions;
+
     [SerializeField] GameObject mainButtons;
     [SerializeField] GameObject popupBox;
-    [SerializeField] GameObject options;
-    [SerializeField] GameObject credits;
     [SerializeField] GameObject firstPlay;
+    [SerializeField] GameObject[] menuPages;
 
     private void Awake()
     {
-        popupBox.SetActive(false);
-        //options.SetActive(false);
-        credits.SetActive(false);
-        firstPlay.SetActive(false);
+        _actions = new MyControls();
+        FindObjectOfType<UISFX>().LoadUIElements();
+    }
+
+    private void OnEnable()
+    {
+        // enable the input
+        _actions.Enable();
+
+        // pause
+        _actions.Coloris.Pause.performed += Pause;
+    }
+
+    private void OnDisable()
+    {
+        // enable the input
+        _actions.Disable();
+
+        // pause
+        _actions.Coloris.Pause.performed -= Pause;
     }
 
     private void Start()
     {
-        if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Staring at the stars", "In Main Menu");
+        popupBox.SetActive(false);
+        firstPlay.SetActive(false);
+
+        for (int i = 1; i < menuPages.Length; i++)
+        {
+            menuPages[i].SetActive(false);
+        }
+
+        if (FindObjectOfType<MenuSoundtrack>().toggled)
+        {
+            FindObjectOfType<MenuSoundtrack>().StartSoundtrack();
+        }
+
+        MainMenuRichPresence();     // updates Discord Rich Presence
     }
 
-    private void Update()
+    public void MainMenuRichPresence()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !mainButtons.activeSelf)
+        if (FindObjectOfType<DiscordController>() != null)
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Staring at the stars", "", "Main Menu", PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
+    }
+
+    private void Pause(InputAction.CallbackContext obj)
+    {
+        if (!mainButtons.activeSelf)
         {
             ClosePopup();
         }
@@ -40,11 +82,13 @@ public class MainMenu : MonoBehaviour
 
     public void PlayColoris()
     {
+        FindObjectOfType<MenuSoundtrack>().StopSoundtrack();
         SceneManager.LoadScene(2); // Loads Coloris
     }
 
     public void OpenChillZone()
     {
+        FindObjectOfType<MenuSoundtrack>().StopSoundtrack();
         SceneManager.LoadScene(3);  // loads the Chill Zone
     }
 
@@ -62,8 +106,14 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void OnClickCredits()
+    {
+        FindObjectOfType<UISFX>().TetrisSFX();
+    }
+
     public void QuitGame()
     {
+        FindObjectOfType<UISFX>().HardDropSFX();
         Application.Quit();
     }
 
@@ -71,8 +121,16 @@ public class MainMenu : MonoBehaviour
     {
         mainButtons.SetActive(true);
         popupBox.SetActive(false);
-        options.SetActive(false);
-        credits.SetActive(false);
+        
+        for (int i = 0; i < menuPages.Length - 1; i++)
+        {
+            if (menuPages[i].activeSelf)
+            {
+                menuPages[i].SetActive(false);
+            }
+        }
+
+        FindObjectOfType<UISFX>().OnButtonClick();
     }
 
     public void BackButton()

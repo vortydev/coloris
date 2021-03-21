@@ -1,6 +1,13 @@
+/*
+ * File:        TutorialsManager.cs
+ * Author:      Étienne Ménard
+ * Description: Manages the tutorials and the more general stuff of the scene.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -23,6 +30,19 @@ public class TutorialsManager : MonoBehaviour
     [SerializeField] string[] introTrans;
     [SerializeField] string[] contTrans;
 
+    [Header("Audio")]
+    private AudioController _audioController;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] TextMeshProUGUI musicVal;
+    [SerializeField] Slider sfxSlider;
+    [SerializeField] TextMeshProUGUI sfxVal;
+
+    private void Awake()
+    {
+        _audioController = FindObjectOfType<AudioController>();
+        FindObjectOfType<UISFX>().LoadUIElements();
+    }
+
     private void Start()
     {
         introPage.SetActive(false);
@@ -30,8 +50,11 @@ public class TutorialsManager : MonoBehaviour
 
         radio.TypeText(radioText, mainPageTrans[Random.Range(0, mainPageTrans.Length)]);
 
+        musicSlider.value = _audioController.music;
+        sfxSlider.value = _audioController.sfx;
+
         if (FindObjectOfType<DiscordController>() != null)
-            FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "In Tutorials");
+            FindObjectOfType<DiscordController>().UpdateRichPresence("Learning the ropes", "", "Tutorials", PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
     }
 
     public void BackToMain()
@@ -80,6 +103,18 @@ public class TutorialsManager : MonoBehaviour
     public void PlayControls(int ind)
     {
         radio.TypeControlsText(radioText, contTrans[ind - 1]);
+    }
+
+    public void UpdateSliderMusic()
+    {
+        _audioController.UpdateMusic(musicSlider.value);
+        musicVal.text = musicSlider.value.ToString();
+    }
+
+    public void UpdateSliderSfx()
+    {
+        _audioController.UpdateSfx(sfxSlider.value);
+        sfxVal.text = sfxSlider.value.ToString();
     }
 
     public void MainMenu()

@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * File:        Playfield.cs
+ * Author:      Étienne Ménard
+ * Description: Takes care of the grid and row deletion.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +21,7 @@ public class Playfield : MonoBehaviour
                            Mathf.Round(v.y));
     }
 
-    //Checks if the group is inside the border
+    // Checks if the group is inside the border
     public static bool InsideBorder(Vector2 pos)
     {
         return (int)pos.x >= 0 &&(int)pos.x < w && (int)pos.y >= 0;
@@ -84,11 +90,11 @@ public class Playfield : MonoBehaviour
 
         if (lines >= 1 && lines < 4)
         {
-            FindObjectOfType<SFXManager>().ClearSFX();
+            FindObjectOfType<GameSFX>().ClearSFX();
         }
         else if (lines >= 4)
         {
-            FindObjectOfType<SFXManager>().TetrisSFX();
+            FindObjectOfType<GameSFX>().TetrisSFX();
         }
 
         FindObjectOfType<Screenshake>().TriggerScreenshake(lines);

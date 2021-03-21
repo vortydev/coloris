@@ -1,13 +1,24 @@
+/*
+ * File:        SettingsGame.cs
+ * Author:      Étienne Ménard
+ * Description: In-game game options.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsGame : MonoBehaviour
 {
     [Header("Difficulty")]
     [SerializeField] Score score;
     [SerializeField] Slider difficultyLevelSlider;
+
+    [Header("Lock Delay")]
+    [SerializeField] Slider lockDelaySlider;
+    [SerializeField] TextMeshProUGUI lockDelayValue;
 
     [Header("Hard Dropping")]
     [SerializeField] CanDo canDo;
@@ -25,9 +36,8 @@ public class SettingsGame : MonoBehaviour
     [SerializeField] GameObject holdPieceUI;
     [SerializeField] Toggle holdPieceToggle;
 
-    //[Header("Ghost Piece")]
-    //[SerializeField] GameObject ghostPieceUI;
-    //[SerializeField] Toggle ghostPieceToggle;
+    [Header("Ghost Piece")]
+    [SerializeField] Toggle ghostPieceToggle;
 
     private void Awake()
     {
@@ -55,16 +65,49 @@ public class SettingsGame : MonoBehaviour
             canDo.canHardDrop = false;
             hardDropToggle.SetIsOnWithoutNotify(false);
         }
+
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.ghostPieceKEY, 1) == 0)
+        {
+            canDo.canGhost = false;
+            ghostPieceToggle.SetIsOnWithoutNotify(false);
+        }
     }
 
     private void Start()
     {
         difficultyLevelSlider.value = score.difficultyLevel;
+        lockDelaySlider.value = canDo.lockDelay;
+        UpdateSliderLockDelay();
     }
 
     public void UpdateSliderDifficulty()
     {
         score.UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+    }
+
+    private void UpdateSliderLockDelay()
+    {
+        switch (canDo.lockDelay)
+        {
+            case 0:
+                lockDelayValue.text = "0s";
+                break;
+            case 1:
+                lockDelayValue.text = "0.1s";
+                break;
+            case 2:
+                lockDelayValue.text = "0.2s";
+                break;
+            case 3:
+                lockDelayValue.text = "0.3s";
+                break;
+            case 4:
+                lockDelayValue.text = "0.4s";
+                break;
+            case 5:
+                lockDelayValue.text = "0.5s";
+                break;
+        }
     }
 
     public void ToggleScore()
@@ -90,5 +133,11 @@ public class SettingsGame : MonoBehaviour
     {
         canDo.canHardDrop = !canDo.canHardDrop;
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
+    }
+
+    public void ToggleGhostPiece()
+    {
+        canDo.ToggleCanGhost();
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.ghostPieceKEY);
     }
 }

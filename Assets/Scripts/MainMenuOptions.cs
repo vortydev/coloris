@@ -1,3 +1,9 @@
+/*
+ * File:        MainMenuOptions.cs
+ * Author:      Étienne Ménard
+ * Description: Handles all the options in the main menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +13,12 @@ using TMPro;
 public class MainMenuOptions : MonoBehaviour
 {
     [Header("Audio Options")]
-    [SerializeField] AudioController audioController;
+    private AudioController _audioController;
     [SerializeField] Slider musicSlider;
     [SerializeField] TextMeshProUGUI musicVal;
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
+    [SerializeField] Toggle menuSoundtrackToggle;
     [SerializeField] Toggle visualiserToggle;
 
     [Header("Visual Options")]
@@ -19,38 +26,52 @@ public class MainMenuOptions : MonoBehaviour
     [SerializeField] Screenshake screenshake;
     [SerializeField] Toggle shakeToggle;
     [SerializeField] GameObject shakeIntensity;
-    private Slider shakeSlider;
-    private TextMeshProUGUI shakeValue;
+    private Slider _shakeSlider;
+    private TextMeshProUGUI _shakeValue;
     [SerializeField] Toggle dynamicTextToggle;
     [SerializeField] GameObject textSpeed;
-    private Slider textSpeedSlider;
-    private TextMeshProUGUI textSpeedValue;
+    private Slider _textSpeedSlider;
+    private TextMeshProUGUI _textSpeedValue;
     public float typeSpeed;
 
     [Header("Game Options")]
     [SerializeField] Slider difficultyLevelSlider;
     [SerializeField] TextMeshProUGUI difficultyLevelText;
-    public int level;
+    [Range(0,3)] public int level;
+    [SerializeField] Slider lockDelaySlider;
+    [SerializeField] TextMeshProUGUI lockDelayValue;
+    [Range(0,5)] public int lockDelay; 
     [SerializeField] Toggle hardDropToggle;
     [SerializeField] Toggle scoreToggle;
     [SerializeField] Toggle nextPieceToggle;
     [SerializeField] Toggle holdPieceToggle;
-    //[SerializeField] Toggle ghostPieceToggle;
+    [SerializeField] Toggle ghostPieceToggle;
 
     [Header("SFX Options")]
     [SerializeField] Toggle moveSfxToggle;
     [SerializeField] Toggle rotateSfxToggle;
     [SerializeField] Toggle hardDropSfxToggle;
     [SerializeField] Toggle holdPieceSfxToggle;
+    [SerializeField] Toggle pieceLockingSfxToggle;
 
     [Header("Extras Options")]
-    [SerializeField] Toggle flushedToggle;
+    [SerializeField] TMP_Dropdown cellFaceDropdown;
+
+    private void Awake()
+    {
+        _audioController = FindObjectOfType<AudioController>();
+    }
 
     private void Start()
     {
         // load audio options
-        musicSlider.value = audioController.music;
-        sfxSlider.value = audioController.sfx;
+        musicSlider.value = _audioController.music;
+        sfxSlider.value = _audioController.sfx;
+
+        if (!FindObjectOfType<MenuSoundtrack>().toggled)
+        {
+            menuSoundtrackToggle.SetIsOnWithoutNotify(false);
+        }
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
@@ -58,13 +79,13 @@ public class MainMenuOptions : MonoBehaviour
         }
 
         // get visual options
-        shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
-        shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
-        shakeSlider.value = screenshake.shakeMagnitude * 10;
+        _shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
+        _shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
+        _shakeSlider.value = screenshake.shakeMagnitude * 10;
 
-        textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
-        textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
-        textSpeedSlider.value = typeSpeed = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2);
+        _textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
+        _textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
+        _textSpeedSlider.value = typeSpeed = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2);
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
@@ -86,6 +107,10 @@ public class MainMenuOptions : MonoBehaviour
 
         // load game options
         difficultyLevelSlider.value = level = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, 1);
+        UpdateDifficultyLevel(level);
+
+        lockDelaySlider.value = lockDelay = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.lockDelayKEY, 5);
+        UpdateLockDelay((int)lockDelaySlider.value);
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.hardDropKEY, 1) == 0)
         {
@@ -107,6 +132,11 @@ public class MainMenuOptions : MonoBehaviour
             holdPieceToggle.SetIsOnWithoutNotify(false);
         }
 
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.ghostPieceKEY, 1) == 0)
+        {
+            ghostPieceToggle.SetIsOnWithoutNotify(false);
+        }
+
         // load sfx options
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.moveSfxKEY, 1) == 0)
         {
@@ -124,42 +154,54 @@ public class MainMenuOptions : MonoBehaviour
         {
             holdPieceSfxToggle.SetIsOnWithoutNotify(false);
         }
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.lockSfxKEY, 1) == 0)
+        {
+            pieceLockingSfxToggle.SetIsOnWithoutNotify(false);
+        }
 
         // load extras options
-        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.flushedKEY, 0) == 0)
-        {
-            flushedToggle.SetIsOnWithoutNotify(false);
-        }
+        cellFaceDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
 
         gameObject.SetActive(false); // closes the page
     }
 
     public void UpdateSliderMusic()
     {
-        audioController.UpdateMusic(musicSlider.value);
+        _audioController.UpdateMusic(musicSlider.value);
         musicVal.text = musicSlider.value.ToString();
     }
 
     public void UpdateSliderSfx()
     {
-        audioController.UpdateSfx(sfxSlider.value);
+        _audioController.UpdateSfx(sfxSlider.value);
         sfxVal.text = sfxSlider.value.ToString();
     }
 
     public void UpdateSliderScreenshakeMagnitude()
     {
-        screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
-        shakeValue.text = shakeSlider.value.ToString();
+        screenshake.UpdateShakeMagnitude(_shakeSlider.value / 10);
+        _shakeValue.text = _shakeSlider.value.ToString();
     }
 
     public void UpdateSliderTextSpeed()
     {
-        UpdateTextSpeed((int)textSpeedSlider.value);
+        UpdateTextSpeed((int)_textSpeedSlider.value);
     }
 
     public void UpdateSliderDifficulty()
     {
         UpdateDifficultyLevel((int)difficultyLevelSlider.value);
+    }
+
+    public void UpdateSliderLockDelay()
+    {
+        UpdateLockDelay((int)lockDelaySlider.value);
+    }
+
+    public void ToggleMenuSoundtrack()
+    {
+        FindObjectOfType<MenuSoundtrack>().ToggleSoundtrack();
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.menuSoundtrackKEY);
     }
 
     public void ToggleVisualizer()
@@ -196,13 +238,13 @@ public class MainMenuOptions : MonoBehaviour
         switch (typeSpeed)
         {
             case 1:
-                textSpeedValue.text = "Slow";
+                _textSpeedValue.text = "Slow";
                 break;
             case 2:
-                textSpeedValue.text = "Default";
+                _textSpeedValue.text = "Default";
                 break;
             case 3:
-                textSpeedValue.text = "Fast";
+                _textSpeedValue.text = "Fast";
                 break;
         }
     }
@@ -232,6 +274,37 @@ public class MainMenuOptions : MonoBehaviour
         }
     }
 
+    private void UpdateLockDelay(int d)
+    {
+        if (lockDelay != d)
+        {
+            lockDelay = d;
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.lockDelayKEY, d);
+        }
+
+        switch (lockDelay)
+        {
+            case 0:
+                lockDelayValue.text = "0s";
+                break;
+            case 1:
+                lockDelayValue.text = "0.1s";
+                break;
+            case 2:
+                lockDelayValue.text = "0.2s";
+                break;
+            case 3:
+                lockDelayValue.text = "0.3s";
+                break;
+            case 4:
+                lockDelayValue.text = "0.4s";
+                break;
+            case 5:
+                lockDelayValue.text = "0.5s";
+                break;
+        }
+    }
+
     public void ToggleHardDrop()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
@@ -250,6 +323,11 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleHoldPiece()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
+    }
+
+    public void ToggleGhostPiece()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.ghostPieceKEY);
     }
 
     public void ToggleMoveSFX()
@@ -272,8 +350,14 @@ public class MainMenuOptions : MonoBehaviour
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceSfxKEY);
     }
 
-    public void ToggleFlushed()
+    public void TogglePieceLockingSFX()
     {
-        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.flushedKEY);
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.lockSfxKEY);
+    }
+
+    public void UpdateCellFace()
+    {
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.cellFaceKEY, cellFaceDropdown.value);
+        FindObjectOfType<MainMenu>().MainMenuRichPresence();
     }
 }

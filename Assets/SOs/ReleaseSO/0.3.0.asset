@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca9ce6dd6f094242913d129bc413668, type: 3}
+  m_Name: 0.3.0
+  m_EditorClassIdentifier: 
+  version: 0.3.0
+  name: Back On Track Update
+  description: After many months, I have finally sat down and re-opened the project.
+    Coloris is back baby!
+  newTracks:
+  - Encounter! by Scyriate
+  - Flight by Scyriate
+  - Endless by Scyriate
+  - Center by Scyriate
+  - Gumby by Vizil
+  changes:
+  - Reworked how the audio system was handled.
+  - Implemented UI to display the next piece.
+  - Implemented audio, visual and game settings.
+  - Settings are tracked and saved.
+  - You can pause/play, repeat and skip tracks in the pause menu.
+  - Reworked the scoring system.
+  - Implemented diffculty levels.
+  - Added a countdown before the start of the game.
+  - Implemented a game over screen.
+  - Implemented a highscore.
+  bugfixes: []

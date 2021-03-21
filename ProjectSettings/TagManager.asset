@@ -6,6 +6,9 @@ TagManager:
   tags:
   - SquarePiece
   - Piece
+  - PanelButton
+  - MenuButton
+  - UniqueUI
   layers:
   - Default
   - TransparentFX

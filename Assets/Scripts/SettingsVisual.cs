@@ -1,3 +1,9 @@
+/*
+ * File:        SettingsVisual.cs
+ * Author:      Étienne Ménard
+ * Description: In-game visual options.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

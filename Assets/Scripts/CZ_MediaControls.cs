@@ -1,3 +1,9 @@
+/*
+ * File:        CZ_MediaControls.cs
+ * Author:      Étienne Ménard
+ * Description: Handles media controls of the Chill Zone.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +14,6 @@ public class CZ_MediaControls : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] ChillZoneManager manager;
-    [SerializeField] AudioController audioController;
 
     [Header("Sliders")]
     [SerializeField] Slider musicSlider;
@@ -30,8 +35,8 @@ public class CZ_MediaControls : MonoBehaviour
 
     private void Start()
     {
-        musicSlider.value = audioController.music;
-        sfxSlider.value = audioController.sfx;
+        musicSlider.value = manager.audioController.music;
+        sfxSlider.value = manager.audioController.sfx;
 
         pauseButtonText = pauseButton.GetComponentInChildren<TextMeshProUGUI>();
         skipButtonText = skipButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -41,7 +46,7 @@ public class CZ_MediaControls : MonoBehaviour
 
     private void Update()
     {
-        if (manager.audioSource.isPlaying)
+        if (manager.musicSource.isPlaying)
         {
             UpdateTrackTime();
         }
@@ -49,13 +54,13 @@ public class CZ_MediaControls : MonoBehaviour
 
     public void UpdateSliderMusic()
     {
-        audioController.UpdateMusic(musicSlider.value);
+        manager.audioController.UpdateMusic(musicSlider.value);
         musicVal.text = musicSlider.value.ToString();
     }
 
     public void UpdateSliderSfx()
     {
-        audioController.UpdateSfx(sfxSlider.value);
+        manager.audioController.UpdateSfx(sfxSlider.value);
         sfxVal.text = sfxSlider.value.ToString();
     }
 
@@ -87,7 +92,7 @@ public class CZ_MediaControls : MonoBehaviour
 
     private void UpdateTrackTime()
     {
-        int curTime = (int)manager.audioSource.time;
+        int curTime = (int)manager.musicSource.time;
         min = (curTime / 60).ToString();
         sec = (curTime % 60).ToString();
 
@@ -109,7 +114,7 @@ public class CZ_MediaControls : MonoBehaviour
         if (trackTime / 60 < 10)
             min = "0" + min;
 
-        sec = ((int)manager.audioSource.clip.length % 60).ToString();
+        sec = ((int)manager.musicSource.clip.length % 60).ToString();
         if (trackTime % 60 < 10)
             sec = "0" + sec;
 

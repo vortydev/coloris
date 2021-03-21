@@ -1,3 +1,9 @@
+/*
+ * File:        GameOver.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the Game Over state of the game.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,18 +26,22 @@ public class GameOver : MonoBehaviour
     [SerializeField] Score score;
     [SerializeField] PauseMenu pauseMenu;
     [SerializeField] StartGame startGame;
+    [SerializeField] CanDo canDo;
 
     [Header("Game Over")]
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI detailsText;
     [SerializeField] GameObject detailsScrollview;
     [SerializeField] RadioUI radio;
-    private int highscore;
+    private int _highscore;
 
     private void Awake()
     {
-        highscore = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.highscoreKEY, 0);
+        _highscore = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.highscoreKEY, 0);
+    }
 
+    private void Start()
+    {
         // game over popup
         gameOverPage.SetActive(false);
         detailsScrollview.SetActive(false);
@@ -39,25 +49,27 @@ public class GameOver : MonoBehaviour
 
     public void GameOverRoutine()
     {
-        DeletePieces();
+        DeletePieces(); // clears the remaining pieces
 
-        if (score.linesCleared > highscore)
+        if (score.linesCleared > _highscore) // if the current score is higher than the highscore, updates and saves it
         {
-            highscore = score.linesCleared;
-            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.highscoreKEY, highscore);
+            _highscore = score.linesCleared;
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.highscoreKEY, _highscore);
         }
 
         // load texts
         scoreText.text = "Score: " + score.linesCleared
-                        + "\nHighscore: " + highscore;
+                        + "\nHighscore: " + _highscore;
 
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
+                        + "\nLock Delay: " + canDo.GetLockDelayString()
                         + "\nHard Dropping: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.hardDropKEY)
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.nextPieceKEY)
-                        + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY);
+                        + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY)
+                        + "\nGhost Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.ghostPieceKEY);
 
         tracksManager.gameStarted = false;
-        tracksManager.audioSource.volume = tracksManager.audioSource.volume / 10;
+        tracksManager.musicSource.volume /= 10;
 
         // disable game elements
         spawner.enabled = false;
@@ -74,6 +86,7 @@ public class GameOver : MonoBehaviour
         gameOverPage.SetActive(true);
     }
 
+    // goes through all the remaining pieces and deletes them
     private void DeletePieces()
     {
         GameObject[] oldPieces;
@@ -98,6 +111,7 @@ public class GameOver : MonoBehaviour
         detailsScrollview.SetActive(!detailsScrollview.activeSelf);
     }
 
+    // re-enables all the stuff to start a new game
     public void Replay()
     {
         startGame.countdown.enabled = true;
@@ -106,14 +120,17 @@ public class GameOver : MonoBehaviour
         spawner.enabled = true;
         spawner.RegenBags();
 
-        scoreUI.SetActive(true);
         score.ResetScore();
+        if (PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.scoreKEY))
+            scoreUI.SetActive(true);
 
-        nextPieceUI.SetActive(true);
         nextPieceUI.GetComponent<NextPiece>().ResetNextPiece();
+        if (PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.nextPieceKEY))
+            nextPieceUI.SetActive(true);
 
-        holdPieceUI.SetActive(true);
         holdPieceUI.GetComponent<HoldPiece>().ResetHeldPiece();
+        if (PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.holdPieceKEY))
+            holdPieceUI.SetActive(true);
 
         background.SetActive(false);
         gameOverPage.SetActive(false);

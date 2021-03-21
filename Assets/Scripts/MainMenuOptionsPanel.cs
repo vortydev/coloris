@@ -1,3 +1,9 @@
+/*
+ * File:        MainMenuOptionsPanel.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the options panels of the main menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +27,10 @@ public class MainMenuOptionsPanel : MonoBehaviour
     [SerializeField] GameObject sfxPanel;
     [SerializeField] Button sfxButton;
 
+    [Header("Keybinds")]
+    [SerializeField] GameObject keybindsPanel;
+    [SerializeField] Button keybindsButton;
+
     [Header("Extras")]
     [SerializeField] GameObject extrasPanel;
     [SerializeField] Button extrasButton;
@@ -30,6 +40,7 @@ public class MainMenuOptionsPanel : MonoBehaviour
         visualPanel.SetActive(false);
         gamePanel.SetActive(false);
         sfxPanel.SetActive(false);
+        keybindsPanel.SetActive(false);
         extrasPanel.SetActive(false);
 
         audioButton.interactable = false;
@@ -49,6 +60,9 @@ public class MainMenuOptionsPanel : MonoBehaviour
         sfxPanel.SetActive(false);
         sfxButton.interactable = true;
 
+        keybindsPanel.SetActive(false);
+        keybindsButton.interactable = true;
+
         extrasPanel.SetActive(false);
         extrasButton.interactable = true;
     }
@@ -66,6 +80,9 @@ public class MainMenuOptionsPanel : MonoBehaviour
 
         sfxPanel.SetActive(false);
         sfxButton.interactable = true;
+
+        keybindsPanel.SetActive(false);
+        keybindsButton.interactable = true;
 
         extrasPanel.SetActive(false);
         extrasButton.interactable = true;
@@ -85,6 +102,9 @@ public class MainMenuOptionsPanel : MonoBehaviour
         sfxPanel.SetActive(false);
         sfxButton.interactable = true;
 
+        keybindsPanel.SetActive(false);
+        keybindsButton.interactable = true;
+
         extrasPanel.SetActive(false);
         extrasButton.interactable = true;
     }
@@ -103,6 +123,30 @@ public class MainMenuOptionsPanel : MonoBehaviour
         sfxPanel.SetActive(true);
         sfxButton.interactable = false;
 
+        keybindsPanel.SetActive(false);
+        keybindsButton.interactable = true;
+
+        extrasPanel.SetActive(false);
+        extrasButton.interactable = true;
+    }
+
+    public void OnKeybindsClick()
+    {
+        audioPanel.SetActive(false);
+        audioButton.interactable = true;
+
+        visualPanel.SetActive(false);
+        visualButton.interactable = true;
+
+        gamePanel.SetActive(false);
+        gameButton.interactable = true;
+
+        sfxPanel.SetActive(false);
+        sfxButton.interactable = true;
+
+        keybindsPanel.SetActive(true);
+        keybindsButton.interactable = false;
+
         extrasPanel.SetActive(false);
         extrasButton.interactable = true;
     }
@@ -120,6 +164,9 @@ public class MainMenuOptionsPanel : MonoBehaviour
 
         sfxPanel.SetActive(false);
         sfxButton.interactable = true;
+
+        keybindsPanel.SetActive(false);
+        keybindsButton.interactable = true;
 
         extrasPanel.SetActive(true);
         extrasButton.interactable = false;

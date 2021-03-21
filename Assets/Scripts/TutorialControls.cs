@@ -1,10 +1,19 @@
+/*
+ * File:        TutorialControls.cs
+ * Author:      Étienne Ménard
+ * Description: Takes care of all the junk for the controls tutorial.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class TutorialControls : MonoBehaviour
 {
+    private MyControls _actions;
+
     [Header("Buttons")]
     [SerializeField] Button backButton;
     [SerializeField] Button nextButton;
@@ -18,18 +27,25 @@ public class TutorialControls : MonoBehaviour
     public float resetDelay = 0.25f;
     public int piecePosX = 0;
     public int piecePosY = 0;
+    private bool canDrop = true;
 
     [Header("Holding Piece")]
     [SerializeField] GameObject holdPieceUI;
     [SerializeField] GameObject heldPiece;
 
     [Header("Piece SFX")]
-    [SerializeField] AudioSource audioSource;
+    private AudioSource _sfxSource;
     [SerializeField] AudioClip move;
     [SerializeField] AudioClip rotate;
     [SerializeField] AudioClip hold;
 
     private void Awake()
+    {
+        _actions = new MyControls();
+        _sfxSource = FindObjectOfType<AudioController>().sfxSource;
+    }
+
+    private void Start()
     {
         DisableNavButtons();
 
@@ -37,34 +53,85 @@ public class TutorialControls : MonoBehaviour
         holdPieceUI.SetActive(false);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (controlsNav == 1 && piecePosX < 2 && Input.GetKeyDown(KeyCode.RightArrow))
+        // enable the input
+        _actions.Enable();
+
+        // piece movement
+        _actions.Coloris.Move.performed += Move;
+        _actions.Coloris.RotateRight.performed += RotateRight;
+        _actions.Coloris.RotateLeft.performed += RotateLeft;
+        _actions.Coloris.SoftDrop.performed += SoftDrop;
+        _actions.Coloris.HardDrop.performed += HardDrop;
+        _actions.Coloris.Hold.performed += Hold;
+    }
+
+    private void OnDisable()
+    {
+        // disable the input
+        _actions.Disable();
+
+        _actions.Coloris.Move.performed -= Move;
+        _actions.Coloris.RotateRight.performed -= RotateRight;
+        _actions.Coloris.RotateLeft.performed -= RotateLeft;
+        _actions.Coloris.SoftDrop.performed -= SoftDrop;
+        _actions.Coloris.HardDrop.performed -= HardDrop;
+        _actions.Coloris.Hold.performed -= Hold;
+    }
+
+    private void Move(InputAction.CallbackContext obj)
+    {
+        if (controlsNav == 1)
         {
-            MovePieceRight();
-            piecePosX++;
+            if (obj.ReadValue<float>() > 0 && piecePosX < 2)
+            {
+                MovePieceRight();
+                piecePosX++;
+            }
+            else if (obj.ReadValue<float>() < 0 && piecePosX > -2)
+            {
+                MovePieceLeft();
+                piecePosX--;
+            }
         }
-        else if (controlsNav == 1 && piecePosX > -2 && Input.GetKeyDown(KeyCode.LeftArrow))
+    }
+
+    private void RotateRight(InputAction.CallbackContext obj)
+    {
+        if (controlsNav == 2)
         {
-            MovePieceLeft();
-            piecePosX--;
+            OnRotatePieceRight();
         }
-        else if (controlsNav == 2 && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("x"))) {
-            RotatePieceRight();
-        }
-        else if (controlsNav == 2 && (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown("z"))) {
-            RotatePieceLeft();
-        }
-        else if (controlsNav == 3 && Input.GetKeyDown(KeyCode.DownArrow))
+    }
+
+    private void RotateLeft(InputAction.CallbackContext obj)
+    {
+        if (controlsNav == 2)
         {
-            piecePosY++;
-            SoftDrop();
+            OnRotatePieceLeft();
         }
-        //else if (controlsNav == 3 && Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    HardDrop();
-        //}
-        else if (controlsNav == 4 && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown("c")))
+    }
+
+    private void SoftDrop(InputAction.CallbackContext obj)
+    {
+        if (controlsNav == 3 && canDrop)
+        {
+            OnSoftDrop();
+        }
+    }
+
+    private void HardDrop(InputAction.CallbackContext obj)
+    {
+        if (controlsNav == 3 && canDrop) 
+        {
+            OnHardDrop();
+        }
+    }
+
+    private void Hold(InputAction.CallbackContext obj)
+    {
+        if (controlsNav == 4)
         {
             TogglePieceHeld();
         }
@@ -72,8 +139,8 @@ public class TutorialControls : MonoBehaviour
 
     private void PlayPieceSfx(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        _sfxSource.clip = clip;
+        _sfxSource.Play();
     }
 
     private void MovePieceRight()
@@ -113,14 +180,14 @@ public class TutorialControls : MonoBehaviour
         }
     }
 
-    private void RotatePieceRight()
+    private void OnRotatePieceRight()
     {
         piece.transform.Rotate(0, 0, -90);
 
         PlayPieceSfx(rotate);
     }
 
-    private void RotatePieceLeft()
+    private void OnRotatePieceLeft()
     {
         piece.transform.Rotate(0, 0, 90);
 
@@ -133,29 +200,35 @@ public class TutorialControls : MonoBehaviour
         {
             yield return new WaitForSeconds(resetDelay);
 
-            RotatePieceRight();
+            OnRotatePieceRight();
         }
     }
 
-    private void SoftDrop()
+    private void OnSoftDrop()
     {
         Vector2 newPos = piece.transform.position;
         newPos.y -= movementOffset;
         piece.transform.position = newPos;
 
+        piecePosY++;
+
         if (piecePosY > 2)
         {
+            canDrop = false;
             StartCoroutine(ResetPieceBackUp());
         }
     }
 
-    private void HardDrop()
+    private void OnHardDrop()
     {
+        canDrop = false;
+
         for (int i = 0; i < 3; i++)
         {
-            SoftDrop();
-            piecePosY++;
+            OnSoftDrop();
         }
+
+        FindObjectOfType<UISFX>().HardDropSFX();
 
         StartCoroutine(ResetPieceBackUp());
     }
@@ -175,6 +248,8 @@ public class TutorialControls : MonoBehaviour
                 piecePosY--;
             }
         }
+
+        canDrop = true;
     }
 
     private void TogglePieceHeld()

@@ -1,3 +1,9 @@
+/*
+ * File:        TypeWriter.cs
+ * Author:      Étienne Ménard
+ * Description: Script for a type writer effect with text.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +14,17 @@ public class TypeWriter : MonoBehaviour
     [Header("Text Settings")]
     public int textSpeed;                       // speed level from PlayerPrefs
     public float typingDelay = 0.05f;           // speed at which the text is typed
-    public float eraseDelay = 0.025f;           // speed at which the text is being erased
     public bool dynamicText;                    // if the text is dynamic or not
+
+    private IEnumerator routine;
+    private TextMeshProUGUI currentBody;
+
+    private struct typedString
+    {
+        private TextMeshProUGUI t;
+        private string s;
+    }
+    private List<typedString> queue;
 
     private void Awake()
     {
@@ -37,13 +52,27 @@ public class TypeWriter : MonoBehaviour
     private void SetText(TextMeshProUGUI t, string s)
     {
         t.text = s;
+        routine = null;
+    }
+
+    private void AddToQueue(TextMeshProUGUI t, string s)
+    {
+
     }
 
     public void TypeText(TextMeshProUGUI t, string s)
     {
         if (dynamicText)
         {
-            StartCoroutine(ShowText(t, s));
+            if (routine != null && t == currentBody)
+            {
+                StopCoroutine(routine);
+                t.text = "";
+            }
+
+            routine = ShowText(t, s);
+            StartCoroutine(routine);
+
         }
         else
         {
@@ -51,9 +80,10 @@ public class TypeWriter : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowText(TextMeshProUGUI t, string s)
+    private IEnumerator ShowText(TextMeshProUGUI t, string s = "")
     {
         string curtext;
+        currentBody = t;
 
         for (int i = 0; i < s.Length + 1; i++)
         {
@@ -62,13 +92,23 @@ public class TypeWriter : MonoBehaviour
 
             yield return new WaitForSeconds(typingDelay);
         }
+
+        routine = null;
+        currentBody = null;
     }
 
     public void TypeIntroText(TextMeshProUGUI t, string s)
     {
         if (dynamicText)
         {
-            StartCoroutine(ShowIntroText(t, s));
+            if (routine != null && t == currentBody)
+            {
+                StopCoroutine(routine);
+                t.text = "";
+            }
+
+            routine = ShowIntroText(t, s);
+            StartCoroutine(routine);
         }
         else
         {
@@ -80,13 +120,12 @@ public class TypeWriter : MonoBehaviour
     private IEnumerator ShowIntroText(TextMeshProUGUI t, string s)
     {
         string curtext;
+        currentBody = t;
 
         for (int i = 0; i < s.Length + 1; i++)
         {
             curtext = s.Substring(0, i);
             t.text = curtext;
-
-            
 
             yield return new WaitForSeconds(typingDelay);
 
@@ -98,28 +137,23 @@ public class TypeWriter : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         FindObjectOfType<TutorialIntroduction>().ToggleBackButton();
-    }
 
-    private IEnumerator EraseIntroText(TextMeshProUGUI t)
-    {
-        string s = t.text, curText;
-
-        for (int i = s.Length; i > -1; i--)
-        {
-            curText = s.Substring(0, i);
-            t.text = curText;
-
-            yield return new WaitForSeconds(eraseDelay / 2);
-        }
-
-        FindObjectOfType<TutorialsManager>().BackToMain();
+        routine = null;
+        currentBody = null;
     }
 
     public void TypeControlsText(TextMeshProUGUI t, string s)
     {
         if (dynamicText)
         {
-            StartCoroutine(ShowControlsText(t, s));
+            if (routine != null && t == currentBody)
+            {
+                StopCoroutine(routine);
+                t.text = "";
+            }
+
+            routine = ShowControlsText(t, s);
+            StartCoroutine(routine);
         }
         else
         {
@@ -131,6 +165,7 @@ public class TypeWriter : MonoBehaviour
     private IEnumerator ShowControlsText(TextMeshProUGUI t, string s)
     {
         string curtext;
+        currentBody = t;
 
         for (int i = 0; i < s.Length + 1; i++)
         {
@@ -141,5 +176,8 @@ public class TypeWriter : MonoBehaviour
         }
 
         FindObjectOfType<TutorialControls>().UpdateNavButtons();
+
+        routine = null;
+        currentBody = null;
     }
 }

@@ -1,3 +1,9 @@
+/*
+ * File:        CZ_Catalog.cs
+ * Author:      Étienne Ménard
+ * Description: Handles the Chill Zone catalog of tracks.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +20,11 @@ public class CZ_Catalog : MonoBehaviour
     public List<GameObject> catalog;
 
     [Header("Sort & Filter")]
-    private int sort = 0;    // 0: default (#), 1: name, 2: artist
-    private int filter = 0;  // 0: none, 1: by artist
+    private int _sort = 0;    // 0: default (#), 1: name, 2: artist
+    private int _filter = 0;  // 0: none, 1: by artist
     [SerializeField] TMP_Dropdown sortDropdown;
     [SerializeField] TMP_Dropdown filterDropdown;
-    private string[] artistsFilter;
+    private string[] _artistsFilter;
 
     private void Start()
     {
@@ -37,21 +43,21 @@ public class CZ_Catalog : MonoBehaviour
                 CreateCatalogByName();
                 break;
             case 2:
-                CreateCatalogByArtist(filter);
+                CreateCatalogByArtist(_filter);
                 break;
         }
     }
 
     private void CreateCatalogDefault()
     {
-        for (int i = 0; i < manager.tracks.Length; i++)
+        for (int i = 0; i < manager.tracks.GetArraySize(); i++)
         {
             GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
-            newTrack.GetComponentInChildren<TextMeshProUGUI>().text = manager.tracks[i].trackNb.ToString() + ". " + manager.tracks[i].trackName + " - " + manager.tracks[i].authorName;
-            newTrack.gameObject.name = manager.tracks[i].trackName;
+            newTrack.GetComponentInChildren<TextMeshProUGUI>().text = manager.tracks.GetTrackNb(i).ToString() + ". " + manager.tracks.GetTrackName(i) + " - " + manager.tracks.GetArtistName(i);
+            newTrack.gameObject.name = manager.tracks.GetTrackName(i);
             newTrack.transform.position = catalogScroll.transform.position;
 
-            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = manager.tracks[i].trackNb;
+            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = manager.tracks.GetTrackNb(i);
 
             catalog.Add(newTrack);
         }
@@ -59,7 +65,7 @@ public class CZ_Catalog : MonoBehaviour
 
     private void CreateCatalogByName()
     {
-        TrackSO[] tracksByName = manager.tracks.OrderBy(go => go.trackName).ToArray();
+        TrackSO[] tracksByName = manager.tracks.GetArray().OrderBy(go => go.trackName).ToArray();
 
         for (int i = 0; i < tracksByName.Length; i++)
         {
@@ -76,7 +82,7 @@ public class CZ_Catalog : MonoBehaviour
 
     private void CreateCatalogByArtist(int filter = 0)
     {
-        TrackSO[] tracksByArtist = manager.tracks.OrderBy(go => go.authorName).ToArray();
+        TrackSO[] tracksByArtist = manager.tracks.GetArray().OrderBy(go => go.authorName).ToArray();
 
         if (filter == 0)
         {
@@ -96,7 +102,7 @@ public class CZ_Catalog : MonoBehaviour
         {
             for (int i = 0; i < tracksByArtist.Length; i++)
             {
-                if (artistsFilter[filter - 1] == tracksByArtist[i].authorName)
+                if (_artistsFilter[filter - 1] == tracksByArtist[i].authorName)
                 {
                     GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
                     newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByArtist[i].trackNb.ToString() + ". " + tracksByArtist[i].trackName + " - " + tracksByArtist[i].authorName;
@@ -113,9 +119,9 @@ public class CZ_Catalog : MonoBehaviour
 
     public void UpdateCatalogSorting()
     {
-        sort = sortDropdown.value;
+        _sort = sortDropdown.value;
 
-        if (sort == 2)
+        if (_sort == 2)
         {
             filterDropdown.interactable = true;
         }
@@ -132,12 +138,12 @@ public class CZ_Catalog : MonoBehaviour
         }
 
         catalog.Clear();
-        LoadCatalog(sort);
+        LoadCatalog(_sort);
     }
 
     public void UpdateCatalogFilter()
     {
-        filter = filterDropdown.value;
+        _filter = filterDropdown.value;
 
         foreach (GameObject go in catalog)
         {
@@ -145,12 +151,12 @@ public class CZ_Catalog : MonoBehaviour
         }
 
         catalog.Clear();
-        CreateCatalogByArtist(filter);
+        CreateCatalogByArtist(_filter);
     }
 
     private void GenerateArtistFilter()
     {
-        TrackSO[] tracksByArtist = manager.tracks.OrderBy(go => go.authorName).ToArray();
+        TrackSO[] tracksByArtist = manager.tracks.GetArray().OrderBy(go => go.authorName).ToArray();
         List<string> artists = new List<string>();
 
         for (int i = 0; i < tracksByArtist.Length; i++)
@@ -163,7 +169,7 @@ public class CZ_Catalog : MonoBehaviour
 
         filterDropdown.AddOptions(artists);
 
-        artistsFilter = new string[artists.Count];
-        artistsFilter = artists.ToArray();
+        _artistsFilter = new string[artists.Count];
+        _artistsFilter = artists.ToArray();
     }
 }

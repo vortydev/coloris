@@ -1,3 +1,9 @@
+/*
+ * File:        SettingsAudio.cs
+ * Author:      Étienne Ménard
+ * Description: In-game audio options.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +12,7 @@ using TMPro;
 
 public class SettingsAudio : MonoBehaviour
 {
-    [SerializeField] AudioController audioController;
+    private AudioController _audioController;
 
     [Header("Music")]
     [SerializeField] Slider musicSlider;
@@ -16,12 +22,22 @@ public class SettingsAudio : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] TextMeshProUGUI sfxVal;
 
+    [Header("Menu Soundtrack")]
+    [SerializeField] Toggle menuSoundtrackToggle;
+
     [Header("Visualiser")]
     [SerializeField] GameObject visualiser;
     [SerializeField] Toggle visualiserToggle;
 
     private void Awake()
     {
+        _audioController = FindObjectOfType<AudioController>();
+
+        if (!FindObjectOfType<MenuSoundtrack>().toggled)
+        {
+            menuSoundtrackToggle.SetIsOnWithoutNotify(false);
+        }
+
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.visualiserKEY, 1) == 0)
         {
             visualiser.SetActive(false);
@@ -31,20 +47,26 @@ public class SettingsAudio : MonoBehaviour
 
     private void Start()
     {
-        musicSlider.value = audioController.music;
-        sfxSlider.value = audioController.sfx;
+        musicSlider.value = _audioController.music;
+        sfxSlider.value = _audioController.sfx;
     }
 
     public void UpdateMusicSlider()
     {
-        audioController.UpdateMusic(musicSlider.value);
+        _audioController.UpdateMusic(musicSlider.value);
         musicVal.text = musicSlider.value.ToString();
     }
 
     public void UpdateSfxSlider()
     {
-        audioController.UpdateSfx(sfxSlider.value);
+        _audioController.UpdateSfx(sfxSlider.value);
         sfxVal.text = sfxSlider.value.ToString();
+    }
+
+    public void ToggleMenuSoundtrack()
+    {
+        FindObjectOfType<MenuSoundtrack>().toggled = !FindObjectOfType<MenuSoundtrack>().toggled;
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.menuSoundtrackKEY);
     }
 
     public void ToggleAudioVisualiser()

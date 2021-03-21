@@ -1,3 +1,9 @@
+/*
+ * File:        PauseMenu.cs
+ * Author:      Étienne Ménard
+ * Description: Script for when the game is paused.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,26 +22,22 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pausePage;
     [SerializeField] GameObject optionsPage;
 
-    public void Awake()
+    private void Awake()
+    {
+        FindObjectOfType<UISFX>().LoadUIElements();
+    }
+
+    public void Start()
     {
         background.SetActive(false);
         pausePage.SetActive(false);
         optionsPage.SetActive(false);
     }
 
-    public void Update()
-    {
-        // manages opening and closing the pause menu (press Esc)
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnClickPause();
-        }
-    }
-
     private void OnPauseMenu()
     {
         gamePaused = true;
-        FindObjectOfType<SFXManager>().PauseSFX();
+        FindObjectOfType<GameSFX>().PauseSFX();
 
         background.SetActive(true);
         nextPiece.SetActive(false);
@@ -48,7 +50,7 @@ public class PauseMenu : MonoBehaviour
     private void OnUnpauseMenu()
     {
         gamePaused = false;
-        FindObjectOfType<SFXManager>().UnpauseSFX();
+        FindObjectOfType<GameSFX>().UnpauseSFX();
 
         background.SetActive(false);
         nextPiece.SetActive(true);
@@ -62,16 +64,19 @@ public class PauseMenu : MonoBehaviour
 
     public void OnClickPause()
     {
-        if (gamePaused)
-            OnUnpauseMenu();
-        else
-            OnPauseMenu();
+        if (FindObjectOfType<TracksManager>().gameStarted)
+        {
+            if (gamePaused)
+                OnUnpauseMenu();
+            else
+                OnPauseMenu();
+        }
     }
 
     // Loads scene #0, which is the main menu
     public void QuitToMainMenu()
     {
+        FindObjectOfType<AudioController>().KillAudio();
         SceneManager.LoadScene(0);
-        Debug.Log("Quit to main menu");
     }
 }

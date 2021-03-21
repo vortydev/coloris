@@ -1,3 +1,9 @@
+/*
+ * File:        TrackUI.cs
+ * Author:      Étienne Ménard
+ * Description: Controls and displays track duration in-game on the pause menu.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +53,7 @@ public class TrackUI : MonoBehaviour
 
     private void UpdateTrackTime()
     {
-        int curTime = (int)tracksManager.audioSource.time;
+        int curTime = (int)tracksManager.musicSource.time;
         min = (curTime / 60).ToString();
         sec = (curTime % 60).ToString();
 
@@ -69,7 +75,7 @@ public class TrackUI : MonoBehaviour
         if (trackTime / 60 < 10)
             min = "0" + min;
 
-        sec = ((int)tracksManager.audioSource.clip.length % 60).ToString();
+        sec = ((int)tracksManager.musicSource.clip.length % 60).ToString();
         if (trackTime % 60 < 10)
             sec = "0" + sec;
 

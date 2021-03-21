@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca9ce6dd6f094242913d129bc413668, type: 3}
+  m_Name: 0.4.0
+  m_EditorClassIdentifier: 
+  version: 0.4.0
+  name: Credit Where Credit Is Due Update
+  description: The game's development is going well and I am getting more and more
+    people on-board and interested in the project!
+  newTracks:
+  - Racing by Daniel Gilchrist
+  - 1999 by Daniel Gilchrist
+  changes:
+  - Implemented a main menu the game opens on.
+  - Added now proper credit for everyone that has contributed to the game.
+  - Implemented the piece holding mechanic.
+  - Slightly reworked the game options.
+  bugfixes:
+  - 001 - The game would endlessly loop the pieces and wouldn't trigger a game over.
