@@ -33,11 +33,11 @@ public class GameOver : MonoBehaviour
     [SerializeField] TextMeshProUGUI detailsText;
     [SerializeField] GameObject detailsScrollview;
     [SerializeField] RadioUI radio;
-    private int highscore;
+    private int _highscore;
 
     private void Awake()
     {
-        highscore = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.highscoreKEY, 0);
+        _highscore = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.highscoreKEY, 0);
     }
 
     private void Start()
@@ -51,22 +51,22 @@ public class GameOver : MonoBehaviour
     {
         DeletePieces(); // clears the remaining pieces
 
-        if (score.linesCleared > highscore) // if the current score is higher than the highscore, updates and saves it
+        if (score.linesCleared > _highscore) // if the current score is higher than the highscore, updates and saves it
         {
-            highscore = score.linesCleared;
-            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.highscoreKEY, highscore);
+            _highscore = score.linesCleared;
+            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.highscoreKEY, _highscore);
         }
 
         // load texts
         scoreText.text = "Score: " + score.linesCleared
-                        + "\nHighscore: " + highscore;
+                        + "\nHighscore: " + _highscore;
 
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
                         + "\nLock Delay: " + canDo.GetLockDelayString()
                         + "\nHard Dropping: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.hardDropKEY)
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.nextPieceKEY)
-                        + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY);
-                        //+ "\nGhost Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.ghostPieceKEY);
+                        + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY)
+                        + "\nGhost Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.ghostPieceKEY);
 
         tracksManager.gameStarted = false;
         tracksManager.musicSource.volume /= 10;

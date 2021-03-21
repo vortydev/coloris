@@ -33,8 +33,8 @@ public class Group : MonoBehaviour
     {
         _perms = FindObjectOfType<CanDo>();
 
-        _localDifficulty = FindObjectOfType<Score>().globalDifficulty;   // loads the current difficulty
-        _lockDelay = _perms.lockDelay / 10;                               // loads locking delay
+        _localDifficulty = FindObjectOfType<Score>().globalDifficulty;  // loads the current difficulty
+        _lockDelay = _perms.lockDelay / 10f;                             // loads locking delay
 
         // Default position not valid? Then it's game over
         if (!IsValidGridPos())
