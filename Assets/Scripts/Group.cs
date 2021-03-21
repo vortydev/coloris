@@ -65,6 +65,8 @@ public class Group : MonoBehaviour
                     // It's valid. Update grid.
                     UpdateGrid();
                     HasMoved();
+
+                    StopCoroutine(LockingTimer());
                 }
                 else
                 {
