@@ -26,7 +26,7 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string gridKEY = "gameGrid";                      // "bool" int that toggles the game grid
     public static string visualiserKEY = "visualiser";              // "bool" int that toggles the audio visualiser
     public static string dynamicTextKEY = "dynamicText";            // "bool" int that tells the type writer if the text is dynamic or not
-    public static string textSpeedKEY = "textSpeed";                // int holding the typing speed (1: slow, 2: default, 3: fast)
+    public static string textSpeedKEY = "textSpeed";                // int holding the typing speed (0: slow, 1: default, 2: fast)
 
     // screenshake
     public static string screenshakeKEY = "screenshake";            // "bool" int that toggles the Screenshake.cs script
@@ -48,7 +48,8 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string gamepadLoadoutKEY = "gamepadLoadout";      // int for the selected gamepad loadout (0: off, 1: default)
 
     // extras
-    public static string cellFaceKEY = "cellFace";                // int that toggles emoji faces on cells (0: disabled, 1: flushed, 2: weary, 3: pensive)
+    public static string cellFaceKEY = "cellFace";                  // int that toggles emoji faces on cells (0: disabled, 1: flushed, 2: weary, 3: pensive)
+    public static string gameVersionKEY = "gameVersion";            // "bool" int that toggles the game version on the main menu
 
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float defaultVal)

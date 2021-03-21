@@ -26,18 +26,13 @@ public class SettingsVisual : MonoBehaviour
     [Header("Type Writer")]
     [SerializeField] TypeWriter typeWriter;
     [SerializeField] Toggle dynamicText;
-    [SerializeField] GameObject textSpeed;
-    private Slider textSpeedSlider;
-    private TextMeshProUGUI textSpeedValue;
+    [SerializeField] TMP_Dropdown textSpeedDropdown;
 
     private void Awake()
     {
         // gets components
         shakeSlider = shakeIntensity.GetComponentInChildren<Slider>();
         shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
-
-        textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
-        textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
@@ -52,28 +47,23 @@ public class SettingsVisual : MonoBehaviour
             shakeIntensity.SetActive(false);
         }
 
-        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 1) == 0)
+        if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.dynamicTextKEY, 1) == 0)
         {
             dynamicText.SetIsOnWithoutNotify(false);
-            textSpeed.SetActive(false);
+            textSpeedDropdown.gameObject.SetActive(false);
         }
     }
 
     private void Start()
     {
         shakeSlider.value = screenshake.shakeMagnitude * 10;
-        textSpeedSlider.value = typeWriter.textSpeed;
+        textSpeedDropdown.SetValueWithoutNotify(typeWriter.textSpeed);
     }
 
     public void UpdateSliderShakeMagnitude()
     {
         screenshake.UpdateShakeMagnitude(shakeSlider.value / 10);
         shakeValue.text = shakeSlider.value.ToString();
-    }
-
-    public void UpdateSliderTextSpeed()
-    {
-        UpdateTextSpeed((int)textSpeedSlider.value);
     }
 
     public void ToggleGrid()
@@ -91,32 +81,15 @@ public class SettingsVisual : MonoBehaviour
 
     public void ToggleDynamicText()
     {
-        textSpeed.SetActive(!textSpeed.activeSelf);
+        textSpeedDropdown.gameObject.SetActive(!textSpeedDropdown.gameObject.activeSelf);
         typeWriter.dynamicText = !typeWriter.dynamicText;
-        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.textSpeedKEY);
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
     }
 
-    private void UpdateTextSpeed(int s)
+    public void UpdateDropdownTextSpeed()
     {
-        if (typeWriter.textSpeed != s)
-        {
-            typeWriter.textSpeed = s;
-            typeWriter.UpdateTypingDelay(s);
-            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.textSpeedKEY, s);
-        }
-
-        switch (typeWriter.textSpeed)
-        {
-            case 1:
-                textSpeedValue.text = "Slow";
-                break;
-            case 2:
-                textSpeedValue.text = "Default";
-                break;
-            case 3:
-                textSpeedValue.text = "Fast";
-                break;
-        }
+        typeWriter.UpdateTypingDelay(textSpeedDropdown.value);
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.textSpeedKEY, textSpeedDropdown.value);
     }
 
 }

@@ -13,7 +13,6 @@ public class Score : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] TextMeshProUGUI difficultyLevelText;
 
     [Header("Score")]
     public int linesCleared = 0;        // the amount of lines the player has cleared
@@ -68,22 +67,6 @@ public class Score : MonoBehaviour
         }
 
         difficultyTreshhold = 12 - (difficultyLevel * 2);
-
-        switch (difficultyLevel)
-        {
-            case 0:
-                difficultyLevelText.text = "Easy";
-                break;
-            case 1:
-                difficultyLevelText.text = "Normal";
-                break;
-            case 2:
-                difficultyLevelText.text = "Hard";
-                break;
-            case 3:
-                difficultyLevelText.text = "Insane";
-                break;
-        }
     }
 
     public string GetDifficultyString()

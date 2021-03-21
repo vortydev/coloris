@@ -29,15 +29,11 @@ public class MainMenuOptions : MonoBehaviour
     private Slider _shakeSlider;
     private TextMeshProUGUI _shakeValue;
     [SerializeField] Toggle dynamicTextToggle;
-    [SerializeField] GameObject textSpeed;
-    private Slider _textSpeedSlider;
-    private TextMeshProUGUI _textSpeedValue;
+    [SerializeField] TMP_Dropdown textSpeedDropdown;
     public float typeSpeed;
 
     [Header("Game Options")]
-    [SerializeField] Slider difficultyLevelSlider;
-    [SerializeField] TextMeshProUGUI difficultyLevelText;
-    [Range(0,3)] public int level;
+    [SerializeField] TMP_Dropdown difficultyDropdown;
     [SerializeField] Slider lockDelaySlider;
     [SerializeField] TextMeshProUGUI lockDelayValue;
     [Range(0,5)] public int lockDelay; 
@@ -56,6 +52,8 @@ public class MainMenuOptions : MonoBehaviour
 
     [Header("Extras Options")]
     [SerializeField] TMP_Dropdown cellFaceDropdown;
+    [SerializeField] Toggle gameVersionToggle;
+    [SerializeField] TextMeshProUGUI gameVersionText;
 
     private void Awake()
     {
@@ -83,9 +81,8 @@ public class MainMenuOptions : MonoBehaviour
         _shakeValue = shakeIntensity.GetComponentInChildren<TextMeshProUGUI>();
         _shakeSlider.value = screenshake.shakeMagnitude * 10;
 
-        _textSpeedSlider = textSpeed.GetComponentInChildren<Slider>();
-        _textSpeedValue = textSpeed.GetComponentInChildren<TextMeshProUGUI>();
-        _textSpeedSlider.value = typeSpeed = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 2);
+        textSpeedDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.textSpeedKEY, 1));
+        typeSpeed = textSpeedDropdown.value;
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gridKEY, 1) == 0)
         {
@@ -102,12 +99,11 @@ public class MainMenuOptions : MonoBehaviour
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.dynamicTextKEY, 1) == 0)
         {
             dynamicTextToggle.SetIsOnWithoutNotify(false);
-            textSpeed.SetActive(false);
+            textSpeedDropdown.gameObject.SetActive(false);
         }
 
         // load game options
-        difficultyLevelSlider.value = level = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, 1);
-        UpdateDifficultyLevel(level);
+        difficultyDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, 1));
 
         lockDelaySlider.value = lockDelay = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.lockDelayKEY, 5);
         UpdateLockDelay((int)lockDelaySlider.value);
@@ -161,6 +157,13 @@ public class MainMenuOptions : MonoBehaviour
 
         // load extras options
         cellFaceDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
+        gameVersionText.text = "v" + Application.version;
+
+        if (!PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.gameVersionKEY, true))
+        {
+            gameVersionToggle.SetIsOnWithoutNotify(false);
+            gameVersionText.gameObject.SetActive(false);
+        }
 
         gameObject.SetActive(false); // closes the page
     }
@@ -181,16 +184,6 @@ public class MainMenuOptions : MonoBehaviour
     {
         screenshake.UpdateShakeMagnitude(_shakeSlider.value / 10);
         _shakeValue.text = _shakeSlider.value.ToString();
-    }
-
-    public void UpdateSliderTextSpeed()
-    {
-        UpdateTextSpeed((int)_textSpeedSlider.value);
-    }
-
-    public void UpdateSliderDifficulty()
-    {
-        UpdateDifficultyLevel((int)difficultyLevelSlider.value);
     }
 
     public void UpdateSliderLockDelay()
@@ -224,54 +217,17 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleDynamicText()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
-        textSpeed.SetActive(!textSpeed.activeSelf);
+        textSpeedDropdown.gameObject.SetActive(!textSpeedDropdown.gameObject.activeSelf);
     }
 
-    private void UpdateTextSpeed(int s) 
+    public void UpdateDropdownTextSpeed() 
     {
-        if (typeSpeed != s)
-        {
-            typeSpeed = s;
-            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.textSpeedKEY, s);
-        }
-
-        switch (typeSpeed)
-        {
-            case 1:
-                _textSpeedValue.text = "Slow";
-                break;
-            case 2:
-                _textSpeedValue.text = "Default";
-                break;
-            case 3:
-                _textSpeedValue.text = "Fast";
-                break;
-        }
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.textSpeedKEY, textSpeedDropdown.value);
     }
 
-    private void UpdateDifficultyLevel(int d)
+    public void UpdateDropdownDifficulty()
     {
-        if (level != d)
-        {
-            level = d;
-            PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, d);
-        }
-
-        switch (level)
-        {
-            case 0:
-                difficultyLevelText.text = "Easy";
-                break;
-            case 1:
-                difficultyLevelText.text = "Normal";
-                break;
-            case 2:
-                difficultyLevelText.text = "Hard";
-                break;
-            case 3:
-                difficultyLevelText.text = "Insane";
-                break;
-        }
+        PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.difficultyLevelKEY, difficultyDropdown.value);
     }
 
     private void UpdateLockDelay(int d)
@@ -355,9 +311,15 @@ public class MainMenuOptions : MonoBehaviour
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.lockSfxKEY);
     }
 
-    public void UpdateCellFace()
+    public void UpdateDropdownCellFace()
     {
         PlayerPrefsManager.SaveIntPlayerPref(PlayerPrefsManager.cellFaceKEY, cellFaceDropdown.value);
         FindObjectOfType<MainMenu>().MainMenuRichPresence();
+    }
+
+    public void ToggleGameVersion()
+    {
+        PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.gameVersionKEY);
+        gameVersionText.gameObject.SetActive(!gameVersionText.gameObject.activeSelf);
     }
 }
