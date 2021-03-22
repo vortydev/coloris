@@ -29,6 +29,7 @@ public class MainMenuOptions : MonoBehaviour
     private Slider _shakeSlider;
     private TextMeshProUGUI _shakeValue;
     [SerializeField] Toggle dynamicTextToggle;
+    [SerializeField] GameObject textSpeed;
     [SerializeField] TMP_Dropdown textSpeedDropdown;
     public float typeSpeed;
 
@@ -99,7 +100,7 @@ public class MainMenuOptions : MonoBehaviour
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.dynamicTextKEY, 1) == 0)
         {
             dynamicTextToggle.SetIsOnWithoutNotify(false);
-            textSpeedDropdown.gameObject.SetActive(false);
+            textSpeed.SetActive(false);
         }
 
         // load game options
@@ -217,7 +218,7 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleDynamicText()
     {
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
-        textSpeedDropdown.gameObject.SetActive(!textSpeedDropdown.gameObject.activeSelf);
+        textSpeed.SetActive(!textSpeed.activeSelf);
     }
 
     public void UpdateDropdownTextSpeed() 

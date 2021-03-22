@@ -30,6 +30,8 @@ public class CZ_Catalog : MonoBehaviour
     {
         CreateCatalogDefault();
         GenerateArtistFilter();
+
+        sortDropdown.Select();
     }
 
     private void LoadCatalog(int sort = 0)
