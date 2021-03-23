@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: 0.8.2
   m_EditorClassIdentifier: 
   version: 0.8.2
-  name: Patch
-  description: Now that's a patch I reckon.
+  name: UI Navigation Patch
+  description: A little patch that impoves UI navigation using the new input system.
+    Oh, and another track! Neat.
   newTracks:
   - TKN by Daniel Gilchrist
   changes:

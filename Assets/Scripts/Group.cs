@@ -283,6 +283,8 @@ public class Group : MonoBehaviour
             // Spawn next Group
             FindObjectOfType<Spawner>().SpawnNext();
 
+            StopCoroutine(LockingTimer());
+
             // Disable script
             enabled = false;
         }
@@ -301,7 +303,7 @@ public class Group : MonoBehaviour
             ghost = Instantiate(FindObjectOfType<Spawner>().ghostPieces[pieceId - 1], transform.position, Quaternion.identity);
             ghost.name = "Ghost";
 
-            UpdateGhostPosition();
+            UpdateGhostRotation();
         }
     }
 
