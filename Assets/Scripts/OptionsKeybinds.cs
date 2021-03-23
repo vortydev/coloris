@@ -134,12 +134,10 @@ public class OptionsKeybinds : MonoBehaviour
         if (state)
         {
             b.GetComponentInChildren<TextMeshProUGUI>().text = "View";
-            b.interactable = true;
         }
         else
         {
             b.GetComponentInChildren<TextMeshProUGUI>().text = "Viewing";
-            b.interactable = false;
         }
     }
 }
