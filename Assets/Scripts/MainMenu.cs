@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour
 
         if (FindObjectOfType<MenuSoundtrack>().toggled)
         {
-            FindObjectOfType<MenuSoundtrack>().StartSoundtrack();
+            FindObjectOfType<MenuSoundtrack>().StartSoundtrack(true);
         }
 
         MainMenuRichPresence();     // updates Discord Rich Presence

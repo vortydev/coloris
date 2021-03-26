@@ -4,6 +4,7 @@
  * Description: Handles the volume levels of music and sfx.
  */
 
+using System.Collections;
 using UnityEngine;
 
 public class AudioController : MonoBehaviour
@@ -12,6 +13,7 @@ public class AudioController : MonoBehaviour
     private static AudioController _instance;   // instance of the object
     public float music, sfx;                    // audio settings
     public AudioSource musicSource, sfxSource;  // audio sources
+    private IEnumerator _musicRoutine;
 
     private void Awake()
     {
@@ -60,10 +62,14 @@ public class AudioController : MonoBehaviour
         return s;
     }
 
+
     public void KillMusicSource()
     {
         musicSource.Stop();
         musicSource.clip = null;
+
+        StopCoroutine(_musicRoutine);
+        _musicRoutine = null;
     }
 
     public void KillSfxSource()
@@ -75,9 +81,60 @@ public class AudioController : MonoBehaviour
     public void KillAudio(bool music = true, bool sfx = true)
     {
         if (music)
+        {
             KillMusicSource();
+        }
 
         if (sfx)
+        {
             KillSfxSource();
+        }  
+    }
+
+    public void FadeInMusic(float initial = 0, float target = 0, float duration = 3f)
+    {
+        if (target == 0)
+            target = music;
+
+        _musicRoutine = FadeIn(musicSource, initial, target, duration);
+        StartCoroutine(_musicRoutine);
+    }
+
+    private IEnumerator FadeIn(AudioSource source, float initial, float target, float duration)
+    {
+        initial /= 10;
+        target /= 10;
+
+        float curTime = 0;
+        source.volume = initial;
+
+        while (source.volume < target)
+        {
+            curTime += Time.deltaTime;
+            source.volume = Mathf.Lerp(initial, target, curTime / duration);
+            yield return null;
+        }
+    }
+
+    public void FadeOutMusic(float initial = 0, float target = 0, float duration = 3f)
+    {
+        _musicRoutine = FadeOut(musicSource, initial, target, duration);
+        StartCoroutine(_musicRoutine);
+    }
+
+    private IEnumerator FadeOut(AudioSource source, float initial, float target, float duration)
+    {
+        initial /= 10;
+        target /= 10;
+
+        float curTime = 0;
+        source.volume = initial;
+
+        while (source.volume > target)
+        {
+            curTime += Time.deltaTime;
+            source.volume = Mathf.Lerp(initial, target, curTime / duration);
+            yield return null;
+        }
     }
 }

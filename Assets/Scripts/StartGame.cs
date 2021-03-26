@@ -55,7 +55,7 @@ public class StartGame : MonoBehaviour
     {
         DisableGameComponents();
 
-        _musicSource.volume = _tracksManager.audioController.music / 10;
+        _tracksManager.audioController.FadeInMusic(_tracksManager.audioController.music / 10, _tracksManager.audioController.music, 3f);
 
         StartCoroutine(Countdown(time));
         started = true;
@@ -106,6 +106,7 @@ public class StartGame : MonoBehaviour
     {
         _sfxSource.clip = null;
         StartCoroutine(RestartCountdown(time));
+        _tracksManager.audioController.FadeInMusic(_tracksManager.audioController.music / 10, _tracksManager.audioController.music, 3f);
     }
 
     private IEnumerator RestartCountdown(int seconds)

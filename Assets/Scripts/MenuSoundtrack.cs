@@ -18,7 +18,7 @@ public class MenuSoundtrack : MonoBehaviour
         toggled = PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.menuSoundtrackKEY, true);
     }
 
-    public void StartSoundtrack()
+    public void StartSoundtrack(bool fade = false)
     {
         if (toggled && !_playing)
         {
@@ -28,21 +28,8 @@ public class MenuSoundtrack : MonoBehaviour
             _musicSource.loop = true;
             _musicSource.Play();
 
-            StartCoroutine(FadeIn());
-        }
-    }
-
-    private IEnumerator FadeIn()
-    {
-        float currentTime = 0;
-        float targetVolume = _audioController.music / 10;
-        _musicSource.volume = 0;
-
-        while (_musicSource.volume < targetVolume)
-        {
-            currentTime += Time.deltaTime;
-            _musicSource.volume = Mathf.Lerp(0, targetVolume, currentTime / fadeDuration);
-            yield return null;
+            if (fade)
+                _audioController.FadeInMusic(0, _audioController.music, fadeDuration);
         }
     }
 
@@ -61,7 +48,7 @@ public class MenuSoundtrack : MonoBehaviour
 
         if (toggled)
         {
-            StartSoundtrack();
+            StartSoundtrack(true);
         }
         else
         {
