@@ -61,8 +61,8 @@ public class TracksManager : MonoBehaviour
             NextTrack();
 
         // adjusts the sound of the music
-        if (gameStarted)
-            musicSource.volume = audioController.music / 10;
+        //if (gameStarted)
+            //musicSource.volume = audioController.music / 10;
     }
 
     // randomly chooses a track that hasn't been played yet

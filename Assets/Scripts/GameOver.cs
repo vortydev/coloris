@@ -69,7 +69,7 @@ public class GameOver : MonoBehaviour
                         + "\nGhost Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.ghostPieceKEY);
 
         tracksManager.gameStarted = false;
-        tracksManager.musicSource.volume /= 10;
+        tracksManager.audioController.FadeOutMusic(tracksManager.audioController.music, tracksManager.audioController.music / 10f, 3f);
 
         // disable game elements
         spawner.enabled = false;

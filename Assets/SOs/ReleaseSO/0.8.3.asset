@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ca9ce6dd6f094242913d129bc413668, type: 3}
-  m_Name: 0.8.2
+  m_Name: 0.8.3
   m_EditorClassIdentifier: 
-  version: 0.8.2
-  name: UI Navigation Patch
-  description: A little patch that impoves UI navigation using the new input system.
-    Oh, and another track! Neat.
-  newTracks:
-  - TKN by Daniel Gilchrist
+  version: 0.8.3
+  name: Lock And Load Patch
+  description: Final stretch fixes and additions.
+  newTracks: []
   changes:
-  - UI navigation now supports keyboard and controller inputs.
+  - Added audio fading on game over and game restart.
   bugfixes:
-  - 008 - Fixed corrupted Mac build by updating editor version.
+  - 009 - Game would end because the piece locking timer would glitch.
