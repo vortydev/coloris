@@ -28,11 +28,16 @@ public class Group : MonoBehaviour
     private bool _canGhost;         // is the ghost piece mechanic enabled
 
     [SerializeField] GameObject ghost;
+    private IEnumerator _lockingRoutine;
+
+    private void Awake()
+    {
+        _lockingRoutine = LockingTimer();
+        _perms = FindObjectOfType<CanDo>();
+    }
 
     private void Start()
     {
-        _perms = FindObjectOfType<CanDo>();
-
         _localDifficulty = FindObjectOfType<Score>().globalDifficulty;  // loads the current difficulty
         _lockDelay = _perms.lockDelay / 10f;                             // loads locking delay
 
@@ -49,8 +54,6 @@ public class Group : MonoBehaviour
     {
         _paused = FindObjectOfType<PauseMenu>().gamePaused;
         _canHold = _perms.canHold;
-        
-        //canGhost = perms.canGhost;
 
         if (_isMoveable && !_paused)
         {
@@ -65,15 +68,13 @@ public class Group : MonoBehaviour
                     // It's valid. Update grid.
                     UpdateGrid();
                     HasMoved();
-
-                    StopCoroutine(LockingTimer());
                 }
                 else
                 {
                     // It's not valid. revert.
                     transform.position += new Vector3(0, 1, 0);
 
-                    StartCoroutine(LockingTimer());
+                    StartCoroutine(_lockingRoutine);
                 }
 
                 _lastFall = Time.time;
@@ -161,7 +162,7 @@ public class Group : MonoBehaviour
                 // It's not valid. revert.
                 transform.position += new Vector3(0, 1, 0);
 
-                StartCoroutine(LockingTimer());
+                StartCoroutine(_lockingRoutine);
             }
 
             _lastFall = Time.time;
@@ -174,28 +175,28 @@ public class Group : MonoBehaviour
 
         if (_canHardDrop && _allowedHardDrop && _isMoveable && !_paused)
         {
-            _isMoveable = false; // locks the piece's movement
+            _isMoveable = false; // locks the piece's lateral movement
 
-            FindObjectOfType<GameSFX>().HardDropSFX();
+            FindObjectOfType<GameSFX>().HardDropSFX();  // plays sfx
 
-            for (int i = 0; i < Playfield.h; i++)
+            for (int i = 0; i < Playfield.h; i++)   // goes down the entire grid
             {
                 transform.position += new Vector3(0, -1, 0);
 
-                if (IsValidGridPos())
+                if (IsValidGridPos())   // if it still can move
                 {
-                    UpdateGrid();
+                    UpdateGrid();   // move down
                 }
                 else
                 {
-                    transform.position += new Vector3(0, 1, 0);
+                    transform.position += new Vector3(0, 1, 0); 
                 }
             }
 
+            DestroyGhost();
+
             Playfield.DeleteFullRows();
             FindObjectOfType<Spawner>().SpawnNext();
-
-            DestroyGhost();
 
             enabled = false;
         }
@@ -225,7 +226,21 @@ public class Group : MonoBehaviour
                 Playfield.grid[(int)v.x, (int)v.y].parent != transform)
                 return false;
         }
+
+        if (CanStillFall())
+        {
+            StopCoroutine(_lockingRoutine); // interrupt the locking routine
+        }
+
         return true;
+    }
+
+    private bool CanStillFall()
+    {
+        transform.position += new Vector3(0, -1, 0);    // drops the piece down once more
+        bool fall = IsValidGridPos();                   // checks if that space still valid
+        transform.position += new Vector3(0, 1, 0);     // puts the piece back up
+        return fall;                                    // returns if the piece can still fall
     }
 
     // Updates the grid with the group
@@ -282,8 +297,6 @@ public class Group : MonoBehaviour
 
             // Spawn next Group
             FindObjectOfType<Spawner>().SpawnNext();
-
-            StopCoroutine(LockingTimer());
 
             // Disable script
             enabled = false;
