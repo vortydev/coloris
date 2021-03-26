@@ -20,4 +20,5 @@ MonoBehaviour:
   - TKN by Daniel Gilchrist
   changes:
   - UI navigation now supports keyboard and controller inputs.
-  bugfixes: []
+  bugfixes:
+  - 008 - Fixed corrupted Mac build by updating editor version.
