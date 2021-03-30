@@ -114,8 +114,8 @@ public class GameOver : MonoBehaviour
     // re-enables all the stuff to start a new game
     public void Replay()
     {
-        startGame.countdown.enabled = true;
-        startGame.GameOverRestart();
+        startGame.countdownText.enabled = true;
+        startGame.GameOverRestartMusicFade();
 
         spawner.enabled = true;
         spawner.RegenBags();
