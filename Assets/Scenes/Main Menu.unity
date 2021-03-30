@@ -11423,6 +11423,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 506f10c41c802784b838d1f63f2c95f6, type: 2}
   - {fileID: 11400000, guid: 71c3c315fb7bbf54393d5a616d4cab9c, type: 2}
   - {fileID: 11400000, guid: 86f83d7ac285cea4e821528929d3b9bd, type: 2}
+  - {fileID: 11400000, guid: 21fc9d8f67a0aed4d924334ec06757f4, type: 2}
   releaseButtonPrefab: {fileID: 8829709290597795080, guid: 66cd0f9c30b561a448149197eaaefb4e, type: 3}
   changeLogPage: {fileID: 1098897958}
   changeLogScrollView: {fileID: 346606783}
