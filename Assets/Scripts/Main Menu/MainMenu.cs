@@ -145,4 +145,9 @@ public class MainMenu : MonoBehaviour
     {
         Application.OpenURL("https://paypal.me/etiennemenard");
     }
+
+    public void DiscordServerInvite()
+    {
+        Application.OpenURL("https://discord.gg/pENaNRFk5p");
+    }
 }
