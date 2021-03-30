@@ -6447,7 +6447,7 @@ GameObject:
   - component: {fileID: 797963915}
   - component: {fileID: 797963916}
   m_Layer: 0
-  m_Name: LoadedTracks
+  m_Name: ReferenceTracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6492,7 +6492,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c834de4fb0e2e848aa6b0126badf4e9, type: 2}
   - {fileID: 11400000, guid: 664d74de9eb206341bbe5364da9e2a75, type: 2}
   - {fileID: 11400000, guid: 942146657560d7c4394db335822e5fa9, type: 2}
-  importedTracks: []
 --- !u!1 &806869311
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,11 +32,6 @@ public class ReferenceTracks : MonoBehaviour
         return refTracks;
     }
 
-    public TrackSO[] GetImportedArray()
-    {
-        return importedTracks;
-    }
-
     // Returns the TrackSO object
     public TrackSO GetTrackSO(int ind)
     {
