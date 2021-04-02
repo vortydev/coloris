@@ -1,30 +1,32 @@
-/*
- * File:        ReferenceTracks.cs
+/* File:        ReferenceTracks.cs
  * Author:      Étienne Ménard
  * Description: Persistent reference array of the tracks in the game.
  */
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ReferenceTracks : MonoBehaviour
 {
-    private static ReferenceTracks instance;
-    public TrackSO[] refTracks;  // array of the tracks made for Coloris
+    private static ReferenceTracks _instance;   // instance of the Loaded Tracks object
+    public TrackSO[] refTracks;                 // array of the tracks made for Coloris
 
     private void Awake()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject); // makes the array persistent across scenes
         }
-        else if (instance != this)
+        else if (_instance != this)
         {
             Destroy(gameObject);
         }
     }
 
-    public TrackSO[] GetArray()
+    // Returns the TrackSO array
+    public TrackSO[] GetRefArray()
     {
         return refTracks;
     }

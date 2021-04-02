@@ -7,11 +7,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class StartGame : MonoBehaviour
 {
     [Header("Components")]
+    private RectTransform _rectTransform;
     private AudioSource _sfxSource;
     private AudioSource _musicSource;
     private TracksManager _tracksManager;
@@ -23,29 +25,36 @@ public class StartGame : MonoBehaviour
     [SerializeField] GameObject pauseButton;
 
     [Header("Countdown")]
-    private bool started = false;
+    private bool _started = false;
+    private bool _dynamicJuice;
     [SerializeField] private int time;
-    public TextMeshProUGUI countdown;
+    [SerializeField] private float juiceTime;
+    public TextMeshProUGUI countdownText;
+    private IEnumerator _countdownRoutine;
+    private IEnumerator _scalingRoutine;
     [SerializeField] AudioClip countdownClip;
 
     private void Awake()
-    {   
-        _tracksManager = FindObjectOfType<TracksManager>();
-        _spawner = FindObjectOfType<Spawner>();
-        _nextPiece = FindObjectOfType<NextPiece>();
+    {
+        _rectTransform = GetComponent<RectTransform>();     // rect transform for UI scaling
+        countdownText = GetComponent<TextMeshProUGUI>();    // string being displayed on screen
 
-        countdown = GetComponent<TextMeshProUGUI>();    // gets tmp component
+        _tracksManager = FindObjectOfType<TracksManager>(); // script that controls the music played in this scene
+        _spawner = FindObjectOfType<Spawner>();             // script that handles the spawning of pieces
+        _nextPiece = FindObjectOfType<NextPiece>();         // script handling the Next Piece UI
     }
 
     private void Start()
     {
         _sfxSource = _tracksManager.audioController.sfxSource;
         _musicSource = _tracksManager.audioController.musicSource;
+
+        _dynamicJuice = PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (!started)   // should take care of the issue where the game doesn't start
+        if (!_started)   // should take care of the issue where the game doesn't start
         {
             InitialStart();
         }
@@ -57,26 +66,34 @@ public class StartGame : MonoBehaviour
 
         _tracksManager.audioController.FadeInMusic(_tracksManager.audioController.music / 10, _tracksManager.audioController.music, 3f);
 
-        StartCoroutine(Countdown(time));
-        started = true;
+        _countdownRoutine = CountdownRoutine(time);
+        StartCoroutine(_countdownRoutine);
+
+        _started = true;
     }
 
-    private IEnumerator Countdown(int seconds)
+    private IEnumerator CountdownRoutine(int seconds)
     {
         int count = seconds;
         _sfxSource.clip = countdownClip;
 
         do
         {
-            countdown.text = count.ToString();
+            //if (_dynamicJuice)
+            //{
+            //    _rectTransform.localScale = new Vector2(4 - count, 4 - count);
+            //}
+
+            countdownText.text = count.ToString();
+
             _sfxSource.Play();
 
             yield return new WaitForSecondsRealtime(1);
             count--;
         } while (count > 0);
 
-        StartGameRoutine();
-        countdown.enabled = false;
+        StartGameElements();
+        countdownText.enabled = false;
     }
 
     private void DisableGameComponents()
@@ -90,7 +107,7 @@ public class StartGame : MonoBehaviour
     }
 
     // enables components to play the game
-    private void StartGameRoutine()
+    private void StartGameElements()
     {
         _tracksManager.gameStarted = true;
         _tracksManager.TogglePause();
@@ -102,21 +119,34 @@ public class StartGame : MonoBehaviour
         pauseButton.SetActive(true);    // enables pause button
     }
 
-    public void GameOverRestart()
+    public void GameOverRestartMusicFade()
     {
         _sfxSource.clip = null;
-        StartCoroutine(RestartCountdown(time));
+
+        _countdownRoutine = RestartCountdownRoutine(time);
+        StartCoroutine(_countdownRoutine);
+
         _tracksManager.audioController.FadeInMusic(_tracksManager.audioController.music / 10, _tracksManager.audioController.music, 3f);
     }
 
-    private IEnumerator RestartCountdown(int seconds)
+    private IEnumerator RestartCountdownRoutine(int seconds)
     {
         int count = seconds;
         _sfxSource.clip = countdownClip;
 
+        //if (_dynamicJuice)
+        //{
+        //    StartCoroutine(_scalingRoutine);
+        //}
+
         do
         {
-            countdown.text = count.ToString();
+            if (_dynamicJuice)
+            {
+                _rectTransform.localScale = new Vector2(4 - count, 4 - count);
+            }
+
+            countdownText.text = count.ToString();
             _sfxSource.Play();
 
             yield return new WaitForSecondsRealtime(1);
@@ -124,7 +154,7 @@ public class StartGame : MonoBehaviour
         } while (count > 0);
 
         RestartGameRoutine();
-        countdown.enabled = false;
+        countdownText.enabled = false;
     }
 
     public void RestartGameRoutine()

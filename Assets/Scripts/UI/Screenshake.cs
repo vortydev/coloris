@@ -4,8 +4,6 @@
  * Description: haha camera goes brrr
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //https://medium.com/@mattThousand/basic-2d-screen-shake-in-unity-9c27b56b516

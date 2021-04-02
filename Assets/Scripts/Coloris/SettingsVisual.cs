@@ -27,6 +27,7 @@ public class SettingsVisual : MonoBehaviour
     [SerializeField] TypeWriter typeWriter;
     [SerializeField] Toggle dynamicText;
     [SerializeField] TMP_Dropdown textSpeedDropdown;
+    [SerializeField] GameObject textSpeedObject;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class SettingsVisual : MonoBehaviour
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.dynamicTextKEY, 1) == 0)
         {
             dynamicText.SetIsOnWithoutNotify(false);
-            textSpeedDropdown.gameObject.SetActive(false);
+            textSpeedObject.SetActive(false);
         }
     }
 
@@ -81,7 +82,7 @@ public class SettingsVisual : MonoBehaviour
 
     public void ToggleDynamicText()
     {
-        textSpeedDropdown.gameObject.SetActive(!textSpeedDropdown.gameObject.activeSelf);
+        textSpeedObject.SetActive(!textSpeedObject.activeSelf);
         typeWriter.dynamicText = !typeWriter.dynamicText;
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
     }

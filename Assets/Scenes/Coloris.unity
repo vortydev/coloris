@@ -1598,6 +1598,7 @@ MonoBehaviour:
   typeWriter: {fileID: 426348305}
   dynamicText: {fileID: 367484800}
   textSpeedDropdown: {fileID: 1595356236637497618}
+  textSpeedObject: {fileID: 1595356236772840745}
 --- !u!1 &252421849
 GameObject:
   m_ObjectHideFlags: 0
@@ -6700,7 +6701,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 2013547629}
   pauseButton: {fileID: 520680688}
   time: 3
-  countdown: {fileID: 797280545}
+  juiceTime: 100
+  countdownText: {fileID: 797280545}
   countdownClip: {fileID: 8300000, guid: 54e1e06518db5a84bb10b889b82f66ba, type: 3}
 --- !u!114 &797280545
 MonoBehaviour:
@@ -6722,7 +6724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
   m_sharedMaterial: {fileID: 5995651761183633212, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
@@ -6749,12 +6751,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 230
+  m_fontSizeBase: 300
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 250
+  m_fontSizeMax: 230
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
