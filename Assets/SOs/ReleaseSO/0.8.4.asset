@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 0.8.4
   m_EditorClassIdentifier: 
   version: 0.8.4
-  name: Tracks Source Filtering Patch
+  name: Source Filtering Patch
   description: Although Coloris is pretty much all clear for an official 1.0.0 release,
     I first made some final touchups to the game.
   newTracks: []
