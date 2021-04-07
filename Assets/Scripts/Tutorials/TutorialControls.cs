@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 public class TutorialControls : MonoBehaviour
 {
     private MyControls _actions;
+    private TutorialsManager _manager;
 
     [Header("Buttons")]
     [SerializeField] Button backButton;
@@ -43,6 +44,7 @@ public class TutorialControls : MonoBehaviour
     {
         _actions = new MyControls();
         _sfxSource = FindObjectOfType<AudioController>().sfxSource;
+        _manager = FindObjectOfType<TutorialsManager>();
     }
 
     private void Start()
@@ -293,19 +295,27 @@ public class TutorialControls : MonoBehaviour
         switch (controlsNav)
         {
             case 1:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
+                _manager.PlayControls(controlsNav);
                 break;
             case 2:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
-                StartCoroutine(ResetPieceToMiddle());
+                _manager.PlayControls(controlsNav);
                 break;
             case 3:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
-                StartCoroutine(ResetPieceUp());
+                _manager.PlayControls(controlsNav);
                 break;
             case 4:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
+                _manager.PlayControls(controlsNav);
                 break;
+        }
+
+        if (controlsNav != 1)
+        {
+            StartCoroutine(ResetPieceToMiddle());
+        }
+
+        if (controlsNav != 2)
+        {
+            StartCoroutine(ResetPieceUp());
         }
 
         if (controlsNav == 4)

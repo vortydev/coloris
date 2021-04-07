@@ -68,8 +68,11 @@ public class AudioController : MonoBehaviour
         musicSource.Stop();
         musicSource.clip = null;
 
-        StopCoroutine(_musicRoutine);
-        _musicRoutine = null;
+        if (_musicRoutine != null)
+        {
+            StopCoroutine(_musicRoutine);
+            _musicRoutine = null;
+        }
     }
 
     public void KillSfxSource()

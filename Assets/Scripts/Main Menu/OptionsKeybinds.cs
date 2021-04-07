@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class OptionsKeybinds : MonoBehaviour
@@ -33,6 +34,14 @@ public class OptionsKeybinds : MonoBehaviour
     {
         keyboardDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.keyboardLoadoutKEY, 0));
         gamepadDropdown.SetValueWithoutNotify(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gamepadLoadoutKEY, 1));
+
+        if (Gamepad.all.Count <= 0)
+        {
+            gamepadDropdown.interactable = false;
+            viewGamepadButton.interactable = false;
+            gamepadDropdown.SetValueWithoutNotify(0);
+        }
+
         bindView.SetActive(false);
     }
 
