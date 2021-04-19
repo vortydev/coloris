@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 04-Endless
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: 46dee698e44c49042a25351fb2d46331, type: 3}
-  trackNb: 4
-  volNb: 1
-  trackName: Endless
-  authorName: Scyriate
+  Clip: {fileID: 8300000, guid: 46dee698e44c49042a25351fb2d46331, type: 3}
+  TrackName: Endless
+  ArtistName: Scyriate
+  TrackNb: 4
+  VolNb: 1

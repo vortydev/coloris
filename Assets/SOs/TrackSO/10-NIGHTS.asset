@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 10-NIGHTS
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: 76460116856c50941ba17e48d0c0dca9, type: 3}
-  trackNb: 10
-  volNb: 1
-  trackName: NIGHTS
-  authorName: Alex Renard
+  Clip: {fileID: 8300000, guid: 76460116856c50941ba17e48d0c0dca9, type: 3}
+  TrackName: NIGHTS
+  ArtistName: Alex Renard
+  TrackNb: 10
+  VolNb: 1

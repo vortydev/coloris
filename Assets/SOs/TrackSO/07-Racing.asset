@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 07-Racing
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: 1aafb3fd31676034cb2cb1381b145c6b, type: 3}
-  trackNb: 7
-  volNb: 1
-  trackName: Racing
-  authorName: Daniel Gilchrist
+  Clip: {fileID: 8300000, guid: 1aafb3fd31676034cb2cb1381b145c6b, type: 3}
+  TrackName: Racing
+  ArtistName: Daniel Gilchrist
+  TrackNb: 7
+  VolNb: 1

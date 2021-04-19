@@ -51,6 +51,21 @@ public class PlayerPrefsManager : MonoBehaviour
     public static string cellFaceKEY = "cellFace";                  // int that toggles emoji faces on cells (0: disabled, 1: flushed, 2: weary, 3: pensive)
     public static string gameVersionKEY = "gameVersion";            // "bool" int that toggles the game version on the main menu
 
+    // speed clear track highscores                                 // track highscores
+    public static string SP_HS_1_KEY = "sphs1";                     // 1. Stellaris 
+    public static string SP_HS_2_KEY = "sphs2";                     // 2. Encounter!
+    public static string SP_HS_3_KEY = "sphs3";                     // 3. Flight
+    public static string SP_HS_4_KEY = "sphs4";                     // 4. Endless
+    public static string SP_HS_5_KEY = "sphs5";                     // 5. Center
+    public static string SP_HS_6_KEY = "sphs6";                     // 6. Gumby
+    public static string SP_HS_7_KEY = "sphs7";                     // 7. Racing
+    public static string SP_HS_8_KEY = "sphs8";                     // 8. 1999
+    public static string SP_HS_9_KEY = "sphs9";                     // 9. Lucid Dreams
+    public static string SP_HS_10_KEY = "sphs10";                   // 10. NIGHTS
+    public static string SP_HS_11_KEY = "sphs11";                   // 11. Astral
+    public static string SP_HS_12_KEY = "sphs12";                   // 12. TKN
+
+
     // Returns a float PlayerPref and creates it if it doesn't exist
     public static float GetFloatPlayerPref(string KEY, float defaultVal)
     {

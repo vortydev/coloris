@@ -103,7 +103,7 @@ public class ChillZoneManager : MonoBehaviour
         {
             if (currentTrack != null)
             {
-                FindObjectOfType<DiscordController>().UpdateRichPresence(("Playing: " + currentTrack.trackName), ("By: "+ currentTrack.authorName), "Chill Zone", PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
+                FindObjectOfType<DiscordController>().UpdateRichPresence(("Playing: " + currentTrack.TrackName), ("By: "+ currentTrack.ArtistName), "Chill Zone", PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.cellFaceKEY, 0));
             }
             else
             {
@@ -185,7 +185,7 @@ public class ChillZoneManager : MonoBehaviour
         currentTrack = selectedTrack;   // sets the selected track as the current track
         DeselectSelectedTrack();        // deselects the track
 
-        musicSource.clip = currentTrack.track;  // loads audio source
+        musicSource.clip = currentTrack.Clip;  // loads audio source
         musicSource.Play();                     // plays the track
 
         UpdateMediaControlsAndRadio();                      // update media controls
@@ -201,7 +201,7 @@ public class ChillZoneManager : MonoBehaviour
             currentTrack = playlist[0]; // loads track in the AudioSource
             playlist.RemoveAt(0);       // removes the track from the playlist
 
-            musicSource.clip = currentTrack.track;
+            musicSource.clip = currentTrack.Clip;
             musicSource.Play();
 
             queue.CreateQueue(playlist);    // regenerates the queue
@@ -240,7 +240,7 @@ public class ChillZoneManager : MonoBehaviour
         
         DeselectSelectedTrack();        // deselects the track
 
-        musicSource.clip = currentTrack.track;  // loads audio source
+        musicSource.clip = currentTrack.Clip;  // loads audio source
         musicSource.Play();                     // plays the track
 
         UpdateMediaControlsAndRadio();
@@ -251,11 +251,11 @@ public class ChillZoneManager : MonoBehaviour
 
     private void UpdateMediaControlsAndRadio()
     {
-        mediaControls.GetTotalTrackTime(currentTrack.track.length); // updates the time
+        mediaControls.GetTotalTrackTime(currentTrack.Clip.length); // updates the time
         mediaControls.ToggleMediaControls(true);                    // toggles media controls on
 
-        typeWriter.TypeText(radio.trackName, currentTrack.trackName);       // types on the radio the current track's name
-        typeWriter.TypeText(radio.trackAuthor, currentTrack.authorName);    // types on the radio the current track's artist
+        typeWriter.TypeText(radio.trackName, currentTrack.TrackName);       // types on the radio the current track's name
+        typeWriter.TypeText(radio.trackAuthor, currentTrack.ArtistName);    // types on the radio the current track's artist
 
         UpdateRichPresence();
     }
@@ -283,7 +283,7 @@ public class ChillZoneManager : MonoBehaviour
     public void ClickSkipTo()
     {
         currentTrack = selectedTrack;
-        musicSource.clip = currentTrack.track;  // loads audio source
+        musicSource.clip = currentTrack.Clip;  // loads audio source
         musicSource.Play();                     // plays the track
 
         int pos = playlist.IndexOf(selectedTrack);

@@ -22,7 +22,7 @@ public class Group : MonoBehaviour
     private bool _hasMoved = false;         // has the piece moved  
     private bool _allowedHardDrop = false;  // little buffer thing to prevent spam hard drop
 
-    private CanDo _perms;           // file the piece reads its permissions from
+    private GameplayController _perms;           // file the piece reads its permissions from
     private bool _canHold;          // can the piece be held
     private bool _canHardDrop;      // can the piece be hard dropped
     private bool _canGhost;         // is the ghost piece mechanic enabled
@@ -33,7 +33,7 @@ public class Group : MonoBehaviour
     private void Awake()
     {
         _lockingRoutine = LockingTimer();
-        _perms = FindObjectOfType<CanDo>();
+        _perms = FindObjectOfType<GameplayController>();
     }
 
     private void Start()

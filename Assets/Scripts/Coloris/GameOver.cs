@@ -26,7 +26,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] Score score;
     [SerializeField] PauseMenu pauseMenu;
     [SerializeField] StartGame startGame;
-    [SerializeField] CanDo canDo;
+    [SerializeField] GameplayController gameplayController;
 
     [Header("Game Over")]
     [SerializeField] TextMeshProUGUI scoreText;
@@ -62,7 +62,7 @@ public class GameOver : MonoBehaviour
                         + "\nHighscore: " + _highscore;
 
         detailsText.text = "Difficulty: " + score.GetDifficultyString()
-                        + "\nLock Delay: " + canDo.GetLockDelayString()
+                        + "\nLock Delay: " + GetLockDelayString()
                         + "\nHard Dropping: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.hardDropKEY)
                         + "\nNext Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.nextPieceKEY)
                         + "\nHold Piece: " + PlayerPrefsManager.GetBoolStringPlayerPref(PlayerPrefsManager.holdPieceKEY)
@@ -134,6 +134,27 @@ public class GameOver : MonoBehaviour
 
         background.SetActive(false);
         gameOverPage.SetActive(false);
+    }
+
+    public string GetLockDelayString()
+    {
+        switch (gameplayController.lockDelay)
+        {
+            case 0:
+                return "0s";
+            case 1:
+                return "0.1s";
+            case 2:
+                return "0.2s";
+            case 3:
+                return "0.3s";
+            case 4:
+                return "0.4s";
+            case 5:
+                return "0.5s";
+        }
+
+        return null;
     }
 
     public void QuitToMainMenu()

@@ -45,24 +45,24 @@ public class ReferenceTracks : MonoBehaviour
     // Returns the selected TrackSO's track number
     public int GetTrackNb(int ind)
     {
-        return refTracks[ind].trackNb;
+        return refTracks[ind].TrackNb;
     }
 
     // Returns the selected TrackSO' volume number
     public int GetVolumeNb(int ind)
     {
-        return refTracks[ind].volNb;
+        return refTracks[ind].VolNb;
     }
 
     // Returns the selected TrackSO's track name
     public string GetTrackName(int ind)
     {
-        return refTracks[ind].trackName;
+        return refTracks[ind].TrackName;
     }
 
     // Returns the selected TrackSO artist's name
     public string GetArtistName(int ind)
     {
-        return refTracks[ind].authorName;
+        return refTracks[ind].ArtistName;
     }
 }

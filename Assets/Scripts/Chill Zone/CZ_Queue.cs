@@ -94,12 +94,12 @@ public class CZ_Queue : MonoBehaviour
         foreach (TrackSO track in playlist)
         {
             GameObject newTrack = Instantiate(queueTrackPrefab, queueScroll.transform, false);
-            newTrack.GetComponentsInChildren<TextMeshProUGUI>()[0].text = track.trackName;
+            newTrack.GetComponentsInChildren<TextMeshProUGUI>()[0].text = track.TrackName;
             newTrack.GetComponentsInChildren<TextMeshProUGUI>()[1].text = pos.ToString() + ".";
-            newTrack.gameObject.name = pos.ToString() + "-" + track.trackName;
+            newTrack.gameObject.name = pos.ToString() + "-" + track.TrackName;
             newTrack.transform.position = queueScroll.transform.position;
 
-            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = track.trackNb;
+            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = track.TrackNb;
             pos++;
 
             queue.Add(newTrack);

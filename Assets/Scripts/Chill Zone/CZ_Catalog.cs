@@ -72,16 +72,16 @@ public class CZ_Catalog : MonoBehaviour
 
     private void CreateCatalogByName()
     {
-        TrackSO[] tracksByName = manager.tracks.GetRefArray().OrderBy(go => go.trackName).ToArray();
+        TrackSO[] tracksByName = manager.tracks.GetRefArray().OrderBy(go => go.TrackName).ToArray();
 
         for (int i = 0; i < tracksByName.Length; i++)
         {
             GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
-            newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByName[i].trackNb.ToString() + ". " + tracksByName[i].trackName + " - " + tracksByName[i].authorName;
-            newTrack.gameObject.name = tracksByName[i].trackName;
+            newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByName[i].TrackNb.ToString() + ". " + tracksByName[i].TrackName + " - " + tracksByName[i].ArtistName;
+            newTrack.gameObject.name = tracksByName[i].TrackName;
             newTrack.transform.position = catalogScroll.transform.position;
 
-            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByName[i].trackNb;
+            newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByName[i].TrackNb;
 
             catalog.Add(newTrack);
         }
@@ -89,20 +89,20 @@ public class CZ_Catalog : MonoBehaviour
 
     private void CreateCatalogByArtist()
     {
-        TrackSO[] tracksByArtist = manager.tracks.GetRefArray().OrderBy(go => go.authorName).ToArray();
+        TrackSO[] tracksByArtist = manager.tracks.GetRefArray().OrderBy(go => go.ArtistName).ToArray();
 
         if (_filter > 0)
         {
             for (int i = 0; i < tracksByArtist.Length; i++)
             {
-                if (tracksByArtist[i].authorName == _artistsFilter[_filter - 1])
+                if (tracksByArtist[i].ArtistName == _artistsFilter[_filter - 1])
                 {
                     GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
-                    newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByArtist[i].trackNb.ToString() + ". " + tracksByArtist[i].trackName + " - " + tracksByArtist[i].authorName;
-                    newTrack.gameObject.name = tracksByArtist[i].trackName;
+                    newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByArtist[i].TrackNb.ToString() + ". " + tracksByArtist[i].TrackName + " - " + tracksByArtist[i].ArtistName;
+                    newTrack.gameObject.name = tracksByArtist[i].TrackName;
                     newTrack.transform.position = catalogScroll.transform.position;
 
-                    newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByArtist[i].trackNb;
+                    newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByArtist[i].TrackNb;
 
                     catalog.Add(newTrack);
                 }
@@ -114,11 +114,11 @@ public class CZ_Catalog : MonoBehaviour
             {
                 
                 GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
-                newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByArtist[i].trackNb.ToString() + ". " + tracksByArtist[i].trackName + " - " + tracksByArtist[i].authorName;
-                newTrack.gameObject.name = tracksByArtist[i].trackName;
+                newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByArtist[i].TrackNb.ToString() + ". " + tracksByArtist[i].TrackName + " - " + tracksByArtist[i].ArtistName;
+                newTrack.gameObject.name = tracksByArtist[i].TrackName;
                 newTrack.transform.position = catalogScroll.transform.position;
 
-                newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByArtist[i].trackNb;
+                newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByArtist[i].TrackNb;
 
                 catalog.Add(newTrack);
             }
@@ -127,20 +127,20 @@ public class CZ_Catalog : MonoBehaviour
 
     public void CreateCatalogByVolume()
     {
-        TrackSO[] tracksByVolume = manager.tracks.GetRefArray().OrderBy(go => go.volNb).ToArray();
+        TrackSO[] tracksByVolume = manager.tracks.GetRefArray().OrderBy(go => go.VolNb).ToArray();
 
         if (_filter > 0)
         {
             for (int i = 0; i < tracksByVolume.Length; i++)
             {
-                if ("Volume " + tracksByVolume[i].volNb.ToString() == _volumeFilter[_filter - 1])
+                if ("Volume " + tracksByVolume[i].VolNb.ToString() == _volumeFilter[_filter - 1])
                 {
                     GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
-                    newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByVolume[i].trackNb.ToString() + ". " + tracksByVolume[i].trackName + " - " + tracksByVolume[i].authorName;
-                    newTrack.gameObject.name = tracksByVolume[i].trackName;
+                    newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByVolume[i].TrackNb.ToString() + ". " + tracksByVolume[i].TrackName + " - " + tracksByVolume[i].ArtistName;
+                    newTrack.gameObject.name = tracksByVolume[i].TrackName;
                     newTrack.transform.position = catalogScroll.transform.position;
 
-                    newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByVolume[i].trackNb;
+                    newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByVolume[i].TrackNb;
 
                     catalog.Add(newTrack);
                 }
@@ -152,11 +152,11 @@ public class CZ_Catalog : MonoBehaviour
             {
 
                 GameObject newTrack = Instantiate(catalogTrackPrefab, catalogScroll.transform, false);
-                newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByVolume[i].trackNb.ToString() + ". " + tracksByVolume[i].trackName + " - " + tracksByVolume[i].authorName;
-                newTrack.gameObject.name = tracksByVolume[i].trackName;
+                newTrack.GetComponentInChildren<TextMeshProUGUI>().text = tracksByVolume[i].TrackNb.ToString() + ". " + tracksByVolume[i].TrackName + " - " + tracksByVolume[i].ArtistName;
+                newTrack.gameObject.name = tracksByVolume[i].TrackName;
                 newTrack.transform.position = catalogScroll.transform.position;
 
-                newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByVolume[i].trackNb;
+                newTrack.GetComponent<CZ_CatalogTrack>().trackNb = tracksByVolume[i].TrackNb;
 
                 catalog.Add(newTrack);
             }
@@ -220,14 +220,14 @@ public class CZ_Catalog : MonoBehaviour
 
     private void GenerateArtistFilter()
     {
-        TrackSO[] tracksByArtist = manager.tracks.GetRefArray().OrderBy(go => go.authorName).ToArray();
+        TrackSO[] tracksByArtist = manager.tracks.GetRefArray().OrderBy(go => go.ArtistName).ToArray();
         List<string> artists = new List<string>();
 
         for (int i = 0; i < tracksByArtist.Length; i++)
         {
-            if (!artists.Contains(tracksByArtist[i].authorName))
+            if (!artists.Contains(tracksByArtist[i].ArtistName))
             {
-                artists.Add(tracksByArtist[i].authorName);
+                artists.Add(tracksByArtist[i].ArtistName);
             }
         }
 
@@ -236,15 +236,15 @@ public class CZ_Catalog : MonoBehaviour
 
     private void GenerateVolumeFilter()
     {
-        TrackSO[] tracksByVolume = manager.tracks.GetRefArray().OrderBy(go => go.volNb).ToArray();
-        tracksByVolume.OrderBy(go => go.trackNb).ToArray();
+        TrackSO[] tracksByVolume = manager.tracks.GetRefArray().OrderBy(go => go.VolNb).ToArray();
+        tracksByVolume.OrderBy(go => go.TrackNb).ToArray();
         List<string> volFilter = new List<string>();    
 
         for (int i = 0; i < tracksByVolume.Length; i++)
         {
-            if (!volFilter.Contains("Volume " + tracksByVolume[i].volNb))
+            if (!volFilter.Contains("Volume " + tracksByVolume[i].VolNb))
             {
-                volFilter.Add("Volume " + tracksByVolume[i].volNb);
+                volFilter.Add("Volume " + tracksByVolume[i].VolNb);
             }
         }
 

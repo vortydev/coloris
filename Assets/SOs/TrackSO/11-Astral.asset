@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 11-Astral
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: ead52bf939f20d446a7911a6527a1870, type: 3}
-  trackNb: 11
-  volNb: 1
-  trackName: Astral
-  authorName: Eric Midford
+  Clip: {fileID: 8300000, guid: ead52bf939f20d446a7911a6527a1870, type: 3}
+  TrackName: Astral
+  ArtistName: Eric Midford
+  TrackNb: 11
+  VolNb: 1

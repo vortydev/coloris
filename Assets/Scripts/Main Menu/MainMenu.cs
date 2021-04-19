@@ -89,6 +89,12 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(2); // Loads Coloris
     }
 
+    public void PlaySpeedClear()
+    {
+        FindObjectOfType<MenuSoundtrack>().StopSoundtrack();
+        SceneManager.LoadScene(4);  // Loads Speed Clear
+    }
+
     public void OpenChillZone()
     {
         FindObjectOfType<MenuSoundtrack>().StopSoundtrack();

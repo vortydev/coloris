@@ -12,6 +12,8 @@ using TMPro;
 
 public class SettingsGame : MonoBehaviour
 {
+    private GameplayController _gameplayController;
+
     [Header("Difficulty")]
     [SerializeField] Score score;
     [SerializeField] TMP_Dropdown difficultyDropdown;
@@ -21,7 +23,6 @@ public class SettingsGame : MonoBehaviour
     [SerializeField] TextMeshProUGUI lockDelayValue;
 
     [Header("Hard Dropping")]
-    [SerializeField] CanDo canDo;
     [SerializeField] Toggle hardDropToggle;
 
     [Header("Score")]
@@ -41,6 +42,8 @@ public class SettingsGame : MonoBehaviour
 
     private void Awake()
     {
+        _gameplayController = FindObjectOfType<GameplayController>();
+
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.scoreKEY, 1) == 0)
         {
             scoreUI.SetActive(false);
@@ -55,20 +58,20 @@ public class SettingsGame : MonoBehaviour
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.holdPieceKEY, 1) == 0)
         {
-            canDo.canHold = false;
+            _gameplayController.canHold = false;
             holdPieceUI.SetActive(false);
             holdPieceToggle.SetIsOnWithoutNotify(false);
         }
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.hardDropKEY, 1) == 0)
         {
-            canDo.canHardDrop = false;
+            _gameplayController.canHardDrop = false;
             hardDropToggle.SetIsOnWithoutNotify(false);
         }
 
         if (PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.ghostPieceKEY, 1) == 0)
         {
-            canDo.canGhost = false;
+            _gameplayController.canGhost = false;
             ghostPieceToggle.SetIsOnWithoutNotify(false);
         }
     }
@@ -76,13 +79,13 @@ public class SettingsGame : MonoBehaviour
     private void Start()
     {
         difficultyDropdown.value = score.difficultyLevel;
-        lockDelaySlider.value = canDo.lockDelay;
+        lockDelaySlider.value = _gameplayController.lockDelay;
         UpdateSliderLockDelay();
     }
 
     private void UpdateSliderLockDelay()
     {
-        switch (canDo.lockDelay)
+        switch (_gameplayController.lockDelay)
         {
             case 0:
                 lockDelayValue.text = "0s";
@@ -119,20 +122,20 @@ public class SettingsGame : MonoBehaviour
 
     public void ToggleHoldPiece()
     {
-        canDo.canHold = !canDo.canHold;
+        _gameplayController.canHold = !_gameplayController.canHold;
         holdPieceUI.SetActive(!holdPieceUI.activeSelf);
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.holdPieceKEY);
     }
 
     public void ToggleHardDropping()
     {
-        canDo.canHardDrop = !canDo.canHardDrop;
+        _gameplayController.canHardDrop = !_gameplayController.canHardDrop;
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.hardDropKEY);
     }
 
     public void ToggleGhostPiece()
     {
-        canDo.ToggleCanGhost();
+        _gameplayController.ToggleCanGhost();
         PlayerPrefsManager.ToggleBoolPlayerPref(PlayerPrefsManager.ghostPieceKEY);
     }
 }

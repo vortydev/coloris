@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 08-1999
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: 66b8b6cba1672ed479cf17a44d26dfd2, type: 3}
-  trackNb: 8
-  volNb: 1
-  trackName: 1999
-  authorName: Daniel Gilchrist
+  Clip: {fileID: 8300000, guid: 66b8b6cba1672ed479cf17a44d26dfd2, type: 3}
+  TrackName: 1999
+  ArtistName: Daniel Gilchrist
+  TrackNb: 8
+  VolNb: 1

@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject background;
     [SerializeField] GameObject nextPiece;
     [SerializeField] GameObject holdPiece;
+    [SerializeField] GameObject trackUI;
 
     [Header("Pause menu pages")]
     [SerializeField] GameObject pausePage;
@@ -32,6 +33,12 @@ public class PauseMenu : MonoBehaviour
         background.SetActive(false);
         pausePage.SetActive(false);
         optionsPage.SetActive(false);
+
+        // deactivate the track controls on the pause menu if its the Speed Clear gamemode
+        if (GameplayController.GetGameMode() == 1)
+        {
+            trackUI.SetActive(false);
+        }
     }
 
     private void OnPauseMenu()
@@ -76,7 +83,9 @@ public class PauseMenu : MonoBehaviour
     // Loads scene #0, which is the main menu
     public void QuitToMainMenu()
     {
+        FindObjectOfType<TracksManager>().isPaused = true;
         FindObjectOfType<AudioController>().KillAudio();
+
         SceneManager.LoadScene(0);
     }
 }

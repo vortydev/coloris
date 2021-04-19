@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 12-TKN
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: 74c2ea83b2c647a48bd488c95c74beb7, type: 3}
-  trackNb: 12
-  volNb: 1
-  trackName: TKN
-  authorName: Daniel Gilchrist
+  Clip: {fileID: 8300000, guid: 74c2ea83b2c647a48bd488c95c74beb7, type: 3}
+  TrackName: TKN
+  ArtistName: Daniel Gilchrist
+  TrackNb: 12
+  VolNb: 1

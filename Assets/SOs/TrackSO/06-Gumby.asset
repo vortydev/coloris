@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 06-Gumby
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: c119138f1b2ef51448f6cce0b3d8391e, type: 3}
-  trackNb: 6
-  volNb: 1
-  trackName: Gumby
-  authorName: Vizil
+  Clip: {fileID: 8300000, guid: c119138f1b2ef51448f6cce0b3d8391e, type: 3}
+  TrackName: Gumby
+  ArtistName: Vizil
+  TrackNb: 6
+  VolNb: 1

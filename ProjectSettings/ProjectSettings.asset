@@ -131,7 +131,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.8.4
+  bundleVersion: 1.0.0-beta
   preloadedAssets:
   - {fileID: 0}
   metroInputSource: 0
@@ -273,27 +273,27 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 368ca3797371f044da65ce9605879929, type: 3}
+      m_Icon: {fileID: 2800000, guid: 3db7ad38d7fa9ec48b2e24addfd29826, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: f77f097fec52b894390cf3916f11e909, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 512
       m_Height: 512
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 3db7ad38d7fa9ec48b2e24addfd29826, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 256
       m_Height: 256
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: b7f131a4b00c20543b990592f0f497ef, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: ac14fcb938c197d4495f4cbd8a7218fa, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 64
       m_Height: 64
       m_Kind: 0

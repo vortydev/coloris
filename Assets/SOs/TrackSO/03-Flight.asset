@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 03-Flight
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: 9236a6b55e58c14439989a501d4f74e1, type: 3}
-  trackNb: 3
-  volNb: 1
-  trackName: Flight
-  authorName: Scyriate
+  Clip: {fileID: 8300000, guid: 9236a6b55e58c14439989a501d4f74e1, type: 3}
+  TrackName: Flight
+  ArtistName: Scyriate
+  TrackNb: 3
+  VolNb: 1

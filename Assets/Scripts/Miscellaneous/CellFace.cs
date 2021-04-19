@@ -14,6 +14,6 @@ public class CellFace : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = faces[FindObjectOfType<CanDo>().cellFace];
+        GetComponent<SpriteRenderer>().sprite = faces[FindObjectOfType<GameplayController>().cellFace];
     }
 }

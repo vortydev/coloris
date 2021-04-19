@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d7e58a8afc604b834faa96161fde6, type: 3}
   m_Name: 02-Encounter!
   m_EditorClassIdentifier: 
-  track: {fileID: 8300000, guid: 38d1812c7e693334387b5c63b3675de0, type: 3}
-  trackNb: 2
-  volNb: 1
-  trackName: Encounter!
-  authorName: Scyriate
+  Clip: {fileID: 8300000, guid: 38d1812c7e693334387b5c63b3675de0, type: 3}
+  TrackName: Encounter!
+  ArtistName: Scyriate
+  TrackNb: 2
+  VolNb: 1

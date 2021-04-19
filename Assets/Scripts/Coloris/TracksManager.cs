@@ -11,7 +11,7 @@ using UnityEngine;
 public class TracksManager : MonoBehaviour
 {
     [Header("Components")]
-    public AudioController audioController;    // script that sets the audio's volume
+    public AudioController audioController;     // script that sets the audio's volume
     public AudioSource musicSource;             // component that plays the track
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
     [SerializeField] TypeWriter typeWriter;     // script for the type writing effect on the radio
@@ -19,7 +19,7 @@ public class TracksManager : MonoBehaviour
     private bool onFocus = true;
 
     [Header("Tracks")]
-    private ReferenceTracks tracks;             // array of TrackSO holding track data
+    private ReferenceTracks _tracks;            // array of TrackSO holding track data
     private bool[] playlist;                    // array of bools matching the TrackSO array
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
     private TrackSO _curTrack;                   
@@ -30,11 +30,11 @@ public class TracksManager : MonoBehaviour
     {
         // load components
         audioController = FindObjectOfType<AudioController>();
-        tracks = FindObjectOfType<ReferenceTracks>();
+        _tracks = FindObjectOfType<ReferenceTracks>();
         
         // resize the bool array and set all to false
-        playlist = new bool[tracks.GetArraySize()];
-        for (int i = 0; i < tracks.GetArraySize(); i++)
+        playlist = new bool[_tracks.GetArraySize()];
+        for (int i = 0; i < _tracks.GetArraySize(); i++)
         {
             playlist[i] = false;
         }
@@ -59,10 +59,6 @@ public class TracksManager : MonoBehaviour
         // starts a new track when the previous is done
         if (!musicSource.isPlaying && !isPaused && gameStarted && onFocus)
             NextTrack();
-
-        // adjusts the sound of the music
-        //if (gameStarted)
-            //musicSource.volume = audioController.music / 10;
     }
 
     // randomly chooses a track that hasn't been played yet
@@ -71,19 +67,18 @@ public class TracksManager : MonoBehaviour
         CheckPlaylist();
         int rng;
         do
-            rng = Random.Range(0, tracks.GetArraySize());
+            rng = Random.Range(0, _tracks.GetArraySize());
         while (playlist[rng] || prevTrack == rng);
 
         playlist[rng] = true;
         prevTrack = rng;
 
-        _curTrack = tracks.GetTrackSO(rng);
-        musicSource.clip = _curTrack.track;
+        _curTrack = _tracks.GetTrackSO(rng);
+        musicSource.clip = _curTrack.Clip;
         musicSource.Play();
 
-        //radio.DisplayTrackInfo(curTrack.trackName, curTrack.authorName);
-        typeWriter.TypeText(radio.trackName, _curTrack.trackName);
-        typeWriter.TypeText(radio.trackAuthor, _curTrack.authorName);
+        typeWriter.TypeText(radio.trackName, _curTrack.TrackName);
+        typeWriter.TypeText(radio.trackAuthor, _curTrack.ArtistName);
 
         trackUI.GetTotalTrackTime(musicSource.clip.length);
 
