@@ -36,6 +36,9 @@ public class ChillZoneManager : MonoBehaviour
     [SerializeField] CZ_Queue queue;
     [SerializeField] GameObject quitPopup;
 
+    [Header("Showcase")]
+    [SerializeField] GameObject showcaseMode;
+
     private void Awake()
     {
         _actions = new MyControls();
@@ -66,6 +69,7 @@ public class ChillZoneManager : MonoBehaviour
     {
         onFocus = true;
         quitPopup.SetActive(false);
+        showcaseMode.SetActive(false);
 
         UpdateRichPresence();
     }
@@ -335,6 +339,12 @@ public class ChillZoneManager : MonoBehaviour
     {
         FindObjectOfType<UISFX>().OnButtonClick();
         quitPopup.SetActive(!quitPopup.activeSelf);
+    }
+
+    public void ToggleShowcase()
+    {
+        FindObjectOfType<UISFX>().TetrisSFX();
+        showcaseMode.SetActive(!showcaseMode.activeSelf);
     }
 
     public void MainMenu()
