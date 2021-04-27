@@ -16,15 +16,18 @@ public class TracksManager : MonoBehaviour
     [SerializeField] RadioUI radio;             // script that handles the crediting UI
     [SerializeField] TypeWriter typeWriter;     // script for the type writing effect on the radio
     [SerializeField] TrackUI trackUI;           // script that handles tracks in pause menu
-    private bool onFocus = true;
 
     [Header("Tracks")]
     private ReferenceTracks _tracks;            // array of TrackSO holding track data
     private bool[] playlist;                    // array of bools matching the TrackSO array
     private int prevTrack = -1;                 // int that holds the previous track's ind in the array
-    private TrackSO _curTrack;                   
-    public bool isPaused = false;
-    public bool gameStarted = false;
+    public TrackSO curTrack;                    // the currently selected track
+
+    [Header("Settings")]
+    public bool isPaused = false;               // is the music paused
+    public bool gameStarted = false;            // has the game started
+    private bool _onFocus = true;               // is the game is in-focus
+    public int mode;                            // the mode the tracks manager is set to (0: classic, 1: speed clear)
 
     private void Awake()
     {
@@ -43,6 +46,7 @@ public class TracksManager : MonoBehaviour
     private void Start()
     {
         musicSource = audioController.musicSource;
+        mode = GameplayController.gameMode;
     }
 
     private void OnApplicationFocus()
@@ -50,14 +54,14 @@ public class TracksManager : MonoBehaviour
         if (gameStarted)
         {
             TogglePause();
-            onFocus = !onFocus;
+            _onFocus = !_onFocus;
         }
     }
 
     private void Update()
     {
         // starts a new track when the previous is done
-        if (!musicSource.isPlaying && !isPaused && gameStarted && onFocus)
+        if (!musicSource.isPlaying && !isPaused && gameStarted && _onFocus && mode == 0)
             NextTrack();
     }
 
@@ -73,16 +77,21 @@ public class TracksManager : MonoBehaviour
         playlist[rng] = true;
         prevTrack = rng;
 
-        _curTrack = _tracks.GetTrackSO(rng);
-        musicSource.clip = _curTrack.Clip;
+        curTrack = _tracks.GetTrackSO(rng);
+        musicSource.clip = curTrack.Clip;
         musicSource.Play();
 
-        typeWriter.TypeText(radio.trackName, _curTrack.TrackName);
-        typeWriter.TypeText(radio.trackAuthor, _curTrack.ArtistName);
-
-        trackUI.GetTotalTrackTime(musicSource.clip.length);
+        DisplayTrackUI();
 
         isPaused = false;
+    }
+
+    public void DisplayTrackUI()
+    {
+        typeWriter.TypeText(radio.trackName, curTrack.TrackName);
+        typeWriter.TypeText(radio.trackAuthor, curTrack.ArtistName);
+
+        trackUI.GetTotalTrackTime(musicSource.clip.length);
     }
 
     // checks if the playlist is done and resets it if it is

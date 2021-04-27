@@ -480,7 +480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98494bec3d37bf044b7ba73d874b4ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timerText: {fileID: 0}
 --- !u!1 &242303553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,9 +1146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time:
-
-    00:00'
+  m_text: 00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
   m_sharedMaterial: {fileID: 5995651761183633212, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
@@ -1176,12 +1173,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 60
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 36
+  m_fontSizeMax: 60
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1648,7 +1645,7 @@ GameObject:
   - component: {fileID: 858484804}
   m_Layer: 5
   m_Name: RandomSelectButton
-  m_TagString: Untagged
+  m_TagString: MenuButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2125,6 +2122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732d95cf32ead764b8625e94485c0ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectedTrack: {fileID: 0}
   _highScores: 
   trackSelectionUI: {fileID: 0}
   bg: {fileID: 1153042803}

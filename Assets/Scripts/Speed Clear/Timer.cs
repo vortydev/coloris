@@ -5,7 +5,8 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _timerText;
+    private TextMeshProUGUI _timerText;
+    private int _trackDuration;
 
     private void Awake()
     {
@@ -14,6 +15,8 @@ public class Timer : MonoBehaviour
 
     public void DisplayTrackDuration(int trackLength)
     {
+        _trackDuration = trackLength;
+
         string min = (trackLength / 60).ToString();
         string sec = (trackLength % 60).ToString();
 
@@ -23,6 +26,13 @@ public class Timer : MonoBehaviour
         if (trackLength % 60 < 10)
             sec = "0" + sec;
 
-        _timerText.text = "Time:\n" + min + ":" + sec;
+        _timerText.text = min + ":" + sec;
+    }
+
+    public void DisplayTimeRemaining(/*track length left*/)
+    {
+        // math
+
+        _timerText.text = _trackDuration.ToString();
     }
 }

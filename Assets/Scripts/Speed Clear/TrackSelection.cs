@@ -15,7 +15,7 @@ public class TrackSelection : MonoBehaviour
 {
     private ReferenceTracks _tracks;
     private AudioSource _musicSource;
-    private TrackSO _selectedTrack;
+    [SerializeField] public TrackSO selectedTrack;
     private int _previousTrack = 0;
     [SerializeField] private int[] _highScores;
 
@@ -69,22 +69,22 @@ public class TrackSelection : MonoBehaviour
 
     public void SelectTrack(int trackNb)
     {
-        _selectedTrack = _tracks.refTracks[trackNb - 1];
+        selectedTrack = _tracks.refTracks[trackNb - 1];
 
-        _musicSource.clip = _selectedTrack.Clip;
+        _musicSource.clip = selectedTrack.Clip;
 
-        DisplaySelectedTrack(_selectedTrack.TrackName);
-        DisplayTrackHighScore(_selectedTrack.TrackNb);
+        DisplaySelectedTrack(selectedTrack.TrackName);
+        DisplayTrackHighScore(selectedTrack.TrackNb);
 
-        _previousTrack = _selectedTrack.TrackNb;
+        _previousTrack = selectedTrack.TrackNb;
 
-        if (_selectedTrack != null)
+        if (selectedTrack != null)
         {
             playButton.interactable = true;
             timerUI.SetActive(true);
         }
 
-        FindObjectOfType<Timer>().DisplayTrackDuration((int)_selectedTrack.Clip.length);
+        FindObjectOfType<Timer>().DisplayTrackDuration((int)selectedTrack.Clip.length);
     }
 
     public void RandomlySelectTrack()
@@ -120,13 +120,13 @@ public class TrackSelection : MonoBehaviour
 
     public void LoadClassicGameScene()
     {
-        trackSelectionUI.SetActive(false);
-        bg.SetActive(false);
-
         FindObjectOfType<EventSystem>().enabled = false;
         SceneManager.LoadScene("Coloris", LoadSceneMode.Additive);
 
-        // send the selected track to the TracksManager
+        //GameObject.Find("GameAudio").GetComponent<TracksManager>().curTrack = selectedTrack;
+
+        trackSelectionUI.SetActive(false);
+        bg.SetActive(false);
     }
 
     private int GetTrackHighscore(int ind)
