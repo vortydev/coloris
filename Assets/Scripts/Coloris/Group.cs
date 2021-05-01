@@ -173,7 +173,7 @@ public class Group : MonoBehaviour
     {
         _canHardDrop = _perms.canHardDrop;
 
-        if (_canHardDrop && _allowedHardDrop && _isMoveable && !_paused)
+        if (_canHardDrop && _allowedHardDrop && _isMoveable && !_paused && CanStillFall())
         {
             _isMoveable = false; // locks the piece's lateral movement
 
