@@ -26,12 +26,10 @@ public class StartGame : MonoBehaviour
 
     [Header("Countdown")]
     private bool _started = false;
-    private bool _dynamicJuice;
     [SerializeField] private int time;
     [SerializeField] private float juiceTime;
     public TextMeshProUGUI countdownText;
     private IEnumerator _countdownRoutine;
-    private IEnumerator _scalingRoutine;
     [SerializeField] AudioClip countdownClip;
 
     private void Awake()
@@ -48,8 +46,6 @@ public class StartGame : MonoBehaviour
     {
         _sfxSource = _tracksManager.audioController.sfxSource;
         _musicSource = _tracksManager.audioController.musicSource;
-
-        _dynamicJuice = PlayerPrefsManager.GetBoolPlayerPref(PlayerPrefsManager.dynamicTextKEY);
     }
 
     private void FixedUpdate()
@@ -79,11 +75,6 @@ public class StartGame : MonoBehaviour
 
         do
         {
-            //if (_dynamicJuice)
-            //{
-            //    _rectTransform.localScale = new Vector2(4 - count, 4 - count);
-            //}
-
             countdownText.text = count.ToString();
 
             _sfxSource.Play();
@@ -134,18 +125,8 @@ public class StartGame : MonoBehaviour
         int count = seconds;
         _sfxSource.clip = countdownClip;
 
-        //if (_dynamicJuice)
-        //{
-        //    StartCoroutine(_scalingRoutine);
-        //}
-
         do
         {
-            if (_dynamicJuice)
-            {
-                _rectTransform.localScale = new Vector2(4 - count, 4 - count);
-            }
-
             countdownText.text = count.ToString();
             _sfxSource.Play();
 
