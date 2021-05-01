@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca9ce6dd6f094242913d129bc413668, type: 3}
+  m_Name: 1.0.0
+  m_EditorClassIdentifier: 
+  version: 1.0.0
+  name: Official Release
+  description: I finally made it, Coloris is officially completed and released! Thank
+    you so much for your patience and encouragements, I could not have done it without
+    you!
+  newTracks: []
+  changes:
+  - Displayed keybinds will change in the tutorial depending of the selected loadout.
+  - The tutorial piece now properly resets.
+  - Gamepad keybinds view is disabled if no controller is detected.
+  - Implemented a cute little Showcase mode in the Chill Zone.
+  bugfixes: []
