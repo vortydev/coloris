@@ -1986,7 +1986,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299777966
 MonoBehaviour:
@@ -2008,7 +2008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Introduction
+  m_text: What is Coloris?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
   m_sharedMaterial: {fileID: 5995651761183633212, guid: f5d1d4fbbc8b0fd419c5ef895a578db5, type: 2}
@@ -2035,10 +2035,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 45.45
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 250
   m_fontStyle: 0
@@ -2683,7 +2683,6 @@ GameObject:
   - component: {fileID: 1619496624}
   - component: {fileID: 1619496623}
   - component: {fileID: 1619496622}
-  - component: {fileID: 1619496625}
   m_Layer: 5
   m_Name: IntroductionButton
   m_TagString: Untagged
@@ -2829,18 +2828,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619496620}
   m_CullTransparentMesh: 1
---- !u!114 &1619496625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619496620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78ca8505858a8dc48a8c2c441e360ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1621316522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3073,16 +3060,18 @@ MonoBehaviour:
   controlsPage: {fileID: 1331425950}
   mainPageTrans:
   - First time playing? Check out the controls!
-  - If you like this game, consider donating!
+  - If you like this game, consider sharing it with your friends!
+  - Have you checked out the the Chill Zone?
+  - Check out the options to customize your experience!
   introTrans:
-  - An on-going collaborative project!
+  - If you like this game, consider sharing it with your friends!
   - Coloris is more than just a game. It's a collaborative project for which anyone
     and everyone is welcomed to contribute to! It was created and designed to showcase
     the passion, the time, and the effort that goes too often unnoticed in a game's
     music and sound effects. Coloris also offers a ton of customizability for a perfectly
     tailored experience. Enjoy!
   contTrans:
-  - Use the left and right arrows to move the piece laterally.
+  - Use the right and left arrows to move the piece laterally.
   - 'Up arrow or X: clockwise rotation. Ctrl or Z: counter-clockwise rotation.'
   - Use the down arrow to soft drop. Use Space to hard drop.
   - Use Shift or C to hold the current piece.

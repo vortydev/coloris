@@ -29,6 +29,7 @@ public class TutorialsManager : MonoBehaviour
     [SerializeField] string[] mainPageTrans;
     [SerializeField] string[] introTrans;
     [SerializeField] string[] contTrans;
+    private int loadout;
 
     [Header("Audio")]
     private AudioController _audioController;
@@ -41,6 +42,8 @@ public class TutorialsManager : MonoBehaviour
     {
         _audioController = FindObjectOfType<AudioController>();
         FindObjectOfType<UISFX>().LoadUIElements();
+
+        loadout = PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.keyboardLoadoutKEY, 0);
     }
 
     private void Start()
@@ -74,7 +77,7 @@ public class TutorialsManager : MonoBehaviour
 
     public void OpenIntroduction()
     {
-        pageTitle.text = "Introduction";
+        pageTitle.text = "What is Coloris?";
         pageTitle.fontStyle = FontStyles.Normal;
 
         introPage.SetActive(true);
@@ -102,7 +105,61 @@ public class TutorialsManager : MonoBehaviour
 
     public void PlayControls(int ind)
     {
-        radio.TypeControlsText(radioText, contTrans[ind - 1]);
+        string s = ControlsString(ind);
+
+        radio.TypeControlsText(radioText, s);
+    }
+
+    private string ControlsString(int ind)
+    {
+        // excuse this hard-coded mess but I just want this to look nice aight ._.
+        switch (ind)
+        {
+            case 1: // lateral movement
+                switch (loadout)
+                {
+                    case 1:     // vim
+                        return "Use H and L to move the piece laterally.";
+                    case 2:     // gamer
+                        return "Use A and D to move the piece laterally.";
+                    default:    // default
+                        return "Use the right and left arrows to move the piece laterally.";
+                }
+
+            case 2: // rotations
+                switch (loadout)
+                {
+                    case 1:     // vim
+                        return "K or X: clockwise rotation. Z: counter-clockwise rotation.";
+                    case 2:     // gamer
+                        return "W: clockwise rotation. Real gamers don't counter-clockwise.";
+                    default:    // default
+                        return "Up arrow or X: clockwise rotation. Ctrl or Z: counter-clockwise rotation.";
+                }
+
+            case 3: // dropping
+                switch (loadout)
+                {
+                    case 1:     // vim
+                        return "Use J to soft drop. Use Space to hard drop.";
+                    case 2:     // gamer
+                        return "Use S to soft drop. Use Space to hard drop.";
+                    default:    // default
+                        return "Use the down arrow to soft drop. Use Space to hard drop.";
+                }
+
+            case 4: // hold piece
+                switch (loadout)
+                {
+                    case 1:     // vim
+                        return "Use C to hold the current piece.";
+                    case 2:     // gamer
+                        return "Use E to hold the current piece.";
+                    default:    // default
+                        return "Use Shift or C to hold the current piece.";
+                }
+        }
+        return null;
     }
 
     public void UpdateSliderMusic()

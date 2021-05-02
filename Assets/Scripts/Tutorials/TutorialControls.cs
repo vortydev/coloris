@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 public class TutorialControls : MonoBehaviour
 {
     private MyControls _actions;
+    private TutorialsManager _manager;
 
     [Header("Buttons")]
     [SerializeField] Button backButton;
@@ -41,8 +42,11 @@ public class TutorialControls : MonoBehaviour
 
     private void Awake()
     {
-        _actions = new MyControls();
         _sfxSource = FindObjectOfType<AudioController>().sfxSource;
+        _manager = FindObjectOfType<TutorialsManager>();
+
+        _actions = new MyControls();
+        LoadLoadouts(PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.keyboardLoadoutKEY, 0), PlayerPrefsManager.GetIntPlayerPref(PlayerPrefsManager.gamepadLoadoutKEY, 1));
     }
 
     private void Start()
@@ -51,6 +55,44 @@ public class TutorialControls : MonoBehaviour
 
         heldPiece.SetActive(false);
         holdPieceUI.SetActive(false);
+    }
+
+    private void LoadLoadouts(int keybLoadout, int gamepadLoadout)
+    {
+        string keybControls = "Default";
+        string gamepadControls = "Gamepad";
+
+        switch (keybLoadout)
+        {
+            case 0:
+                keybControls = "Default";
+                break;
+            case 1:
+                keybControls = "Vim";
+                break;
+            case 2:
+                keybControls = "Gamer";
+                break;
+            case 3:
+                keybControls = "Numpad";
+                break;
+        }
+
+        switch (gamepadLoadout)
+        {
+            case 1:
+                gamepadControls = "Gamepad";
+                break;
+        }
+
+        if (Gamepad.all.Count > 0 && gamepadLoadout >= 1)
+        {
+            _actions.bindingMask = InputBinding.MaskByGroups(keybControls, gamepadControls);
+        }
+        else
+        {
+            _actions.bindingMask = InputBinding.MaskByGroup(keybControls);
+        }
     }
 
     private void OnEnable()
@@ -293,19 +335,27 @@ public class TutorialControls : MonoBehaviour
         switch (controlsNav)
         {
             case 1:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
+                _manager.PlayControls(controlsNav);
                 break;
             case 2:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
-                StartCoroutine(ResetPieceToMiddle());
+                _manager.PlayControls(controlsNav);
                 break;
             case 3:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
-                StartCoroutine(ResetPieceUp());
+                _manager.PlayControls(controlsNav);
                 break;
             case 4:
-                FindObjectOfType<TutorialsManager>().PlayControls(controlsNav);
+                _manager.PlayControls(controlsNav);
                 break;
+        }
+
+        if (controlsNav != 1)
+        {
+            StartCoroutine(ResetPieceToMiddle());
+        }
+
+        if (controlsNav != 2)
+        {
+            StartCoroutine(ResetPieceUp());
         }
 
         if (controlsNav == 4)

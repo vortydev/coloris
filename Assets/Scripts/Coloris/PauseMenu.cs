@@ -76,6 +76,7 @@ public class PauseMenu : MonoBehaviour
     // Loads scene #0, which is the main menu
     public void QuitToMainMenu()
     {
+        FindObjectOfType<TracksManager>().isPaused = true;
         FindObjectOfType<AudioController>().KillAudio();
         SceneManager.LoadScene(0);
     }

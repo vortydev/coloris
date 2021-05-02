@@ -62,32 +62,24 @@ public class AudioController : MonoBehaviour
         return s;
     }
 
-
-    public void KillMusicSource()
-    {
-        musicSource.Stop();
-        musicSource.clip = null;
-
-        StopCoroutine(_musicRoutine);
-        _musicRoutine = null;
-    }
-
-    public void KillSfxSource()
-    {
-        sfxSource.Stop();
-        sfxSource.clip = null;
-    }
-
     public void KillAudio(bool music = true, bool sfx = true)
     {
         if (music)
         {
-            KillMusicSource();
+            musicSource.Stop();
+            musicSource.clip = null;
+
+            if (_musicRoutine != null)
+            {
+                StopCoroutine(_musicRoutine);
+                _musicRoutine = null;
+            }
         }
 
         if (sfx)
         {
-            KillSfxSource();
+            sfxSource.Stop();
+            sfxSource.clip = null;
         }  
     }
 
