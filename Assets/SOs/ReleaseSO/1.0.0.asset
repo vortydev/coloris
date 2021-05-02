@@ -23,4 +23,6 @@ MonoBehaviour:
   - The tutorial piece now properly resets.
   - Gamepad keybinds view is disabled if no controller is detected.
   - Implemented a cute little Showcase mode in the Chill Zone.
-  bugfixes: []
+  bugfixes:
+  - 010 - Game over would get triggered when a piece was hard dropped the moment
+    it was supposed to lock.
