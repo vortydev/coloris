@@ -2683,7 +2683,6 @@ GameObject:
   - component: {fileID: 1619496624}
   - component: {fileID: 1619496623}
   - component: {fileID: 1619496622}
-  - component: {fileID: 1619496625}
   m_Layer: 5
   m_Name: IntroductionButton
   m_TagString: Untagged
@@ -2829,18 +2828,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619496620}
   m_CullTransparentMesh: 1
---- !u!114 &1619496625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619496620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78ca8505858a8dc48a8c2c441e360ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1621316522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,7 +3064,7 @@ MonoBehaviour:
   - Have you checked out the the Chill Zone?
   - Check out the options to customize your experience!
   introTrans:
-  - An on-going collaborative project!
+  - If you like this game, consider sharing it with your friends!
   - Coloris is more than just a game. It's a collaborative project for which anyone
     and everyone is welcomed to contribute to! It was created and designed to showcase
     the passion, the time, and the effort that goes too often unnoticed in a game's

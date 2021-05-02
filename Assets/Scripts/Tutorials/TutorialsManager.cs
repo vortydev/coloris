@@ -132,7 +132,7 @@ public class TutorialsManager : MonoBehaviour
                     case 1:     // vim
                         return "K or X: clockwise rotation. Z: counter-clockwise rotation.";
                     case 2:     // gamer
-                        return "W: clockwise rotation. Real gamers only need one key.";
+                        return "W: clockwise rotation. Real gamers don't counter-clockwise.";
                     default:    // default
                         return "Up arrow or X: clockwise rotation. Ctrl or Z: counter-clockwise rotation.";
                 }
